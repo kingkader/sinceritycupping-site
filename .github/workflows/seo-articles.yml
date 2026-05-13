@@ -1,0 +1,33 @@
+name: Publish SEO articles
+
+on:
+  schedule:
+    - cron: "30 6 * * 1,4"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Generate scheduled wet cupping article
+        run: node scripts/generate-articles.mjs --count=1
+
+      - name: Validate site
+        run: node scripts/check-site.mjs
+
+      - name: Commit changes
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "Publish scheduled wet cupping SEO article"
+          file_pattern: "articles/** blog/index.html sitemap.xml llms.txt data/article-manifest.json"

@@ -1,0 +1,85 @@
+{
+  "name": "Sincerity Cupping Clinic",
+  "domain": "https://sinceritycupping.co.uk",
+  "bookingUrl": "https://www.fresha.com/book-now/sincerity-ruqyah-centre-en3ghpfz/services?lid=1080569&oiid=sv%3A15058937&share=true&pId=1024551",
+  "email": "sinceritycupping@gmail.com",
+  "phone": "07552 540000",
+  "telephone": "+447552540000",
+  "whatsappUrl": "https://wa.me/447552540000",
+  "address": {
+    "street": "330 Streatham High Rd",
+    "locality": "London",
+    "postcode": "SW16 6HH",
+    "country": "GB"
+  },
+  "geo": {
+    "latitude": 51.4269846,
+    "longitude": -0.13136329
+  },
+  "rating": {
+    "value": 4.9,
+    "count": 86
+  },
+  "priceRange": "From £45",
+  "combinedExperienceYears": 40,
+  "fullyInsured": true,
+  "serves": [
+    "men",
+    "women"
+  ],
+  "environment": "clean and serene",
+  "googleMapsUrl": "https://www.google.com/maps?q=place_id:ChIJ6-vLLJQHdkgRPrnWnRsH6_Q&place_id=ChIJ6-vLLJQHdkgRPrnWnRsH6_Q",
+  "freshaProfileUrl": "https://www.fresha.com/a/sincerity-cupping-clinic-london-330-streatham-high-road-juyfvsn5",
+  "birdeyeUrl": "https://reviews.birdeye.com/sincerity-cupping-clinic-171612344902935",
+  "openingHours": [
+    {
+      "day": "Monday",
+      "opens": "10:00",
+      "closes": "20:00"
+    },
+    {
+      "day": "Tuesday",
+      "opens": "10:00",
+      "closes": "20:00"
+    },
+    {
+      "day": "Wednesday",
+      "opens": "10:00",
+      "closes": "20:00"
+    },
+    {
+      "day": "Saturday",
+      "opens": "10:00",
+      "closes": "20:00"
+    },
+    {
+      "day": "Sunday",
+      "opens": "10:00",
+      "closes": "20:00"
+    }
+  ],
+  "serviceAreas": [
+    "Streatham",
+    "Streatham Hill",
+    "Streatham Common",
+    "Balham",
+    "Brixton",
+    "Tooting",
+    "Clapham",
+    "Norbury",
+    "Tulse Hill",
+    "West Norwood",
+    "Herne Hill",
+    "Dulwich",
+    "Crystal Palace",
+    "Mitcham",
+    "Colliers Wood"
+  ],
+  "services": [
+    {
+      "name": "Wet cupping / Hijama",
+      "url": "/services/#hijama",
+      "summary": "Traditional wet cupping for men and women, delivered by expert practitioners with suitability checks, hygiene controls, full insurance and aftercare guidance."
+    }
+  ]
+}

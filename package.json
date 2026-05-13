@@ -1,0 +1,10 @@
+{
+  "name": "sincerity-cupping-static-site",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "generate:articles": "node scripts/generate-articles.mjs --count=2",
+    "check": "node scripts/check-site.mjs"
+  }
+}
