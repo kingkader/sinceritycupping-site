@@ -20,7 +20,7 @@
     "value": 4.9,
     "count": 86
   },
-  "priceRange": "From £45",
+  "priceRange": "From \u00a345",
   "combinedExperienceYears": 40,
   "fullyInsured": true,
   "serves": [
@@ -80,6 +80,44 @@
       "name": "Wet cupping / Hijama",
       "url": "/services/#hijama",
       "summary": "Traditional wet cupping for men and women, delivered by expert practitioners with suitability checks, hygiene controls, full insurance and aftercare guidance."
+    }
+  ],
+  "practitioners": [
+    {
+      "id": "aisha-mejri",
+      "name": "Sister Aisha Mejri",
+      "honorificPrefix": "Sister",
+      "givenName": "Aisha",
+      "familyName": "Mejri",
+      "jobTitle": "Lead Hijama Practitioner",
+      "yearsExperience": 20,
+      "gender": "https://schema.org/Female",
+      "servesAudience": "Female and family clients",
+      "knowsAbout": [
+        "Wet cupping",
+        "Hijama",
+        "Sunnah cupping practice",
+        "Aftercare for hijama clients"
+      ],
+      "bio": "Sister Aisha Mejri is the lead practitioner at Sincerity Cupping Clinic with more than 20 years of hands-on experience in wet cupping and hijama. She leads female client sessions, manages clinical hygiene and is the first point of contact for new clients seeking guidance on suitability and aftercare."
+    },
+    {
+      "id": "abu-layla",
+      "name": "Brother Abu Layla",
+      "honorificPrefix": "Brother",
+      "givenName": "Abu Layla",
+      "familyName": "",
+      "jobTitle": "Senior Hijama Practitioner",
+      "yearsExperience": 20,
+      "gender": "https://schema.org/Male",
+      "servesAudience": "Male clients",
+      "knowsAbout": [
+        "Wet cupping",
+        "Hijama",
+        "Sunnah cupping practice",
+        "Aftercare for hijama clients"
+      ],
+      "bio": "Brother Abu Layla is the senior practitioner for male clients at Sincerity Cupping Clinic. He leads male-only hijama appointments in a respectful, private environment with the same hygiene and aftercare standards used clinic-wide."
     }
   ]
 }

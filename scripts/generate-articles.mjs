@@ -61,7 +61,16 @@ function articleHtml(topic) {
         datePublished: isoDate,
         dateModified: isoDate,
         mainEntityOfPage: url,
-        author: {"@type": "Organization", name: business.name},
+        author: {
+          "@type": "Person",
+          "@id": `${business.domain}/about/#aisha-mejri`,
+          name: "Sister Aisha Mejri",
+          jobTitle: "Lead Hijama Practitioner"
+        },
+        citation: [
+          {"@type": "WebPage", "name": "Jami at-Tirmidhi 2051 — cupping on 17, 19, 21", url: "https://sunnah.com/tirmidhi:2051"},
+          {"@type": "WebPage", "name": "Cleveland Clinic — Cupping Therapy", url: "https://my.clevelandclinic.org/health/treatments/16554-cupping"}
+        ],
         publisher: {
           "@type": "Organization",
           name: business.name,

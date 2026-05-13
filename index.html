@@ -16,6 +16,7 @@
     <link rel="preload" as="image" href="/assets/img/back-cupping-glass-1200.jpg">
     <link rel="stylesheet" href="/assets/css/styles.css">
     <script type="application/ld+json">
+
 {
   "@context": "https://schema.org",
   "@graph": [
@@ -24,7 +25,7 @@
         "LocalBusiness",
         "HealthAndBeautyBusiness"
       ],
-      "@id": "https://sinceritycupping.co.uk/#business",
+      "@id": "https://sinceritycupping.co.uk/#localbusiness",
       "name": "Sincerity Cupping Clinic",
       "url": "https://sinceritycupping.co.uk/",
       "description": "Insured wet cupping and hijama clinic for men and women in Streatham, South London, led by expert practitioners with 40 years combined experience.",
@@ -114,6 +115,21 @@
             "name": "Wet cupping / Hijama for men and women"
           }
         }
+      ],
+      "employee": [
+        {
+          "@id": "https://sinceritycupping.co.uk/about/#aisha-mejri"
+        },
+        {
+          "@id": "https://sinceritycupping.co.uk/about/#abu-layla"
+        }
+      ],
+      "openingHours": [
+        "Mo 10:00-20:00",
+        "Tu 10:00-20:00",
+        "We 10:00-20:00",
+        "Sa 10:00-20:00",
+        "Su 10:00-20:00"
       ]
     },
     {
@@ -258,9 +274,50 @@
           }
         }
       ]
+    },
+    {
+      "@type": "Person",
+      "@id": "https://sinceritycupping.co.uk/about/#aisha-mejri",
+      "name": "Sister Aisha Mejri",
+      "honorificPrefix": "Sister",
+      "givenName": "Aisha",
+      "familyName": "Mejri",
+      "jobTitle": "Lead Hijama Practitioner",
+      "gender": "https://schema.org/Female",
+      "knowsAbout": [
+        "Wet cupping",
+        "Hijama",
+        "Sunnah cupping practice",
+        "Aftercare for hijama clients"
+      ],
+      "description": "Sister Aisha Mejri is the lead practitioner at Sincerity Cupping Clinic with more than 20 years of hands-on experience in wet cupping and hijama. She leads female client sessions, manages clinical hygiene and is the first point of contact for new clients seeking guidance on suitability and aftercare.",
+      "worksFor": {
+        "@id": "https://sinceritycupping.co.uk/#localbusiness"
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://sinceritycupping.co.uk/about/#abu-layla",
+      "name": "Brother Abu Layla",
+      "honorificPrefix": "Brother",
+      "givenName": "Abu Layla",
+      "familyName": "",
+      "jobTitle": "Senior Hijama Practitioner",
+      "gender": "https://schema.org/Male",
+      "knowsAbout": [
+        "Wet cupping",
+        "Hijama",
+        "Sunnah cupping practice",
+        "Aftercare for hijama clients"
+      ],
+      "description": "Brother Abu Layla is the senior practitioner for male clients at Sincerity Cupping Clinic. He leads male-only hijama appointments in a respectful, private environment with the same hygiene and aftercare standards used clinic-wide.",
+      "worksFor": {
+        "@id": "https://sinceritycupping.co.uk/#localbusiness"
+      }
     }
   ]
 }
+    
     </script>
   </head>
   <body>
@@ -436,21 +493,21 @@
             <p>The clinic is based on Streatham High Road and is easy to reach for clients searching from these nearby local areas.</p>
           </div>
           <div class="area-grid">
-            <div class="area-card"><h3>Streatham</h3><p>Wet cupping and hijama at 330 Streatham High Rd, London SW16 6HH.</p></div>
-            <div class="area-card"><h3>Streatham Hill</h3><p>Convenient for clients searching for hijama near Streatham Hill.</p></div>
-            <div class="area-card"><h3>Streatham Common</h3><p>Local wet cupping appointments for Streatham Common clients.</p></div>
-            <div class="area-card"><h3>Balham</h3><p>Easy online booking for clients travelling from Balham.</p></div>
-            <div class="area-card"><h3>Brixton</h3><p>Wet cupping and hijama access for Brixton clients.</p></div>
-            <div class="area-card"><h3>Tooting</h3><p>Hijama appointments for clients searching near Tooting.</p></div>
-            <div class="area-card"><h3>Clapham</h3><p>Insured wet cupping for clients coming from Clapham.</p></div>
-            <div class="area-card"><h3>Norbury</h3><p>Clean, serene hijama appointments for Norbury clients.</p></div>
-            <div class="area-card"><h3>Tulse Hill</h3><p>Nearby wet cupping care for clients around Tulse Hill.</p></div>
-            <div class="area-card"><h3>West Norwood</h3><p>Wet cupping and aftercare guidance for West Norwood clients.</p></div>
-            <div class="area-card"><h3>Herne Hill</h3><p>Local hijama appointments for clients travelling from Herne Hill.</p></div>
-            <div class="area-card"><h3>Dulwich</h3><p>Clean and insured wet cupping access for Dulwich clients.</p></div>
-            <div class="area-card"><h3>Crystal Palace</h3><p>Wet cupping appointments for clients searching near Crystal Palace.</p></div>
-            <div class="area-card"><h3>Mitcham</h3><p>Practical booking and aftercare for clients coming from Mitcham.</p></div>
-            <div class="area-card"><h3>Colliers Wood</h3><p>Nearby hijama and wet cupping care for Colliers Wood clients.</p></div>
+            <div class="area-card"><h3><a href="/areas/streatham/">Streatham</a></h3><p>Wet cupping and hijama at 330 Streatham High Rd, London SW16 6HH.</p></div>
+            <div class="area-card"><h3><a href="/areas/streatham-hill/">Streatham Hill</a></h3><p>Convenient for clients searching for hijama near Streatham Hill.</p></div>
+            <div class="area-card"><h3><a href="/areas/streatham-common/">Streatham Common</a></h3><p>Local wet cupping appointments for Streatham Common clients.</p></div>
+            <div class="area-card"><h3><a href="/areas/balham/">Balham</a></h3><p>Easy online booking for clients travelling from Balham.</p></div>
+            <div class="area-card"><h3><a href="/areas/brixton/">Brixton</a></h3><p>Wet cupping and hijama access for Brixton clients.</p></div>
+            <div class="area-card"><h3><a href="/areas/tooting/">Tooting</a></h3><p>Hijama appointments for clients searching near Tooting.</p></div>
+            <div class="area-card"><h3><a href="/areas/clapham/">Clapham</a></h3><p>Insured wet cupping for clients coming from Clapham.</p></div>
+            <div class="area-card"><h3><a href="/areas/norbury/">Norbury</a></h3><p>Clean, serene hijama appointments for Norbury clients.</p></div>
+            <div class="area-card"><h3><a href="/areas/tulse-hill/">Tulse Hill</a></h3><p>Nearby wet cupping care for clients around Tulse Hill.</p></div>
+            <div class="area-card"><h3><a href="/areas/west-norwood/">West Norwood</a></h3><p>Wet cupping and aftercare guidance for West Norwood clients.</p></div>
+            <div class="area-card"><h3><a href="/areas/herne-hill/">Herne Hill</a></h3><p>Local hijama appointments for clients travelling from Herne Hill.</p></div>
+            <div class="area-card"><h3><a href="/areas/dulwich/">Dulwich</a></h3><p>Clean and insured wet cupping access for Dulwich clients.</p></div>
+            <div class="area-card"><h3><a href="/areas/crystal-palace/">Crystal Palace</a></h3><p>Wet cupping appointments for clients searching near Crystal Palace.</p></div>
+            <div class="area-card"><h3><a href="/areas/mitcham/">Mitcham</a></h3><p>Practical booking and aftercare for clients coming from Mitcham.</p></div>
+            <div class="area-card"><h3><a href="/areas/colliers-wood/">Colliers Wood</a></h3><p>Nearby hijama and wet cupping care for Colliers Wood clients.</p></div>
           </div>
         </div>
       </section>
