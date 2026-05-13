@@ -7,6 +7,7 @@ on:
 
 permissions:
   contents: write
+  deployments: write
 
 jobs:
   publish:
@@ -31,3 +32,10 @@ jobs:
         with:
           commit_message: "Publish scheduled wet cupping SEO article"
           file_pattern: "articles/** blog/index.html sitemap.xml llms.txt data/article-manifest.json"
+
+      - name: Deploy to Cloudflare Pages
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy . --project-name=sinceritycupping --branch=main --commit-dirty=true
