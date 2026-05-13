@@ -68,5 +68,125 @@
     "area": "South London",
     "angle": "privacy, suitability, practitioner preference and preparation",
     "summary": "Questions male clients can ask before booking hijama, including privacy, suitability and appointment preparation."
+  },
+  {
+    "slug": "wet-cupping-balham",
+    "title": "Wet cupping near Balham: directions, parking and what to bring",
+    "keyword": "wet cupping Balham",
+    "intent": "local appointment discovery",
+    "service": "Wet cupping / Hijama",
+    "area": "Balham",
+    "angle": "travel, parking, preparation and timing",
+    "summary": "How to reach Sincerity Cupping from Balham, parking and transport notes, and what to bring to your first wet cupping appointment."
+  },
+  {
+    "slug": "hijama-brixton",
+    "title": "Hijama appointments from Brixton: a calm walkthrough",
+    "keyword": "hijama Brixton",
+    "intent": "local appointment discovery",
+    "service": "Wet cupping / Hijama",
+    "area": "Brixton",
+    "angle": "consultation, hygiene and aftercare for Brixton clients",
+    "summary": "A simple guide for Brixton clients on what to expect before, during and after a hijama appointment."
+  },
+  {
+    "slug": "wet-cupping-tooting",
+    "title": "Wet cupping for clients from Tooting",
+    "keyword": "wet cupping Tooting",
+    "intent": "local appointment discovery",
+    "service": "Wet cupping / Hijama",
+    "area": "Tooting",
+    "angle": "travel from Tooting, session length and aftercare",
+    "summary": "What clients travelling from Tooting should know about preparation, session length and aftercare for wet cupping."
+  },
+  {
+    "slug": "cupping-therapy-clapham",
+    "title": "Cupping therapy from Clapham: directions and appointment guide",
+    "keyword": "cupping therapy Clapham",
+    "intent": "local appointment discovery",
+    "service": "Wet cupping / Hijama",
+    "area": "Clapham",
+    "angle": "directions, scheduling and consultation",
+    "summary": "How to plan a cupping therapy visit from Clapham, including travel, scheduling and the initial consultation."
+  },
+  {
+    "slug": "hijama-norbury",
+    "title": "Hijama near Norbury: what to know before your visit",
+    "keyword": "hijama Norbury",
+    "intent": "local appointment discovery",
+    "service": "Wet cupping / Hijama",
+    "area": "Norbury",
+    "angle": "preparation, comfort and aftercare for Norbury clients",
+    "summary": "A short guide for Norbury clients covering preparation, the appointment itself and aftercare for hijama."
+  },
+  {
+    "slug": "wet-cupping-tulse-hill",
+    "title": "Wet cupping near Tulse Hill",
+    "keyword": "wet cupping Tulse Hill",
+    "intent": "local appointment discovery",
+    "service": "Wet cupping / Hijama",
+    "area": "Tulse Hill",
+    "angle": "travel, session structure and aftercare",
+    "summary": "Wet cupping for clients near Tulse Hill: travel notes, what a session looks like and aftercare guidance."
+  },
+  {
+    "slug": "hijama-west-norwood",
+    "title": "Hijama appointments from West Norwood",
+    "keyword": "hijama West Norwood",
+    "intent": "local appointment discovery",
+    "service": "Wet cupping / Hijama",
+    "area": "West Norwood",
+    "angle": "hygiene, comfort and aftercare for West Norwood clients",
+    "summary": "For West Norwood clients: hygiene, comfort, what happens on the day and aftercare for hijama."
+  },
+  {
+    "slug": "wet-cupping-herne-hill",
+    "title": "Wet cupping near Herne Hill",
+    "keyword": "wet cupping Herne Hill",
+    "intent": "local appointment discovery",
+    "service": "Wet cupping / Hijama",
+    "area": "Herne Hill",
+    "angle": "travel, preparation and what to expect",
+    "summary": "How clients from Herne Hill can plan a wet cupping visit: travel, preparation and the appointment itself."
+  },
+  {
+    "slug": "hijama-crystal-palace",
+    "title": "Hijama from Crystal Palace",
+    "keyword": "hijama Crystal Palace",
+    "intent": "local appointment discovery",
+    "service": "Wet cupping / Hijama",
+    "area": "Crystal Palace",
+    "angle": "preparation, session and aftercare for Crystal Palace clients",
+    "summary": "A practical guide for Crystal Palace clients planning a hijama appointment: preparation, the session and aftercare."
+  },
+  {
+    "slug": "cupping-dulwich",
+    "title": "Cupping therapy near Dulwich",
+    "keyword": "cupping therapy Dulwich",
+    "intent": "local appointment discovery",
+    "service": "Wet cupping / Hijama",
+    "area": "Dulwich",
+    "angle": "travel, consultation and aftercare",
+    "summary": "For clients in Dulwich: travel notes, the consultation, and aftercare for cupping therapy."
+  },
+  {
+    "slug": "women-only-hijama-south-london",
+    "title": "Women-only hijama sessions in South London",
+    "keyword": "women only hijama South London",
+    "intent": "audience-specific service discovery",
+    "service": "Wet cupping / Hijama",
+    "area": "South London",
+    "angle": "privacy, female practitioner availability and comfort",
+    "summary": "What women in South London should know about female-only hijama sessions: privacy, comfort and practitioner preference."
+  },
+  {
+    "slug": "mens-hijama-south-london",
+    "title": "Men's hijama sessions in South London",
+    "keyword": "mens hijama South London",
+    "intent": "audience-specific service discovery",
+    "service": "Wet cupping / Hijama",
+    "area": "South London",
+    "angle": "privacy, male practitioner availability and timing",
+    "summary": "What men in South London should know about hijama sessions: scheduling, privacy and aftercare."
   }
 ]
