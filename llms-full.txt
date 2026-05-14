@@ -19,13 +19,14 @@ This file is a structured, fact-only reference. Last updated: 2026-05-13.
 - Price range: From £45 (pricing on request)
 
 ## Opening hours
-- Monday: 10:00–20:00
-- Tuesday: 10:00–20:00
-- Wednesday: 10:00–20:00
-- Saturday: 10:00–20:00
-- Sunday: 10:00–20:00
+- Monday: 10:00–19:00
+- Tuesday: 10:00–19:00
+- Wednesday: 10:00–19:00
+- Thursday: 10:00–19:00
+- Friday: 10:00–19:00
+- Saturday: 10:00–19:00
+- Sunday: 10:00–19:00
 
-(Closed Thursday and Friday.)
 
 ## Practitioners
 ### Sister Aisha Mejri
