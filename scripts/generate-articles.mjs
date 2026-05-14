@@ -212,6 +212,11 @@ function sitemap(articles) {
   for (const article of articles) {
     urls.push(`  <url><loc>${business.domain}/articles/${article.slug}/</loc><lastmod>${article.date}</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>`);
   }
+  // Local area landing pages — preserved across cron runs (Codex audit fix 2026-05-14)
+  for (const area of business.serviceAreas) {
+    const slug = area.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+    urls.push(`  <url><loc>${business.domain}/areas/${slug}/</loc><lastmod>${isoDate}</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>`);
+  }
   return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.join("\n")}\n</urlset>\n`;
 }
 
@@ -238,6 +243,12 @@ function llms(articles) {
 - [About](${business.domain}/about/): Clinic story, approach and values.
 - [Contact](${business.domain}/contact/): Phone, WhatsApp, email, address, map and enquiry form.
 - [Blog](${business.domain}/blog/): Wet cupping guides written for local SEO and answer-led search.
+
+## Local Area Pages
+${business.serviceAreas.map(area => {
+  const slug = area.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+  return `- [Wet cupping in ${area}](${business.domain}/areas/${slug}/): Wet cupping and hijama for clients from ${area}.`;
+}).join("\n")}
 
 ## Articles
 ${articleLines}

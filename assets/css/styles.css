@@ -6,8 +6,9 @@
   --mist: #eef5f2;
   --line: #d7e4df;
   --teal: #0b7895;
-  --leaf: #3d8a45;
+  --leaf: #2d6e3c;  /* darkened 2026-05-14 for AA contrast on white */
   --saffron: #e2a319;
+  --saffron-text: #8a5a00;  /* darker for text on light backgrounds (AA contrast) */
   --white: #ffffff;
   --shadow: 0 18px 45px rgba(16, 41, 47, 0.13);
   --container: min(1120px, calc(100% - 40px));
@@ -277,7 +278,7 @@ textarea {
 
 .eyebrow {
   margin: 0 0 18px;
-  color: var(--saffron);
+  color: var(--saffron-text);
   font-size: 0.88rem;
   font-weight: 900;
   letter-spacing: 0.08em;
@@ -495,7 +496,7 @@ textarea {
 }
 
 .stars {
-  color: var(--saffron);
+  color: var(--saffron-text);
   letter-spacing: 0.04em;
 }
 
