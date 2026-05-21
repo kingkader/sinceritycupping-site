@@ -253,6 +253,13 @@ textarea {
   background:
     linear-gradient(90deg, rgba(16, 41, 47, 0.9), rgba(16, 41, 47, 0.68) 42%, rgba(16, 41, 47, 0.2)),
     url("../img/back-cupping-glass-1200.jpg") center / cover;
+  background:
+    linear-gradient(90deg, rgba(16, 41, 47, 0.9), rgba(16, 41, 47, 0.68) 42%, rgba(16, 41, 47, 0.2)),
+    image-set(
+      url("../img/back-cupping-glass-1200.avif") type("image/avif"),
+      url("../img/back-cupping-glass-1200.webp") type("image/webp"),
+      url("../img/back-cupping-glass-1200.jpg") type("image/jpeg")
+    ) center / cover;
   z-index: -2;
 }
 
@@ -403,11 +410,17 @@ textarea {
   overflow: hidden;
   border-radius: 8px;
   box-shadow: var(--shadow);
+  aspect-ratio: 3 / 2;
+}
+
+.image-panel picture,
+.image-panel img {
+  display: block;
+  width: 100%;
+  height: 100%;
 }
 
 .image-panel img {
-  width: 100%;
-  min-height: 440px;
   object-fit: cover;
 }
 
@@ -851,10 +864,6 @@ textarea {
 
   .button {
     width: 100%;
-  }
-
-  .image-panel img {
-    min-height: 300px;
   }
 }
 
