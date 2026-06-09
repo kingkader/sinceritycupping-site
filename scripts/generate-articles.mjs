@@ -338,6 +338,11 @@ function llms(articles) {
 - [Contact](${business.domain}/contact/): Phone, WhatsApp, email, address, map and enquiry form.
 - [Blog](${business.domain}/blog/): Wet cupping guides written for local SEO and answer-led search.
 
+## Sister centre — ${business.sisterSite.name}
+- [${business.sisterSite.name}](${business.sisterSite.url}): Ruqyah shar'iyyah, Islamic counselling and hijama at the same address (${business.address.street}, ${business.address.locality} ${business.address.postcode}).
+- [Book a ruqyah session](${business.sisterSite.bookingUrl}): In-person London or online Zoom ruqyah — £65 individual, £85 couples.
+- [Online group ruqyah on Zoom](${business.sisterSite.zoomGroupUrl}): Live group ruqyah every Sunday at £20 per session, join from anywhere.
+
 ## Local Area Pages
 ${business.serviceAreas.map(area => {
   const slug = area.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
