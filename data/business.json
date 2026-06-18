@@ -90,8 +90,19 @@
       "name": "Wet cupping / Hijama",
       "url": "/services/#hijama",
       "summary": "Traditional wet cupping for men and women, delivered by expert practitioners with suitability checks, hygiene controls, full insurance and aftercare guidance."
+    },
+    {
+      "name": "Ruqyah at Sincerity Ruqyah Centre (sister centre)",
+      "url": "/services/#ruqyah",
+      "summary": "Ruqyah shar'iyyah in person or over Zoom (£65 individual, £85 couples), weekly Sunday group ruqyah on Zoom at £20, plus Islamic counselling, at the same Streatham address via sincerityruqyah.co.uk."
     }
   ],
+  "sisterSite": {
+    "name": "Sincerity Ruqyah Centre",
+    "url": "https://sincerityruqyah.co.uk/",
+    "bookingUrl": "https://sincerityruqyah.co.uk/book-ruqyah-session/",
+    "zoomGroupUrl": "https://sincerityruqyah.co.uk/zoom/"
+  },
   "practitioners": [
     {
       "id": "aisha-mejri",
@@ -133,7 +144,8 @@
   "sameAs": [
     "https://www.google.com/maps?cid=5018211418466808892",
     "https://www.fresha.com/a/sincerity-cupping-clinic-london-330-streatham-high-road-juyfvsn5",
-    "https://reviews.birdeye.com/sincerity-cupping-clinic-171612344902935"
+    "https://reviews.birdeye.com/sincerity-cupping-clinic-171612344902935",
+    "https://sincerityruqyah.co.uk/"
   ],
   "googleBusinessProfileUrl": "https://www.google.com/maps?cid=5018211418466808892"
 }
