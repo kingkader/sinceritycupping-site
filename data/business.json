@@ -18,7 +18,12 @@
   },
   "rating": {
     "value": 4.9,
-    "count": 86
+    "count": 110,
+    "displayCount": "100+",
+    "sources": {
+      "fresha": 86,
+      "google": 24
+    }
   },
   "priceRange": "From \u00a345",
   "combinedExperienceYears": 40,
