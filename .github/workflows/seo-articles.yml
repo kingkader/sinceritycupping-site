@@ -1,8 +1,8 @@
-name: Publish SEO articles
+name: Publish SEO articles three times weekly
 
 on:
   schedule:
-    - cron: "30 6 * * 1,4"
+    - cron: "30 6 * * 1,3,5"
   workflow_dispatch:
 
 permissions:
@@ -21,7 +21,7 @@ jobs:
         with:
           node-version: "22"
 
-      - name: Generate scheduled wet cupping article
+      - name: Generate scheduled wet cupping article (Mon/Wed/Fri)
         run: node scripts/generate-articles.mjs --count=1
 
       - name: Validate site

@@ -9,7 +9,7 @@ The content now reflects the current offer: insured wet cupping / hijama for men
 - Indexable static HTML with no WordPress `noindex, nofollow`.
 - Local SEO schema for the clinic, wet cupping service, address, geo coordinates, hours and reviews.
 - `robots.txt`, `sitemap.xml` and `llms.txt` for SEO, AEO and GEO discovery.
-- Twice-weekly article workflow in `.github/workflows/seo-articles.yml`.
+- Three-times-weekly article workflow in `.github/workflows/seo-articles.yml` (Monday, Wednesday and Friday).
 - Dependency-free article generator in `scripts/generate-articles.mjs`.
 
 ## Local commands

@@ -1,8 +1,8 @@
 {
   "name": "Sincerity Cupping Clinic",
   "domain": "https://sinceritycupping.co.uk",
-  "bookingUrl": "https://www.fresha.com/book-now/sincerity-ruqyah-centre-en3ghpfz/services?lid=1080569&oiid=sv%3A15058937&share=true&pId=1024551",
-  "email": "sinceritycupping@gmail.com",
+  "bookingUrl": "https://www.fresha.com/book-now/sincerity-ruqyah-centre-en3ghpfz/services?lid=1080569&oiid=sv%3A14524918&share=true&pId=1024551",
+  "email": "",
   "phone": "07552 540000",
   "telephone": "+447552540000",
   "whatsappUrl": "https://wa.me/447552540000",
@@ -135,5 +135,9 @@
     "https://www.fresha.com/a/sincerity-cupping-clinic-london-330-streatham-high-road-juyfvsn5",
     "https://reviews.birdeye.com/sincerity-cupping-clinic-171612344902935"
   ],
-  "googleBusinessProfileUrl": "https://www.google.com/maps?cid=5018211418466808892"
+  "googleBusinessProfileUrl": "https://www.google.com/maps?cid=5018211418466808892",
+  "femaleBookingUrl": "https://www.fresha.com/book-now/sincerity-ruqyah-centre-en3ghpfz/services?lid=1080569&oiid=sv%3A15058937&share=true&pId=1024551",
+  "maleBookingUrl": "https://www.fresha.com/book-now/sincerity-ruqyah-centre-en3ghpfz/services?lid=1080569&oiid=sv%3A14524918&share=true&pId=1024551",
+  "fullBodyMaleBookingUrl": "https://www.fresha.com/book-now/sincerity-ruqyah-centre-en3ghpfz/services?lid=1080569&oiid=sv%3A15623194&share=true&pId=1024551",
+  "fullBodyFemaleBookingUrl": "https://www.fresha.com/book-now/sincerity-ruqyah-centre-en3ghpfz/services?lid=1080569&oiid=sv%3A15623186&share=true&pId=1024551"
 }

@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "generate:articles": "node scripts/generate-articles.mjs --count=2",
+    "generate:articles": "node scripts/generate-articles.mjs --count=3",
     "check": "node scripts/check-site.mjs"
   }
 }

@@ -28,9 +28,12 @@ if (contactForm) {
       return;
     }
 
-    const subject = encodeURIComponent(`Website enquiry from ${name}`);
-    const body = encodeURIComponent(`${message}\n\nFrom: ${name}\nEmail: ${email}`);
-    window.location.href = `mailto:sinceritycupping@gmail.com?subject=${subject}&body=${body}`;
-    if (note) note.textContent = "Your email app should open with the message ready.";
+    const body = encodeURIComponent(`Assalamu alaikum, I would like to ask about a cupping appointment.
+
+Name: ${name}
+Email: ${email}
+Message: ${message}`);
+    window.location.href = `https://wa.me/447552540000?text=${body}`;
+    if (note) note.textContent = "WhatsApp should open with the message ready.";
   });
 }

@@ -179,7 +179,7 @@ h2{max-width:14ch;font-size:clamp(2.2rem,6vw,4.7rem)}
       <div class="footer-inner">
         <div><img class="footer-logo" src="/assets/img/sincerity-cupping-logo.svg" width="160" height="160" alt="${business.name} logo"><p>Insured wet cupping and hijama for men and women in Streatham, South London.</p></div>
         <div class="footer-links"><strong>Pages</strong><a href="/">Home</a><a href="/services/">Services</a><a href="/about/">About</a><a href="/blog/">Blog</a><a href="/privacy/">Privacy</a></div>
-        <div class="footer-links"><strong>Contact</strong><a href="tel:${business.telephone}">${business.phone}</a><a href="${business.whatsappUrl}">WhatsApp</a><a href="mailto:${business.email}">${business.email}</a><a href="${business.googleMapsUrl}">${business.address.street}, ${business.address.postcode}</a></div>
+        <div class="footer-links"><strong>Contact</strong><a href="tel:${business.telephone}">${business.phone}</a><a href="${business.whatsappUrl}">WhatsApp</a>${business.email ? `<a href="mailto:${business.email}">${business.email}</a>` : ""}<a href="${business.googleMapsUrl}">${business.address.street}, ${business.address.postcode}</a></div>
       </div>
       <p class="footer-small">© <span data-year></span> ${business.name}. Cupping is a complementary therapy and is not a replacement for medical advice, diagnosis or treatment.</p>
     </footer>
@@ -284,7 +284,7 @@ h2{max-width:14ch;font-size:clamp(2.2rem,6vw,4.7rem)}
       <div class="footer-inner">
         <div><img class="footer-logo" src="/assets/img/sincerity-cupping-logo.svg" width="160" height="160" alt="${business.name} logo"><p>Insured wet cupping and hijama for men and women in Streatham, South London.</p></div>
         <div class="footer-links"><strong>Pages</strong><a href="/">Home</a><a href="/services/">Services</a><a href="/about/">About</a><a href="/contact/">Contact</a><a href="/privacy/">Privacy</a></div>
-        <div class="footer-links"><strong>Contact</strong><a href="tel:${business.telephone}">${business.phone}</a><a href="${business.whatsappUrl}">WhatsApp</a><a href="mailto:${business.email}">${business.email}</a><a href="${business.googleMapsUrl}">${business.address.street}, ${business.address.postcode}</a></div>
+        <div class="footer-links"><strong>Contact</strong><a href="tel:${business.telephone}">${business.phone}</a><a href="${business.whatsappUrl}">WhatsApp</a>${business.email ? `<a href="mailto:${business.email}">${business.email}</a>` : ""}<a href="${business.googleMapsUrl}">${business.address.street}, ${business.address.postcode}</a></div>
       </div>
       <p class="footer-small">© <span data-year></span> ${business.name}. Cupping is a complementary therapy and is not a replacement for medical advice, diagnosis or treatment.</p>
     </footer>
@@ -324,8 +324,7 @@ function llms(articles) {
 - Address: ${business.address.street}, ${business.address.locality} ${business.address.postcode}, United Kingdom
 - Phone: ${business.phone}
 - WhatsApp: ${business.whatsappUrl}
-- Email: ${business.email}
-- Services: ${business.services.map((service) => service.name).join(", ")}
+${business.email ? `- Email: ${business.email}\n` : ""}- Services: ${business.services.map((service) => service.name).join(", ")}
 - Combined practitioner experience: ${business.combinedExperienceYears} years
 - Insurance: ${business.fullyInsured ? "Fully insured" : "Check with clinic"}
 - Environment: ${business.environment}
