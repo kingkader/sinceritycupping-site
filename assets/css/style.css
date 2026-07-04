@@ -1003,17 +1003,17 @@ details.faq .faq-body { padding: 0 1.2rem 1.1rem; font-size: 0.98rem; }
 
 /* ---------- reveal ---------- */
 
-.reveal {
+.js .reveal {
   opacity: 0;
   transform: translateY(20px);
   transition: opacity 0.65s ease, transform 0.65s ease;
   transition-delay: var(--d, 0ms);
 }
-.reveal.in { opacity: 1; transform: none; }
+.js .reveal.in { opacity: 1; transform: none; }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .reveal { opacity: 1; transform: none; transition: none; }
+  .js .reveal { opacity: 1; transform: none; transition: none; }
   *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
 }
 

@@ -35,8 +35,12 @@
   var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var revealEls = Array.prototype.slice.call(document.querySelectorAll(".reveal"));
 
-  if (reduced || !("IntersectionObserver" in window)) {
+  function showAll() {
     revealEls.forEach(function (el) { el.classList.add("in"); });
+  }
+
+  if (reduced || !("IntersectionObserver" in window)) {
+    showAll();
   } else {
     var groups = {};
     revealEls.forEach(function (el) {
@@ -54,5 +58,6 @@
       });
     }, { rootMargin: "0px 0px -8% 0px", threshold: 0.08 });
     revealEls.forEach(function (el) { io.observe(el); });
+    setTimeout(showAll, 2500);
   }
 })();

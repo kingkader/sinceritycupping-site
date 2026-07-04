@@ -84,7 +84,8 @@ function shellTop({title, description, canonical, ogType = "website", navCurrent
 <meta name="theme-color" content="#0A2233">
 <link rel="icon" type="image/svg+xml" href="/assets/img/favicon.svg">
 ${FONTS}
-<link rel="stylesheet" href="/assets/css/style.css">
+<link rel="stylesheet" href="/assets/css/style.css?v=20260704">
+<script>document.documentElement.classList.add("js");</script>
 ${extraSchema}
 </head>
 <body>
@@ -179,7 +180,7 @@ function shellBottom() {
   <a class="btn btn-outline" href="${business.whatsappUrl}">${ICON.chat16} WhatsApp</a>
 </div>
 
-<script src="/assets/js/main.js" defer></script>
+<script src="/assets/js/site.js?v=20260704" defer></script>
 </body>
 </html>
 `;
