@@ -1,39 +1,58 @@
-const navToggle = document.querySelector("[data-nav-toggle]");
-const navLinks = document.querySelector("[data-nav-links]");
+(function () {
+  "use strict";
 
-if (navToggle && navLinks) {
-  navToggle.addEventListener("click", () => {
-    const isOpen = navLinks.classList.toggle("is-open");
-    navToggle.setAttribute("aria-expanded", String(isOpen));
-  });
-}
+  var header = document.querySelector(".site-header");
+  var toggle = document.querySelector(".nav-toggle");
+  var nav = document.querySelector(".site-nav");
 
-const year = document.querySelector("[data-year]");
-if (year) {
-  year.textContent = new Date().getFullYear();
-}
+  function onScroll() {
+    if (!header) return;
+    header.classList.toggle("scrolled", window.scrollY > 8);
+  }
+  window.addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
 
-const contactForm = document.querySelector("[data-contact-form]");
-if (contactForm) {
-  contactForm.addEventListener("submit", (event) => {
-    event.preventDefault();
-    const note = contactForm.querySelector("[data-form-note]");
-    const data = new FormData(contactForm);
-    const name = `${data.get("first-name") || ""} ${data.get("last-name") || ""}`.trim();
-    const email = String(data.get("email") || "").trim();
-    const message = String(data.get("message") || "").trim();
+  if (toggle && nav) {
+    toggle.addEventListener("click", function () {
+      var open = nav.classList.toggle("open");
+      toggle.setAttribute("aria-expanded", open ? "true" : "false");
+    });
+    nav.addEventListener("click", function (e) {
+      if (e.target.closest("a")) {
+        nav.classList.remove("open");
+        toggle.setAttribute("aria-expanded", "false");
+      }
+    });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && nav.classList.contains("open")) {
+        nav.classList.remove("open");
+        toggle.setAttribute("aria-expanded", "false");
+        toggle.focus();
+      }
+    });
+  }
 
-    if (!name || !email || !message) {
-      if (note) note.textContent = "Please complete your name, email and message.";
-      return;
-    }
+  var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var revealEls = Array.prototype.slice.call(document.querySelectorAll(".reveal"));
 
-    const body = encodeURIComponent(`Assalamu alaikum, I would like to ask about a cupping appointment.
-
-Name: ${name}
-Email: ${email}
-Message: ${message}`);
-    window.location.href = `https://wa.me/447552540000?text=${body}`;
-    if (note) note.textContent = "WhatsApp should open with the message ready.";
-  });
-}
+  if (reduced || !("IntersectionObserver" in window)) {
+    revealEls.forEach(function (el) { el.classList.add("in"); });
+  } else {
+    var groups = {};
+    revealEls.forEach(function (el) {
+      var top = Math.round(el.getBoundingClientRect().top / 120);
+      groups[top] = groups[top] || 0;
+      el.style.setProperty("--d", Math.min(groups[top] * 90, 360) + "ms");
+      groups[top] += 1;
+    });
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("in");
+          io.unobserve(entry.target);
+        }
+      });
+    }, { rootMargin: "0px 0px -8% 0px", threshold: 0.08 });
+    revealEls.forEach(function (el) { io.observe(el); });
+  }
+})();
