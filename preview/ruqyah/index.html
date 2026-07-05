@@ -117,7 +117,7 @@ nav.main a:hover::after{transform:scaleX(1);transform-origin:left}
 .shead p{color:var(--mut);font-size:1.07rem}
 .svc{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
 .svc li{position:relative}
-.svc a.row{display:grid;grid-template-columns:110px minmax(0,1.15fr) minmax(0,1.6fr) 46px;gap:1.6rem;align-items:center;padding:1.9rem .8rem;border-bottom:1px solid var(--line);text-decoration:none;transition:background .25s;border-radius:2px}
+.svc a.row{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1.7fr) 46px;gap:1.6rem;align-items:center;padding:1.9rem .8rem;border-bottom:1px solid var(--line);text-decoration:none;transition:background .25s;border-radius:2px}
 .svc a.row{border-left:2px solid transparent}
 .svc a.row:hover{background:var(--ice);border-left-color:var(--blue)}
 .svc a.row:active{transform:scale(.995)}
@@ -129,7 +129,14 @@ nav.main a:hover::after{transform:scaleX(1);transform-origin:left}
 .svc .go{width:44px;height:44px;border-radius:50%;border:1.5px solid var(--line);display:flex;align-items:center;justify-content:center;color:var(--navy);transition:all .25s}
 .svc a.row:hover .go{background:var(--navy);border-color:var(--navy);color:#fff;transform:translateX(4px)}
 .quote-sec{text-align:center;padding-block:clamp(3.4rem,7vw,5.6rem)}
-.quote-sec .ayah{text-align:center;font-size:clamp(1.7rem,3.2vw,2.5rem);color:var(--navy);line-height:2}
+.quote-sec .ayah{text-align:center;font-size:clamp(2rem,4vw,3.1rem);color:var(--navy);line-height:1.95}
+.listen{display:inline-flex;align-items:center;gap:.9rem;margin-top:1.8rem;border:1px solid var(--line);border-radius:999px;padding:.8rem 1.5rem;text-decoration:none;font-weight:700;font-size:.94rem;color:var(--navy);transition:all .3s var(--ease)}
+.listen:hover{border-color:var(--blue);box-shadow:0 14px 30px -14px rgba(37,60,99,.25);transform:translateY(-2px);color:var(--navy)}
+.listen:active{transform:scale(.98)}
+.wave{display:flex;gap:3px;align-items:center;height:20px}
+.wave i{width:3px;border-radius:2px;background:var(--blue);height:100%;transform-origin:center;animation:eq 1.4s ease-in-out infinite}
+.wave i:nth-child(2){animation-delay:.2s}.wave i:nth-child(3){animation-delay:.4s}.wave i:nth-child(4){animation-delay:.6s}.wave i:nth-child(5){animation-delay:.8s}
+@keyframes eq{0%,100%{transform:scaleY(.35)}50%{transform:scaleY(1)}}
 .quote-sec .ayah-tr{color:var(--mut);margin-bottom:0}
 .rule{width:64px;height:2px;background:var(--blue);margin:1.6rem auto}
 .split{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(2.2rem,5.5vw,5rem);align-items:center}
@@ -192,7 +199,7 @@ details.faq .fb{padding:0 .2rem 1.3rem;font-size:.98rem}
 .f-legal{border-top:1px solid rgba(255,255,255,.12);margin-top:2.4rem;padding-top:1.5rem;font-size:.84rem;color:#6C7E94;display:flex;flex-wrap:wrap;gap:.5rem 2rem;justify-content:space-between}
 .js .reveal{opacity:0;transform:translateY(22px);transition:opacity .75s var(--ease),transform .75s var(--ease);transition-delay:var(--d,0ms)}
 .js .reveal.in{opacity:1;transform:none}
-@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.js .reveal{opacity:1;transform:none;transition:none}.dot::after{animation:none}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.js .reveal{opacity:1;transform:none;transition:none}.dot::after{animation:none}.wave i{animation:none;transform:scaleY(.6)}}
 @media (max-width:980px){
   .split,.contact-grid,.hero-grid{grid-template-columns:1fr}
   .arch-ph{justify-self:start;width:min(100%,380px)}
@@ -201,7 +208,7 @@ details.faq .fb{padding:0 .2rem 1.3rem;font-size:.98rem}
   .path-in{grid-template-columns:1fr;gap:.7rem}
   .path-q{white-space:normal;padding:0}
   .ftr-grid{grid-template-columns:1fr 1fr}
-  .svc a.row{grid-template-columns:64px minmax(0,1fr) 46px;gap:1.1rem}
+  .svc a.row{grid-template-columns:minmax(0,1fr) 46px;gap:1.1rem}
   .svc .d{display:none}
   .top .hide-m{display:none}
   .ph-quote{position:static;max-width:none;margin-top:1rem}
@@ -328,37 +335,31 @@ details.faq .fb{padding:0 .2rem 1.3rem;font-size:.98rem}
     </div>
     <ul class="svc">
       <li class="reveal"><a class="row" href="https://sincerityruqyah.co.uk/book-ruqyah-session/">
-        <span class="n" aria-hidden="true">01</span>
         <span class="t">Ruqyah shari'ah<small>Onsite &amp; private online</small></span>
         <span class="d">Consultation, careful spiritual diagnosis and extended Quranic recitation — for evil eye, envy, sihr and jinn-related afflictions — with clear aftercare.</span>
         <span class="go"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
       </a></li>
       <li class="reveal"><a class="row" href="https://sincerityruqyah.co.uk/zoom/">
-        <span class="n" aria-hidden="true">02</span>
         <span class="t">Group ruqyah on Zoom<small>Sundays 6pm UK · £20</small></span>
         <span class="d">Live weekly sessions in English with Arabic recitation — join from anywhere in the world, camera off if you prefer. £65 monthly for regulars.</span>
         <span class="go"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
       </a></li>
       <li class="reveal"><a class="row" href="https://sincerityruqyah.co.uk/book-cupping/">
-        <span class="n" aria-hidden="true">03</span>
         <span class="t">Hijama cupping<small>From £45</small></span>
         <span class="d">Sunnah cupping with male and female therapists, single-use sterile equipment and proper aftercare — in the same centre.</span>
         <span class="go"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
       </a></li>
       <li class="reveal"><a class="row" href="https://sincerityruqyah.co.uk/book-ruqyah-session/">
-        <span class="n" aria-hidden="true">04</span>
-        <span class="t">Islamic counselling<small>Individuals &amp; families</small></span>
+        <span class="t">Islamic counselling<small>Ask about counselling</small></span>
         <span class="d">Confidential counselling grounded in Islamic principles — practical help for personal, marital and family difficulties.</span>
         <span class="go"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
       </a></li>
       <li class="reveal"><a class="row" href="https://sincerityruqyah.co.uk/book-ruqyah-session/">
-        <span class="n" aria-hidden="true">05</span>
-        <span class="t">OCD coaching<small>Islamic perspective</small></span>
+        <span class="t">OCD coaching<small>Ask about OCD support</small></span>
         <span class="d">Structured support for waswas and OCD with a strong track record of helping clients regain clarity and calm.</span>
         <span class="go"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
       </a></li>
       <li class="reveal"><a class="row" href="tel:+447399880009">
-        <span class="n" aria-hidden="true">06</span>
         <span class="t">Nikah service<small>At the centre, online or at yours</small></span>
         <span class="d">A dignified nikah for couples, conducted properly and warmly — call to arrange.</span>
         <span class="go"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
@@ -396,6 +397,10 @@ details.faq .fb{padding:0 .2rem 1.3rem;font-size:.98rem}
     <p class="ayah" lang="ar">فَإِذَا عَزَمْتَ فَتَوَكَّلْ عَلَى اللَّهِ</p>
     <div class="rule" aria-hidden="true"></div>
     <p class="ayah-tr">"And when you have decided, then rely upon Allah." — Qur'an 3:159</p>
+    <a class="listen" href="https://sincerityruqyah.co.uk/ruqyah-collection/">
+      <span class="wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
+      Listen to our ruqyah recitations
+    </a>
   </div>
 </section>
 
