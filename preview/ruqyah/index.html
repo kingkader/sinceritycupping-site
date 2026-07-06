@@ -197,9 +197,8 @@ details.faq .fb{padding:0 .2rem 1.3rem;font-size:.98rem}
 .f-name{display:block;font-family:var(--serif);font-weight:700;font-size:1.35rem;color:#fff;letter-spacing:.02em}
 .f-sub{display:block;font-size:.6rem;font-weight:800;letter-spacing:.34em;text-transform:uppercase;color:var(--blue-bright);margin-top:.5em}
 .f-legal{border-top:1px solid rgba(255,255,255,.12);margin-top:2.4rem;padding-top:1.5rem;font-size:.84rem;color:#6C7E94;display:flex;flex-wrap:wrap;gap:.5rem 2rem;justify-content:space-between}
-.js .reveal{opacity:0;transform:translateY(22px);transition:opacity .75s var(--ease),transform .75s var(--ease);transition-delay:var(--d,0ms)}
-.js .reveal.in{opacity:1;transform:none}
-@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.js .reveal{opacity:1;transform:none;transition:none}.dot::after{animation:none}.wave i{animation:none;transform:scaleY(.6)}}
+.gsap-will-reveal{will-change:transform,opacity}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.dot::after{animation:none}.wave i{animation:none;transform:scaleY(.6)}}
 @media (max-width:980px){
   .split,.contact-grid,.hero-grid{grid-template-columns:1fr}
   .arch-ph{justify-self:start;width:min(100%,380px)}
@@ -572,11 +571,36 @@ details.faq .fb{padding:0 .2rem 1.3rem;font-size:.98rem}
   window.addEventListener("scroll",os,{passive:true});os();
   if(tg&&nav){tg.addEventListener("click",function(){var o=nav.classList.toggle("open");tg.setAttribute("aria-expanded",o?"true":"false")});
     nav.addEventListener("click",function(e){if(e.target.closest("a")){nav.classList.remove("open");tg.setAttribute("aria-expanded","false")}})}
-  var els=[].slice.call(document.querySelectorAll(".reveal"));
-  function all(){els.forEach(function(e){e.classList.add("in")})}
-  if(window.matchMedia("(prefers-reduced-motion: reduce)").matches||!("IntersectionObserver" in window)){all()}
-  else{var io=new IntersectionObserver(function(en){en.forEach(function(x){if(x.isIntersecting){x.target.classList.add("in");io.unobserve(x.target)}})},{rootMargin:"0px 0px -8% 0px",threshold:.08});
-    els.forEach(function(e){io.observe(e)});setTimeout(all,2500)}
+})();
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+(function(){
+  "use strict";
+  var reduced=window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if(reduced||typeof gsap==="undefined"||typeof ScrollTrigger==="undefined")return;
+  gsap.registerPlugin(ScrollTrigger);
+
+  var heroBits=[".hero .kicker",".hero .ayah",".hero .ayah-tr",".hero h1",".hero .lede",".hero .hero-actions",".hero .hero-stats"];
+  gsap.set(heroBits,{autoAlpha:0,y:26});
+  gsap.set(".arch-ph",{autoAlpha:0,scale:1.045});
+  var intro=gsap.timeline({defaults:{ease:"power3.out"}});
+  intro.to(heroBits,{autoAlpha:1,y:0,duration:.9,stagger:.09})
+       .to(".arch-ph",{autoAlpha:1,scale:1,duration:1.1,ease:"power2.out"},.25);
+
+  var rest=gsap.utils.toArray(".reveal").filter(function(el){return !el.closest(".hero")});
+  gsap.set(rest,{autoAlpha:0,y:24});
+  ScrollTrigger.batch(rest,{
+    start:"top 88%",
+    once:true,
+    onEnter:function(batch){gsap.to(batch,{autoAlpha:1,y:0,duration:.8,ease:"power3.out",stagger:.08})}
+  });
+
+  gsap.to(".arch-ph img",{yPercent:5,ease:"none",
+    scrollTrigger:{trigger:".hero",start:"top top",end:"bottom top",scrub:.6}});
+  gsap.to(".hero-grid > div:first-child",{yPercent:-3,ease:"none",
+    scrollTrigger:{trigger:".hero",start:"top top",end:"bottom top",scrub:.6}});
 })();
 </script>
 </body>
