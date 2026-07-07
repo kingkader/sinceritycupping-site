@@ -34,6 +34,7 @@ const args = new Map(process.argv.slice(2).map((arg, index, arr) => {
 
 const count = Number(args.get("--count") || 1);
 const rerender = args.has("--rerender");
+const bespokePath = args.get("--bespoke");
 const now = args.get("--date") ? new Date(String(args.get("--date"))) : new Date();
 const isoDate = now.toISOString().slice(0, 10);
 const year = String(now.getFullYear());
@@ -145,6 +146,7 @@ function shellBottom() {
         </a>
         <p class="footer-about">Insured wet cupping (hijama) for men and women in Streatham, delivered with proper consultation, single-use sterile equipment and written aftercare.</p>
         <p class="footer-about"><span class="stars" aria-hidden="true">★★★★★</span> ${business.rating.displayCount} verified reviews on Fresha and Google</p>
+        <p class="footer-about">Part of <a href="https://sincerityruqyah.co.uk">Sincerity Ruqyah Centre</a> — ruqyah, cupping and Islamic counselling at the same address.</p>
       </div>
       <div>
         <h4>Pages</h4>
@@ -247,7 +249,7 @@ function articleHtml(topic, dateIso) {
     <nav class="breadcrumbs" aria-label="Breadcrumb">
       <a href="/">Home</a> › <a href="/blog/">Guides</a> › <span aria-current="page">${title}</span>
     </nav>
-    <p class="article-meta"><time datetime="${dateIso}">${dateHuman}</time> · ${business.name} · Local guide for ${escapeHtml(topic.area)}</p>
+    <p class="article-meta"><time datetime="${dateIso}">${dateHuman}</time> · Reviewed by Sister Aisha Mejri, Lead Hijama Practitioner · ${business.name}</p>
     <h1 style="max-width:22ch">${title}</h1>
   </div>
 </div>
@@ -288,6 +290,37 @@ ${CTA_BAND}`;
     ogType: "article",
     navCurrent: "blog",
     extraSchema: articleSchema(topic, dateIso, url),
+  }) + body + shellBottom();
+}
+
+function bespokeArticleHtml(meta, bodyHtml, dateIso) {
+  const url = `${business.domain}/articles/${meta.slug}/`;
+  const dateHuman = new Date(dateIso + "T12:00:00Z").toLocaleDateString("en-GB",
+    {day: "numeric", month: "short", year: "numeric"});
+  const body = `<div class="page-hero">
+  <div class="container">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a> › <a href="/blog/">Guides</a> › <span aria-current="page">${escapeHtml(meta.title)}</span>
+    </nav>
+    <p class="article-meta"><time datetime="${dateIso}">${dateHuman}</time> · Reviewed by Sister Aisha Mejri, Lead Hijama Practitioner · ${business.name}</p>
+    <h1 style="max-width:22ch">${escapeHtml(meta.title)}</h1>
+  </div>
+</div>
+<section class="section">
+  <div class="container">
+    <article class="prose">
+${bodyHtml}
+    </article>
+  </div>
+</section>
+${CTA_BAND}`;
+  return shellTop({
+    title: `${meta.title} | ${business.name}`.length > 70 ? meta.title : `${meta.title} | ${business.name}`,
+    description: meta.summary,
+    canonical: url,
+    ogType: "article",
+    navCurrent: "blog",
+    extraSchema: articleSchema(meta, dateIso, url),
   }) + body + shellBottom();
 }
 
@@ -388,8 +421,27 @@ Cupping is a complementary therapy and is not a replacement for medical advice, 
 // ---------------------------------------------------------------- execution
 
 const created = [];
+
+if (bespokePath) {
+  const payload = JSON.parse(fs.readFileSync(bespokePath, "utf8"));
+  if (!payload.slug || !payload.title || !payload.summary || !payload.html) {
+    console.error("Bespoke payload needs slug, title, summary, html");
+    process.exit(1);
+  }
+  const dateIso2 = payload.date || isoDate;
+  const dir = path.join(root, "articles", payload.slug);
+  fs.mkdirSync(dir, {recursive: true});
+  fs.writeFileSync(path.join(dir, "index.html"),
+    bespokeArticleHtml(payload, payload.html, dateIso2));
+  const rec = {slug: payload.slug, title: payload.title, summary: payload.summary,
+               date: dateIso2, custom: true};
+  const ix = manifest.findIndex((a) => a.slug === payload.slug);
+  if (ix >= 0) manifest[ix] = rec; else manifest.push(rec);
+  created.push(rec);
+}
+
 const available = topics.filter((topic) => !used.has(topic.slug) && !CUSTOM_SLUGS.has(topic.slug));
-const chosen = available.slice(0, count);
+const chosen = bespokePath ? [] : available.slice(0, count);
 if (count > 0 && chosen.length < count) {
   console.warn(`Only ${chosen.length} unused topic(s) left (asked for ${count}). Add new topics to data/article-topics.json.`);
 }
@@ -408,7 +460,7 @@ for (const topic of chosen) {
 let rerendered = 0;
 if (rerender) {
   for (const record of manifest) {
-    if (CUSTOM_SLUGS.has(record.slug)) continue;
+    if (CUSTOM_SLUGS.has(record.slug) || record.custom) continue;
     const topic = topics.find((t) => t.slug === record.slug) || {
       slug: record.slug,
       title: record.title,

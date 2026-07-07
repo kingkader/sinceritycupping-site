@@ -22,7 +22,7 @@ jobs:
           node-version: "22"
 
       - name: Generate scheduled wet cupping article (Mon/Wed/Fri)
-        run: node scripts/generate-articles.mjs --count=1
+        run: node scripts/generate-articles.mjs --count=0
 
       - name: Validate site
         run: node scripts/check-site.mjs

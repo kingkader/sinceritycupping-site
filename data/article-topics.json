@@ -188,5 +188,405 @@
     "area": "South London",
     "angle": "privacy, male practitioner availability and timing",
     "summary": "What men in South London should know about hijama sessions: scheduling, privacy and aftercare."
+  },
+  {
+    "slug": "hijama-cost-london",
+    "title": "How much does hijama cost in London? Honest 2026 pricing guide",
+    "keyword": "hijama cost London",
+    "intent": "pricing research",
+    "service": "Wet cupping / Hijama",
+    "area": "London",
+    "angle": "pricing transparency, what is included, comparing clinics",
+    "summary": "What hijama costs in London, what is included in a proper session, and the questions to ask any clinic about pricing before you book."
+  },
+  {
+    "slug": "hijama-vs-dry-cupping",
+    "title": "Hijama vs dry cupping: what actually happens in each",
+    "keyword": "hijama vs dry cupping",
+    "intent": "comparison research",
+    "service": "Wet cupping / Hijama",
+    "area": "South London",
+    "angle": "method comparison, sensation, hygiene, choosing",
+    "summary": "The practical differences between wet cupping (hijama) and dry cupping: what happens, how each feels and how to choose."
+  },
+  {
+    "slug": "hijama-vs-massage",
+    "title": "Hijama or deep tissue massage? How to decide",
+    "keyword": "hijama vs massage",
+    "intent": "comparison research",
+    "service": "Wet cupping / Hijama",
+    "area": "South London",
+    "angle": "practice comparison, what each is for, combining sensibly",
+    "summary": "How hijama and massage differ in purpose and practice, and sensible spacing if you use both."
+  },
+  {
+    "slug": "what-to-wear-hijama",
+    "title": "What to wear to a hijama appointment",
+    "keyword": "what to wear hijama",
+    "intent": "preparation",
+    "service": "Wet cupping / Hijama",
+    "area": "Streatham",
+    "angle": "clothing, modesty, practical prep",
+    "summary": "Simple guidance on clothing for men and women attending hijama, and why loose layers matter on the day."
+  },
+  {
+    "slug": "can-i-drive-after-hijama",
+    "title": "Can I drive home after hijama?",
+    "keyword": "drive after hijama",
+    "intent": "aftercare logistics",
+    "service": "Wet cupping / Hijama",
+    "area": "South London",
+    "angle": "post-session travel, rest, when to arrange a lift",
+    "summary": "Most clients drive home normally after resting at the clinic — here is when that is fine and when to arrange a lift."
+  },
+  {
+    "slug": "hijama-while-fasting",
+    "title": "Hijama while fasting: what to know before you book",
+    "keyword": "hijama while fasting",
+    "intent": "faith and timing",
+    "service": "Wet cupping / Hijama",
+    "area": "London",
+    "angle": "fasting considerations, scholarly views summarised respectfully, practical scheduling",
+    "summary": "Practical guidance for booking hijama while fasting, including timing your session and eating guidance either side."
+  },
+  {
+    "slug": "hijama-in-ramadan",
+    "title": "Booking hijama around Ramadan: a practical guide",
+    "keyword": "hijama Ramadan",
+    "intent": "seasonal faith timing",
+    "service": "Wet cupping / Hijama",
+    "area": "London",
+    "angle": "evening scheduling, hydration, Sunnah dates in Ramadan",
+    "summary": "How to plan hijama around Ramadan: sensible timing, hydration and aftercare when your routine changes."
+  },
+  {
+    "slug": "sunnah-days-explained",
+    "title": "Sunnah days for cupping, explained simply",
+    "keyword": "sunnah days cupping",
+    "intent": "faith education",
+    "service": "Wet cupping / Hijama",
+    "area": "London",
+    "angle": "17th 19th 21st lunar dates, how to check, flexibility",
+    "summary": "What the Sunnah days for hijama are, the hadith behind them and how we help you check upcoming dates when booking."
+  },
+  {
+    "slug": "hijama-hygiene-standards",
+    "title": "What hygiene should a hijama clinic prove to you?",
+    "keyword": "hijama hygiene standards",
+    "intent": "trust research",
+    "service": "Wet cupping / Hijama",
+    "area": "London",
+    "angle": "single-use equipment, sharps, room standards, questions to ask",
+    "summary": "The hygiene checklist every hijama client should expect: single-use blades, disposable cups, sharps disposal and a clean room."
+  },
+  {
+    "slug": "choosing-hijama-clinic",
+    "title": "How to choose a hijama clinic: a 7-point checklist",
+    "keyword": "choosing hijama clinic",
+    "intent": "decision research",
+    "service": "Wet cupping / Hijama",
+    "area": "London",
+    "angle": "insurance, hygiene, experience, reviews, consultation, privacy, aftercare",
+    "summary": "Seven things to check before booking hijama anywhere: insurance, hygiene process, practitioner experience, reviews and more."
+  },
+  {
+    "slug": "hijama-first-timers-nerves",
+    "title": "Nervous about your first hijama? Read this first",
+    "keyword": "nervous first hijama",
+    "intent": "reassurance",
+    "service": "Wet cupping / Hijama",
+    "area": "Streatham",
+    "angle": "sensation honesty, control, consultation-led pace",
+    "summary": "An honest walkthrough for nervous first-timers: what you control, what it feels like and how the pace stays yours."
+  },
+  {
+    "slug": "hijama-for-gym-goers",
+    "title": "Hijama for gym-goers: timing your session around training",
+    "keyword": "hijama gym training",
+    "intent": "audience-specific",
+    "service": "Wet cupping / Hijama",
+    "area": "South London",
+    "angle": "training schedule, 48h rule, planning sessions",
+    "summary": "How regular gym-goers plan hijama around training: the 48-hour rule, timing within your programme and aftercare."
+  },
+  {
+    "slug": "hijama-and-sleep",
+    "title": "Sleep and rest after hijama: the first night",
+    "keyword": "sleep after hijama",
+    "intent": "aftercare",
+    "service": "Wet cupping / Hijama",
+    "area": "South London",
+    "angle": "first-night practicalities, positioning, hydration",
+    "summary": "What to expect the first night after hijama: sleeping positions, keeping marks covered and normal next-morning sensations."
+  },
+  {
+    "slug": "hijama-marks-timeline",
+    "title": "Hijama marks day by day: a healing timeline",
+    "keyword": "hijama marks how long",
+    "intent": "aftercare expectations",
+    "service": "Wet cupping / Hijama",
+    "area": "London",
+    "angle": "day-by-day fading, what is normal, when to call",
+    "summary": "A day-by-day guide to how cupping marks fade, what is normal at each stage and the few signs worth a phone call."
+  },
+  {
+    "slug": "hijama-points-tradition",
+    "title": "Where cups are placed: traditional hijama points explained",
+    "keyword": "hijama points",
+    "intent": "practice education",
+    "service": "Wet cupping / Hijama",
+    "area": "London",
+    "angle": "common placements, why placement varies, consultation-led choice",
+    "summary": "An introduction to traditional cup placement in hijama and why your practitioner chooses points at consultation."
+  },
+  {
+    "slug": "history-of-hijama",
+    "title": "A short history of hijama, from the Sunnah to Streatham",
+    "keyword": "history of hijama",
+    "intent": "education",
+    "service": "Wet cupping / Hijama",
+    "area": "London",
+    "angle": "prophetic tradition, historical practice, modern standards",
+    "summary": "How hijama travelled from prophetic tradition through centuries of practice to insured, single-use modern clinics."
+  },
+  {
+    "slug": "hijama-myths",
+    "title": "Five hijama myths we hear every week",
+    "keyword": "hijama myths",
+    "intent": "education",
+    "service": "Wet cupping / Hijama",
+    "area": "London",
+    "angle": "myth vs practice, honest expectations",
+    "summary": "Common myths about wet cupping — from pain to promises — and the honest reality from a working clinic."
+  },
+  {
+    "slug": "hijama-couples-family",
+    "title": "Booking hijama as a couple or family",
+    "keyword": "family hijama booking",
+    "intent": "booking logistics",
+    "service": "Wet cupping / Hijama",
+    "area": "Streatham",
+    "angle": "back-to-back slots, same-sex practitioners, individual consults",
+    "summary": "How household bookings work: back-to-back sessions, the right practitioner for each person and individual suitability checks."
+  },
+  {
+    "slug": "hijama-for-over-60s",
+    "title": "Hijama for older clients: suitability and comfort",
+    "keyword": "hijama older adults",
+    "intent": "audience-specific",
+    "service": "Wet cupping / Hijama",
+    "area": "South London",
+    "angle": "suitability emphasis, medication checks, gentler approach",
+    "summary": "What over-60s should know before booking hijama: medication checks, gentler suction and unhurried appointments."
+  },
+  {
+    "slug": "hijama-aftercare-food",
+    "title": "What to eat after hijama (and what to skip for a day)",
+    "keyword": "what to eat after hijama",
+    "intent": "aftercare",
+    "service": "Wet cupping / Hijama",
+    "area": "London",
+    "angle": "light eating, hydration, traditional preferences",
+    "summary": "Simple eating guidance after wet cupping: hydration first, light meals, and the traditional 24-hour preferences many follow."
+  },
+  {
+    "slug": "hijama-winter-guide",
+    "title": "Hijama in winter: keeping warm and healing well",
+    "keyword": "hijama winter",
+    "intent": "seasonal",
+    "service": "Wet cupping / Hijama",
+    "area": "South London",
+    "angle": "warmth, covering marks, seasonal aftercare",
+    "summary": "Cold-weather hijama practicalities: dressing for the journey home, covering marks and winter aftercare."
+  },
+  {
+    "slug": "hijama-summer-guide",
+    "title": "Hijama in summer: heat, sweat and your aftercare",
+    "keyword": "hijama summer",
+    "intent": "seasonal",
+    "service": "Wet cupping / Hijama",
+    "area": "South London",
+    "angle": "sweat and 48h rule, sun on marks, hydration",
+    "summary": "Hot-weather guidance for hijama clients: managing the no-sweat window, sun on marks and staying hydrated."
+  },
+  {
+    "slug": "wet-cupping-streatham-hill",
+    "title": "Wet cupping near Streatham Hill: your local guide",
+    "keyword": "wet cupping Streatham Hill",
+    "intent": "local discovery",
+    "service": "Wet cupping / Hijama",
+    "area": "Streatham Hill",
+    "angle": "travel, booking, what local clients ask",
+    "summary": "A local guide for Streatham Hill clients: reaching the clinic, booking the right session and local FAQs."
+  },
+  {
+    "slug": "hijama-mitcham",
+    "title": "Hijama near Mitcham: what local clients should know",
+    "keyword": "hijama Mitcham",
+    "intent": "local discovery",
+    "service": "Wet cupping / Hijama",
+    "area": "Mitcham",
+    "angle": "travel, quarterly rhythm, booking",
+    "summary": "For Mitcham clients: the short journey to the clinic, how regulars schedule quarterly sessions and booking guidance."
+  },
+  {
+    "slug": "cupping-colliers-wood",
+    "title": "Cupping near Colliers Wood: a practical local guide",
+    "keyword": "cupping Colliers Wood",
+    "intent": "local discovery",
+    "service": "Wet cupping / Hijama",
+    "area": "Colliers Wood",
+    "angle": "northern line link, household bookings",
+    "summary": "How Colliers Wood clients reach us via Tooting, plus household booking tips and local questions answered."
+  },
+  {
+    "slug": "hijama-west-norwood-guide",
+    "title": "Hijama for West Norwood clients: travel and aftercare",
+    "keyword": "hijama West Norwood",
+    "intent": "local discovery",
+    "service": "Wet cupping / Hijama",
+    "area": "West Norwood",
+    "angle": "short hop, aftercare on the way home",
+    "summary": "A West Norwood guide: the quick journey over the hill and how to handle aftercare on the trip home."
+  },
+  {
+    "slug": "hijama-crystal-palace-guide",
+    "title": "Hijama from Crystal Palace: weekend booking guide",
+    "keyword": "hijama Crystal Palace",
+    "intent": "local discovery",
+    "service": "Wet cupping / Hijama",
+    "area": "Crystal Palace",
+    "angle": "weekend slots, routes, planning",
+    "summary": "Weekend-focused guidance for Crystal Palace clients: routes to Streatham and making the most of Saturday and Sunday slots."
+  },
+  {
+    "slug": "hijama-balham-workers",
+    "title": "After-work hijama for Balham commuters",
+    "keyword": "hijama Balham evening",
+    "intent": "local audience",
+    "service": "Wet cupping / Hijama",
+    "area": "Balham",
+    "angle": "evening slots, commute integration",
+    "summary": "How Balham commuters fit hijama around work: evening availability, travel timing and next-day planning."
+  },
+  {
+    "slug": "hijama-tooting-students",
+    "title": "Hijama near Tooting: a student-friendly guide",
+    "keyword": "hijama Tooting",
+    "intent": "local audience",
+    "service": "Wet cupping / Hijama",
+    "area": "Tooting",
+    "angle": "budget clarity, timing around study",
+    "summary": "A practical Tooting guide: transparent pricing from £45, quieter slots and aftercare that fits study schedules."
+  },
+  {
+    "slug": "hijama-questions-consultation",
+    "title": "Ten questions to ask at your hijama consultation",
+    "keyword": "hijama consultation questions",
+    "intent": "preparation",
+    "service": "Wet cupping / Hijama",
+    "area": "London",
+    "angle": "empowering clients, honest answers, red flags",
+    "summary": "The ten questions worth asking any hijama practitioner at consultation — and the answers a good clinic gives."
+  },
+  {
+    "slug": "hijama-insurance-explained",
+    "title": "Why a fully insured hijama clinic matters",
+    "keyword": "insured hijama clinic",
+    "intent": "trust research",
+    "service": "Wet cupping / Hijama",
+    "area": "London",
+    "angle": "what insurance covers, why it signals standards",
+    "summary": "What full insurance means at a hijama clinic, what it tells you about standards and why we lead with it."
+  },
+  {
+    "slug": "male-hijama-streatham",
+    "title": "Men's hijama in Streatham: Brother Abu Layla's approach",
+    "keyword": "mens hijama Streatham",
+    "intent": "audience-specific",
+    "service": "Wet cupping / Hijama",
+    "area": "Streatham",
+    "angle": "male practitioner, privacy, first visit",
+    "summary": "What men can expect at Sincerity: Brother Abu Layla's consultation-first approach, privacy and honest pacing."
+  },
+  {
+    "slug": "female-hijama-streatham",
+    "title": "Women's hijama in Streatham: Sister Aisha's female-only sessions",
+    "keyword": "female hijama Streatham",
+    "intent": "audience-specific",
+    "service": "Wet cupping / Hijama",
+    "area": "Streatham",
+    "angle": "female-only environment, modesty, lead practitioner",
+    "summary": "Inside our female-only sessions: Sister Aisha Mejri's twenty-plus years, modesty throughout and a lockable private room."
+  },
+  {
+    "slug": "hijama-headache-tension-talk",
+    "title": "Clients ask: hijama and everyday tension — an honest conversation",
+    "keyword": "hijama tension",
+    "intent": "expectation setting",
+    "service": "Wet cupping / Hijama",
+    "area": "London",
+    "angle": "honest complementary framing, no medical claims, consultation",
+    "summary": "How we talk honestly with clients about everyday tension and wellbeing goals — and why we never promise medical outcomes."
+  },
+  {
+    "slug": "hijama-recovery-day-plan",
+    "title": "Your hijama day, planned hour by hour",
+    "keyword": "hijama day plan",
+    "intent": "preparation",
+    "service": "Wet cupping / Hijama",
+    "area": "South London",
+    "angle": "timeline from breakfast to bedtime",
+    "summary": "A copy-and-follow plan for treatment day: eating, arriving, the session itself and a calm evening after."
+  },
+  {
+    "slug": "hijama-and-work",
+    "title": "Going back to work after hijama: desk jobs vs manual work",
+    "keyword": "work after hijama",
+    "intent": "aftercare logistics",
+    "service": "Wet cupping / Hijama",
+    "area": "London",
+    "angle": "desk vs physical work, timing sessions",
+    "summary": "When you can return to work after wet cupping — same-day guidance for desk jobs and the 48-hour rule for manual work."
+  },
+  {
+    "slug": "cupping-therapy-near-me",
+    "title": "Searching 'cupping therapy near me' in South London? Start here",
+    "keyword": "cupping therapy near me",
+    "intent": "local discovery",
+    "service": "Wet cupping / Hijama",
+    "area": "South London",
+    "angle": "what to check, our 15 areas, honest checklist",
+    "summary": "If you searched cupping near me across South London: the checklist that matters and the 15 areas we serve from SW16."
+  },
+  {
+    "slug": "hijama-referrals-word-of-mouth",
+    "title": "Why most of our clients come by referral",
+    "keyword": "hijama recommendations",
+    "intent": "trust",
+    "service": "Wet cupping / Hijama",
+    "area": "Streatham",
+    "angle": "review culture, community trust, unedited quotes",
+    "summary": "What 100+ verified reviews and constant word-of-mouth referrals say about how the clinic works."
+  },
+  {
+    "slug": "hijama-privacy-promise",
+    "title": "Our privacy promise: what happens in the treatment room",
+    "keyword": "hijama privacy",
+    "intent": "trust",
+    "service": "Wet cupping / Hijama",
+    "area": "Streatham",
+    "angle": "lockable room, undressing policy, chaperone questions",
+    "summary": "Exactly how privacy works here: the lockable room, minimal undressing and respect from consultation to dressing."
+  },
+  {
+    "slug": "hijama-equipment-tour",
+    "title": "Single-use everything: a tour of our equipment standards",
+    "keyword": "hijama equipment sterile",
+    "intent": "trust education",
+    "service": "Wet cupping / Hijama",
+    "area": "London",
+    "angle": "blades, cups, sharps bins, opened in front of you",
+    "summary": "A transparent tour of what touches your skin: sterile single-use blades, disposable cups and proper sharps disposal."
   }
 ]
