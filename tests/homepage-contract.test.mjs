@@ -7,6 +7,11 @@ import test from "node:test";
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const home = fs.readFileSync(path.join(root, "index.html"), "utf8");
 const css = fs.readFileSync(path.join(root, "assets/css/style.css"), "utf8");
+const heroSizes = "(max-width: 700px) calc(100vw - 3rem), (max-width: 980px) 540px, (max-width: 1200px) 42vw, 540px";
+
+function escapeRegExp(value) {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
 
 test("homepage leads with the approved inclusive cupping message", () => {
   assert.match(
@@ -48,5 +53,36 @@ test("every homepage image declares alt text and intrinsic dimensions", () => {
     assert.match(image, /\balt\s*=\s*(?:"[^"]*"|'[^']*')/i, `missing alt: ${image}`);
     assert.match(image, /\bwidth\s*=\s*(?:"\d+"|'\d+')/i, `missing width: ${image}`);
     assert.match(image, /\bheight\s*=\s*(?:"\d+"|'\d+')/i, `missing height: ${image}`);
+  }
+});
+
+test("homepage hero publishes resolution-responsive image candidates", () => {
+  const picture = home.match(/<picture>[\s\S]*?back-cupping-glass[\s\S]*?<\/picture>/)?.[0];
+  assert.ok(picture, "missing back-cupping-glass picture");
+
+  for (const extension of ["avif", "webp", "jpg"]) {
+    const srcset = [480, 800, 1200]
+      .map((width) => `assets/img/back-cupping-glass-${width}.${extension} ${width}w`)
+      .join(",\\s*");
+
+    assert.match(
+      picture,
+      new RegExp(`srcset="${srcset}"[^>]*sizes="${escapeRegExp(heroSizes)}"`),
+      `missing responsive ${extension.toUpperCase()} srcset and sizes`,
+    );
+  }
+});
+
+test("every responsive homepage hero candidate exists", () => {
+  for (const width of [480, 800, 1200]) {
+    for (const extension of ["avif", "webp", "jpg"]) {
+      const candidate = path.join(
+        root,
+        "assets/img",
+        `back-cupping-glass-${width}.${extension}`,
+      );
+      assert.ok(fs.existsSync(candidate), `missing hero candidate: ${candidate}`);
+      assert.ok(fs.statSync(candidate).size > 0, `empty hero candidate: ${candidate}`);
+    }
   }
 });
