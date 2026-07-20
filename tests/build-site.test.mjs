@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
-import {execFileSync} from "node:child_process";
+import {execFileSync, spawnSync} from "node:child_process";
 import fs from "node:fs";
+import os from "node:os";
 import path from "node:path";
 import {fileURLToPath} from "node:url";
 import test from "node:test";
@@ -8,16 +9,21 @@ import test from "node:test";
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const dist = path.join(root, "dist");
 
-const requiredPaths = [
+const publicEntries = [
   "index.html",
   "404.html",
-  "services/index.html",
-  "about/index.html",
-  "contact/index.html",
-  "blog/index.html",
-  "privacy/index.html",
-  "assets/css/style.css",
-  "assets/js/site.js",
+  "about",
+  "areas",
+  "articles",
+  "assets",
+  "blog",
+  "contact",
+  "privacy",
+  "services",
+  "apple-touch-icon.png",
+  "favicon.ico",
+  "favicon.svg",
+  "icon.svg",
   "robots.txt",
   "sitemap.xml",
   "llms.txt",
@@ -26,68 +32,160 @@ const requiredPaths = [
   "_redirects",
 ];
 
-const rejectedPaths = [
-  "package.json",
-  "README.md",
-  "payload.json",
-  "data",
-  "scripts",
-  "tests",
-  ".github",
-  ".gitignore",
-  ".wrangler",
-  "preview",
-  "docs",
+const publicDirectories = new Set([
+  "about",
+  "areas",
+  "articles",
+  "assets",
+  "blog",
+  "contact",
+  "privacy",
+  "services",
+]);
+
+const coreRoutes = [
+  "index.html",
+  "about/index.html",
+  "blog/index.html",
+  "contact/index.html",
+  "privacy/index.html",
+  "services/index.html",
 ];
 
-function pageSlugs(directory) {
-  return fs.readdirSync(path.join(root, directory), {withFileTypes: true})
-    .filter((entry) => entry.isDirectory())
-    .map((entry) => entry.name)
-    .sort();
+const areaSlugs = [
+  "balham",
+  "brixton",
+  "clapham",
+  "colliers-wood",
+  "crystal-palace",
+  "dulwich",
+  "herne-hill",
+  "mitcham",
+  "norbury",
+  "streatham",
+  "streatham-common",
+  "streatham-hill",
+  "tooting",
+  "tulse-hill",
+  "west-norwood",
+];
+
+const articleSlugs = [
+  "can-i-drive-after-hijama",
+  "clean-hijama-clinic-south-london",
+  "cupping-dulwich",
+  "cupping-therapy-clapham",
+  "female-hijama-therapist-south-london",
+  "first-hijama-appointment-streatham",
+  "hijama-aftercare-london",
+  "hijama-brixton",
+  "hijama-cost-london",
+  "hijama-crystal-palace",
+  "hijama-norbury",
+  "hijama-vs-dry-cupping",
+  "hijama-vs-massage",
+  "hijama-west-norwood",
+  "insured-hijama-clinic-streatham",
+  "male-hijama-therapist-south-london",
+  "mens-hijama-south-london",
+  "wet-cupping-balham",
+  "wet-cupping-herne-hill",
+  "wet-cupping-men-women-south-london",
+  "wet-cupping-tooting",
+  "wet-cupping-tulse-hill",
+  "what-to-wear-hijama",
+  "women-only-hijama-south-london",
+];
+
+const baselineRoutes = [
+  ...coreRoutes,
+  ...areaSlugs.map((slug) => `areas/${slug}/index.html`),
+  ...articleSlugs.map((slug) => `articles/${slug}/index.html`),
+];
+
+const requiredPublicPaths = [
+  ...baselineRoutes,
+  "404.html",
+  "assets/css/style.css",
+  "assets/js/site.js",
+  "apple-touch-icon.png",
+  "favicon.ico",
+  "favicon.svg",
+  "icon.svg",
+  "robots.txt",
+  "sitemap.xml",
+  "llms.txt",
+  "llms-full.txt",
+  "_headers",
+  "_redirects",
+];
+
+function runBuild(...args) {
+  return execFileSync(process.execPath, ["scripts/build-site.mjs", ...args], {
+    cwd: root,
+    encoding: "utf8",
+  });
 }
 
-test("build creates a clean public dist directory", () => {
+function makeSourceFixtureWithout(missingEntry) {
+  const fixture = fs.mkdtempSync(path.join(os.tmpdir(), "sincerity-build-"));
+
+  for (const entry of publicEntries) {
+    if (entry === missingEntry) continue;
+
+    const target = path.join(fixture, entry);
+    if (publicDirectories.has(entry)) {
+      fs.mkdirSync(target, {recursive: true});
+    } else {
+      fs.writeFileSync(target, "fixture");
+    }
+  }
+
+  return fixture;
+}
+
+test("build creates the exact public site contract", () => {
   fs.rmSync(dist, {recursive: true, force: true});
   fs.mkdirSync(dist, {recursive: true});
   fs.writeFileSync(path.join(dist, "stale-private-file.txt"), "remove me");
 
-  execFileSync(process.execPath, ["scripts/build-site.mjs"], {
-    cwd: root,
-    encoding: "utf8",
-  });
+  runBuild();
 
-  for (const relativePath of requiredPaths) {
+  assert.equal(coreRoutes.length, 6);
+  assert.equal(areaSlugs.length, 15);
+  assert.equal(articleSlugs.length, 24);
+  assert.equal(baselineRoutes.length, 45);
+  assert.deepEqual(fs.readdirSync(dist).sort(), [...publicEntries].sort());
+
+  for (const relativePath of requiredPublicPaths) {
     assert.ok(
       fs.existsSync(path.join(dist, relativePath)),
       `missing required public path: ${relativePath}`,
     );
   }
+});
 
-  const areaSlugs = pageSlugs("areas");
-  const articleSlugs = pageSlugs("articles");
+test("build fails clearly when an allowlisted source entry is missing", (t) => {
+  const fixture = makeSourceFixtureWithout("robots.txt");
+  t.after(() => fs.rmSync(fixture, {recursive: true, force: true}));
 
-  assert.equal(areaSlugs.length, 15, "source should contain 15 area pages");
-  assert.equal(articleSlugs.length, 24, "source should contain 24 article pages");
+  const result = spawnSync(
+    process.execPath,
+    ["scripts/build-site.mjs", fixture],
+    {cwd: root, encoding: "utf8"},
+  );
 
-  for (const slug of areaSlugs) {
-    assert.ok(
-      fs.existsSync(path.join(dist, "areas", slug, "index.html")),
-      `missing area page: ${slug}`,
-    );
-  }
+  assert.equal(result.status, 1, result.stderr || result.stdout);
+  assert.match(result.stderr, /Missing public site entries: robots\.txt/);
+});
 
-  for (const slug of articleSlugs) {
-    assert.ok(
-      fs.existsSync(path.join(dist, "articles", slug, "index.html")),
-      `missing article page: ${slug}`,
-    );
-  }
+test("source check excludes the generated dist directory", () => {
+  runBuild();
 
-  for (const relativePath of [...rejectedPaths, "stale-private-file.txt"]) {
-    assert.ok(
-      !fs.existsSync(path.join(dist, relativePath)),
-      `private or stale path leaked into dist: ${relativePath}`,
-    );
-  }
+  const output = execFileSync(process.execPath, ["scripts/check-site.mjs", "."], {
+    cwd: root,
+    encoding: "utf8",
+  });
+
+  assert.match(output, /^Checked 47 HTML file\(s\)\./);
 });

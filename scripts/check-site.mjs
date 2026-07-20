@@ -2,12 +2,17 @@ import fs from "node:fs";
 import path from "node:path";
 import process from "node:process";
 
-const root = path.resolve(process.cwd(), process.argv[2] || ".");
+const requestedRoot = process.argv[2] || ".";
+const root = path.resolve(process.cwd(), requestedRoot);
 const htmlFiles = [];
 
 function walk(dir) {
   for (const entry of fs.readdirSync(dir, {withFileTypes: true})) {
-    if (entry.name === "node_modules" || entry.name === ".git") continue;
+    if (
+      entry.name === "node_modules"
+      || entry.name === ".git"
+      || (requestedRoot === "." && dir === root && entry.name === "dist")
+    ) continue;
     const full = path.join(dir, entry.name);
     if (entry.isDirectory()) walk(full);
     if (entry.isFile() && entry.name.endsWith(".html")) htmlFiles.push(full);
