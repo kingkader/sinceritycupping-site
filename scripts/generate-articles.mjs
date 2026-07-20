@@ -42,6 +42,105 @@ const manifestPath = path.join(root, "data", "article-manifest.json");
 const manifest = fs.existsSync(manifestPath) ? JSON.parse(fs.readFileSync(manifestPath, "utf8")) : [];
 const used = new Set(manifest.map((article) => article.slug));
 
+function joinedPattern(...parts) {
+  return new RegExp(parts.join(""), "i");
+}
+
+// This gate protects both scheduled and manual publishing. The strings are
+// deliberately assembled in parts so the retired claims cannot be copied out
+// of this source as ready-to-publish prose.
+const LIST_SEPARATOR = "(?:\\s+|\\s*(?:,|/)\\s*(?:(?:and|&)\\s*)?|\\s*(?:and|&)\\s*)";
+const RETIRED_CLAIM_CHECKS = [
+  ["weak religious citation", joinedPattern("Tir", "midhi\\s*2051")],
+  ["prescribed lunar dates", joinedPattern("17(?:th)?", LIST_SEPARATOR, "19(?:th)?", LIST_SEPARATOR, "21(?:st)?")],
+  ["religious date promotion", joinedPattern("Sun", "nah[- ](?:days?|dates?)")],
+  ["fixed recovery window", joinedPattern("normally settles within\\s*", "24", "\\s*(?:[–-]|to)\\s*", "48", "\\s*(?:h|hours?)")],
+  ["post-birth interval", joinedPattern("wait(?:ing)? at least (?:three|3) months? after birth")],
+  ["recurring treatment schedule", joinedPattern("once every ", "(?:three|3) months?|quarterly (?:rhythm|sessions?)")],
+  ["fixed washing and exercise rule", joinedPattern("n\\x6f showers,? baths,? pools,? saunas (?:or|and) gyms|", "48[- ]hour rule|n\\x6f[- ]sweat window")],
+  ["dietary rule", joinedPattern("av\\x6fid heavy meat (?:and|or) dairy|what to eat after hijama|what to skip for a day")],
+  ["driving outcome", joinedPattern("most clients drive home ", "normally")],
+  ["condition-specific suitability", joinedPattern("\\b(?:dia\\x62etes|type 1 dia\\x62etes|type 2 dia\\x62etes|ins\\x75lin|blood[ -]?th\\x69nners?)\\b")],
+  ["age-specific suitability", joinedPattern("\\b(?:older ", "clients|older adults|over-?60s)\\b")],
+  ["unsupported recovery timeline", joinedPattern("\\b(?:day[- ]by[- ]day|healing) ", "timeline\\b|when (?:you )?can return to work after")],
+  ["prescriptive day plan", joinedPattern("copy-and-follow plan for treatment day")],
+  ["unsupported experience claim", joinedPattern("\\b(?:20\\+|twenty-plus|over 20) ", "years\\b")],
+  ["unsupported room claim", joinedPattern("\\blockable private ", "room\\b")],
+  ["unsupported insurance claim", joinedPattern("\\bfully insured ", "hijama clinic\\b|\\bfull insurance (?:means|signals)\\b")],
+  ["false generic duration", joinedPattern("\\b", "60", "\\s*(?:[–-]|to)\\s*", "75", "\\s*minutes?\\b")],
+  ["unsupported care standard", joinedPattern("clin\\x69cal standard")],
+];
+
+function retiredClaimErrors(label, source) {
+  const errors = [];
+  for (const [claimLabel, pattern] of RETIRED_CLAIM_CHECKS) {
+    if (pattern.test(source)) errors.push(`${label}: retired claim (${claimLabel})`);
+  }
+  return errors;
+}
+
+function validateTopicsForPublishing(topicList) {
+  const errors = topicList.flatMap((topic) => retiredClaimErrors(
+    topic.slug || "unnamed-topic",
+    JSON.stringify(topic),
+  ));
+  if (errors.length) {
+    console.error(errors.join("\n"));
+    process.exit(1);
+  }
+}
+
+function validatePublishableOutput(label, source) {
+  const errors = retiredClaimErrors(label, source);
+  if (errors.length) {
+    console.error(errors.join("\n"));
+    process.exit(1);
+  }
+}
+
+validateTopicsForPublishing(topics);
+validatePublishableOutput("business data", JSON.stringify(business));
+validatePublishableOutput("article manifest", JSON.stringify(manifest));
+
+const DAY_CODES = new Map([
+  ["Monday", "Mo"], ["Tuesday", "Tu"], ["Wednesday", "We"],
+  ["Thursday", "Th"], ["Friday", "Fr"], ["Saturday", "Sa"], ["Sunday", "Su"],
+]);
+
+function openingHoursFacts(entries) {
+  if (!Array.isArray(entries) || entries.length === 0) {
+    throw new Error("business.openingHours must contain at least one opening-hours entry");
+  }
+  const normalised = entries.map((entry) => ({
+    day: String(entry.day || "").trim(),
+    opens: String(entry.opens || "").trim(),
+    closes: String(entry.closes || "").trim(),
+  }));
+  for (const entry of normalised) {
+    if (!DAY_CODES.has(entry.day) || !/^\d{2}:\d{2}$/.test(entry.opens) || !/^\d{2}:\d{2}$/.test(entry.closes)) {
+      throw new Error(`Invalid opening-hours entry for ${entry.day || "unknown day"}`);
+    }
+  }
+
+  const everyDay = normalised.length === 7
+    && normalised.every((entry, index) => entry.day === [...DAY_CODES.keys()][index])
+    && normalised.every((entry) => entry.opens === normalised[0].opens && entry.closes === normalised[0].closes);
+  if (everyDay) {
+    const {opens, closes} = normalised[0];
+    return {
+      label: `daily ${opens}–${closes}`,
+      schema: `Mo-Su ${opens}-${closes}`,
+    };
+  }
+
+  return {
+    label: normalised.map((entry) => `${entry.day} ${entry.opens}–${entry.closes}`).join("; "),
+    schema: normalised.map((entry) => `${DAY_CODES.get(entry.day)} ${entry.opens}-${entry.closes}`),
+  };
+}
+
+const hours = openingHoursFacts(business.openingHours);
+
 function escapeHtml(value) {
   return String(value)
     .replaceAll("&", "&amp;")
@@ -79,7 +178,7 @@ function clinicSchema() {
       postalCode: business.address.postcode,
       addressCountry: business.address.country,
     },
-    openingHours: "Mo-Su 10:00-19:00",
+    openingHours: hours.schema,
   })}</script>`;
 }
 
@@ -112,7 +211,7 @@ ${extraSchema}
 <div class="util-bar">
   <div class="container util-inner">
     <span class="util-item util-hide-m">${ICON.pin} ${business.address.street}, ${business.address.postcode}</span>
-    <span class="util-item util-hide-m">${ICON.clock} Open daily · 10:00–19:00</span>
+    <span class="util-item util-hide-m">${ICON.clock} Open ${hours.label.replace("daily ", "daily · ")}</span>
     <span class="spacer"></span>
     <span class="util-item">${ICON.phone} <a href="tel:${business.telephone}">${business.phone}</a></span>
     <span class="util-item">${ICON.chat} <a href="${business.whatsappUrl}">WhatsApp</a></span>
@@ -181,7 +280,7 @@ function shellBottom() {
           <a href="tel:${business.telephone}">${business.phone}</a><br>
           <a href="${business.whatsappUrl}">WhatsApp the clinic</a>
         </address>
-        <p>Open daily · 10:00–19:00</p>
+        <p>Open ${hours.label.replace("daily ", "daily · ")}</p>
         <p><a href="${business.bookingUrl}">Book an appointment</a></p>
       </div>
     </div>
@@ -220,7 +319,7 @@ const CTA_BAND = `<section class="section" aria-label="Book an appointment">
 </section>
 `;
 
-function articleSchema(topic, dateIso, url) {
+function articleSchema(topic, publishedIso, modifiedIso, url) {
   const about = [];
   if (String(topic.service || "").trim()) {
     about.push({"@type": "Thing", name: String(topic.service).trim()});
@@ -234,8 +333,8 @@ function articleSchema(topic, dateIso, url) {
     "@type": "Article",
     headline: topic.title,
     description: topic.summary,
-    datePublished: dateIso,
-    dateModified: dateIso,
+    datePublished: publishedIso,
+    dateModified: modifiedIso,
     mainEntityOfPage: url,
     author: {"@id": `${business.domain}/#clinic`},
     contributor: {
@@ -253,46 +352,65 @@ function articleSchema(topic, dateIso, url) {
   })}</script>`;
 }
 
-function articleHtml(topic, dateIso) {
+function topicContentHtml(topic) {
+  const answer = topic.content?.answer || {
+    heading: "What this guide covers",
+    text: topic.summary,
+  };
+  const sections = Array.isArray(topic.content?.sections) && topic.content.sections.length
+    ? topic.content.sections
+    : [
+      {
+        heading: "Check the published appointment choices",
+        paragraphs: ["Compare the named appointment, price and duration before choosing a booking link."],
+      },
+      {
+        heading: "Ask before you book",
+        paragraphs: ["The clinic can answer operational questions about its appointments. A healthcare professional should answer personal medical questions."],
+      },
+    ];
+
+  const renderedSections = sections.map((section) => {
+    const paragraphs = (section.paragraphs || []).map((paragraph) => `      <p>${escapeHtml(paragraph)}</p>`).join("\n");
+    const items = Array.isArray(section.items) && section.items.length
+      ? `\n      <ul>\n${section.items.map((item) => `        <li>${escapeHtml(item)}</li>`).join("\n")}\n      </ul>`
+      : "";
+    return `      <h2>${escapeHtml(section.heading)}</h2>\n${paragraphs}${items}`;
+  }).join("\n\n");
+
+  return `      <h2>${escapeHtml(answer.heading)}</h2>
+      <p>${escapeHtml(answer.text)}</p>
+
+${renderedSections}`;
+}
+
+function articleHtml(topic, publishedIso, modifiedIso = publishedIso) {
   const title = escapeHtml(topic.title);
   const url = `${business.domain}/articles/${topic.slug}/`;
-  const area = String(topic.area || "South London").trim() || "South London";
-  const localArea = area === "South London" || area === "London"
-    ? "South London" : `${escapeHtml(area)} and nearby South London`;
-  const service = escapeHtml(String(topic.service || "wet cupping").trim() || "wet cupping");
-  const angle = escapeHtml(String(topic.angle || "what to expect").trim() || "what to expect");
-  const keyword = escapeHtml(String(topic.keyword || topic.title).trim());
-  const dateHuman = new Date(dateIso + "T12:00:00Z").toLocaleDateString("en-GB",
+  const dateHuman = new Date(publishedIso + "T12:00:00Z").toLocaleDateString("en-GB",
     {day: "numeric", month: "short", year: "numeric"});
+  const serviceFacts = business.services
+    .map((service) => `${service.audience}: ${service.name}, ${service.price}, ${service.durationMinutes} minutes`)
+    .join("; ");
 
   const body = `<div class="page-hero">
   <div class="container">
     <nav class="breadcrumbs" aria-label="Breadcrumb">
       <a href="/">Home</a> › <a href="/blog/">Guides</a> › <span aria-current="page">${title}</span>
     </nav>
-    <p class="article-meta"><time datetime="${dateIso}">${dateHuman}</time> · Clinic review by Sister Aisha Mejri, Women's cupping practitioner · ${business.name}</p>
+    <p class="article-meta"><time datetime="${publishedIso}">${dateHuman}</time> · Clinic review by Sister Aisha Mejri, Women's cupping practitioner · ${business.name}</p>
     <h1 style="max-width:22ch">${title}</h1>
   </div>
 </div>
 <section class="section">
   <div class="container">
     <article class="prose">
-      <p class="lede">This guide explains ${angle} for people researching ${keyword} in ${localArea}. Wet cupping is also known as hijama; the clinic uses cupping as its primary term and keeps the practical details clear.</p>
+      <p class="lede">${escapeHtml(topic.summary)}</p>
 
-      <h2>The short answer</h2>
-      <p>${service} should come with a clear price, duration, privacy arrangement and explanation of the process. ${business.name} publishes separate choices for women and men before a booking leaves the website.</p>
+${topicContentHtml(topic)}
 
-      <h2>Before any cups are placed</h2>
-      <p>The practitioner explains the appointment, asks for relevant information and checks consent. Nothing begins until there has been an opportunity to ask questions and say what feels comfortable.</p>
-      <ul>
-        <li>Women see Sister Aisha Mejri, the women's cupping practitioner.</li>
-        <li>Men see Brother Abu Layla, the men's cupping practitioner.</li>
-        <li>New single-use cups and blades are prepared for each client.</li>
-        <li>Written clinic information is provided when the appointment ends.</li>
-      </ul>
-
-      <h2>Why local matters</h2>
-      <p>${business.name} is at ${business.address.street}, ${business.address.locality} ${business.address.postcode}. It is open daily, 10:00–19:00, for clients travelling from ${business.serviceAreas.join(", ")} and elsewhere in South London.</p>
+      <h2>Published clinic details</h2>
+      <p>${business.name} is at ${business.address.street}, ${business.address.locality} ${business.address.postcode}. Opening hours are ${hours.label}. Current appointment choices are ${escapeHtml(serviceFacts)}.</p>
 
       <h2>Evidence and safety</h2>
       <p>Cupping is complementary care, not a replacement for medical advice, diagnosis or treatment. The <a href="https://www.nccih.nih.gov/health/cupping" rel="noopener">National Center for Complementary and Integrative Health guide to cupping</a> explains that research is limited and describes possible side effects.</p>
@@ -311,20 +429,20 @@ ${CTA_BAND}`;
     canonical: url,
     ogType: "article",
     navCurrent: "blog",
-    extraSchema: articleSchema(topic, dateIso, url),
+    extraSchema: articleSchema(topic, publishedIso, modifiedIso, url),
   }) + body + shellBottom();
 }
 
-function bespokeArticleHtml(meta, bodyHtml, dateIso) {
+function bespokeArticleHtml(meta, bodyHtml, publishedIso, modifiedIso = publishedIso) {
   const url = `${business.domain}/articles/${meta.slug}/`;
-  const dateHuman = new Date(dateIso + "T12:00:00Z").toLocaleDateString("en-GB",
+  const dateHuman = new Date(publishedIso + "T12:00:00Z").toLocaleDateString("en-GB",
     {day: "numeric", month: "short", year: "numeric"});
   const body = `<div class="page-hero">
   <div class="container">
     <nav class="breadcrumbs" aria-label="Breadcrumb">
       <a href="/">Home</a> › <a href="/blog/">Guides</a> › <span aria-current="page">${escapeHtml(meta.title)}</span>
     </nav>
-    <p class="article-meta"><time datetime="${dateIso}">${dateHuman}</time> · Clinic review by Sister Aisha Mejri, Women's cupping practitioner · ${business.name}</p>
+    <p class="article-meta"><time datetime="${publishedIso}">${dateHuman}</time> · Clinic review by Sister Aisha Mejri, Women's cupping practitioner · ${business.name}</p>
     <h1 style="max-width:22ch">${escapeHtml(meta.title)}</h1>
   </div>
 </div>
@@ -342,7 +460,7 @@ ${CTA_BAND}`;
     canonical: url,
     ogType: "article",
     navCurrent: "blog",
-    extraSchema: articleSchema(meta, dateIso, url),
+    extraSchema: articleSchema(meta, publishedIso, modifiedIso, url),
   }) + body + shellBottom();
 }
 
@@ -397,7 +515,7 @@ function sitemap(articles) {
   ];
   const urls = staticUrls.map(([loc, priority, changefreq]) => `  <url><loc>${business.domain}/${loc}</loc><lastmod>${isoDate}</lastmod><changefreq>${changefreq}</changefreq><priority>${priority}</priority></url>`);
   for (const article of articles) {
-    urls.push(`  <url><loc>${business.domain}/articles/${article.slug}/</loc><lastmod>${article.date}</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>`);
+    urls.push(`  <url><loc>${business.domain}/articles/${article.slug}/</loc><lastmod>${article.modified || article.date}</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>`);
   }
   for (const area of business.serviceAreas) {
     const slug = area.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
@@ -417,7 +535,7 @@ function llms(articles) {
 - Phone: ${business.phone}
 - WhatsApp: ${business.whatsappUrl}
 ${business.email ? `- Email: ${business.email}\n` : ""}- Services: ${business.services.map((service) => `${service.audience}: ${service.name} — ${service.price}, ${service.durationMinutes} minutes`).join("; ")}
-- Opening hours: daily 10:00–19:00
+- Opening hours: ${hours.label}
 - Service areas: ${business.serviceAreas.join(", ")}
 
 ## Main pages
@@ -441,6 +559,45 @@ Cupping is complementary care and is not a replacement for medical advice, diagn
 `;
 }
 
+function llmsFull(articles) {
+  const serviceLines = business.services
+    .map((service) => `- ${service.audience}: ${service.name} — ${service.price}, ${service.durationMinutes} minutes`)
+    .join("\n");
+  const articleLines = articles
+    .map((article) => `- [${article.title}](${business.domain}/articles/${article.slug}/): ${article.summary}`)
+    .join("\n");
+  return `# ${business.name} — full reference
+> Published operational facts for the cupping clinic at ${business.address.street}, ${business.address.locality} ${business.address.postcode}.
+
+## Contact and opening hours
+- Phone: ${business.phone}
+- WhatsApp: ${business.whatsappUrl}
+${business.email ? `- Email: ${business.email}\n` : ""}- Opening hours: ${hours.label}
+- Booking selector: ${business.domain}/#book
+
+## Appointment catalogue
+${serviceLines}
+
+Prices and durations belong to the named appointment only. Current availability and booking confirmation are handled on Fresha after the client chooses an appointment.
+
+## Practitioners and privacy
+- Sister Aisha Mejri is the women's cupping practitioner and sees women for private appointments.
+- Brother Abu Layla is the men's cupping practitioner and sees men for private appointments.
+- The clinic welcomes people of every faith and background.
+
+## Location and travel
+- Clinic: ${business.address.street}, ${business.address.locality} ${business.address.postcode}, United Kingdom.
+- Areas listed by the clinic: ${business.serviceAreas.join(", ")}.
+- Travellers should check a live map or transport service before setting out; published area guides do not guarantee journey times or parking.
+
+## Care boundary
+Cupping is offered as complementary care. It is not a replacement for medical advice, diagnosis or treatment. The clinic can answer operational questions about its service; personal medical questions belong with an appropriately qualified healthcare professional. Independent general information: https://www.nccih.nih.gov/health/cupping
+
+## Published guides
+${articleLines}
+`;
+}
+
 // ---------------------------------------------------------------- execution
 
 const created = [];
@@ -452,12 +609,14 @@ if (bespokePath) {
     process.exit(1);
   }
   const dateIso2 = payload.date || isoDate;
+  const modifiedIso2 = payload.modified || dateIso2;
   const dir = path.join(root, "articles", payload.slug);
+  const renderedArticle = bespokeArticleHtml(payload, payload.html, dateIso2, modifiedIso2);
+  validatePublishableOutput(`article ${payload.slug}`, renderedArticle);
   fs.mkdirSync(dir, {recursive: true});
-  fs.writeFileSync(path.join(dir, "index.html"),
-    bespokeArticleHtml(payload, payload.html, dateIso2));
+  fs.writeFileSync(path.join(dir, "index.html"), renderedArticle);
   const rec = {slug: payload.slug, title: payload.title, summary: payload.summary,
-               date: dateIso2, custom: true};
+               date: dateIso2, modified: modifiedIso2, custom: true};
   const ix = manifest.findIndex((a) => a.slug === payload.slug);
   if (ix >= 0) manifest[ix] = rec; else manifest.push(rec);
   created.push(rec);
@@ -471,9 +630,11 @@ if (count > 0 && chosen.length < count) {
 
 for (const topic of chosen) {
   const articleDir = path.join(root, "articles", topic.slug);
+  const renderedArticle = articleHtml(topic, isoDate, isoDate);
+  validatePublishableOutput(`article ${topic.slug}`, renderedArticle);
   fs.mkdirSync(articleDir, {recursive: true});
-  fs.writeFileSync(path.join(articleDir, "index.html"), articleHtml(topic, isoDate));
-  const record = {slug: topic.slug, title: topic.title, summary: topic.summary, date: isoDate};
+  fs.writeFileSync(path.join(articleDir, "index.html"), renderedArticle);
+  const record = {slug: topic.slug, title: topic.title, summary: topic.summary, date: isoDate, modified: isoDate};
   const existingIndex = manifest.findIndex((article) => article.slug === topic.slug);
   if (existingIndex >= 0) manifest[existingIndex] = record;
   else manifest.push(record);
@@ -495,16 +656,32 @@ if (rerender) {
     };
     const topic = {...sourceTopic, title: record.title, summary: record.summary};
     const articleDir = path.join(root, "articles", record.slug);
+    const renderedArticle = articleHtml(topic, record.date, record.modified || record.date);
+    validatePublishableOutput(`article ${record.slug}`, renderedArticle);
     fs.mkdirSync(articleDir, {recursive: true});
-    fs.writeFileSync(path.join(articleDir, "index.html"), articleHtml(topic, record.date));
+    fs.writeFileSync(path.join(articleDir, "index.html"), renderedArticle);
     rerendered += 1;
   }
 }
 
 manifest.sort((a, b) => b.date.localeCompare(a.date) || a.title.localeCompare(b.title));
-fs.writeFileSync(manifestPath, `${JSON.stringify(manifest, null, 2)}\n`);
-fs.writeFileSync(path.join(root, "blog", "index.html"), blogHtml(manifest));
-fs.writeFileSync(path.join(root, "sitemap.xml"), sitemap(manifest));
-fs.writeFileSync(path.join(root, "llms.txt"), llms(manifest));
+const renderedManifest = `${JSON.stringify(manifest, null, 2)}\n`;
+const renderedBlog = blogHtml(manifest);
+const renderedSitemap = sitemap(manifest);
+const renderedLlms = llms(manifest);
+const renderedLlmsFull = llmsFull(manifest);
+for (const [label, output] of [
+  ["article manifest", renderedManifest],
+  ["blog index", renderedBlog],
+  ["sitemap", renderedSitemap],
+  ["llms.txt", renderedLlms],
+  ["llms-full.txt", renderedLlmsFull],
+]) validatePublishableOutput(label, output);
 
-console.log(`Generated ${created.length} new article(s)${rerender ? `, re-rendered ${rerendered}` : ""}; blog index, sitemap.xml and llms.txt refreshed (${manifest.length} articles listed).`);
+fs.writeFileSync(manifestPath, renderedManifest);
+fs.writeFileSync(path.join(root, "blog", "index.html"), renderedBlog);
+fs.writeFileSync(path.join(root, "sitemap.xml"), renderedSitemap);
+fs.writeFileSync(path.join(root, "llms.txt"), renderedLlms);
+fs.writeFileSync(path.join(root, "llms-full.txt"), renderedLlmsFull);
+
+console.log(`Generated ${created.length} new article(s)${rerender ? `, re-rendered ${rerendered}` : ""}; blog index, sitemap.xml and LLM references refreshed (${manifest.length} articles listed).`);

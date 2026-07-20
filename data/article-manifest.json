@@ -2,150 +2,174 @@
   {
     "slug": "can-i-drive-after-hijama",
     "title": "Can I drive home after hijama?",
-    "summary": "Clear aftercare guidance on driving after hijama, when to rest first, and when arranging a lift is the wiser choice.",
+    "summary": "Questions to consider when planning the journey home after hijama, without assuming a particular outcome for every client.",
     "date": "2026-07-15",
+    "modified": "2026-07-15",
     "custom": true
   },
   {
     "slug": "what-to-wear-hijama",
     "title": "What to wear to a hijama appointment",
-    "summary": "Simple clothing guidance for hijama: modest loose layers, practical access, aftercare comfort and what to bring to your appointment.",
+    "summary": "Practical questions to ask the clinic about clothing, access and privacy before a hijama appointment.",
     "date": "2026-07-13",
+    "modified": "2026-07-13",
     "custom": true
   },
   {
     "slug": "hijama-vs-massage",
     "title": "Hijama vs massage: how to choose sensibly",
-    "summary": "A practical comparison of hijama and deep tissue massage, including what differs, how to space them, and when to seek advice first.",
+    "summary": "How hijama and massage differ as practices, and why personal medical questions should be taken to a healthcare professional.",
     "date": "2026-07-10",
+    "modified": "2026-07-10",
     "custom": true
   },
   {
     "slug": "hijama-vs-dry-cupping",
     "title": "Hijama vs dry cupping: what actually happens in each",
-    "summary": "The practical differences between wet cupping (hijama) and dry cupping: what each involves, how the sensations compare, and what helps you choose.",
+    "summary": "A practical comparison of wet cupping and dry cupping, with questions to ask a provider about the booked method.",
     "date": "2026-07-08",
+    "modified": "2026-07-08",
     "custom": true
   },
   {
     "slug": "hijama-cost-london",
-    "title": "How much does hijama cost in London? Honest 2026 pricing guide",
-    "summary": "What hijama costs in London from £45, what a full 60-75 minute session includes, and the questions to ask any clinic before you book.",
+    "title": "How much does hijama cost in London? 2026 pricing guide",
+    "summary": "The clinic's four published hijama choices cost £45 or £80 and have service-specific durations of 40, 45, 80 or 90 minutes.",
     "date": "2026-07-07",
+    "modified": "2026-07-07",
     "custom": true
   },
   {
     "slug": "mens-hijama-south-london",
-    "title": "Men's hijama sessions in South London",
-    "summary": "What men in South London should know about hijama sessions: scheduling, privacy and aftercare.",
-    "date": "2026-07-03"
+    "title": "Men's hijama appointments in South London: privacy and choice",
+    "summary": "Men can compare South London hijama choices, privacy, Brother Abu Layla's published role, prices and durations before booking.",
+    "date": "2026-07-03",
+    "modified": "2026-07-20"
   },
   {
     "slug": "women-only-hijama-south-london",
-    "title": "Women-only hijama sessions in South London",
-    "summary": "What women in South London should know about female-only hijama sessions: privacy, comfort and practitioner preference.",
-    "date": "2026-07-01"
+    "title": "Women's cupping appointments in South London: privacy and choice",
+    "summary": "Women can compare South London cupping choices, privacy, Sister Aisha Mejri's published role, prices and durations before booking.",
+    "date": "2026-07-01",
+    "modified": "2026-07-20"
   },
   {
     "slug": "cupping-dulwich",
-    "title": "Cupping therapy near Dulwich",
-    "summary": "For clients in Dulwich: travel notes, the consultation, and aftercare for cupping therapy.",
-    "date": "2026-06-29"
+    "title": "Cupping from Dulwich: travel to the Streatham clinic",
+    "summary": "A Dulwich travel guide for cupping in Streatham, including routes via Tulse Hill or Streatham Hill and school-run planning.",
+    "date": "2026-06-29",
+    "modified": "2026-07-20"
   },
   {
     "slug": "hijama-brixton",
-    "title": "Hijama appointments from Brixton: a calm walkthrough",
-    "summary": "A Brixton client guide to hijama in Streatham: booking, travel, consultation, hygiene, aftercare and realistic expectations before wet cupping.",
-    "date": "2026-06-27"
+    "title": "Hijama from Brixton: travel to the Streatham clinic",
+    "summary": "A Brixton travel guide for hijama at the Streatham clinic, covering the A23, bus and rail planning and what happens on arrival.",
+    "date": "2026-06-27",
+    "modified": "2026-07-20"
   },
   {
     "slug": "male-hijama-therapist-south-london",
-    "title": "Male hijama therapist in South London: what to ask before booking",
-    "summary": "A practical guide for men booking hijama in South London: privacy, hygiene, suitability, aftercare and how to choose an insured male practitioner near Streatham.",
-    "date": "2026-06-27"
+    "title": "Male hijama therapist in South London: privacy and booking",
+    "summary": "Men can review a male practitioner, privacy arrangements and two exact South London appointment choices before booking.",
+    "date": "2026-06-27",
+    "modified": "2026-07-20"
   },
   {
     "slug": "wet-cupping-balham",
-    "title": "Wet cupping near Balham: directions, parking and what to bring",
-    "summary": "Looking for wet cupping near Balham? Learn how to reach Sincerity Cupping Clinic in Streatham, what to bring, how to prepare and what aftercare to expect.",
-    "date": "2026-06-27"
+    "title": "Wet cupping near Balham: travel directions and booking",
+    "summary": "A Balham travel guide to the Streatham wet cupping clinic, with rail, Northern line and road-planning notes plus exact booking choices.",
+    "date": "2026-06-27",
+    "modified": "2026-07-20"
   },
   {
     "slug": "hijama-crystal-palace",
-    "title": "Hijama from Crystal Palace",
-    "summary": "A practical guide for Crystal Palace clients planning a hijama appointment: preparation, the session and aftercare.",
-    "date": "2026-06-25"
+    "title": "Hijama from Crystal Palace: travel to Streatham",
+    "summary": "A Crystal Palace travel guide for hijama in Streatham, with routes via Norbury or Streatham Common and live-journey checks.",
+    "date": "2026-06-25",
+    "modified": "2026-07-20"
   },
   {
     "slug": "wet-cupping-herne-hill",
-    "title": "Wet cupping near Herne Hill",
-    "summary": "How clients from Herne Hill can plan a wet cupping visit: travel, preparation and the appointment itself.",
-    "date": "2026-06-22"
+    "title": "Wet cupping from Herne Hill: travel to Streatham",
+    "summary": "A Herne Hill travel guide for wet cupping in Streatham, with route options via Tulse Hill or Brixton and booking checks before leaving.",
+    "date": "2026-06-22",
+    "modified": "2026-07-20"
   },
   {
     "slug": "hijama-west-norwood",
-    "title": "Hijama appointments from West Norwood",
-    "summary": "For West Norwood clients: hygiene, comfort, what happens on the day and aftercare for hijama.",
-    "date": "2026-06-18"
+    "title": "Hijama from West Norwood: travel to Streatham",
+    "summary": "A West Norwood travel guide for hijama in Streatham, including bus links, the Knights Hill road route and rail planning.",
+    "date": "2026-06-18",
+    "modified": "2026-07-20"
   },
   {
     "slug": "wet-cupping-tulse-hill",
-    "title": "Wet cupping near Tulse Hill",
-    "summary": "Wet cupping for clients near Tulse Hill: travel notes, what a session looks like and aftercare guidance.",
-    "date": "2026-06-15"
+    "title": "Wet cupping from Tulse Hill: travel and booking",
+    "summary": "A Tulse Hill travel guide for wet cupping in Streatham, with bus, road and rail planning plus exact booking choices.",
+    "date": "2026-06-15",
+    "modified": "2026-07-20"
   },
   {
     "slug": "hijama-norbury",
-    "title": "Hijama near Norbury: what to know before your visit",
-    "summary": "A short guide for Norbury clients covering preparation, the appointment itself and aftercare for hijama.",
-    "date": "2026-06-11"
+    "title": "Hijama from Norbury: travel to the Streatham clinic",
+    "summary": "A Norbury travel guide for hijama in Streatham, covering rail, A23 buses, the road route and the exact clinic address.",
+    "date": "2026-06-11",
+    "modified": "2026-07-20"
   },
   {
     "slug": "cupping-therapy-clapham",
-    "title": "Cupping therapy from Clapham: directions and appointment guide",
-    "summary": "How to plan a cupping therapy visit from Clapham, including travel, scheduling and the initial consultation.",
-    "date": "2026-06-08"
+    "title": "Cupping therapy from Clapham: travel and booking guide",
+    "summary": "A Clapham travel guide for cupping therapy in Streatham, including routes via Balham, rail planning and the choices to check before leaving.",
+    "date": "2026-06-08",
+    "modified": "2026-07-20"
   },
   {
     "slug": "wet-cupping-tooting",
-    "title": "Wet cupping for clients from Tooting",
-    "summary": "What clients travelling from Tooting should know about preparation, session length and aftercare for wet cupping.",
-    "date": "2026-06-04"
+    "title": "Wet cupping from Tooting: travel and appointment choices",
+    "summary": "A Tooting travel guide to wet cupping in Streatham, with route notes from Tooting Broadway and Tooting Bec plus exact appointment durations.",
+    "date": "2026-06-04",
+    "modified": "2026-07-20"
   },
   {
     "slug": "female-hijama-therapist-south-london",
-    "title": "Female hijama therapist in South London: privacy, comfort and booking",
-    "summary": "What to ask when booking a female hijama therapist and how to prepare for a comfortable appointment.",
-    "date": "2026-05-21"
+    "title": "Female hijama therapist in South London: privacy and booking",
+    "summary": "Women can review a female practitioner, privacy arrangements and two exact South London appointment choices before booking.",
+    "date": "2026-05-21",
+    "modified": "2026-07-20"
   },
   {
     "slug": "clean-hijama-clinic-south-london",
-    "title": "What a clean hijama clinic in South London should feel like",
-    "summary": "A practical guide to hygiene, calm treatment rooms, sharps care and aftercare when choosing wet cupping.",
-    "date": "2026-05-18"
+    "title": "Cupping hygiene in South London: what to check before booking",
+    "summary": "A South London hygiene checklist for cupping clients: ask about single-use items, disposal, treatment-area preparation and written information.",
+    "date": "2026-05-18",
+    "modified": "2026-07-20"
   },
   {
     "slug": "insured-hijama-clinic-streatham",
-    "title": "Why choose a fully insured hijama clinic in Streatham?",
-    "summary": "How insurance, hygiene standards and practitioner experience help clients choose a wet cupping clinic with confidence.",
-    "date": "2026-05-14"
+    "title": "Choosing a cupping clinic in Streatham: insurance questions and published facts",
+    "summary": "A Streatham guide to asking a cupping clinic about insurance and checking prices, durations, privacy and care boundaries before booking.",
+    "date": "2026-05-14",
+    "modified": "2026-07-20"
   },
   {
     "slug": "hijama-aftercare-london",
-    "title": "Hijama aftercare: the first 48 hours, done right",
-    "summary": "Practical aftercare for wet cupping: washing, exercise, food, cup marks and healing times, plus the warning signs that mean you should contact us or your GP.",
-    "date": "2026-05-13"
+    "title": "Hijama aftercare in London: using your clinic instructions",
+    "summary": "How to use the written information supplied for your own appointment and where to direct clinic or medical questions.",
+    "date": "2026-05-13",
+    "modified": "2026-05-13"
   },
   {
     "slug": "wet-cupping-men-women-south-london",
     "title": "Wet cupping for men and women: privacy, comfort and choice",
-    "summary": "How same-sex practitioner sessions work at our Streatham clinic — privacy, modesty, practitioner preference and what to mention when you book.",
-    "date": "2026-05-12"
+    "summary": "The published wet cupping choices for men and women, including same-sex practitioners, privacy, prices and appointment durations.",
+    "date": "2026-05-12",
+    "modified": "2026-05-12"
   },
   {
     "slug": "first-hijama-appointment-streatham",
     "title": "What to expect at your first hijama appointment",
-    "summary": "A calm, step-by-step walk-through of your first wet cupping visit in Streatham: consultation, the dry and wet phases, aftercare and who should check with a GP first.",
-    "date": "2026-05-12"
+    "summary": "A calm overview of the consultation, consent, privacy and practical questions to ask before a first hijama appointment in Streatham.",
+    "date": "2026-05-12",
+    "modified": "2026-05-12"
   }
 ]

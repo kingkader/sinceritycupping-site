@@ -6,8 +6,8 @@
     "intent": "first-time client preparation",
     "service": "Wet cupping / Hijama",
     "area": "Streatham",
-    "angle": "consultation, hygiene, comfort and aftercare",
-    "summary": "A calm walk-through of consultation, wet cupping, aftercare and safety questions before booking hijama in Streatham."
+    "angle": "consultation, consent, privacy and booking choices",
+    "summary": "A calm overview of the consultation, consent, privacy and practical questions to ask before a first hijama appointment in Streatham."
   },
   {
     "slug": "wet-cupping-men-women-south-london",
@@ -16,577 +16,762 @@
     "intent": "inclusive local service discovery",
     "service": "Wet cupping / Hijama",
     "area": "South London",
-    "angle": "privacy, practitioner preference, preparation and comfort",
-    "summary": "What men and women should know about privacy, practitioner preference, preparation and comfort before booking wet cupping."
+    "angle": "same-sex practitioner choices, privacy and published services",
+    "summary": "The published wet cupping choices for men and women, including same-sex practitioners, privacy, prices and appointment durations."
   },
   {
     "slug": "hijama-aftercare-london",
-    "title": "Hijama aftercare in London: what to do after wet cupping",
+    "title": "Hijama aftercare in London: using your clinic instructions",
     "keyword": "hijama aftercare London",
-    "intent": "post-treatment advice",
+    "intent": "post-appointment information",
     "service": "Wet cupping / Hijama",
     "area": "London",
-    "angle": "rest, hydration, skin monitoring and when to seek advice",
-    "summary": "Aftercare guidance for clients after hijama wet cupping, including normal marks and warning signs."
+    "angle": "follow written clinic information and ask if anything is unclear",
+    "summary": "How to use the written information supplied for your own appointment and where to direct clinic or medical questions."
   },
   {
     "slug": "insured-hijama-clinic-streatham",
-    "title": "Why choose a fully insured hijama clinic in Streatham?",
-    "keyword": "insured hijama clinic Streatham",
-    "intent": "trust and safety validation",
+    "title": "Choosing a cupping clinic in Streatham: insurance questions and published facts",
+    "keyword": "cupping clinic insurance Streatham",
+    "intent": "trust and evidence checks",
     "service": "Wet cupping / Hijama",
     "area": "Streatham",
-    "angle": "insurance, hygiene, experience and client confidence",
-    "summary": "How insurance, hygiene standards and practitioner experience help clients choose a wet cupping clinic with confidence."
+    "angle": "ask for current evidence and compare it with published service facts",
+    "summary": "A Streatham guide to asking a cupping clinic about insurance and checking prices, durations, privacy and care boundaries before booking.",
+    "promiseTerms": ["insurance", "Streatham"],
+    "content": {
+      "answer": {
+        "heading": "Ask the clinic directly about insurance",
+        "text": "Insurance should be checked against current evidence rather than assumed from a website headline. Ask which activity the policy covers, who is covered and whether the document is current before relying on it."
+      },
+      "sections": [
+        {
+          "heading": "Which Streatham facts can be checked now?",
+          "paragraphs": [
+            "Sincerity Cupping Clinic publishes one address at 330 Streatham High Rd, four named appointment options and separate practitioners for women and men.",
+            "Those facts help you compare the booking you select with the confirmation shown by Fresha."
+          ]
+        },
+        {
+          "heading": "Insurance is one part of a wider check",
+          "paragraphs": [
+            "A policy does not by itself explain privacy, consent, hygiene or what a service includes. Ask each question separately and keep the answers tied to evidence you can inspect.",
+            "If a clinic cannot answer a practical question clearly, pause before booking."
+          ]
+        },
+        {
+          "heading": "Keep medical claims out of the comparison",
+          "paragraphs": [
+            "A trustworthy service description should not promise a health outcome. Cupping is complementary care and personal medical questions belong with an appropriately qualified healthcare professional."
+          ]
+        }
+      ]
+    }
   },
   {
     "slug": "clean-hijama-clinic-south-london",
-    "title": "What a clean hijama clinic in South London should feel like",
-    "keyword": "clean hijama clinic South London",
-    "intent": "hygiene and safety reassurance",
+    "title": "Cupping hygiene in South London: what to check before booking",
+    "keyword": "cupping hygiene South London",
+    "intent": "hygiene and process questions",
     "service": "Wet cupping / Hijama",
-    "area": "Streatham",
-    "angle": "clinic hygiene, sharps care, calm rooms and aftercare",
-    "summary": "A practical guide to hygiene, calm treatment rooms, sharps care and aftercare when choosing wet cupping."
+    "area": "South London",
+    "angle": "single-use items, disposal questions and clear explanations",
+    "summary": "A South London hygiene checklist for cupping clients: ask about single-use items, disposal, treatment-area preparation and written information.",
+    "promiseTerms": ["hygiene", "South London"],
+    "content": {
+      "answer": {
+        "heading": "Good hygiene questions should get specific answers",
+        "text": "Before booking cupping in South London, ask which items are single-use, how used items are contained and disposed of, and how the treatment area is prepared between appointments."
+      },
+      "sections": [
+        {
+          "heading": "Ask what is single-use",
+          "paragraphs": [
+            "Cups and blades should be discussed separately. Ask the clinic to describe its current process in plain language instead of relying on broad words such as clean or professional.",
+            "Do not treat an attractive room or a confident claim as a substitute for a direct answer."
+          ]
+        },
+        {
+          "heading": "Ask about containment and disposal",
+          "paragraphs": [
+            "Wet cupping involves skin contact, so ask what happens to each used item after the appointment and who is responsible for the process.",
+            "The answer should distinguish disposable items from anything that remains in the room."
+          ]
+        },
+        {
+          "heading": "Read independent safety information",
+          "paragraphs": [
+            "The National Center for Complementary and Integrative Health publishes general information about cupping, the limited evidence base and possible side effects. Use independent information alongside your clinic questions."
+          ]
+        }
+      ]
+    }
   },
   {
     "slug": "female-hijama-therapist-south-london",
-    "title": "Female hijama therapist in South London: privacy, comfort and booking",
+    "title": "Female hijama therapist in South London: privacy and booking",
     "keyword": "female hijama therapist South London",
     "intent": "practitioner preference",
     "service": "Wet cupping / Hijama",
     "area": "South London",
-    "angle": "privacy, practitioner preference and preparation",
-    "summary": "What to ask when booking a female hijama therapist and how to prepare for a comfortable appointment."
+    "angle": "named practitioner, privacy and exact appointment choices",
+    "summary": "Women can review a female practitioner, privacy arrangements and two exact South London appointment choices before booking.",
+    "promiseTerms": ["female", "privacy"],
+    "content": {
+      "answer": {
+        "heading": "The female practitioner for women is Sister Aisha Mejri",
+        "text": "Sister Aisha Mejri sees women for private cupping appointments. The clinic publishes her role so clients can choose the correct practitioner route before leaving the website."
+      },
+      "sections": [
+        {
+          "heading": "Privacy starts with the right booking route",
+          "paragraphs": [
+            "Women have a separate booking path from men. Check that the Fresha confirmation names the service you intended to select, and contact the clinic if anything is unclear.",
+            "You can ask an operational privacy question before booking without sending detailed health information through a general web form."
+          ]
+        },
+        {
+          "heading": "Two published appointments for women",
+          "items": [
+            "Women's wet cupping: £45 and 45 minutes.",
+            "Women's full spiritual appointment: £80 and 90 minutes."
+          ]
+        },
+        {
+          "heading": "Every faith and background is welcome",
+          "paragraphs": [
+            "The clinic welcomes women of every faith and background. Hijama is used as a secondary name for wet cupping, not as a condition for attending."
+          ]
+        }
+      ]
+    }
   },
   {
     "slug": "male-hijama-therapist-south-london",
-    "title": "Male hijama therapist in South London: what to ask before booking",
+    "title": "Male hijama therapist in South London: privacy and booking",
     "keyword": "male hijama therapist South London",
     "intent": "practitioner preference",
     "service": "Wet cupping / Hijama",
     "area": "South London",
-    "angle": "privacy, suitability, practitioner preference and preparation",
-    "summary": "Questions male clients can ask before booking hijama, including privacy, suitability and appointment preparation."
+    "angle": "named practitioner, privacy and exact appointment choices",
+    "summary": "Men can review a male practitioner, privacy arrangements and two exact South London appointment choices before booking.",
+    "promiseTerms": ["male", "privacy"],
+    "content": {
+      "answer": {
+        "heading": "The male practitioner for men is Brother Abu Layla",
+        "text": "Brother Abu Layla sees men for private cupping appointments. His published role lets clients select the men's route without guessing who provides the appointment."
+      },
+      "sections": [
+        {
+          "heading": "Privacy and questions before booking",
+          "paragraphs": [
+            "The men's booking path is separate from the women's path. Ask the clinic about operational arrangements before you commit if privacy or access affects your choice.",
+            "The clinic can explain its service, while personal medical questions should go to an appropriately qualified healthcare professional."
+          ]
+        },
+        {
+          "heading": "Two published appointments for men",
+          "items": [
+            "Men's wet cupping: £45 and 40 minutes.",
+            "Men's full spiritual appointment: £80 and 80 minutes."
+          ]
+        },
+        {
+          "heading": "Check the confirmation",
+          "paragraphs": [
+            "Fresha handles the booking after a service is selected. Review the service name, price, duration and practitioner route shown before confirming."
+          ]
+        }
+      ]
+    }
   },
   {
     "slug": "wet-cupping-balham",
-    "title": "Wet cupping near Balham: directions, parking and what to bring",
+    "title": "Wet cupping near Balham: travel directions and booking",
     "keyword": "wet cupping Balham",
     "intent": "local appointment discovery",
     "service": "Wet cupping / Hijama",
     "area": "Balham",
-    "angle": "travel, parking, preparation and timing",
-    "summary": "How to reach Sincerity Cupping from Balham, parking and transport notes, and what to bring to your first wet cupping appointment."
+    "angle": "neutral route notes and exact booking choices",
+    "summary": "A Balham travel guide to the Streatham wet cupping clinic, with rail, Northern line and road-planning notes plus exact booking choices.",
+    "promiseTerms": ["Balham", "travel"],
+    "content": {
+      "answer": {
+        "heading": "Balham clients travel to the Streatham clinic",
+        "text": "Appointments are provided at 330 Streatham High Rd rather than in Balham. Plan the whole route to SW16 6HH and check live directions before setting out."
+      },
+      "sections": [
+        {
+          "heading": "Travel via Tooting Bec",
+          "paragraphs": [
+            "Published local route notes point drivers and bus users from Balham towards Tooting Bec and then Streatham High Road. Conditions can change, so use a live map for the final route.",
+            "Allow your own margin rather than relying on a fixed journey-time claim."
+          ]
+        },
+        {
+          "heading": "Rail and Northern line planning from Balham",
+          "paragraphs": [
+            "Balham's rail and Northern line connections can be combined with onward travel towards the Streatham stations. Check current National Rail and TfL information on the day."
+          ]
+        },
+        {
+          "heading": "Parking is not guaranteed",
+          "paragraphs": [
+            "The clinic does not promise an onsite parking space. Drivers should inspect current street signs and restrictions near the destination before leaving the vehicle."
+          ]
+        }
+      ]
+    }
   },
   {
     "slug": "hijama-brixton",
-    "title": "Hijama appointments from Brixton: a calm walkthrough",
+    "title": "Hijama from Brixton: travel to the Streatham clinic",
     "keyword": "hijama Brixton",
     "intent": "local appointment discovery",
     "service": "Wet cupping / Hijama",
     "area": "Brixton",
-    "angle": "consultation, hygiene and aftercare for Brixton clients",
-    "summary": "A simple guide for Brixton clients on what to expect before, during and after a hijama appointment."
+    "angle": "A23, bus and rail route notes",
+    "summary": "A Brixton travel guide for hijama at the Streatham clinic, covering the A23, bus and rail planning and what happens on arrival.",
+    "promiseTerms": ["Brixton", "travel"],
+    "content": {
+      "answer": {
+        "heading": "Travel from Brixton to one clinic in Streatham",
+        "text": "The appointment address is 330 Streatham High Rd, London SW16 6HH. There is no separate Brixton treatment location, so use the Streatham address in live directions."
+      },
+      "sections": [
+        {
+          "heading": "The A23 route from Brixton",
+          "paragraphs": [
+            "Published route notes follow Brixton Hill towards Streatham High Road. Bus and car routes use the same broad A23 corridor, but stops and traffic conditions should be checked live.",
+            "A route description is not a guarantee of a particular journey time."
+          ]
+        },
+        {
+          "heading": "Rail planning via Streatham Hill",
+          "paragraphs": [
+            "Rail connections can be planned towards Streatham Hill, followed by the onward trip to the clinic. Check the current timetable and accessibility information before travel."
+          ]
+        },
+        {
+          "heading": "What happens when you arrive",
+          "paragraphs": [
+            "Your practitioner explains the booked service and gives you an opportunity to ask questions before anything begins. Confirm that the appointment matches the name and duration in your booking."
+          ]
+        }
+      ]
+    }
   },
   {
     "slug": "wet-cupping-tooting",
-    "title": "Wet cupping for clients from Tooting",
+    "title": "Wet cupping from Tooting: travel and appointment choices",
     "keyword": "wet cupping Tooting",
     "intent": "local appointment discovery",
     "service": "Wet cupping / Hijama",
     "area": "Tooting",
-    "angle": "travel from Tooting, session length and aftercare",
-    "summary": "What clients travelling from Tooting should know about preparation, session length and aftercare for wet cupping."
+    "angle": "route planning from Tooting Broadway or Tooting Bec",
+    "summary": "A Tooting travel guide to wet cupping in Streatham, with route notes from Tooting Broadway and Tooting Bec plus exact appointment durations.",
+    "promiseTerms": ["Tooting", "travel"],
+    "content": {
+      "answer": {
+        "heading": "Travel from Tooting to 330 Streatham High Road",
+        "text": "Clients starting at Tooting Broadway or Tooting Bec travel towards the Streatham clinic. Use SW16 6HH as the destination and check live road or public-transport information."
+      },
+      "sections": [
+        {
+          "heading": "Route planning from two Tooting starting points",
+          "paragraphs": [
+            "Published local notes cover routes from both Tooting Broadway and Tooting Bec towards Streatham High Road. Pick the starting point that matches where you actually are, rather than using a generic Tooting estimate.",
+            "Traffic around the main-road connections can add time, so leave a margin appropriate to the live conditions."
+          ]
+        },
+        {
+          "heading": "Use the duration of the exact service",
+          "paragraphs": [
+            "There is no single duration for every appointment. Women's wet cupping is listed as 45 minutes and men's wet cupping as 40 minutes; the two full spiritual appointments are longer at 90 and 80 minutes respectively."
+          ]
+        },
+        {
+          "heading": "Confirm before travelling",
+          "paragraphs": [
+            "Review the Fresha confirmation for the service, date and practitioner route. If it differs from what you selected, contact the clinic before beginning the journey."
+          ]
+        }
+      ]
+    }
   },
   {
     "slug": "cupping-therapy-clapham",
-    "title": "Cupping therapy from Clapham: directions and appointment guide",
+    "title": "Cupping therapy from Clapham: travel and booking guide",
     "keyword": "cupping therapy Clapham",
     "intent": "local appointment discovery",
     "service": "Wet cupping / Hijama",
     "area": "Clapham",
-    "angle": "directions, scheduling and consultation",
-    "summary": "How to plan a cupping therapy visit from Clapham, including travel, scheduling and the initial consultation."
+    "angle": "routes via Balham and the Streatham clinic address",
+    "summary": "A Clapham travel guide for cupping therapy in Streatham, including routes via Balham, rail planning and the choices to check before leaving.",
+    "promiseTerms": ["Clapham", "travel"],
+    "content": {
+      "answer": {
+        "heading": "Clapham clients travel through Balham towards Streatham",
+        "text": "Treatment is provided at the Streatham clinic, not at a Clapham branch. Published route notes start around Clapham Common or Clapham South and continue via Balham."
+      },
+      "sections": [
+        {
+          "heading": "Bus or car travel from Clapham",
+          "paragraphs": [
+            "The broad road route runs south through Balham towards Streatham High Road. Use live directions because traffic and bus stopping patterns can change.",
+            "Enter the full SW16 6HH postcode so the route ends at the clinic rather than elsewhere in Streatham."
+          ]
+        },
+        {
+          "heading": "Rail connections via Balham",
+          "paragraphs": [
+            "A rail journey can be planned via Balham towards the Streatham stations, followed by the final connection. Check the current timetable and any service disruption before departure."
+          ]
+        },
+        {
+          "heading": "Choose before you leave Clapham",
+          "paragraphs": [
+            "Select the women's or men's route and check the exact price and duration. The generic booking button first returns you to the service selector so you do not have to guess."
+          ]
+        }
+      ]
+    }
   },
   {
     "slug": "hijama-norbury",
-    "title": "Hijama near Norbury: what to know before your visit",
+    "title": "Hijama from Norbury: travel to the Streatham clinic",
     "keyword": "hijama Norbury",
     "intent": "local appointment discovery",
     "service": "Wet cupping / Hijama",
     "area": "Norbury",
-    "angle": "preparation, comfort and aftercare for Norbury clients",
-    "summary": "A short guide for Norbury clients covering preparation, the appointment itself and aftercare for hijama."
+    "angle": "rail, A23 bus and road route notes",
+    "summary": "A Norbury travel guide for hijama in Streatham, covering rail, A23 buses, the road route and the exact clinic address.",
+    "promiseTerms": ["Norbury", "travel"],
+    "content": {
+      "answer": {
+        "heading": "Norbury clients travel north to Streatham",
+        "text": "The clinic is at 330 Streatham High Rd, London SW16 6HH. Published local notes describe rail, bus and road options from Norbury without promising a fixed journey time."
+      },
+      "sections": [
+        {
+          "heading": "Rail travel from Norbury",
+          "paragraphs": [
+            "The local route page describes Norbury to Streatham Common as one rail stop. Check the live timetable, platform and any disruption before relying on that connection.",
+            "Plan the onward part from the station to the clinic as part of the same journey."
+          ]
+        },
+        {
+          "heading": "A23 buses and road route",
+          "paragraphs": [
+            "Buses on the A23 corridor pass along Streatham High Road. Drivers follow the main road north, subject to current traffic, restrictions and street signs."
+          ]
+        },
+        {
+          "heading": "Use the full arrival address",
+          "paragraphs": [
+            "Streatham covers a wide area, so use the street number and postcode rather than searching only for the neighbourhood name."
+          ]
+        }
+      ]
+    }
   },
   {
     "slug": "wet-cupping-tulse-hill",
-    "title": "Wet cupping near Tulse Hill",
+    "title": "Wet cupping from Tulse Hill: travel and booking",
     "keyword": "wet cupping Tulse Hill",
     "intent": "local appointment discovery",
     "service": "Wet cupping / Hijama",
     "area": "Tulse Hill",
-    "angle": "travel, session structure and aftercare",
-    "summary": "Wet cupping for clients near Tulse Hill: travel notes, what a session looks like and aftercare guidance."
+    "angle": "routes via Streatham Hill and current service choices",
+    "summary": "A Tulse Hill travel guide for wet cupping in Streatham, with bus, road and rail planning plus exact booking choices.",
+    "promiseTerms": ["Tulse Hill", "travel"],
+    "content": {
+      "answer": {
+        "heading": "Travel from Tulse Hill via Streatham Hill",
+        "text": "Published route notes direct Tulse Hill clients towards Streatham High Road through Streatham Hill. The appointment itself takes place at the one clinic at number 330."
+      },
+      "sections": [
+        {
+          "heading": "Bus and road travel",
+          "paragraphs": [
+            "Bus and car routes can run through Streatham Hill to the High Road. Check a live service or map before leaving because road conditions and stops can change.",
+            "No fixed travel time is promised by this guide."
+          ]
+        },
+        {
+          "heading": "Rail planning from Tulse Hill",
+          "paragraphs": [
+            "Rail can be planned towards the Streatham stations, followed by the final connection to the clinic. Confirm the current route and station access on the day."
+          ]
+        },
+        {
+          "heading": "Choose the exact wet cupping service",
+          "paragraphs": [
+            "Women's and men's wet cupping have different published durations, so use the relevant service card and inspect the Fresha confirmation before travelling."
+          ]
+        }
+      ]
+    }
   },
   {
     "slug": "hijama-west-norwood",
-    "title": "Hijama appointments from West Norwood",
+    "title": "Hijama from West Norwood: travel to Streatham",
     "keyword": "hijama West Norwood",
     "intent": "local appointment discovery",
     "service": "Wet cupping / Hijama",
     "area": "West Norwood",
-    "angle": "hygiene, comfort and aftercare for West Norwood clients",
-    "summary": "For West Norwood clients: hygiene, comfort, what happens on the day and aftercare for hijama."
+    "angle": "bus, Knights Hill and rail route notes",
+    "summary": "A West Norwood travel guide for hijama in Streatham, including bus links, the Knights Hill road route and rail planning.",
+    "promiseTerms": ["West Norwood", "travel"],
+    "content": {
+      "answer": {
+        "heading": "West Norwood clients travel to Streatham High Road",
+        "text": "The service is delivered at 330 Streatham High Rd. Published local notes describe several ways to reach that address from West Norwood."
+      },
+      "sections": [
+        {
+          "heading": "Bus travel towards Streatham High Road",
+          "paragraphs": [
+            "Local bus routes can be planned from West Norwood towards Streatham High Road. Check TfL for the current stop, diversion and accessibility details.",
+            "Use the clinic's full address for the final walking section."
+          ]
+        },
+        {
+          "heading": "Knights Hill road route",
+          "paragraphs": [
+            "The published road description runs via Knights Hill towards Streatham. Drivers remain responsible for live restrictions, traffic and legal parking signs."
+          ]
+        },
+        {
+          "heading": "Rail via Tulse Hill or Streatham Hill",
+          "paragraphs": [
+            "Rail options can be compared through Tulse Hill or Streatham Hill. Timetables vary, so choose using live journey information rather than a fixed estimate."
+          ]
+        }
+      ]
+    }
   },
   {
     "slug": "wet-cupping-herne-hill",
-    "title": "Wet cupping near Herne Hill",
+    "title": "Wet cupping from Herne Hill: travel to Streatham",
     "keyword": "wet cupping Herne Hill",
     "intent": "local appointment discovery",
     "service": "Wet cupping / Hijama",
     "area": "Herne Hill",
-    "angle": "travel, preparation and what to expect",
-    "summary": "How clients from Herne Hill can plan a wet cupping visit: travel, preparation and the appointment itself."
+    "angle": "routes via Tulse Hill or Brixton and arrival expectations",
+    "summary": "A Herne Hill travel guide for wet cupping in Streatham, with route options via Tulse Hill or Brixton and booking checks before leaving.",
+    "promiseTerms": ["Herne Hill", "travel"],
+    "content": {
+      "answer": {
+        "heading": "Herne Hill clients travel to the Streatham address",
+        "text": "There is no Herne Hill branch. Appointments take place at 330 Streatham High Rd, and the published route notes connect Herne Hill with the A23 corridor."
+      },
+      "sections": [
+        {
+          "heading": "Travel via Tulse Hill or Brixton",
+          "paragraphs": [
+            "The broad route can run through Tulse Hill or Brixton before joining the A23 towards Streatham. Compare live bus, rail and road information for the time you intend to travel.",
+            "The better option can change with disruption and traffic."
+          ]
+        },
+        {
+          "heading": "Arrival begins with explanation and consent",
+          "paragraphs": [
+            "The practitioner explains the booked appointment and gives you time to ask questions before starting. Confirm that you have selected the correct women’s or men's route."
+          ]
+        },
+        {
+          "heading": "Check the booking before leaving Herne Hill",
+          "paragraphs": [
+            "Use the appointment name and duration in your Fresha confirmation to plan the visit. Contact the clinic first if the confirmation does not match your intended choice."
+          ]
+        }
+      ]
+    }
   },
   {
     "slug": "hijama-crystal-palace",
-    "title": "Hijama from Crystal Palace",
+    "title": "Hijama from Crystal Palace: travel to Streatham",
     "keyword": "hijama Crystal Palace",
     "intent": "local appointment discovery",
     "service": "Wet cupping / Hijama",
     "area": "Crystal Palace",
-    "angle": "preparation, session and aftercare for Crystal Palace clients",
-    "summary": "A practical guide for Crystal Palace clients planning a hijama appointment: preparation, the session and aftercare."
+    "angle": "Norbury, Streatham Common and A23 route notes",
+    "summary": "A Crystal Palace travel guide for hijama in Streatham, with routes via Norbury or Streatham Common and live-journey checks.",
+    "promiseTerms": ["Crystal Palace", "travel"],
+    "content": {
+      "answer": {
+        "heading": "Travel from Crystal Palace via Norbury or Streatham Common",
+        "text": "The clinic is in Streatham at SW16 6HH. Published local notes describe approaches through Norbury or Streatham Common rather than a treatment location in Crystal Palace."
+      },
+      "sections": [
+        {
+          "heading": "Bus travel from Crystal Palace",
+          "paragraphs": [
+            "Bus routes may connect towards Streatham, with the useful option depending on current service patterns. Check TfL on the day and include the final stop-to-clinic section.",
+            "This guide does not promise a direct service at every time."
+          ]
+        },
+        {
+          "heading": "Road route through Crown Point and Norbury",
+          "paragraphs": [
+            "The published road description passes Crown Point and Norbury before joining the A23. Use live navigation and follow current road restrictions."
+          ]
+        },
+        {
+          "heading": "Arrive at number 330",
+          "paragraphs": [
+            "Use 330 Streatham High Rd, London SW16 6HH as the destination. Searching only for Streatham may finish the journey away from the clinic."
+          ]
+        }
+      ]
+    }
   },
   {
     "slug": "cupping-dulwich",
-    "title": "Cupping therapy near Dulwich",
-    "keyword": "cupping therapy Dulwich",
+    "title": "Cupping from Dulwich: travel to the Streatham clinic",
+    "keyword": "cupping Dulwich",
     "intent": "local appointment discovery",
     "service": "Wet cupping / Hijama",
     "area": "Dulwich",
-    "angle": "travel, consultation and aftercare",
-    "summary": "For clients in Dulwich: travel notes, the consultation, and aftercare for cupping therapy."
+    "angle": "routes via Tulse Hill or Streatham Hill",
+    "summary": "A Dulwich travel guide for cupping in Streatham, including routes via Tulse Hill or Streatham Hill and school-run planning.",
+    "promiseTerms": ["Dulwich", "travel"],
+    "content": {
+      "answer": {
+        "heading": "Dulwich clients travel to one clinic in Streatham",
+        "text": "Cupping appointments are provided at 330 Streatham High Rd rather than at a Dulwich branch. Use the SW16 6HH destination in a live route planner."
+      },
+      "sections": [
+        {
+          "heading": "Travel via Tulse Hill or Streatham Hill",
+          "paragraphs": [
+            "Published local notes describe bus and car approaches through Tulse Hill or Streatham Hill. Which route works best depends on your starting point and current conditions.",
+            "Check live transport or road information before departure."
+          ]
+        },
+        {
+          "heading": "Allow for school-run traffic",
+          "paragraphs": [
+            "Some Dulwich roads can be busier around school travel periods. Build an appropriate margin into your own plan rather than relying on a promised arrival time."
+          ]
+        },
+        {
+          "heading": "Choose the appointment before travelling",
+          "paragraphs": [
+            "The clinic lists four appointments with different audiences and durations. Select the exact service and review its Fresha confirmation before setting out from Dulwich."
+          ]
+        }
+      ]
+    }
   },
   {
     "slug": "women-only-hijama-south-london",
-    "title": "Women-only hijama sessions in South London",
-    "keyword": "women only hijama South London",
+    "title": "Women's cupping appointments in South London: privacy and choice",
+    "keyword": "women's cupping South London",
     "intent": "audience-specific service discovery",
     "service": "Wet cupping / Hijama",
     "area": "South London",
-    "angle": "privacy, female practitioner availability and comfort",
-    "summary": "What women in South London should know about female-only hijama sessions: privacy, comfort and practitioner preference."
+    "angle": "private appointments with a named women's practitioner",
+    "summary": "Women can compare South London cupping choices, privacy, Sister Aisha Mejri's published role, prices and durations before booking.",
+    "promiseTerms": ["women", "privacy"],
+    "content": {
+      "answer": {
+        "heading": "Women book private appointments with Sister Aisha Mejri",
+        "text": "Sister Aisha Mejri is the published women's cupping practitioner. The clinic provides a separate women's booking route so clients can choose without relying on an unqualified whole-clinic label."
+      },
+      "sections": [
+        {
+          "heading": "Two choices for women",
+          "items": [
+            "Women's wet cupping: £45 for a 45-minute appointment.",
+            "Women's full spiritual appointment: £80 for a 90-minute appointment."
+          ]
+        },
+        {
+          "heading": "Privacy questions are welcome before booking",
+          "paragraphs": [
+            "Ask the clinic about any practical privacy or accessibility detail that affects your decision. Keep sensitive health information out of a general website enquiry.",
+            "Check that the booking confirmation matches the women's service you selected."
+          ]
+        },
+        {
+          "heading": "Women of every background are welcome",
+          "paragraphs": [
+            "The service welcomes every faith and background. The word hijama may be used for wet cupping, but attendance is not restricted by faith."
+          ]
+        }
+      ]
+    }
   },
   {
     "slug": "mens-hijama-south-london",
-    "title": "Men's hijama sessions in South London",
-    "keyword": "mens hijama South London",
+    "title": "Men's hijama appointments in South London: privacy and choice",
+    "keyword": "men's hijama South London",
     "intent": "audience-specific service discovery",
     "service": "Wet cupping / Hijama",
     "area": "South London",
-    "angle": "privacy, male practitioner availability and timing",
-    "summary": "What men in South London should know about hijama sessions: scheduling, privacy and aftercare."
+    "angle": "private appointments with a named men's practitioner",
+    "summary": "Men can compare South London hijama choices, privacy, Brother Abu Layla's published role, prices and durations before booking.",
+    "promiseTerms": ["men", "privacy"],
+    "content": {
+      "answer": {
+        "heading": "Men book private appointments with Brother Abu Layla",
+        "text": "Brother Abu Layla is the published men's cupping practitioner. The separate men's booking route shows which service and duration a client is selecting."
+      },
+      "sections": [
+        {
+          "heading": "Two choices for men",
+          "items": [
+            "Men's wet cupping: £45 for a 40-minute appointment.",
+            "Men's full spiritual appointment: £80 for an 80-minute appointment."
+          ]
+        },
+        {
+          "heading": "Privacy and practical questions",
+          "paragraphs": [
+            "Men can ask the clinic about practical privacy, access or booking arrangements before confirming. The website contact route is for operational questions rather than detailed medical information.",
+            "Review the Fresha confirmation to make sure it matches the intended men's option."
+          ]
+        },
+        {
+          "heading": "Plan with the published duration",
+          "paragraphs": [
+            "Use the duration attached to the exact service instead of assuming every hijama appointment lasts the same length. Availability is shown by Fresha at the time of booking."
+          ]
+        }
+      ]
+    }
   },
   {
     "slug": "hijama-cost-london",
-    "title": "How much does hijama cost in London? Honest 2026 pricing guide",
+    "title": "How much does hijama cost in London? 2026 pricing guide",
     "keyword": "hijama cost London",
     "intent": "pricing research",
     "service": "Wet cupping / Hijama",
     "area": "London",
-    "angle": "pricing transparency, what is included, comparing clinics",
-    "summary": "What hijama costs in London, what is included in a proper session, and the questions to ask any clinic about pricing before you book."
+    "angle": "four exact prices and durations",
+    "summary": "The clinic's four published hijama choices cost £45 or £80 and have service-specific durations of 40, 45, 80 or 90 minutes."
   },
   {
     "slug": "hijama-vs-dry-cupping",
-    "title": "Hijama vs dry cupping: what actually happens in each",
+    "title": "Hijama vs dry cupping: what happens in each",
     "keyword": "hijama vs dry cupping",
     "intent": "comparison research",
     "service": "Wet cupping / Hijama",
     "area": "South London",
-    "angle": "method comparison, sensation, hygiene, choosing",
-    "summary": "The practical differences between wet cupping (hijama) and dry cupping: what happens, how each feels and how to choose."
+    "angle": "method comparison and questions to ask",
+    "summary": "A practical comparison of wet cupping and dry cupping, with questions to ask a provider about the booked method."
   },
   {
     "slug": "hijama-vs-massage",
-    "title": "Hijama or deep tissue massage? How to decide",
+    "title": "Hijama or massage? Comparing two different practices",
     "keyword": "hijama vs massage",
     "intent": "comparison research",
     "service": "Wet cupping / Hijama",
     "area": "South London",
-    "angle": "practice comparison, what each is for, combining sensibly",
-    "summary": "How hijama and massage differ in purpose and practice, and sensible spacing if you use both."
+    "angle": "practice comparison without outcome claims",
+    "summary": "How hijama and massage differ as practices, and why personal medical questions should be taken to a healthcare professional."
   },
   {
     "slug": "what-to-wear-hijama",
     "title": "What to wear to a hijama appointment",
     "keyword": "what to wear hijama",
-    "intent": "preparation",
+    "intent": "appointment logistics",
     "service": "Wet cupping / Hijama",
     "area": "Streatham",
-    "angle": "clothing, modesty, practical prep",
-    "summary": "Simple guidance on clothing for men and women attending hijama, and why loose layers matter on the day."
+    "angle": "ask the clinic about access, privacy and clothing",
+    "summary": "Practical questions to ask the clinic about clothing, access and privacy before a hijama appointment."
   },
   {
     "slug": "can-i-drive-after-hijama",
-    "title": "Can I drive home after hijama?",
+    "title": "Can I drive home after hijama? Questions to consider",
     "keyword": "drive after hijama",
-    "intent": "aftercare logistics",
+    "intent": "travel planning",
     "service": "Wet cupping / Hijama",
     "area": "South London",
-    "angle": "post-session travel, rest, when to arrange a lift",
-    "summary": "Most clients drive home normally after resting at the clinic — here is when that is fine and when to arrange a lift."
-  },
-  {
-    "slug": "hijama-while-fasting",
-    "title": "Hijama while fasting: what to know before you book",
-    "keyword": "hijama while fasting",
-    "intent": "faith and timing",
-    "service": "Wet cupping / Hijama",
-    "area": "London",
-    "angle": "fasting considerations, scholarly views summarised respectfully, practical scheduling",
-    "summary": "Practical guidance for booking hijama while fasting, including timing your session and eating guidance either side."
-  },
-  {
-    "slug": "hijama-in-ramadan",
-    "title": "Booking hijama around Ramadan: a practical guide",
-    "keyword": "hijama Ramadan",
-    "intent": "seasonal faith timing",
-    "service": "Wet cupping / Hijama",
-    "area": "London",
-    "angle": "evening scheduling, hydration, Sunnah dates in Ramadan",
-    "summary": "How to plan hijama around Ramadan: sensible timing, hydration and aftercare when your routine changes."
-  },
-  {
-    "slug": "sunnah-days-explained",
-    "title": "Sunnah days for cupping, explained simply",
-    "keyword": "sunnah days cupping",
-    "intent": "faith education",
-    "service": "Wet cupping / Hijama",
-    "area": "London",
-    "angle": "17th 19th 21st lunar dates, how to check, flexibility",
-    "summary": "What the Sunnah days for hijama are, the hadith behind them and how we help you check upcoming dates when booking."
-  },
-  {
-    "slug": "hijama-hygiene-standards",
-    "title": "What hygiene should a hijama clinic prove to you?",
-    "keyword": "hijama hygiene standards",
-    "intent": "trust research",
-    "service": "Wet cupping / Hijama",
-    "area": "London",
-    "angle": "single-use equipment, sharps, room standards, questions to ask",
-    "summary": "The hygiene checklist every hijama client should expect: single-use blades, disposable cups, sharps disposal and a clean room."
-  },
-  {
-    "slug": "choosing-hijama-clinic",
-    "title": "How to choose a hijama clinic: a 7-point checklist",
-    "keyword": "choosing hijama clinic",
-    "intent": "decision research",
-    "service": "Wet cupping / Hijama",
-    "area": "London",
-    "angle": "insurance, hygiene, experience, reviews, consultation, privacy, aftercare",
-    "summary": "Seven things to check before booking hijama anywhere: insurance, hygiene process, practitioner experience, reviews and more."
-  },
-  {
-    "slug": "hijama-first-timers-nerves",
-    "title": "Nervous about your first hijama? Read this first",
-    "keyword": "nervous first hijama",
-    "intent": "reassurance",
-    "service": "Wet cupping / Hijama",
-    "area": "Streatham",
-    "angle": "sensation honesty, control, consultation-led pace",
-    "summary": "An honest walkthrough for nervous first-timers: what you control, what it feels like and how the pace stays yours."
-  },
-  {
-    "slug": "hijama-for-gym-goers",
-    "title": "Hijama for gym-goers: timing your session around training",
-    "keyword": "hijama gym training",
-    "intent": "audience-specific",
-    "service": "Wet cupping / Hijama",
-    "area": "South London",
-    "angle": "training schedule, 48h rule, planning sessions",
-    "summary": "How regular gym-goers plan hijama around training: the 48-hour rule, timing within your programme and aftercare."
-  },
-  {
-    "slug": "hijama-and-sleep",
-    "title": "Sleep and rest after hijama: the first night",
-    "keyword": "sleep after hijama",
-    "intent": "aftercare",
-    "service": "Wet cupping / Hijama",
-    "area": "South London",
-    "angle": "first-night practicalities, positioning, hydration",
-    "summary": "What to expect the first night after hijama: sleeping positions, keeping marks covered and normal next-morning sensations."
-  },
-  {
-    "slug": "hijama-marks-timeline",
-    "title": "Hijama marks day by day: a healing timeline",
-    "keyword": "hijama marks how long",
-    "intent": "aftercare expectations",
-    "service": "Wet cupping / Hijama",
-    "area": "London",
-    "angle": "day-by-day fading, what is normal, when to call",
-    "summary": "A day-by-day guide to how cupping marks fade, what is normal at each stage and the few signs worth a phone call."
-  },
-  {
-    "slug": "hijama-points-tradition",
-    "title": "Where cups are placed: traditional hijama points explained",
-    "keyword": "hijama points",
-    "intent": "practice education",
-    "service": "Wet cupping / Hijama",
-    "area": "London",
-    "angle": "common placements, why placement varies, consultation-led choice",
-    "summary": "An introduction to traditional cup placement in hijama and why your practitioner chooses points at consultation."
-  },
-  {
-    "slug": "history-of-hijama",
-    "title": "A short history of hijama, from the Sunnah to Streatham",
-    "keyword": "history of hijama",
-    "intent": "education",
-    "service": "Wet cupping / Hijama",
-    "area": "London",
-    "angle": "prophetic tradition, historical practice, modern standards",
-    "summary": "How hijama travelled from prophetic tradition through centuries of practice to insured, single-use modern clinics."
-  },
-  {
-    "slug": "hijama-myths",
-    "title": "Five hijama myths we hear every week",
-    "keyword": "hijama myths",
-    "intent": "education",
-    "service": "Wet cupping / Hijama",
-    "area": "London",
-    "angle": "myth vs practice, honest expectations",
-    "summary": "Common myths about wet cupping — from pain to promises — and the honest reality from a working clinic."
-  },
-  {
-    "slug": "hijama-couples-family",
-    "title": "Booking hijama as a couple or family",
-    "keyword": "family hijama booking",
-    "intent": "booking logistics",
-    "service": "Wet cupping / Hijama",
-    "area": "Streatham",
-    "angle": "back-to-back slots, same-sex practitioners, individual consults",
-    "summary": "How household bookings work: back-to-back sessions, the right practitioner for each person and individual suitability checks."
-  },
-  {
-    "slug": "hijama-for-over-60s",
-    "title": "Hijama for older clients: suitability and comfort",
-    "keyword": "hijama older adults",
-    "intent": "audience-specific",
-    "service": "Wet cupping / Hijama",
-    "area": "South London",
-    "angle": "suitability emphasis, medication checks, gentler approach",
-    "summary": "What over-60s should know before booking hijama: medication checks, gentler suction and unhurried appointments."
-  },
-  {
-    "slug": "hijama-aftercare-food",
-    "title": "What to eat after hijama (and what to skip for a day)",
-    "keyword": "what to eat after hijama",
-    "intent": "aftercare",
-    "service": "Wet cupping / Hijama",
-    "area": "London",
-    "angle": "light eating, hydration, traditional preferences",
-    "summary": "Simple eating guidance after wet cupping: hydration first, light meals, and the traditional 24-hour preferences many follow."
-  },
-  {
-    "slug": "hijama-winter-guide",
-    "title": "Hijama in winter: keeping warm and healing well",
-    "keyword": "hijama winter",
-    "intent": "seasonal",
-    "service": "Wet cupping / Hijama",
-    "area": "South London",
-    "angle": "warmth, covering marks, seasonal aftercare",
-    "summary": "Cold-weather hijama practicalities: dressing for the journey home, covering marks and winter aftercare."
-  },
-  {
-    "slug": "hijama-summer-guide",
-    "title": "Hijama in summer: heat, sweat and your aftercare",
-    "keyword": "hijama summer",
-    "intent": "seasonal",
-    "service": "Wet cupping / Hijama",
-    "area": "South London",
-    "angle": "sweat and 48h rule, sun on marks, hydration",
-    "summary": "Hot-weather guidance for hijama clients: managing the no-sweat window, sun on marks and staying hydrated."
+    "angle": "individual decision and alternative travel planning",
+    "summary": "Questions to consider when planning the journey home after hijama, without assuming a particular outcome for every client."
   },
   {
     "slug": "wet-cupping-streatham-hill",
-    "title": "Wet cupping near Streatham Hill: your local guide",
+    "title": "Wet cupping from Streatham Hill: a travel and booking guide",
     "keyword": "wet cupping Streatham Hill",
-    "intent": "local discovery",
+    "intent": "local appointment discovery",
     "service": "Wet cupping / Hijama",
     "area": "Streatham Hill",
-    "angle": "travel, booking, what local clients ask",
-    "summary": "A local guide for Streatham Hill clients: reaching the clinic, booking the right session and local FAQs."
-  },
-  {
-    "slug": "hijama-mitcham",
-    "title": "Hijama near Mitcham: what local clients should know",
-    "keyword": "hijama Mitcham",
-    "intent": "local discovery",
-    "service": "Wet cupping / Hijama",
-    "area": "Mitcham",
-    "angle": "travel, quarterly rhythm, booking",
-    "summary": "For Mitcham clients: the short journey to the clinic, how regulars schedule quarterly sessions and booking guidance."
+    "angle": "live travel planning and exact service choice",
+    "summary": "How to plan travel from Streatham Hill to the clinic and select the exact women's or men's appointment before leaving.",
+    "promiseTerms": ["Streatham Hill", "travel"],
+    "content": {
+      "answer": {
+        "heading": "Streatham Hill clients travel along the High Road",
+        "text": "The clinic is at 330 Streatham High Rd, so use the full address and current journey information rather than a neighbourhood-only search."
+      },
+      "sections": [
+        {
+          "heading": "Check live travel details",
+          "paragraphs": ["TfL, National Rail and road conditions can change. Confirm the useful stop or route for the time of your appointment."]
+        },
+        {
+          "heading": "Select an exact service",
+          "paragraphs": ["Women's and men's choices have their own prices, durations and booking links. Review the confirmation before travelling."]
+        }
+      ]
+    }
   },
   {
     "slug": "cupping-colliers-wood",
-    "title": "Cupping near Colliers Wood: a practical local guide",
+    "title": "Cupping from Colliers Wood: travel to Streatham",
     "keyword": "cupping Colliers Wood",
-    "intent": "local discovery",
+    "intent": "local appointment discovery",
     "service": "Wet cupping / Hijama",
     "area": "Colliers Wood",
-    "angle": "northern line link, household bookings",
-    "summary": "How Colliers Wood clients reach us via Tooting, plus household booking tips and local questions answered."
-  },
-  {
-    "slug": "hijama-west-norwood-guide",
-    "title": "Hijama for West Norwood clients: travel and aftercare",
-    "keyword": "hijama West Norwood",
-    "intent": "local discovery",
-    "service": "Wet cupping / Hijama",
-    "area": "West Norwood",
-    "angle": "short hop, aftercare on the way home",
-    "summary": "A West Norwood guide: the quick journey over the hill and how to handle aftercare on the trip home."
-  },
-  {
-    "slug": "hijama-crystal-palace-guide",
-    "title": "Hijama from Crystal Palace: weekend booking guide",
-    "keyword": "hijama Crystal Palace",
-    "intent": "local discovery",
-    "service": "Wet cupping / Hijama",
-    "area": "Crystal Palace",
-    "angle": "weekend slots, routes, planning",
-    "summary": "Weekend-focused guidance for Crystal Palace clients: routes to Streatham and making the most of Saturday and Sunday slots."
-  },
-  {
-    "slug": "hijama-balham-workers",
-    "title": "After-work hijama for Balham commuters",
-    "keyword": "hijama Balham evening",
-    "intent": "local audience",
-    "service": "Wet cupping / Hijama",
-    "area": "Balham",
-    "angle": "evening slots, commute integration",
-    "summary": "How Balham commuters fit hijama around work: evening availability, travel timing and next-day planning."
-  },
-  {
-    "slug": "hijama-tooting-students",
-    "title": "Hijama near Tooting: a student-friendly guide",
-    "keyword": "hijama Tooting",
-    "intent": "local audience",
-    "service": "Wet cupping / Hijama",
-    "area": "Tooting",
-    "angle": "budget clarity, timing around study",
-    "summary": "A practical Tooting guide: transparent pricing from £45, quieter slots and aftercare that fits study schedules."
+    "angle": "route planning via Tooting",
+    "summary": "A Colliers Wood travel guide to the Streatham clinic, with route planning via Tooting and current booking checks.",
+    "promiseTerms": ["Colliers Wood", "travel"],
+    "content": {
+      "answer": {
+        "heading": "Colliers Wood clients travel via Tooting towards Streatham",
+        "text": "The clinic is at 330 Streatham High Rd. Use live transport or road information for the route from Colliers Wood."
+      },
+      "sections": [
+        {
+          "heading": "Plan the travel connection",
+          "paragraphs": ["Routes can connect through Tooting before continuing to Streatham. Check the current service rather than assuming a fixed connection."]
+        },
+        {
+          "heading": "Check the booked appointment",
+          "paragraphs": ["Review the audience, name, price and duration in the Fresha confirmation before beginning the journey."]
+        }
+      ]
+    }
   },
   {
     "slug": "hijama-questions-consultation",
-    "title": "Ten questions to ask at your hijama consultation",
-    "keyword": "hijama consultation questions",
-    "intent": "preparation",
+    "title": "Questions to ask before a hijama appointment",
+    "keyword": "hijama appointment questions",
+    "intent": "pre-booking preparation",
     "service": "Wet cupping / Hijama",
     "area": "London",
-    "angle": "empowering clients, honest answers, red flags",
-    "summary": "The ten questions worth asking any hijama practitioner at consultation — and the answers a good clinic gives."
-  },
-  {
-    "slug": "hijama-insurance-explained",
-    "title": "Why a fully insured hijama clinic matters",
-    "keyword": "insured hijama clinic",
-    "intent": "trust research",
-    "service": "Wet cupping / Hijama",
-    "area": "London",
-    "angle": "what insurance covers, why it signals standards",
-    "summary": "What full insurance means at a hijama clinic, what it tells you about standards and why we lead with it."
-  },
-  {
-    "slug": "male-hijama-streatham",
-    "title": "Men's hijama in Streatham: Brother Abu Layla's approach",
-    "keyword": "mens hijama Streatham",
-    "intent": "audience-specific",
-    "service": "Wet cupping / Hijama",
-    "area": "Streatham",
-    "angle": "male practitioner, privacy, first visit",
-    "summary": "What men can expect at Sincerity: Brother Abu Layla's consultation-first approach, privacy and honest pacing."
-  },
-  {
-    "slug": "female-hijama-streatham",
-    "title": "Women's hijama in Streatham: Sister Aisha's female-only sessions",
-    "keyword": "female hijama Streatham",
-    "intent": "audience-specific",
-    "service": "Wet cupping / Hijama",
-    "area": "Streatham",
-    "angle": "female-only environment, modesty, lead practitioner",
-    "summary": "Inside our female-only sessions: Sister Aisha Mejri's twenty-plus years, modesty throughout and a lockable private room."
-  },
-  {
-    "slug": "hijama-headache-tension-talk",
-    "title": "Clients ask: hijama and everyday tension — an honest conversation",
-    "keyword": "hijama tension",
-    "intent": "expectation setting",
-    "service": "Wet cupping / Hijama",
-    "area": "London",
-    "angle": "honest complementary framing, no medical claims, consultation",
-    "summary": "How we talk honestly with clients about everyday tension and wellbeing goals — and why we never promise medical outcomes."
-  },
-  {
-    "slug": "hijama-recovery-day-plan",
-    "title": "Your hijama day, planned hour by hour",
-    "keyword": "hijama day plan",
-    "intent": "preparation",
-    "service": "Wet cupping / Hijama",
-    "area": "South London",
-    "angle": "timeline from breakfast to bedtime",
-    "summary": "A copy-and-follow plan for treatment day: eating, arriving, the session itself and a calm evening after."
-  },
-  {
-    "slug": "hijama-and-work",
-    "title": "Going back to work after hijama: desk jobs vs manual work",
-    "keyword": "work after hijama",
-    "intent": "aftercare logistics",
-    "service": "Wet cupping / Hijama",
-    "area": "London",
-    "angle": "desk vs physical work, timing sessions",
-    "summary": "When you can return to work after wet cupping — same-day guidance for desk jobs and the 48-hour rule for manual work."
-  },
-  {
-    "slug": "cupping-therapy-near-me",
-    "title": "Searching 'cupping therapy near me' in South London? Start here",
-    "keyword": "cupping therapy near me",
-    "intent": "local discovery",
-    "service": "Wet cupping / Hijama",
-    "area": "South London",
-    "angle": "what to check, our 15 areas, honest checklist",
-    "summary": "If you searched cupping near me across South London: the checklist that matters and the 15 areas we serve from SW16."
-  },
-  {
-    "slug": "hijama-referrals-word-of-mouth",
-    "title": "Why most of our clients come by referral",
-    "keyword": "hijama recommendations",
-    "intent": "trust",
-    "service": "Wet cupping / Hijama",
-    "area": "Streatham",
-    "angle": "review culture, community trust, unedited quotes",
-    "summary": "What 100+ verified reviews and constant word-of-mouth referrals say about how the clinic works."
-  },
-  {
-    "slug": "hijama-privacy-promise",
-    "title": "Our privacy promise: what happens in the treatment room",
-    "keyword": "hijama privacy",
-    "intent": "trust",
-    "service": "Wet cupping / Hijama",
-    "area": "Streatham",
-    "angle": "lockable room, undressing policy, chaperone questions",
-    "summary": "Exactly how privacy works here: the lockable room, minimal undressing and respect from consultation to dressing."
-  },
-  {
-    "slug": "hijama-equipment-tour",
-    "title": "Single-use everything: a tour of our equipment standards",
-    "keyword": "hijama equipment sterile",
-    "intent": "trust education",
-    "service": "Wet cupping / Hijama",
-    "area": "London",
-    "angle": "blades, cups, sharps bins, opened in front of you",
-    "summary": "A transparent tour of what touches your skin: sterile single-use blades, disposable cups and proper sharps disposal."
+    "angle": "service facts, privacy, evidence and care boundaries",
+    "summary": "A practical list of questions about price, duration, practitioner route, privacy, process evidence and care boundaries.",
+    "promiseTerms": ["questions", "privacy"],
+    "content": {
+      "answer": {
+        "heading": "Ask questions that can be answered with evidence",
+        "text": "Useful questions connect to a service name, document, process or current booking confirmation rather than a broad promise."
+      },
+      "sections": [
+        {
+          "heading": "Ask about privacy and the booking route",
+          "paragraphs": ["Confirm who provides the appointment and how practical privacy questions are handled before you book."]
+        },
+        {
+          "heading": "Ask about the exact service",
+          "paragraphs": ["Confirm the price, duration and what the appointment name refers to. Personal medical questions belong with a healthcare professional."]
+        }
+      ]
+    }
   }
 ]
