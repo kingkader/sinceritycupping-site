@@ -1,7 +1,7 @@
 {
   "name": "Sincerity Cupping Clinic",
   "domain": "https://sinceritycupping.co.uk",
-  "bookingUrl": "https://www.fresha.com/book-now/sincerity-ruqyah-centre-en3ghpfz/services?lid=1080569&oiid=sv%3A14524918&share=true&pId=1024551",
+  "bookingUrl": "/#book",
   "email": "",
   "phone": "07552 540000",
   "telephone": "+447552540000",
@@ -17,17 +17,9 @@
     "longitude": -0.13136329
   },
   "rating": {
-    "value": 4.9,
-    "count": 110,
-    "displayCount": "100+",
-    "sources": {
-      "fresha": 86,
-      "google": 24
-    }
+    "displayCount": "100+"
   },
-  "priceRange": "From £45",
-  "combinedExperienceYears": 40,
-  "fullyInsured": true,
+  "priceRange": "£45–£80",
   "serves": [
     "men",
     "women"
@@ -92,9 +84,32 @@
   ],
   "services": [
     {
-      "name": "Wet cupping / Hijama",
-      "url": "/services/#hijama",
-      "summary": "Traditional wet cupping for men and women, delivered by expert practitioners with suitability checks, hygiene controls, full insurance and aftercare guidance."
+      "audience": "Women",
+      "name": "Women's wet cupping",
+      "price": "£45",
+      "durationMinutes": 45,
+      "bookingUrl": "https://www.fresha.com/book-now/sincerity-ruqyah-centre-en3ghpfz/services?lid=1080569&oiid=sv%3A15058937&share=true&pId=1024551"
+    },
+    {
+      "audience": "Men",
+      "name": "Men's wet cupping",
+      "price": "£45",
+      "durationMinutes": 40,
+      "bookingUrl": "https://www.fresha.com/book-now/sincerity-ruqyah-centre-en3ghpfz/services?lid=1080569&oiid=sv%3A14524918&share=true&pId=1024551"
+    },
+    {
+      "audience": "Women",
+      "name": "Full spiritual appointment",
+      "price": "£80",
+      "durationMinutes": 90,
+      "bookingUrl": "https://www.fresha.com/book-now/sincerity-ruqyah-centre-en3ghpfz/services?lid=1080569&oiid=sv%3A15623186&share=true&pId=1024551"
+    },
+    {
+      "audience": "Men",
+      "name": "Full spiritual appointment",
+      "price": "£80",
+      "durationMinutes": 80,
+      "bookingUrl": "https://www.fresha.com/book-now/sincerity-ruqyah-centre-en3ghpfz/services?lid=1080569&oiid=sv%3A15623194&share=true&pId=1024551"
     }
   ],
   "practitioners": [
@@ -104,17 +119,15 @@
       "honorificPrefix": "Sister",
       "givenName": "Aisha",
       "familyName": "Mejri",
-      "jobTitle": "Lead Hijama Practitioner",
-      "yearsExperience": 20,
+      "jobTitle": "Women's cupping practitioner",
       "gender": "https://schema.org/Female",
-      "servesAudience": "Female and family clients",
+      "servesAudience": "Women",
       "knowsAbout": [
         "Wet cupping",
-        "Hijama",
-        "Sunnah cupping practice",
-        "Aftercare for hijama clients"
+        "Cupping",
+        "Hijama"
       ],
-      "bio": "Sister Aisha Mejri is the lead practitioner at Sincerity Cupping Clinic with more than 20 years of hands-on experience in wet cupping and hijama. She leads female client sessions, manages clinical hygiene and is the first point of contact for new clients seeking guidance on suitability and aftercare."
+      "bio": "Sister Aisha Mejri sees women for private cupping appointments. She explains each stage before beginning and follows the clinic's hygiene process throughout."
     },
     {
       "id": "abu-layla",
@@ -122,17 +135,15 @@
       "honorificPrefix": "Brother",
       "givenName": "Abu Layla",
       "familyName": "",
-      "jobTitle": "Senior Hijama Practitioner",
-      "yearsExperience": 20,
+      "jobTitle": "Men's cupping practitioner",
       "gender": "https://schema.org/Male",
-      "servesAudience": "Male clients",
+      "servesAudience": "Men",
       "knowsAbout": [
         "Wet cupping",
-        "Hijama",
-        "Sunnah cupping practice",
-        "Aftercare for hijama clients"
+        "Cupping",
+        "Hijama"
       ],
-      "bio": "Brother Abu Layla is the senior practitioner for male clients at Sincerity Cupping Clinic. He leads male-only hijama appointments in a respectful, private environment with the same hygiene and aftercare standards used clinic-wide."
+      "bio": "Brother Abu Layla sees men for private cupping appointments. He explains each stage before beginning and follows the clinic's hygiene process throughout."
     }
   ],
   "sameAs": [
