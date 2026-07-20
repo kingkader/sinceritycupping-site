@@ -1351,18 +1351,33 @@ details.faq { border-radius: 10px; }
 }
 
 @media (max-width: 800px) {
+  .site-header { position: static; }
+  .header-inner { flex-wrap: wrap; padding-block: 0.55rem; }
   .site-nav {
+    position: static;
+    flex: 0 0 100%;
+    order: 3;
+    background: transparent;
+    border-top: 1px solid var(--line);
+    border-bottom: 0;
+    box-shadow: none;
+    display: block;
+    padding: 0.55rem 0 0.35rem;
+  }
+  .js .site-header { position: sticky; }
+  .js .header-inner { flex-wrap: nowrap; padding-block: 0; }
+  .js .site-nav {
     position: absolute;
     top: 100%;
     left: 0;
     right: 0;
     background: var(--cream);
+    border-top: 0;
     border-bottom: 1px solid var(--line);
     box-shadow: var(--shadow-md);
-    display: block;
+    display: none;
     padding: 0.8rem 1.2rem 1.2rem;
   }
-  .js .site-nav { display: none; }
   .js .site-nav.open { display: block; }
   .site-nav ul { flex-direction: column; gap: 0.2rem; }
   .site-nav a { display: block; padding: 0.75rem 0.95rem; border-radius: var(--r-inner); }

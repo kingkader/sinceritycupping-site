@@ -50,10 +50,6 @@ function escapeHtml(value) {
     .replaceAll("\"", "&quot;");
 }
 
-const FONTS = `<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">`;
-
 const ICON = {
   pin: '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-5.2-7-11a7 7 0 0 1 14 0c0 5.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.6"/></svg>',
   clock: '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg>',
@@ -84,7 +80,6 @@ function shellTop({title, description, canonical, ogType = "website", navCurrent
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#0A2233">
 <link rel="icon" type="image/svg+xml" href="/assets/img/favicon.svg">
-${FONTS}
 <link rel="stylesheet" href="/assets/css/style.css?v=20260704">
 <script>document.documentElement.classList.add("js");</script>
 ${extraSchema}
