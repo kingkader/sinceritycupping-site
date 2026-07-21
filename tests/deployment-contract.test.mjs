@@ -120,6 +120,7 @@ test("article workflow remains manual validation only", () => {
 
 test("retired source and configuration paths are intercepted before stale assets can be served", () => {
   const rules = redirectRules(read("_redirects"));
+  const safeMissingTarget = "/__not-found__";
   const guardedSources = [
     "/package.json",
     "/package-lock.json",
@@ -145,8 +146,10 @@ test("retired source and configuration paths are intercepted before stale assets
 
   for (const source of guardedSources) {
     const matches = rules.filter((rule) => rule[0] === source);
-    assert.deepEqual(matches, [[source, "/404.html", "302"]], `missing safe edge redirect for ${source}`);
+    assert.deepEqual(matches, [[source, safeMissingTarget, "302"]], `missing safe edge redirect for ${source}`);
   }
+
+  assert.equal(fs.existsSync(path.join(root, safeMissingTarget.slice(1))), false);
 });
 
 test("Cloudflare headers enforce security and safe cache policy", () => {
