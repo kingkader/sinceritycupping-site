@@ -9,9 +9,14 @@ permissions:
   contents: read
   deployments: write
 
+concurrency:
+  group: sinceritycupping-production
+  cancel-in-progress: false
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -21,12 +26,21 @@ jobs:
         with:
           node-version: "22"
 
-      - name: Validate site
-        run: node scripts/check-site.mjs
+      - name: Test committed site
+        run: npm test
+
+      - name: Build allowlisted public site
+        run: npm run build
+
+      - name: Validate built site
+        run: npm run check:dist
+
+      - name: Confirm build did not edit tracked files
+        run: git diff --exit-code
 
       - name: Deploy to Cloudflare Pages
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy . --project-name=sinceritycupping --branch=main --commit-dirty=true
+          command: pages deploy dist --project-name=sinceritycupping --branch=main --commit-dirty=true
