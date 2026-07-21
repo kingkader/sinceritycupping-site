@@ -19,17 +19,34 @@ function htmlFilesUnder(directory) {
   });
 }
 
+function workflowTriggerBlock(workflow) {
+  const match = workflow.match(/^on:\n([\s\S]*?)\npermissions:/m);
+  assert.ok(match, "workflow must declare triggers before permissions");
+  return match[1].trim();
+}
+
+function headerRuleBody(headers, pattern) {
+  const block = headers.trim().split(/\n(?=\/)/)
+    .find((candidate) => candidate.split("\n", 1)[0] === pattern);
+  assert.ok(block, `missing header rule: ${pattern}`);
+  return block.slice(block.indexOf("\n") + 1);
+}
+
 test("production workflow validates and deploys only the allowlisted dist build", () => {
   const workflow = read(".github/workflows/deploy.yml");
+  const commands = [...workflow.matchAll(/\bpages deploy\s+([^\s]+)/g)];
+  const testIndex = workflow.indexOf("run: npm test");
+  const buildIndex = workflow.indexOf("run: npm run build");
+  const checkIndex = workflow.indexOf("run: npm run check:dist");
+  const deployIndex = workflow.indexOf("command: pages deploy dist ");
 
-  assert.match(workflow, /npm test/);
-  assert.match(workflow, /npm run build/);
-  assert.match(workflow, /npm run check:dist/);
-  assert.match(
-    workflow,
-    /pages deploy dist --project-name=sinceritycupping --branch=main/,
-  );
-  assert.doesNotMatch(workflow, /pages deploy \. /);
+  assert.equal(workflowTriggerBlock(workflow), "push:\n    branches: [main]");
+  assert.equal(commands.length, 1, "production workflow must contain exactly one deploy command");
+  assert.equal(commands[0][1], "dist", "production upload boundary must be exactly dist");
+  assert.ok(testIndex >= 0 && testIndex < buildIndex, "tests must run before build");
+  assert.ok(buildIndex < checkIndex, "build must run before dist validation");
+  assert.ok(checkIndex < deployIndex, "dist validation must run before deployment");
+  assert.match(workflow, /command: pages deploy dist --project-name=sinceritycupping --branch=main/);
   assert.match(workflow, /group:\s*sinceritycupping-production/);
   assert.match(workflow, /cancel-in-progress:\s*false/);
 });
@@ -37,8 +54,7 @@ test("production workflow validates and deploys only the allowlisted dist build"
 test("article workflow remains manual validation only", () => {
   const workflow = read(".github/workflows/seo-articles.yml");
 
-  assert.match(workflow, /workflow_dispatch:/);
-  assert.doesNotMatch(workflow, /schedule:/);
+  assert.equal(workflowTriggerBlock(workflow), "workflow_dispatch:");
   assert.doesNotMatch(workflow, /generate-articles|write-article|wrangler-action|pages deploy/i);
   assert.match(workflow, /npm test/);
   assert.match(workflow, /npm run build/);
@@ -65,7 +81,12 @@ test("Cloudflare headers enforce security and safe cache policy", () => {
   assert.match(headers, /Referrer-Policy: strict-origin-when-cross-origin/);
   assert.match(headers, /Permissions-Policy: camera=\(\), microphone=\(\), geolocation=\(\)/);
   assert.match(headers, /Cache-Control: public, max-age=0, must-revalidate/);
-  assert.doesNotMatch(headers, /\/assets\/\*[\s\S]*?immutable/);
+  const universalBlock = headerRuleBody(headers, "/*");
+  const assetBlock = headerRuleBody(headers, "/assets/*");
+  assert.doesNotMatch(universalBlock, /Cache-Control:/, "universal security rule must not duplicate cache policy");
+  assert.match(assetBlock, /Cache-Control: public, max-age=604800, stale-while-revalidate=86400/);
+  assert.equal((assetBlock.match(/Cache-Control:/g) || []).length, 1);
+  assert.doesNotMatch(headers, /immutable/);
 });
 
 test("CSP allows each intentional inline executable script by exact hash", () => {
