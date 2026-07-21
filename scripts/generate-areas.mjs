@@ -5,8 +5,10 @@ import {fileURLToPath} from "node:url";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const origin = "https://sinceritycupping.co.uk";
-const directionsUrl = "https://www.google.com/maps?q=place_id:ChIJ6-vLLJQHdkgRPrnWnRsH6_Q&amp;place_id=ChIJ6-vLLJQHdkgRPrnWnRsH6_Q";
+const destination = "330 Streatham High Rd, London SW16 6HH";
+const destinationPlaceId = "ChIJ6-vLLJQHdkgRPrnWnRsH6_Q";
 const areaPages = JSON.parse(fs.readFileSync(path.join(root, "data", "area-pages.json"), "utf8"));
+const business = JSON.parse(fs.readFileSync(path.join(root, "data", "business.json"), "utf8"));
 const reviewedSlugs = [
   "balham",
   "brixton",
@@ -29,12 +31,48 @@ function invariant(condition, message) {
   if (!condition) throw new Error(message);
 }
 
+function isNonEmptyString(value) {
+  return typeof value === "string" && value.trim().length > 0;
+}
+
+function normalizedWordCount(value) {
+  return String(value)
+    .toLowerCase()
+    .replace(/[^a-z0-9£]+/g, " ")
+    .trim()
+    .split(/\s+/)
+    .filter(Boolean)
+    .length;
+}
+
+function directionsUrl(areaName) {
+  const parameters = new URLSearchParams({api: "1"});
+  if (areaName) parameters.set("origin", `${areaName}, London`);
+  parameters.set("destination", destination);
+  parameters.set("destination_place_id", destinationPlaceId);
+  return `https://www.google.com/maps/dir/?${parameters}`;
+}
+
+const clinicDirectionsUrl = directionsUrl();
+invariant(isNonEmptyString(business.femaleBookingUrl), "Missing approved women's booking route");
+invariant(isNonEmptyString(business.maleBookingUrl), "Missing approved men's booking route");
+
 invariant(areaPages.length === reviewedSlugs.length, "Expected exactly 15 reviewed area records");
 invariant(new Set(areaPages.map(({slug}) => slug)).size === areaPages.length, "Area slugs must be unique");
 for (const area of areaPages) {
+  invariant(isNonEmptyString(area.slug), "Area slug must be non-empty text");
   invariant(/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(area.slug), `Unsafe area slug: ${area.slug}`);
-  invariant(area.name && area.heading && area.localHeading, `Incomplete area record: ${area.slug}`);
-  invariant(area.localParagraphs?.length === 2, `Expected two reviewed local paragraphs: ${area.slug}`);
+  invariant(isNonEmptyString(area.name) && isNonEmptyString(area.heading), `Incomplete area record: ${area.slug}`);
+  invariant(Array.isArray(area.localSections) && area.localSections.length === 3, `${area.slug}: expected three reviewed local sections`);
+  for (const [index, section] of area.localSections.entries()) {
+    invariant(isNonEmptyString(section?.heading), `${area.slug}: local section ${index + 1} needs a non-empty heading`);
+    invariant(Array.isArray(section?.paragraphs) && section.paragraphs.length === 2, `${area.slug}: local section ${index + 1} needs exactly two paragraphs`);
+    invariant(section.paragraphs.every(isNonEmptyString), `${area.slug}: local paragraph ${index + 1} must be non-empty text`);
+  }
+  const localWordCount = normalizedWordCount(area.localSections
+    .flatMap(({heading, paragraphs}) => [heading, ...paragraphs])
+    .join(" "));
+  invariant(localWordCount >= 210, `${area.slug}: local copy must contain at least 210 normalized words`);
 }
 
 invariant(
@@ -45,6 +83,8 @@ invariant(
 const areaBySlug = new Map(areaPages.map((area) => [area.slug, area]));
 for (const area of areaPages) {
   invariant(Array.isArray(area.nearby) && area.nearby.length === 3, `${area.slug}: expected three nearby records`);
+  invariant(new Set(area.nearby).size === area.nearby.length, `${area.slug}: nearby slugs must be unique`);
+  invariant(!area.nearby.includes(area.slug), `${area.slug}: nearby slugs must not include self`);
   for (const slug of area.nearby) invariant(areaBySlug.has(slug), `${area.slug}: unknown nearby reviewed area ${slug}`);
 }
 
@@ -86,7 +126,9 @@ function jsonLd(value) {
   return JSON.stringify(value).replace(/</g, "\\u003c");
 }
 
-function shell({title, description, canonical, schema, main}) {
+function shell({title, description, canonical, schema, main, areasCurrent = false}) {
+  const areasCurrentAttribute = areasCurrent ? ' aria-current="page"' : "";
+  const clinicDirectionsHref = escapeHtml(clinicDirectionsUrl);
   return `<!DOCTYPE html>
 <html lang="en-GB">
 <head>
@@ -113,12 +155,12 @@ function shell({title, description, canonical, schema, main}) {
 
 <div class="util-bar">
   <div class="container util-inner">
-    <a class="util-item util-hide-m" href="${directionsUrl}">330 Streatham High Rd, SW16 6HH</a>
+    <a class="util-item util-hide-m" href="${clinicDirectionsHref}">330 Streatham High Rd, SW16 6HH</a>
     <span class="util-item util-hide-m">Open daily · 10:00–19:00</span>
     <span class="spacer"></span>
     <a class="util-item" href="tel:+447552540000">07552 540000</a>
     <a class="util-item" href="https://wa.me/447552540000">WhatsApp</a>
-    <a class="util-item" href="${directionsUrl}">Directions</a>
+    <a class="util-item" href="${clinicDirectionsHref}">Directions</a>
   </div>
 </div>
 
@@ -133,7 +175,7 @@ function shell({title, description, canonical, schema, main}) {
       <ul>
         <li><a href="/services/">Cupping &amp; prices</a></li>
         <li><a href="/about/">About</a></li>
-        <li><a href="/areas/" aria-current="page">Areas</a></li>
+        <li><a href="/areas/"${areasCurrentAttribute}>Areas</a></li>
         <li><a href="/blog/">Guides</a></li>
         <li><a href="/contact/">Contact</a></li>
       </ul>
@@ -168,7 +210,7 @@ ${main}
       </div>
       <div>
         <h2>Visit</h2>
-        <address><a href="${directionsUrl}">330 Streatham High Rd<br>London SW16 6HH</a><br><a href="tel:+447552540000">07552 540000</a><br><a href="https://wa.me/447552540000">WhatsApp the clinic</a></address>
+        <address><a href="${clinicDirectionsHref}">330 Streatham High Rd<br>London SW16 6HH</a><br><a href="tel:+447552540000">07552 540000</a><br><a href="https://wa.me/447552540000">WhatsApp the clinic</a></address>
         <p>Open daily · 10:00–19:00</p>
         <p><a href="/#book">Book an appointment</a></p>
       </div>
@@ -222,7 +264,27 @@ function areaSchema(area) {
 function renderArea(area) {
   const canonical = `${origin}/areas/${area.slug}/`;
   const description = `${area.heading}: private appointments at one Streatham clinic for women and men of every faith and background.`;
-  const localParagraphs = area.localParagraphs.map((paragraph) => `      <p>${escapeHtml(paragraph)}</p>`).join("\n");
+  const areaDirectionsHref = escapeHtml(directionsUrl(area.name));
+  const localEyebrows = ["Local destination", "Route planning", "Before you travel"];
+  const localSections = area.localSections.map((section, index) => {
+    const sectionId = `local-${area.slug}-${index + 1}`;
+    const sectionClass = index % 2 === 1 ? "section section-alt" : "section";
+    const paragraphs = section.paragraphs
+      .map((paragraph) => `      <p>${escapeHtml(paragraph)}</p>`)
+      .join("\n");
+    const directionsAction = index === 0
+      ? `\n      <p><a class="btn btn-outline" href="${areaDirectionsHref}">Open directions from ${escapeHtml(area.name)}</a></p>`
+      : "";
+    return `<section class="${sectionClass}" data-area-local-copy aria-labelledby="${sectionId}">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">${localEyebrows[index]}</p>
+        <h2 id="${sectionId}">${escapeHtml(section.heading)}</h2>
+      </div>
+${paragraphs}${directionsAction}
+    </div>
+  </section>`;
+  }).join("\n\n  ");
   const nearby = area.nearby.map((slug) => {
     const item = areaBySlug.get(slug);
     invariant(item, `${area.slug}: unknown nearby area ${slug}`);
@@ -239,53 +301,29 @@ function renderArea(area) {
     </div>
   </div>
 
-  <section class="section" data-area-local-copy aria-labelledby="local-${area.slug}">
-    <div class="container">
-      <div class="section-head">
-        <p class="eyebrow">Local route context</p>
-        <h2 id="local-${area.slug}">${escapeHtml(area.localHeading)}</h2>
-      </div>
-${localParagraphs}
-      <p><a class="btn btn-outline" href="${directionsUrl}">Check live directions from ${escapeHtml(area.name)}</a></p>
-    </div>
-  </section>
+  ${localSections}
 
   <section class="section section-alt" aria-labelledby="clinic-facts-${area.slug}">
     <div class="container">
       <div class="section-head">
-        <p class="eyebrow">One appointment address</p>
-        <h2 id="clinic-facts-${area.slug}">The clinic facts</h2>
-        <p>All appointments take place at our single Streatham clinic at 330 Streatham High Rd, London SW16 6HH. This is a service-area page, not a branch listing. The clinic is open daily, 10:00–19:00.</p>
+        <p class="eyebrow">Book directly</p>
+        <h2 id="clinic-facts-${area.slug}">Book wet cupping at the one Streatham clinic</h2>
+        <p>All appointments take place at the one clinic in Streatham: 330 Streatham High Rd, London SW16 6HH. The clinic is open daily, 10:00–19:00.</p>
       </div>
       <div class="card-grid">
-        <article class="card"><h3>Women’s wet cupping</h3><p>£45 · 45 minutes. Sister Aisha Mejri is the women’s cupping practitioner.</p></article>
-        <article class="card"><h3>Men’s wet cupping</h3><p>£45 · 40 minutes. Brother Abu Layla is the men’s cupping practitioner.</p></article>
-        <article class="card"><h3>Privacy and hygiene</h3><p>Same-sex practitioners provide private appointments. New single-use cups and blades are used for each client and disposed of safely.</p></article>
+        <article class="card"><h3>For women</h3><p>Women’s wet cupping is £45 for 45 minutes with Sister Aisha Mejri.</p><p><a class="btn btn-solid" href="${escapeHtml(business.femaleBookingUrl)}">Book women’s wet cupping</a></p></article>
+        <article class="card"><h3>For men</h3><p>Men’s wet cupping is £45 for 40 minutes with Brother Abu Layla.</p><p><a class="btn btn-solid" href="${escapeHtml(business.maleBookingUrl)}">Book men’s wet cupping</a></p></article>
+        <article class="card"><h3>Ask the clinic</h3><p>For a non-medical question about the booking or fixed address, call <a href="tel:+447552540000">07552 540000</a> or <a href="https://wa.me/447552540000">WhatsApp the clinic</a>.</p></article>
       </div>
       <div class="note-card" style="margin-top:2rem">
-        <h3>Everyone is welcome</h3>
-        <p>Women and men of every faith and background are welcome. Hijama is simply a secondary name for wet cupping; no religious reason is needed to book.</p>
+        <h3>Private, responsible care</h3>
+        <p>Same-sex practitioners provide private appointments. New single-use cups and blades are used for each client and disposed of safely. Women and men of every faith and background are welcome.</p>
+        <p>Wet cupping is complementary care and is not a replacement for medical advice, diagnosis or treatment. Read the independent <a href="https://www.nccih.nih.gov/health/cupping" rel="noopener">NCCIH guide to cupping</a>.</p>
       </div>
     </div>
   </section>
 
-  <section class="section" aria-labelledby="care-boundary-${area.slug}">
-    <div class="container faq-columns">
-      <div>
-        <p class="eyebrow">Responsible care</p>
-        <h2 id="care-boundary-${area.slug}">A clear complementary-care boundary</h2>
-        <p>Wet cupping is complementary care and is not a replacement for medical advice, diagnosis or treatment. Personal medical questions belong with an appropriately qualified healthcare professional.</p>
-        <p>For independent general information, read the <a href="https://www.nccih.nih.gov/health/cupping" rel="noopener">NCCIH guide to cupping</a>.</p>
-      </div>
-      <div class="note-card blue">
-        <h3>Book the right route</h3>
-        <p>Use the clinic’s generic selector to choose the women’s or men’s appointment before Fresha opens.</p>
-        <p><a class="btn btn-solid" href="/#book">Choose an appointment</a></p>
-      </div>
-    </div>
-  </section>
-
-  <section class="section section-alt" aria-label="Nearby service areas">
+  <section class="section" aria-label="Nearby service areas">
     <div class="container">
       <p class="eyebrow">Other service areas</p>
       <div class="pill-cloud">
@@ -294,14 +332,10 @@ ${localParagraphs}
       <p style="margin-top:1.5rem"><a href="/areas/">View all service areas</a></p>
     </div>
   </section>
-
-  <section class="section" aria-label="Book an appointment">
-    <div class="container"><div class="cta-band"><div><h2>One clinic. One clear booking choice.</h2><p>Choose the women’s or men’s route, or contact the clinic with a non-medical question.</p></div><div class="cta-actions"><a class="btn btn-light" href="/#book">Book an appointment</a><a class="btn btn-ghost-dark" href="https://wa.me/447552540000">WhatsApp 07552 540000</a></div></div></div>
-  </section>
 </main>`;
 
   return shell({
-    title: area.heading,
+    title: `${area.heading} | Sincerity Cupping Clinic`,
     description,
     canonical,
     schema: areaSchema(area),
@@ -362,7 +396,7 @@ function renderHub() {
         <h2 id="one-clinic">One clinic for every area listed</h2>
         <p>There is one clinic at 330 Streatham High Rd, London SW16 6HH. The local pages below describe service areas, not branches, mobile treatment locations or separate premises.</p>
         <p>The clinic is open daily, 10:00–19:00. Women and men of every faith and background are welcome for private same-sex appointments.</p>
-        <p><a class="btn btn-solid" href="${directionsUrl}">Open live Google Maps directions</a></p>
+        <p><a class="btn btn-solid" href="${escapeHtml(clinicDirectionsUrl)}">Open Google Maps directions</a></p>
       </div>
       <div class="note-card">
         <h3>Before you travel</h3>
@@ -402,11 +436,12 @@ function renderHub() {
 </main>`;
 
   return shell({
-    title: "Wet cupping service areas near Streatham | Sincerity Cupping Clinic",
+    title: "South London Cupping Areas | Sincerity Cupping Clinic",
     description: "Explore 15 South London service areas for one wet cupping clinic at 330 Streatham High Rd, with live directions and clear booking choices.",
     canonical,
     schema,
     main,
+    areasCurrent: true,
   });
 }
 

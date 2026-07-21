@@ -3,10 +3,28 @@
     "slug": "streatham",
     "name": "Streatham",
     "heading": "Wet cupping in Streatham",
-    "localHeading": "Finding the one clinic from elsewhere in Streatham",
-    "localParagraphs": [
-      "The appointment address is on Streatham High Road, but Streatham itself stretches across several named neighbourhoods. Use 330 Streatham High Rd, London SW16 6HH as the destination rather than relying on the word ‘Streatham’ alone. The map pin identifies the treatment location and avoids confusing it with another part of the district.",
-      "Your route will depend on the exact street where you begin and conditions when you travel. Open the live Google Maps directions before leaving and check the current route. This page describes the clinic’s Streatham service area; it does not represent another venue, a mobile service or a promise about journey length."
+    "localSections": [
+      {
+        "heading": "Use the street number, not Streatham alone",
+        "paragraphs": [
+          "Streatham covers more than one named neighbourhood, so the district label is not precise enough to identify the appointment door. Set 330 Streatham High Rd, London SW16 6HH as the destination and confirm that number 330 appears before accepting the map result.",
+          "The pin belongs to the clinic’s only treatment address. It should not be interpreted as another Streatham venue, a mobile appointment point or a choice between branches. Every booking made through this page finishes at the same High Road premises."
+        ]
+      },
+      {
+        "heading": "Plan from your exact Streatham starting point",
+        "paragraphs": [
+          "Begin with the street where you will actually set out, not the wider word Streatham. A route selected from one part of the district may be unhelpful from another, while a current map can use the origin you provide.",
+          "Review the available road or public-transport choices close to departure and decide which suits your circumstances. The clinic supplies the destination, but it does not prescribe a connection or promise how long changing conditions will make the journey."
+        ]
+      },
+      {
+        "heading": "Match the route to the booking before leaving",
+        "paragraphs": [
+          "Compare the address in your route with the address in the appointment details before setting out. The useful checks are the street number, the SW16 6HH postcode and the pin at the Streatham clinic, rather than the neighbourhood name on its own.",
+          "If the booking choice or destination still looks unclear, call or WhatsApp the clinic before travelling. Staff can confirm the fixed address and appointment details; current Maps information remains the source for the route from your particular starting point."
+        ]
+      }
     ],
     "nearby": ["streatham-hill", "streatham-common", "norbury"]
   },
@@ -14,10 +32,28 @@
     "slug": "streatham-hill",
     "name": "Streatham Hill",
     "heading": "Wet cupping near Streatham Hill",
-    "localHeading": "Planning from Streatham Hill",
-    "localParagraphs": [
-      "Streatham Hill is north of the clinic address along the wider Streatham High Road corridor. Similar place names can make listings look closer than they are, so confirm that your destination is number 330 in SW16 6HH. There is no separate treatment room or branch in Streatham Hill.",
-      "A current map is the reliable way to choose between road and public-transport options from your own starting point. Open the directions link, review the route immediately before setting out, and allow for the conditions shown that day. The clinic publishes the fixed address and opening hours, not a guaranteed journey time or transport schedule."
+    "localSections": [
+      {
+        "heading": "Distinguish Streatham Hill from the clinic destination",
+        "paragraphs": [
+          "Streatham Hill is north of the appointment address along the wider Streatham corridor. Similar place names can blur that difference on a search screen, so make number 330 and the SW16 6HH postcode the deciding details rather than selecting a result labelled only Streatham.",
+          "Treatment is not provided at a second room in Streatham Hill. The relevant pin is attached to 330 Streatham High Rd, where every women’s and men’s wet-cupping booking on this page takes place. Confirm the full line before saving a route."
+        ]
+      },
+      {
+        "heading": "Choose a starting point within Streatham Hill",
+        "paragraphs": [
+          "Enter the street from which you expect to leave so the map is not working from the broad centre of Streatham Hill. That makes its suggested road and public-transport choices more relevant to the journey you are actually planning.",
+          "Look again near departure because the available options and conditions can change. This clinic page gives a verified destination but does not nominate a particular connection, publish a standard trip or guarantee what the current route planner will show."
+        ]
+      },
+      {
+        "heading": "Resolve the two Streatham labels before travel",
+        "paragraphs": [
+          "The appointment record and map should both resolve to 330 Streatham High Rd, London SW16 6HH. Checking those details prevents the words Streatham Hill and Streatham from being treated as interchangeable when one is the origin area and the other contains the clinic.",
+          "Keep the booking time separate from journey planning, then select a route that reaches the confirmed address. If you need the clinic to verify the appointment location or booking type, use the phone or WhatsApp contact before setting out."
+        ]
+      }
     ],
     "nearby": ["streatham", "brixton", "tulse-hill"]
   },
@@ -25,10 +61,28 @@
     "slug": "streatham-common",
     "name": "Streatham Common",
     "heading": "Wet cupping near Streatham Common",
-    "localHeading": "Use the full address from Streatham Common",
-    "localParagraphs": [
-      "Streatham Common is south of the clinic on the Streatham corridor, while the appointment itself remains at 330 Streatham High Rd. Enter the complete SW16 6HH address when planning instead of selecting a neighbourhood label. That distinction matters because this page is about an area served by one clinic, not premises beside the Common.",
-      "Routes can change with the particular side of the Common where a journey starts. Check live Google Maps directions for the current option and verify the destination pin before travel. The clinic does not publish parking claims, fixed travel estimates or assumptions about how visitors arrive; the confirmed facts are the address and daily opening hours."
+    "localSections": [
+      {
+        "heading": "Set a destination north of the Streatham Common area",
+        "paragraphs": [
+          "Streatham Common is south of the clinic on the Streatham corridor, while the appointment remains at 330 Streatham High Rd, London SW16 6HH. Select the complete address instead of assuming that a result carrying the Common’s name represents the treatment location.",
+          "This page describes an area served by the single Streatham clinic; it is not premises beside the Common. The correct map pin must show number 330. That fixed point applies to every service link and contact option displayed here."
+        ]
+      },
+      {
+        "heading": "Start with the right side of Streatham Common",
+        "paragraphs": [
+          "A broad origin can hide differences between possible approaches, so enter the place where your journey will genuinely begin. Use the current map result to compare the choices offered for that start rather than carrying over a route planned from elsewhere.",
+          "Road and public-transport information is changeable and outside the clinic’s control. Check it close to the day of the appointment, decide what fits your circumstances and avoid treating an older result as a promised journey from the Common."
+        ]
+      },
+      {
+        "heading": "Confirm the northbound destination details",
+        "paragraphs": [
+          "Before leaving the Streatham Common area, compare the route endpoint with the booking confirmation. Both should identify 330 Streatham High Rd and postcode SW16 6HH, not merely use the same district name or point somewhere else on the corridor.",
+          "The clinic can answer non-medical questions about the booking and repeat its one address by phone or WhatsApp. The live route planner remains the place to assess the current journey from your chosen origin."
+        ]
+      }
     ],
     "nearby": ["streatham", "norbury", "mitcham"]
   },
@@ -36,10 +90,28 @@
     "slug": "balham",
     "name": "Balham",
     "heading": "Wet cupping near Balham",
-    "localHeading": "Compare a current route from Balham",
-    "localParagraphs": [
-      "Balham lies north-west of the Streatham clinic. An appointment booked through this page still takes place at 330 Streatham High Rd, not at a Balham branch. Use the postcode SW16 6HH to distinguish the clinic from businesses with similar names or from results centred on Balham itself.",
-      "Different starting points around Balham can produce different road or public-transport suggestions. The live directions link lets you review the option available when you intend to travel. Check it again before setting out, because this page does not promise a particular connection, arrival time or route. For booking purposes, the location remains one fixed Streatham address."
+    "localSections": [
+      {
+        "heading": "Keep Balham as the origin and Streatham as the destination",
+        "paragraphs": [
+          "Balham is north-west of the clinic address, but the listing title does not place a treatment room there. Use 330 Streatham High Rd, London SW16 6HH as the destination and reject any search result that substitutes a general Balham point for the numbered clinic address.",
+          "All appointments reached from this page are held at the one Streatham premises. The destination pin, postcode and street number should agree before you continue. There is no separate Balham address to choose during booking or route planning."
+        ]
+      },
+      {
+        "heading": "Let your Balham departure point shape the route",
+        "paragraphs": [
+          "Choose the actual street or place where you will set out rather than asking a map to represent all of Balham. The suggested approach can then respond to the origin you entered instead of a generic neighbourhood centre.",
+          "Compare the current road and public-transport possibilities shown for that origin. Select on the basis of your own needs and check again before travel; the clinic does not publish a preferred connection or control the conditions behind those suggestions."
+        ]
+      },
+      {
+        "heading": "Carry the full Streatham address into the final check",
+        "paragraphs": [
+          "When the booking is in your calendar, inspect its location beside the route endpoint. The useful match is 330 Streatham High Rd, London SW16 6HH. A page headed for Balham visitors still ends at that single clinic.",
+          "Phone or WhatsApp if you want confirmation of the appointment type or fixed address. For the journey itself, use the live map from your precise Balham starting point instead of relying on a static estimate or another visitor’s route."
+        ]
+      }
     ],
     "nearby": ["streatham-hill", "clapham", "tooting"]
   },
@@ -47,10 +119,28 @@
     "slug": "brixton",
     "name": "Brixton",
     "heading": "Wet cupping near Brixton",
-    "localHeading": "Keep the Streatham destination clear from Brixton",
-    "localParagraphs": [
-      "Brixton is north of Streatham, and the clinic is not a Brixton treatment location. The address to use is 330 Streatham High Rd, London SW16 6HH. Entering the full destination helps separate this service-area page from a branch listing and makes the final Streatham location clear before an appointment is chosen.",
-      "There may be several ways to approach Streatham from different parts of Brixton. Rather than relying on static journey wording, open the live Google Maps directions and check the route shown for the relevant day. Transport conditions are outside the clinic’s control, so no journey duration, service frequency or preferred method of travel is claimed here."
+    "localSections": [
+      {
+        "heading": "Identify the clinic south of Brixton",
+        "paragraphs": [
+          "Brixton is north of the clinic, and the wet-cupping appointment itself is in Streatham. Enter 330 Streatham High Rd, London SW16 6HH in full so the route is anchored to the clinic rather than to an unspecific result elsewhere between the two areas.",
+          "The Brixton wording describes who this planning page is for, not another trading address. There is one destination for women’s and men’s bookings. Verify number 330, postcode SW16 6HH and the supplied pin before treating a map result as correct."
+        ]
+      },
+      {
+        "heading": "Use your real Brixton origin",
+        "paragraphs": [
+          "A neighbourhood name alone cannot reflect every departure point. Tell the route planner where in Brixton you expect to start, then assess the road or public-transport choices it currently returns for the fixed Streatham endpoint.",
+          "Conditions and suggested connections can differ when you check again, so make that comparison near the appointment rather than copying an old plan. The clinic confirms where treatment happens but leaves the travel decision with each visitor."
+        ]
+      },
+      {
+        "heading": "Separate appointment facts from journey information",
+        "paragraphs": [
+          "Your confirmation supplies the booking details; Google Maps supplies the changing route. Bring them together by checking that the map’s destination line exactly matches 330 Streatham High Rd, London SW16 6HH before leaving Brixton.",
+          "If the service selection or clinic location needs clarification, contact the clinic directly. Staff can repeat those fixed facts, while any current disruption, route choice or departure decision should be checked in the map you are using."
+        ]
+      }
     ],
     "nearby": ["streatham-hill", "clapham", "herne-hill"]
   },
@@ -58,10 +148,28 @@
     "slug": "tooting",
     "name": "Tooting",
     "heading": "Wet cupping near Tooting",
-    "localHeading": "Start with your precise Tooting location",
-    "localParagraphs": [
-      "Tooting sits west of the clinic, but it covers more than one commonly used town-centre name. Plan from your actual starting address to 330 Streatham High Rd, London SW16 6HH. Sincerity has no Tooting branch: this page simply helps people identify which single clinic serves the area.",
-      "A route suggested from one part of Tooting may not suit another, and current conditions can alter the choice. Use the live map to compare what is available and confirm the Streatham pin before departure. Static claims about minutes, parking or transport frequency would quickly become unreliable, so they are intentionally not made on this page."
+    "localSections": [
+      {
+        "heading": "Aim east from Tooting at one numbered address",
+        "paragraphs": [
+          "Tooting is west of the Streatham clinic, so keep the two place names in their proper roles when searching. Your origin is in or around Tooting; the treatment destination is 330 Streatham High Rd, London SW16 6HH, identified by the clinic pin.",
+          "No appointment takes place at a Tooting branch through this page. Women’s and men’s wet-cupping routes both lead to number 330. Check the entire address rather than accepting a broad result that happens to mention South London or Streatham."
+        ]
+      },
+      {
+        "heading": "Make the route specific to your part of Tooting",
+        "paragraphs": [
+          "Enter a precise starting point before reviewing the options to the east. That avoids building a plan around a generic Tooting label which may not represent the street, home or other place from which you will actually depart.",
+          "Use the current suggestions to compare road and public-transport travel on your own terms. Reopen them before setting out because availability and conditions are changeable; none of those moving details is promised by the clinic."
+        ]
+      },
+      {
+        "heading": "Check that booking and map finish together",
+        "paragraphs": [
+          "The last line of the planned journey should agree with the location attached to the booking: 330 Streatham High Rd, London SW16 6HH. If it ends in Tooting, or only names a district, revise the destination before departure.",
+          "For uncertainty about the appointment choice or clinic address, call or message the number on this page. Use the map itself for the live route from Tooting, since staff cannot validate a changing journey on your behalf."
+        ]
+      }
     ],
     "nearby": ["balham", "colliers-wood", "streatham-common"]
   },
@@ -69,10 +177,28 @@
     "slug": "clapham",
     "name": "Clapham",
     "heading": "Wet cupping near Clapham",
-    "localHeading": "Check which route fits your part of Clapham",
-    "localParagraphs": [
-      "Clapham spans a broad district north-west of Streatham. The cupping appointment is not held in Clapham; the sole clinic is at 330 Streatham High Rd, London SW16 6HH. Using the complete address avoids treating a local search page as evidence of another clinic location.",
-      "Your best current route can differ depending on whether the journey begins near Clapham Common, Clapham South or another part of the area. Open Google Maps directions for a live comparison and verify the destination before travel. The clinic provides no fixed time estimate or public-transport timetable, and visitors should make their own up-to-date journey plan."
+    "localSections": [
+      {
+        "heading": "Point the Clapham search towards Streatham",
+        "paragraphs": [
+          "Clapham is north-west of the clinic. The correct endpoint is therefore not a nearby Clapham listing but 330 Streatham High Rd, London SW16 6HH. Put that complete line into the destination field and make sure the clinic’s pin is the result selected.",
+          "This locality page offers planning context for Clapham visitors while describing just one treatment location. Every booking button leads to an appointment at number 330. It does not create an additional consultation room or a choice of premises."
+        ]
+      },
+      {
+        "heading": "Refine the departure point inside Clapham",
+        "paragraphs": [
+          "Use the street or place that best represents where you will begin. A broad area label can produce an answer that is neat but irrelevant to your own position, whereas an exact origin lets the planner calculate from the right point.",
+          "Read the road and public-transport options shown at the time you need them, then choose what is workable for you. Do not treat the clinic page as a timetable or its directions link as a guarantee of a particular journey."
+        ]
+      },
+      {
+        "heading": "Verify the south-east endpoint before departure",
+        "paragraphs": [
+          "Review the destination after choosing a route from Clapham. It should display the street number, Streatham High Road and SW16 6HH together. Those fixed identifiers matter more than any shortened place label shown elsewhere on the screen.",
+          "The clinic can confirm its address and your selected wet-cupping appointment through phone or WhatsApp. Route conditions remain external, so use the latest information available to make the final travel decision."
+        ]
+      }
     ],
     "nearby": ["balham", "brixton", "streatham-hill"]
   },
@@ -80,10 +206,28 @@
     "slug": "norbury",
     "name": "Norbury",
     "heading": "Wet cupping near Norbury",
-    "localHeading": "Follow the address north from Norbury",
-    "localParagraphs": [
-      "Norbury is south of the Streatham clinic on the wider London Road and A23 corridor. The geographic connection does not create a Norbury branch: every appointment is at 330 Streatham High Rd, London SW16 6HH. Confirm the street number as well as the postcode when reviewing a route.",
-      "The exact journey varies across Norbury and with conditions on the day. Use the live Google Maps link to inspect the current road or public-transport options, then check again before leaving. This page deliberately avoids claims about how quickly someone will arrive, which service they should use or when local transport operates."
+    "localSections": [
+      {
+        "heading": "Follow the corridor north to the Streatham address",
+        "paragraphs": [
+          "Norbury is south of the clinic on the wider London Road and A23 corridor. Keep the destination set to 330 Streatham High Rd, London SW16 6HH rather than stopping at a general Streatham or Norbury result that lacks the correct street number.",
+          "The geographic connection does not create a Norbury treatment site. All appointments booked here take place at the same premises in Streatham. Confirm number 330 and the destination pin before using any suggested journey from the south."
+        ]
+      },
+      {
+        "heading": "Choose an origin that represents your Norbury journey",
+        "paragraphs": [
+          "Select the actual departure street or place, because different points within Norbury need not produce the same approach. A current map can then show road and public-transport choices based on the origin you genuinely intend to use.",
+          "Check those choices again close to travel and decide between them for yourself. The clinic does not set transport schedules, select a quickest option or guarantee the conditions that will apply along the corridor."
+        ]
+      },
+      {
+        "heading": "Keep the northern endpoint fixed",
+        "paragraphs": [
+          "Compare the route summary with the appointment location before leaving Norbury. Both should finish at 330 Streatham High Rd, London SW16 6HH. A matching postcode and street number provide a clearer check than the area label alone.",
+          "Use phone or WhatsApp for a non-medical booking or address question. Use the live map for the journey, since that is where your precise origin and current information can be considered together."
+        ]
+      }
     ],
     "nearby": ["streatham-common", "streatham", "mitcham"]
   },
@@ -91,10 +235,28 @@
     "slug": "tulse-hill",
     "name": "Tulse Hill",
     "heading": "Wet cupping near Tulse Hill",
-    "localHeading": "Plan south-west from Tulse Hill",
-    "localParagraphs": [
-      "Tulse Hill is north-east of the clinic, with several possible approaches towards Streatham depending on the starting street. Treatment is provided only at 330 Streatham High Rd, London SW16 6HH. Nothing on this page indicates a treatment room in Tulse Hill or a practitioner travelling out from the clinic.",
-      "Open the live directions to see the route information available for your intended journey. Check the destination pin and current conditions immediately before setting out rather than using an old estimate. The clinic can confirm its address and appointment hours, but it cannot guarantee transport connections, traffic levels or a particular arrival time."
+    "localSections": [
+      {
+        "heading": "Set the clinic south-west of Tulse Hill",
+        "paragraphs": [
+          "Tulse Hill is north-east of the clinic, with the appointment address in Streatham. Enter 330 Streatham High Rd, London SW16 6HH as one complete destination and check that the displayed pin belongs to number 330 before building the rest of the journey.",
+          "There is no Tulse Hill treatment room behind this search page. Its purpose is to help visitors distinguish their origin area from the one clinic where women’s and men’s wet-cupping appointments are delivered."
+        ]
+      },
+      {
+        "heading": "Choose among current approaches from your starting street",
+        "paragraphs": [
+          "Several approaches may appear depending on the point selected within Tulse Hill. Give the map the place where you will really set out, review the road or public-transport suggestions and decide which current option fits your circumstances.",
+          "Repeat that review close to departure rather than relying on a saved result from another day. The clinic supplies a stable address, not a fixed connection, transport frequency or promise about the conditions encountered on the way."
+        ]
+      },
+      {
+        "heading": "Reconcile the map with your appointment record",
+        "paragraphs": [
+          "Before starting south-west, make sure the route ends at the same location shown in the booking: 330 Streatham High Rd, London SW16 6HH. Correct any result that ends only at a neighbourhood label or a different street number.",
+          "Call or WhatsApp if the appointment service or address in your confirmation needs checking. For the current journey from Tulse Hill, rely on the route information available when you travel."
+        ]
+      }
     ],
     "nearby": ["streatham-hill", "west-norwood", "herne-hill"]
   },
@@ -102,10 +264,28 @@
     "slug": "west-norwood",
     "name": "West Norwood",
     "heading": "Wet cupping near West Norwood",
-    "localHeading": "Separate the service area from the clinic address",
-    "localParagraphs": [
-      "West Norwood is east of the Streatham treatment address. Sincerity lists the area because the single clinic serves the surrounding part of South London, not because it operates premises in West Norwood. All bookings lead to 330 Streatham High Rd, London SW16 6HH.",
-      "Journey suggestions depend on the part of West Norwood selected and the conditions at travel time. Use the Google Maps directions link to review the current choices and make sure the final pin is on Streatham High Road. No claim is made here about parking, a quickest route, public-transport frequency or how any previous visitor travelled."
+    "localSections": [
+      {
+        "heading": "Look west for the single Streatham clinic",
+        "paragraphs": [
+          "West Norwood is east of the treatment address. The service-area heading tells you which visitors this page supports, while the destination remains 330 Streatham High Rd, London SW16 6HH. Use the whole address so the map does not substitute a local West Norwood result.",
+          "Sincerity does not operate separate premises in West Norwood. All booking choices shown here refer to number 330 in Streatham. Check the postcode and clinic pin together before accepting an endpoint to the west."
+        ]
+      },
+      {
+        "heading": "Plan from the part of West Norwood you will leave",
+        "paragraphs": [
+          "Set a specific origin rather than allowing the neighbourhood name to stand for every possible starting street. The resulting road and public-transport suggestions can then respond to your selected point instead of an assumed centre.",
+          "Consult the route again near the appointment and choose the option that works for you at that moment. The clinic cannot promise a standard visitor journey or control the live conditions used by the map."
+        ]
+      },
+      {
+        "heading": "Confirm the westward finish, not just the direction",
+        "paragraphs": [
+          "A correct general direction is not enough; the route must terminate at 330 Streatham High Rd, London SW16 6HH. Compare those details with the booking confirmation before setting out from West Norwood.",
+          "If either the clinic location or the selected service is uncertain, contact the team before travel. Staff can verify those fixed appointment facts, while Google Maps remains responsible for presenting the current journey from your origin."
+        ]
+      }
     ],
     "nearby": ["tulse-hill", "streatham-hill", "crystal-palace"]
   },
@@ -113,10 +293,28 @@
     "slug": "herne-hill",
     "name": "Herne Hill",
     "heading": "Wet cupping near Herne Hill",
-    "localHeading": "Confirm the destination south of Herne Hill",
-    "localParagraphs": [
-      "Herne Hill is north-east of the clinic. Search results may surface this page for local intent, but the treatment location is in Streatham at 330 Streatham High Rd, London SW16 6HH. There is no satellite room in Herne Hill and no alternative address attached to this listing.",
-      "Routes towards Streatham can vary with the exact departure point and current network conditions. Open live Google Maps directions, inspect the destination and choose the option that fits your circumstances. This page supplies a factual clinic location rather than an estimate of travel time, a statement about transport reliability or a recommendation about when to leave."
+    "localSections": [
+      {
+        "heading": "Name the Streatham destination south-west of Herne Hill",
+        "paragraphs": [
+          "Herne Hill is north-east of the clinic, so a local search result should still lead to the Streatham address. Specify 330 Streatham High Rd, London SW16 6HH and verify the supplied pin rather than choosing a destination simply because its label appears closer to Herne Hill.",
+          "The page does not represent a satellite room in the origin area. Every wet-cupping appointment offered here is delivered at number 330. The full address, not the locality in the page title, identifies where treatment occurs."
+        ]
+      },
+      {
+        "heading": "Build the route around your own Herne Hill start",
+        "paragraphs": [
+          "Enter the street or place from which you will depart before comparing approaches towards Streatham. That precise origin is more useful than a generic centre point and lets the route planner respond to your intended journey.",
+          "Review its road and public-transport suggestions when the appointment is near, because they can change. Select according to your situation; the clinic neither guarantees those suggestions nor publishes one standard way to arrive."
+        ]
+      },
+      {
+        "heading": "Check the south-west destination one final time",
+        "paragraphs": [
+          "The map summary and appointment confirmation should each show 330 Streatham High Rd, London SW16 6HH. Make that comparison before leaving Herne Hill so a shortened search label cannot quietly move the endpoint.",
+          "Address and booking questions can be put to the clinic by telephone or WhatsApp. Journey choices and current conditions should be checked through the live directions tool from the origin you selected."
+        ]
+      }
     ],
     "nearby": ["tulse-hill", "brixton", "dulwich"]
   },
@@ -124,10 +322,28 @@
     "slug": "dulwich",
     "name": "Dulwich",
     "heading": "Wet cupping near Dulwich",
-    "localHeading": "Plan from the right part of Dulwich",
-    "localParagraphs": [
-      "Dulwich includes several neighbourhood labels east of the clinic, so a useful journey starts with a precise departure point. The confirmed appointment destination is 330 Streatham High Rd, London SW16 6HH. Sincerity does not operate a Dulwich branch, and this local page should not be read as a separate business address.",
-      "Use the live map to see which route is current for your location and intended travel date. Verify that the pin resolves to number 330 before leaving. Because road conditions and transport services can change, the clinic does not publish guaranteed journey lengths, assumed connections or parking advice for Dulwich visitors."
+    "localSections": [
+      {
+        "heading": "Use one Streatham endpoint from across Dulwich",
+        "paragraphs": [
+          "Dulwich includes several neighbourhood labels east of the clinic, making a precise destination especially useful. Put 330 Streatham High Rd, London SW16 6HH into the map and verify number 330 rather than assuming that a broad Dulwich or Streatham result is sufficient.",
+          "Sincerity has one treatment address, not a separate Dulwich branch. The women’s and men’s services on this page are both appointments at the Streatham premises. Their page title does not alter the location attached to the booking."
+        ]
+      },
+      {
+        "heading": "Define which part of Dulwich the journey begins in",
+        "paragraphs": [
+          "Choose the actual starting street or place before comparing travel options to the west. A route based only on the word Dulwich may begin somewhere different from you and answer a less useful question.",
+          "Look at the current road and public-transport suggestions, decide what suits your circumstances and revisit the result before setting out. Changeable route information is not a clinic promise or a fixed instruction attached to the appointment."
+        ]
+      },
+      {
+        "heading": "Verify the clinic pin before travelling west",
+        "paragraphs": [
+          "Match the endpoint against the booking confirmation: 330 Streatham High Rd, London SW16 6HH. The correct pin and postcode provide the final check that the route from Dulwich finishes at the single clinic.",
+          "Contact the clinic if you need the service choice or address confirmed. Staff can clarify those stable details, but the map you open near departure is the source for the current journey from your precise location."
+        ]
+      }
     ],
     "nearby": ["herne-hill", "west-norwood", "crystal-palace"]
   },
@@ -135,10 +351,28 @@
     "slug": "crystal-palace",
     "name": "Crystal Palace",
     "heading": "Wet cupping near Crystal Palace",
-    "localHeading": "Choose a current route away from the Crystal Palace ridge",
-    "localParagraphs": [
-      "Crystal Palace is east of Streatham and its hilltop geography means the selected route can depend heavily on the exact starting point. The clinic itself remains at 330 Streatham High Rd, London SW16 6HH. This is a service-area reference, not a claim that Sincerity has rooms in Crystal Palace.",
-      "Open Google Maps directions to compare current options and check that the destination is the Streatham High Road address. Review the route again when you are ready to travel. The page avoids fixed timings, parking statements and transport-frequency claims because those details are changeable and are not controlled by the clinic."
+    "localSections": [
+      {
+        "heading": "Set a precise clinic point west of Crystal Palace",
+        "paragraphs": [
+          "Crystal Palace is east of Streatham, and its elevated setting makes the selected starting point relevant to route choice. Fix the destination first as 330 Streatham High Rd, London SW16 6HH, then check that the map has selected the clinic pin at number 330.",
+          "The service-area page is not a claim that Sincerity has rooms in Crystal Palace. Each wet-cupping booking ends at the same Streatham premises. Keep that distinction clear when a search interface repeats the origin area beside the result."
+        ]
+      },
+      {
+        "heading": "Let the exact starting point guide the westward route",
+        "paragraphs": [
+          "Enter where you expect to begin rather than treating all of Crystal Palace as one departure point. The map can then compare road and public-transport approaches from the position you supplied to the fixed clinic address.",
+          "Review the choices again close to travel and select what works for you. The clinic does not control current conditions, publish a guaranteed route or assume that every visitor from the elevated area should approach in the same way."
+        ]
+      },
+      {
+        "heading": "Check the destination after comparing approaches",
+        "paragraphs": [
+          "Route alternatives can look different while still needing to finish at 330 Streatham High Rd, London SW16 6HH. Confirm that exact line against your booking before leaving Crystal Palace.",
+          "Use the clinic’s phone or WhatsApp channel if the appointment type or fixed address is unclear. Use live Maps information for the changing journey, keeping the one Streatham pin as the endpoint throughout."
+        ]
+      }
     ],
     "nearby": ["west-norwood", "dulwich", "streatham-common"]
   },
@@ -146,10 +380,28 @@
     "slug": "mitcham",
     "name": "Mitcham",
     "heading": "Wet cupping near Mitcham",
-    "localHeading": "Use the Streatham postcode from across Mitcham",
-    "localParagraphs": [
-      "Mitcham covers a wide area south-west of the clinic, making the exact starting address more useful than the town name alone. Every Sincerity appointment is held at 330 Streatham High Rd, London SW16 6HH. The clinic does not have a Mitcham branch or provide a second location through this page.",
-      "Check the live Google Maps directions from your own street and confirm the destination pin before departure. Available roads and public-transport suggestions may differ across Mitcham and can change over time. For that reason, this page gives no fixed journey estimate, preferred connection, parking assurance or promise about the route a visitor will find."
+    "localSections": [
+      {
+        "heading": "Use the Streatham postcode north-east of Mitcham",
+        "paragraphs": [
+          "Mitcham covers a wide area south-west of the clinic, so the town name alone is not an adequate destination. Set 330 Streatham High Rd, London SW16 6HH and check that the result carries the clinic pin before planning the north-east journey.",
+          "Every Sincerity appointment linked here is held at that one address. There is no second location in Mitcham to select. Street number 330 and the postcode distinguish the booked premises from other broad local results."
+        ]
+      },
+      {
+        "heading": "Start the calculation from your own part of Mitcham",
+        "paragraphs": [
+          "Give the route planner a precise origin, because a suggestion based on another side of a wide area may not serve your journey. Compare the road and public-transport possibilities it returns for the start you actually intend.",
+          "Check the result near departure and make the choice that fits your situation. The clinic cannot guarantee a connection, a set of live conditions or one common route for everyone travelling from Mitcham."
+        ]
+      },
+      {
+        "heading": "Align the north-east route with the appointment",
+        "paragraphs": [
+          "Before setting out, place the map endpoint beside the address in your confirmation. Both should read 330 Streatham High Rd, London SW16 6HH and resolve to the same Streatham pin.",
+          "Call or WhatsApp the clinic to clarify a booking selection or confirm the one fixed Streatham clinic address. The current route remains a decision for the visitor using up-to-date information from the chosen Mitcham origin."
+        ]
+      }
     ],
     "nearby": ["streatham-common", "norbury", "colliers-wood"]
   },
@@ -157,10 +409,28 @@
     "slug": "colliers-wood",
     "name": "Colliers Wood",
     "heading": "Wet cupping near Colliers Wood",
-    "localHeading": "Plan east towards the single Streatham clinic",
-    "localParagraphs": [
-      "Colliers Wood is west of the clinic, across a part of South London where borough and neighbourhood boundaries can make broad search labels misleading. The only appointment address is 330 Streatham High Rd, London SW16 6HH. No treatment is offered from a Colliers Wood branch.",
-      "A live map can account for your precise starting point and the conditions at the time you travel. Open the directions, verify the Streatham destination and select the current option that suits you. Static claims about minutes, parking spaces, service intervals or a standard visitor journey are intentionally excluded because the clinic cannot substantiate them."
+    "localSections": [
+      {
+        "heading": "Anchor the eastward journey at the clinic pin",
+        "paragraphs": [
+          "Colliers Wood is west of the clinic, across a part of South London where broad neighbourhood labels can obscure the actual endpoint. Enter 330 Streatham High Rd, London SW16 6HH and select the clinic pin instead of relying on a result named only Streatham.",
+          "No treatment is offered from a Colliers Wood branch through this page. The locality is the journey origin; number 330 is the appointment destination for both women’s and men’s wet cupping. Check that distinction before saving the route."
+        ]
+      },
+      {
+        "heading": "Choose the route from your exact western origin",
+        "paragraphs": [
+          "Specify the street or place where you will start so the planner can assess the eastward journey from the right point. A generic Colliers Wood origin may produce choices that do not match where you actually are.",
+          "Compare the current road and public-transport results, then select according to your needs and the information shown near departure. Static statements about one standard journey would not account for changing conditions or individual origins."
+        ]
+      },
+      {
+        "heading": "Make the saved journey and booking agree",
+        "paragraphs": [
+          "Before travel, open the route and confirm its final line is 330 Streatham High Rd, London SW16 6HH. Check the same details in the appointment record so the journey does not stop at a broad area label.",
+          "The clinic can verify the service booked and its fixed location by telephone or WhatsApp. Keep live route decisions in the map, using your Colliers Wood starting point and the single Streatham destination."
+        ]
+      }
     ],
     "nearby": ["tooting", "mitcham", "streatham-common"]
   }

@@ -133,7 +133,7 @@ function decodeAttribute(value) {
 }
 
 const fixturePageModified = {
-  "/": "2026-07-20",
+  "/": "2026-07-21",
   "/services/": "2026-07-21",
   "/about/": "2026-07-21",
   "/contact/": "2026-07-21",
