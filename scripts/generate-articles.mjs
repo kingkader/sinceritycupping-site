@@ -8,9 +8,9 @@
 //   node scripts/generate-articles.mjs --count=0 --rerender
 //     # regenerate every existing non-custom article + blog/sitemap/llms
 //
-// CUSTOM_SLUGS are hand-written pages maintained outside this generator —
-// they are never generated or overwritten here (their manifest entries feed
-// the blog index, sitemap and llms.txt as usual).
+// CUSTOM_SLUGS began as hand-written pages. They remain protected during a
+// normal rerender, but can now be rebuilt from audited structured content with
+// the explicit --rerender-protected flag.
 
 import fs from "node:fs";
 import path from "node:path";
@@ -34,12 +34,18 @@ const args = new Map(process.argv.slice(2).map((arg, index, arr) => {
 
 const count = Number(args.get("--count") || 1);
 const rerender = args.has("--rerender");
+const rerenderProtected = args.has("--rerender-protected");
 const bespokePath = args.get("--bespoke");
 const now = args.get("--date") ? new Date(String(args.get("--date"))) : new Date();
 const isoDate = now.toISOString().slice(0, 10);
 const year = String(now.getFullYear());
 const manifestPath = path.join(root, "data", "article-manifest.json");
 const manifest = fs.existsSync(manifestPath) ? JSON.parse(fs.readFileSync(manifestPath, "utf8")) : [];
+const pageModifiedPath = path.join(root, "data", "page-modified.json");
+if (!fs.existsSync(pageModifiedPath)) {
+  throw new Error("data/page-modified.json is required to build sitemap lastmod values");
+}
+const pageModified = JSON.parse(fs.readFileSync(pageModifiedPath, "utf8"));
 const used = new Set(manifest.map((article) => article.slug));
 
 function joinedPattern(...parts) {
@@ -50,17 +56,40 @@ function joinedPattern(...parts) {
 // deliberately assembled in parts so the retired claims cannot be copied out
 // of this source as ready-to-publish prose.
 const LIST_SEPARATOR = "(?:\\s+|\\s*(?:,|/)\\s*(?:(?:and|&)\\s*)?|\\s*(?:and|&)\\s*)";
+const RESTRICTION_VERB = "(?:av\\x6fid|skip|do n\\x6ft|don['’]t|hold off on|refrain from|stay away from|keep away from|cut out|go without|omit|take a break from)";
+const CARE_WINDOW_TERM = "(?:recover(?:y|ing)?|rest|soreness|healing|aftercare|return|wait|delay|pause)";
+const FIXED_HOUR_WINDOW = "(?:(?:\\d+|one|two|three|four|five|six|eight|ten|twelve|twenty-four|forty-eight|seventy-two)[ -]?(?:hours?|hrs?|h|days?))";
+const RECURRING_INTERVAL = "(?:monthly|quarterly|each month|every month|every quarter|once (?:a|every|per) month|once per quarter|every (?:\\d+|one|two|three|four|five|six|eight|ten|twelve) (?:days?|weeks?|months?)|once per (?:\\d+|one|two|three|four|five|six|eight|ten|twelve) (?:days?|weeks?|months?))";
+const SESSION_TERM = "(?:cupping|hijama|sessions?|appointments?|return)";
+const CONDITION_TERM = "(?:pregnan(?:t|cy)|breastfeeding|dia\\x62etes|dia\\x62etics?|ins\\x75lin|blood[ -]?th\\x69nners?|blood[ -]?th\\x69nning (?:medicine|medication)|anticoagulants?)";
+const RULE_TERM = "(?:book|treat|session|suitable|unsuitable|contraindicat|av\\x6fid|must|should|can|cannot|eligible|allowed|need|require|permission|clearance|prohibit|barred|excluded)";
+const POST_BIRTH_TERM = "(?:postpartum|after (?:giving )?birth|after delivery)";
+const FIXED_POST_BIRTH_INTERVAL = "(?:(?:\\d+|one|two|three|four|five|six|eight|ten|twelve)\\s*(?:weeks?|months?))";
 const RETIRED_CLAIM_CHECKS = [
-  ["weak religious citation", joinedPattern("Tir", "midhi\\s*2051")],
+  ["weak religious citation", joinedPattern("Tir", "midhi(?:\\s*2051)?")],
   ["prescribed lunar dates", joinedPattern("17(?:th)?", LIST_SEPARATOR, "19(?:th)?", LIST_SEPARATOR, "21(?:st)?")],
-  ["religious date promotion", joinedPattern("Sun", "nah[- ](?:days?|dates?)")],
+  ["religious date promotion", joinedPattern("Sun", "nah[^.!?<>]{0,30}(?:days?|dates?)")],
   ["fixed recovery window", joinedPattern("normally settles within\\s*", "24", "\\s*(?:[–-]|to)\\s*", "48", "\\s*(?:h|hours?)")],
   ["post-birth interval", joinedPattern("wait(?:ing)? at least (?:three|3) months? after birth")],
   ["recurring treatment schedule", joinedPattern("once every ", "(?:three|3) months?|quarterly (?:rhythm|sessions?)")],
   ["fixed washing and exercise rule", joinedPattern("n\\x6f showers,? baths,? pools,? saunas (?:or|and) gyms|", "48[- ]hour rule|n\\x6f[- ]sweat window")],
   ["dietary rule", joinedPattern("av\\x6fid heavy meat (?:and|or) dairy|what to eat after hijama|what to skip for a day")],
   ["driving outcome", joinedPattern("most clients drive home ", "normally")],
-  ["condition-specific suitability", joinedPattern("\\b(?:dia\\x62etes|type 1 dia\\x62etes|type 2 dia\\x62etes|ins\\x75lin|blood[ -]?th\\x69nners?)\\b")],
+  ["washing restriction", joinedPattern("\\b", RESTRICTION_VERB, "\\b[^.!?<>]{0,90}\\b(?:shower(?:ing|s)?|baths?|bathe|bathing|wash(?:ing)?|pools?|swimming|saunas?|steam rooms?)\\b")],
+  ["direct washing ban", joinedPattern("\\bn\\x6f\\s+(?:(?:hot|cold)\\s+)?(?:shower(?:ing|s)?|baths?|bathing|washing|swimming|saunas?|steam rooms?)\\b")],
+  ["keep-site-dry rule", joinedPattern("\\b(?:keep|leave)\\b[^.!?<>]{0,50}\\b(?:area|skin|sites?|marks?)\\b[^.!?<>]{0,20}\\bdry\\b|\\b(?:wait|delay|postpone)\\b[^.!?<>]{0,50}\\b(?:shower(?:ing)?|bathe|bathing|wash(?:ing)?)\\b")],
+  ["exercise restriction", joinedPattern("\\b", RESTRICTION_VERB, "\\b[^.!?<>]{0,90}\\b(?:gyms?|exercise|sport|training|sweat(?:ing)?)\\b")],
+  ["direct exercise ban", joinedPattern("\\bn\\x6f\\s+(?:(?:strenuous|vigorous|heavy)\\s+)?(?:gyms?|exercise|workouts?|sport|training|sweat(?:ing)?)\\b")],
+  ["workout restriction", joinedPattern("\\b", RESTRICTION_VERB, "\\b[^.!?<>]{0,90}\\bworkouts?\\b")],
+  ["food restriction", joinedPattern("\\b", RESTRICTION_VERB, "\\b[^.!?<>]{0,90}\\b(?:meat|dairy)\\b")],
+  ["direct food ban", joinedPattern("\\bn\\x6f\\s+(?:(?:red|heavy)\\s+)?(?:meat|dairy)\\b")],
+  ["fixed care window", joinedPattern("\\b", CARE_WINDOW_TERM, "\\b[^.!?<>]{0,70}\\b", FIXED_HOUR_WINDOW, "\\b|\\b", FIXED_HOUR_WINDOW, "\\b[^.!?<>]{0,70}\\b", CARE_WINDOW_TERM, "\\b")],
+  ["recurring treatment interval", joinedPattern("\\b", RECURRING_INTERVAL, "\\b[^.!?<>]{0,80}\\b", SESSION_TERM, "\\b|\\b", SESSION_TERM, "\\b[^.!?<>]{0,80}\\b", RECURRING_INTERVAL, "\\b")],
+  ["fixed session cadence", joinedPattern("\\b(?:\\d+|one|two|three|four|five|six|eight|ten|twelve|once|twice) (?:sessions?|appointments?|times?) (?:a|per|each) (?:week|month|quarter|year)\\b")],
+  ["post-birth waiting rule", joinedPattern("\\b(?:wait|waiting|delay)\\b[^.!?<>]{0,60}\\b", POST_BIRTH_TERM, "\\b|\\b", POST_BIRTH_TERM, "\\b[^.!?<>]{0,60}\\b(?:wait|waiting|weeks?|months?)\\b|\\b", FIXED_POST_BIRTH_INTERVAL, "\\b[^.!?<>]{0,20}\\b", POST_BIRTH_TERM, "\\b|\\b", POST_BIRTH_TERM, "\\b[^.!?<>]{0,20}\\b", FIXED_POST_BIRTH_INTERVAL, "\\b")],
+  ["driving assurance", joinedPattern("\\b(?:you|clients?|most people|people)\\b[^.!?<>]{0,30}\\b(?:can|may|usually|normally)\\b[^.!?<>]{0,20}\\bdrive\\b|\\b(?:safe|fit|fine|okay|ok) to drive\\b|\\bdrive home (?:safely|normally)\\b|\\bdriv(?:e|ing)\\b[^.!?<>]{0,50}\\b(?:safe|fine|okay|ok|normal)\\b")],
+  ["condition-specific treatment rule", joinedPattern("\\b", CONDITION_TERM, "\\b[^.!?<>]{0,100}\\b", RULE_TERM, "\\b|\\b", RULE_TERM, "\\b[^.!?<>]{0,100}\\b", CONDITION_TERM, "\\b")],
+  ["unsupported sterile-item claim", joinedPattern("\\bsteril(?:e|ised|ized) (?:equipment|cups?|blades?|lancets?|instruments?|tools?)\\b|\\b(?:equipment|cups?|blades?|lancets?|instruments?|tools?) (?:is |are )?steril(?:e|ised|ized)\\b")],
   ["age-specific suitability", joinedPattern("\\b(?:older ", "clients|older adults|over-?60s)\\b")],
   ["unsupported recovery timeline", joinedPattern("\\b(?:day[- ]by[- ]day|healing) ", "timeline\\b|when (?:you )?can return to work after")],
   ["prescriptive day plan", joinedPattern("copy-and-follow plan for treatment day")],
@@ -71,10 +100,29 @@ const RETIRED_CLAIM_CHECKS = [
   ["unsupported care standard", joinedPattern("clin\\x69cal standard")],
 ];
 
+function normaliseClaimText(source) {
+  return String(source)
+    .replace(/<\/?(?:a|abbr|b|bdi|bdo|br|cite|code|data|del|em|i|ins|kbd|mark|q|s|samp|small|span|strong|sub|sup|time|u|var|wbr)\b[^>]*>/gi, " ")
+    .replace(/<[^>]+>/g, ". ")
+    .replace(/&(?:nbsp|#160);/gi, " ")
+    .replace(/&(?:amp|#38);/gi, "&")
+    .replace(/&(?:apos|#39|rsquo|#8217);/gi, "'")
+    .replace(/\s+/g, " ");
+}
+
+function removeExplicitRuleDenials(source) {
+  return String(source)
+    .replace(/\bn\x6f universal rule (?:on|about|for) [^.!?<>]{0,80}(?:is|was) (?:provided|published|stated)\b/gi, " ")
+    .replace(/\bdo n\x6ft assume that [^.!?<>]{0,80}(?:is|are) (?:prohibited|banned|restricted|required)\b/gi, " ");
+}
+
 function retiredClaimErrors(label, source) {
   const errors = [];
+  const sources = [String(source), normaliseClaimText(source)].map(removeExplicitRuleDenials);
   for (const [claimLabel, pattern] of RETIRED_CLAIM_CHECKS) {
-    if (pattern.test(source)) errors.push(`${label}: retired claim (${claimLabel})`);
+    if (sources.some((candidate) => pattern.test(candidate))) {
+      errors.push(`${label}: retired claim (${claimLabel})`);
+    }
   }
   return errors;
 }
@@ -328,6 +376,12 @@ function articleSchema(topic, publishedIso, modifiedIso, url) {
     about.push({"@type": "Place", name: String(topic.area).trim()});
   }
 
+  const additionalCitations = Array.isArray(topic.sources)
+    ? topic.sources
+      .filter((source) => source?.name && source?.url)
+      .map((source) => ({"@type": "WebPage", name: String(source.name), url: String(source.url)}))
+    : [];
+
   return `<script type="application/ld+json">${JSON.stringify({
     "@context": "https://schema.org",
     "@type": "Article",
@@ -345,6 +399,7 @@ function articleSchema(topic, publishedIso, modifiedIso, url) {
     },
     citation: [
       {"@type": "WebPage", name: "NCCIH — Cupping", url: "https://www.nccih.nih.gov/health/cupping"},
+      ...additionalCitations,
     ],
     publisher: {"@id": `${business.domain}/#clinic`},
     image: `${business.domain}/assets/img/wet-cupping-therapy-1600.jpg`,
@@ -378,10 +433,22 @@ function topicContentHtml(topic) {
     return `      <h2>${escapeHtml(section.heading)}</h2>\n${paragraphs}${items}`;
   }).join("\n\n");
 
+  const additionalSources = Array.isArray(topic.sources) && topic.sources.length
+    ? `
+
+      <h2>Sources specific to this guide</h2>
+      <ul>
+${topic.sources
+    .filter((source) => source?.name && source?.url)
+    .map((source) => `        <li><a href="${escapeHtml(source.url)}" rel="noopener">${escapeHtml(source.name)}</a></li>`)
+    .join("\n")}
+      </ul>`
+    : "";
+
   return `      <h2>${escapeHtml(answer.heading)}</h2>
       <p>${escapeHtml(answer.text)}</p>
 
-${renderedSections}`;
+${renderedSections}${additionalSources}`;
 }
 
 function articleHtml(topic, publishedIso, modifiedIso = publishedIso) {
@@ -506,20 +573,28 @@ ${CTA_BAND}`;
 
 function sitemap(articles) {
   const staticUrls = [
-    ["", "1.0", "weekly"],
-    ["services/", "0.9", "monthly"],
-    ["about/", "0.7", "monthly"],
-    ["contact/", "0.8", "monthly"],
-    ["blog/", "0.8", "weekly"],
-    ["privacy/", "0.3", "yearly"],
+    ["/", "1.0", "weekly"],
+    ["/services/", "0.9", "monthly"],
+    ["/about/", "0.7", "monthly"],
+    ["/contact/", "0.8", "monthly"],
+    ["/blog/", "0.8", "weekly"],
+    ["/privacy/", "0.3", "yearly"],
   ];
-  const urls = staticUrls.map(([loc, priority, changefreq]) => `  <url><loc>${business.domain}/${loc}</loc><lastmod>${isoDate}</lastmod><changefreq>${changefreq}</changefreq><priority>${priority}</priority></url>`);
+  const storedDate = (urlPath) => {
+    const value = pageModified[urlPath];
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(String(value || ""))) {
+      throw new Error(`Missing valid stored modified date for ${urlPath}`);
+    }
+    return value;
+  };
+  const urls = staticUrls.map(([urlPath, priority, changefreq]) => `  <url><loc>${business.domain}${urlPath}</loc><lastmod>${storedDate(urlPath)}</lastmod><changefreq>${changefreq}</changefreq><priority>${priority}</priority></url>`);
   for (const article of articles) {
     urls.push(`  <url><loc>${business.domain}/articles/${article.slug}/</loc><lastmod>${article.modified || article.date}</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>`);
   }
   for (const area of business.serviceAreas) {
     const slug = area.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
-    urls.push(`  <url><loc>${business.domain}/areas/${slug}/</loc><lastmod>${isoDate}</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>`);
+    const urlPath = `/areas/${slug}/`;
+    urls.push(`  <url><loc>${business.domain}${urlPath}</loc><lastmod>${storedDate(urlPath)}</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>`);
   }
   return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.join("\n")}\n</urlset>\n`;
 }
@@ -601,6 +676,7 @@ ${articleLines}
 // ---------------------------------------------------------------- execution
 
 const created = [];
+const pendingArticleWrites = [];
 
 if (bespokePath) {
   const payload = JSON.parse(fs.readFileSync(bespokePath, "utf8"));
@@ -608,13 +684,13 @@ if (bespokePath) {
     console.error("Bespoke payload needs slug, title, summary, html");
     process.exit(1);
   }
+  validatePublishableOutput(`article ${payload.slug}`, JSON.stringify(payload));
   const dateIso2 = payload.date || isoDate;
   const modifiedIso2 = payload.modified || dateIso2;
   const dir = path.join(root, "articles", payload.slug);
   const renderedArticle = bespokeArticleHtml(payload, payload.html, dateIso2, modifiedIso2);
   validatePublishableOutput(`article ${payload.slug}`, renderedArticle);
-  fs.mkdirSync(dir, {recursive: true});
-  fs.writeFileSync(path.join(dir, "index.html"), renderedArticle);
+  pendingArticleWrites.push({dir, source: renderedArticle});
   const rec = {slug: payload.slug, title: payload.title, summary: payload.summary,
                date: dateIso2, modified: modifiedIso2, custom: true};
   const ix = manifest.findIndex((a) => a.slug === payload.slug);
@@ -632,8 +708,7 @@ for (const topic of chosen) {
   const articleDir = path.join(root, "articles", topic.slug);
   const renderedArticle = articleHtml(topic, isoDate, isoDate);
   validatePublishableOutput(`article ${topic.slug}`, renderedArticle);
-  fs.mkdirSync(articleDir, {recursive: true});
-  fs.writeFileSync(path.join(articleDir, "index.html"), renderedArticle);
+  pendingArticleWrites.push({dir: articleDir, source: renderedArticle});
   const record = {slug: topic.slug, title: topic.title, summary: topic.summary, date: isoDate, modified: isoDate};
   const existingIndex = manifest.findIndex((article) => article.slug === topic.slug);
   if (existingIndex >= 0) manifest[existingIndex] = record;
@@ -644,7 +719,8 @@ for (const topic of chosen) {
 let rerendered = 0;
 if (rerender) {
   for (const record of manifest) {
-    if (CUSTOM_SLUGS.has(record.slug) || record.custom) continue;
+    const isProtected = CUSTOM_SLUGS.has(record.slug) || record.custom;
+    if (isProtected && !rerenderProtected) continue;
     const sourceTopic = topics.find((t) => t.slug === record.slug) || {
       slug: record.slug,
       title: record.title,
@@ -658,8 +734,7 @@ if (rerender) {
     const articleDir = path.join(root, "articles", record.slug);
     const renderedArticle = articleHtml(topic, record.date, record.modified || record.date);
     validatePublishableOutput(`article ${record.slug}`, renderedArticle);
-    fs.mkdirSync(articleDir, {recursive: true});
-    fs.writeFileSync(path.join(articleDir, "index.html"), renderedArticle);
+    pendingArticleWrites.push({dir: articleDir, source: renderedArticle});
     rerendered += 1;
   }
 }
@@ -678,6 +753,10 @@ for (const [label, output] of [
   ["llms-full.txt", renderedLlmsFull],
 ]) validatePublishableOutput(label, output);
 
+for (const article of pendingArticleWrites) {
+  fs.mkdirSync(article.dir, {recursive: true});
+  fs.writeFileSync(path.join(article.dir, "index.html"), article.source);
+}
 fs.writeFileSync(manifestPath, renderedManifest);
 fs.writeFileSync(path.join(root, "blog", "index.html"), renderedBlog);
 fs.writeFileSync(path.join(root, "sitemap.xml"), renderedSitemap);

@@ -1,23 +1,83 @@
 [
   {
     "slug": "first-hijama-appointment-streatham",
-    "title": "What to expect at your first hijama appointment in Streatham",
+    "title": "What to expect at your first hijama appointment",
     "keyword": "hijama appointment Streatham",
     "intent": "first-time client preparation",
     "service": "Wet cupping / Hijama",
     "area": "Streatham",
     "angle": "consultation, consent, privacy and booking choices",
-    "summary": "A calm overview of the consultation, consent, privacy and practical questions to ask before a first hijama appointment in Streatham."
+    "summary": "A calm overview of the consultation, consent, privacy and practical questions to ask before a first hijama appointment in Streatham.",
+    "promiseTerms": ["first", "privacy"],
+    "content": {
+      "answer": {
+        "heading": "Your first step is choosing the correct appointment",
+        "text": "Start with the women’s or men’s route and check the service name, price, duration and practitioner before confirming. The practitioner explains the booked service and gives you a private opportunity to ask questions before anything begins."
+      },
+      "sections": [
+        {
+          "heading": "Who will you see at a first appointment?",
+          "paragraphs": [
+            "Sister Aisha Mejri provides private appointments for women. Brother Abu Layla provides private appointments for men.",
+            "These named routes let you choose the intended practitioner before Fresha opens."
+          ]
+        },
+        {
+          "heading": "Privacy and consent come before the service",
+          "paragraphs": [
+            "The practitioner explains the stages of the service and gives you an opportunity to ask operational questions. You remain free to pause and ask for clarification before agreeing to proceed.",
+            "Detailed personal medical questions belong with an appropriately qualified healthcare professional."
+          ]
+        },
+        {
+          "heading": "What does wet cupping mean?",
+          "paragraphs": [
+            "The independent NCCIH overview describes wet cupping as a form of cupping in which the skin is pierced before blood flows into the cup. That general definition does not predict an individual outcome.",
+            "Use the published price and duration for the exact appointment you select, rather than assuming every booking follows one timetable."
+          ]
+        }
+      ]
+    }
   },
   {
     "slug": "wet-cupping-men-women-south-london",
-    "title": "Wet cupping for men and women in South London",
+    "title": "Wet cupping for men and women: privacy, comfort and choice",
     "keyword": "wet cupping for men and women South London",
     "intent": "inclusive local service discovery",
     "service": "Wet cupping / Hijama",
     "area": "South London",
     "angle": "same-sex practitioner choices, privacy and published services",
-    "summary": "The published wet cupping choices for men and women, including same-sex practitioners, privacy, prices and appointment durations."
+    "summary": "The published wet cupping choices for men and women, including same-sex practitioners, privacy, prices and appointment durations.",
+    "promiseTerms": ["men", "women"],
+    "content": {
+      "answer": {
+        "heading": "Women and men have separate practitioner routes",
+        "text": "Women can choose a private appointment with Sister Aisha Mejri and men can choose a private appointment with Brother Abu Layla. Each route has its own wet cupping and full spiritual appointment option."
+      },
+      "sections": [
+        {
+          "heading": "Published choices for women",
+          "items": [
+            "Women’s wet cupping: £45 and 45 minutes.",
+            "Women’s full spiritual appointment: £80 and 90 minutes."
+          ]
+        },
+        {
+          "heading": "Published choices for men",
+          "items": [
+            "Men’s wet cupping: £45 and 40 minutes.",
+            "Men’s full spiritual appointment: £80 and 80 minutes."
+          ]
+        },
+        {
+          "heading": "Privacy, comfort and choice",
+          "paragraphs": [
+            "The clinic describes both practitioners’ appointments as private. Contact the clinic before booking if an operational privacy or access detail affects your choice.",
+            "People of every faith and background are welcome. The correct Fresha confirmation should reflect the audience, service, price and duration you selected."
+          ]
+        }
+      ]
+    }
   },
   {
     "slug": "hijama-aftercare-london",
@@ -27,7 +87,43 @@
     "service": "Wet cupping / Hijama",
     "area": "London",
     "angle": "follow written clinic information and ask if anything is unclear",
-    "summary": "How to use the written information supplied for your own appointment and where to direct clinic or medical questions."
+    "summary": "How to use the written information supplied for your own appointment and where to direct clinic or medical questions.",
+    "promiseTerms": ["aftercare", "instructions"],
+    "content": {
+      "answer": {
+        "heading": "Use the instructions supplied for your own appointment",
+        "text": "This guide does not set a universal hijama aftercare routine. Use any information supplied for your appointment, ask the clinic to explain its operational policy, and take a medical concern to an appropriately qualified healthcare professional."
+      },
+      "sections": [
+        {
+          "heading": "What can the clinic answer about aftercare?",
+          "paragraphs": [
+            "The clinic can explain the information it supplied, the service you booked and how to contact it with an operational question.",
+            "A generic web article cannot replace information based on an individual medical assessment."
+          ]
+        },
+        {
+          "heading": "Use independent cupping information",
+          "paragraphs": [
+            "NCCIH publishes an overview of cupping research and possible side effects. Read that independent source alongside the clinic’s operational information.",
+            "The absence of a fixed routine here is deliberate: this page does not prescribe washing, diet, activity or repeat-appointment rules."
+          ]
+        },
+        {
+          "heading": "Where should a medical concern go?",
+          "paragraphs": [
+            "For a medical concern that is not an emergency, contact an appropriately qualified healthcare professional or NHS 111. Call 999 for a life-threatening emergency.",
+            "Do not rely on WhatsApp or a clinic web page for emergency assessment."
+          ]
+        }
+      ]
+    },
+    "sources": [
+      {
+        "name": "NHS — When to use 111",
+        "url": "https://www.nhs.uk/nhs-services/urgent-and-emergency-care-services/when-to-use-111/"
+      }
+    ]
   },
   {
     "slug": "insured-hijama-clinic-streatham",
@@ -651,27 +747,125 @@
     "service": "Wet cupping / Hijama",
     "area": "London",
     "angle": "four exact prices and durations",
-    "summary": "The clinic's four published hijama choices cost £45 or £80 and have service-specific durations of 40, 45, 80 or 90 minutes."
+    "summary": "The clinic's four published hijama choices cost £45 or £80 and have service-specific durations of 40, 45, 80 or 90 minutes.",
+    "promiseTerms": ["cost", "durations"],
+    "content": {
+      "answer": {
+        "heading": "Hijama at this clinic costs £45 or £80",
+        "text": "The price depends on the exact appointment: wet cupping is £45 and a full spiritual appointment is £80. Women’s and men’s routes have different published durations, so check the named Fresha service before confirming."
+      },
+      "sections": [
+        {
+          "heading": "Four current prices and durations",
+          "items": [
+            "Women’s wet cupping: £45 and 45 minutes.",
+            "Men’s wet cupping: £45 and 40 minutes.",
+            "Women’s full spiritual appointment: £80 and 90 minutes.",
+            "Men’s full spiritual appointment: £80 and 80 minutes."
+          ]
+        },
+        {
+          "heading": "Choose the women’s or men’s route",
+          "paragraphs": [
+            "Sister Aisha Mejri provides private appointments for women. Brother Abu Layla provides private appointments for men.",
+            "The generic selector on this site lets you choose the intended audience and service before Fresha opens."
+          ]
+        },
+        {
+          "heading": "Check the cost shown by Fresha",
+          "paragraphs": [
+            "Review the service name, price, duration and appointment details in Fresha before confirming. Contact the clinic if the booking screen does not match the option you intended to select.",
+            "This page reports Sincerity’s own published prices; it does not claim to be a survey of every London provider."
+          ]
+        }
+      ]
+    }
   },
   {
     "slug": "hijama-vs-dry-cupping",
-    "title": "Hijama vs dry cupping: what happens in each",
+    "title": "Hijama vs dry cupping: what actually happens in each",
     "keyword": "hijama vs dry cupping",
     "intent": "comparison research",
     "service": "Wet cupping / Hijama",
     "area": "South London",
     "angle": "method comparison and questions to ask",
-    "summary": "A practical comparison of wet cupping and dry cupping, with questions to ask a provider about the booked method."
+    "summary": "A practical comparison of wet cupping and dry cupping, with questions to ask a provider about the booked method.",
+    "promiseTerms": ["hijama", "dry cupping"],
+    "content": {
+      "answer": {
+        "heading": "Hijama is wet cupping, while dry cupping does not pierce the skin",
+        "text": "NCCIH distinguishes the methods by whether the skin is pierced: dry cupping uses suction without piercing, while wet cupping includes piercing before blood flows into the cup. This clinic’s current catalogue lists wet cupping services."
+      },
+      "sections": [
+        {
+          "heading": "What dry cupping means",
+          "paragraphs": [
+            "The NCCIH overview describes dry cupping as a method in which a cup creates suction on the skin without piercing it.",
+            "That definition identifies the method; it does not establish a promised outcome."
+          ]
+        },
+        {
+          "heading": "What wet cupping or hijama means",
+          "paragraphs": [
+            "In the same independent overview, wet cupping involves piercing the skin before blood flows into the cup. Hijama is the secondary name this clinic uses for wet cupping.",
+            "Ask a provider to name the method attached to a booking rather than assuming all cupping appointments are the same."
+          ]
+        },
+        {
+          "heading": "What Sincerity currently offers",
+          "paragraphs": [
+            "Sincerity publishes four wet cupping or full spiritual appointment choices for women and men. It does not list a dry-cupping service in the current catalogue.",
+            "The booking confirmation should match the audience, service, price and duration selected on this site."
+          ]
+        }
+      ]
+    }
   },
   {
     "slug": "hijama-vs-massage",
-    "title": "Hijama or massage? Comparing two different practices",
+    "title": "Hijama vs massage: how to choose sensibly",
     "keyword": "hijama vs massage",
     "intent": "comparison research",
     "service": "Wet cupping / Hijama",
     "area": "South London",
     "angle": "practice comparison without outcome claims",
-    "summary": "How hijama and massage differ as practices, and why personal medical questions should be taken to a healthcare professional."
+    "summary": "How hijama and massage differ as practices, and why personal medical questions should be taken to a healthcare professional.",
+    "promiseTerms": ["hijama", "massage"],
+    "content": {
+      "answer": {
+        "heading": "Hijama and massage use different methods",
+        "text": "Hijama is wet cupping, whereas massage involves manipulating soft tissues. Sincerity publishes wet cupping services and does not list massage, so this comparison explains methods rather than recommending one for an individual."
+      },
+      "sections": [
+        {
+          "heading": "What hijama involves",
+          "paragraphs": [
+            "NCCIH describes wet cupping as using suction and piercing the skin before blood flows into the cup. The evidence for cupping is limited and the source also describes possible side effects.",
+            "Sincerity uses hijama as a secondary name for wet cupping."
+          ]
+        },
+        {
+          "heading": "What massage involves",
+          "paragraphs": [
+            "The separate NCCIH massage overview describes massage therapy as manipulation of the body’s soft tissues. It is not the same procedure as wet cupping.",
+            "Definitions alone do not decide which practice is appropriate for a particular person."
+          ]
+        },
+        {
+          "heading": "How to choose sensibly",
+          "paragraphs": [
+            "First confirm which service a provider actually offers and read independent information about that method. Sincerity’s published service list contains wet cupping and full spiritual appointments, not massage.",
+            "Take personal medical questions to an appropriately qualified healthcare professional rather than relying on a comparison page."
+          ]
+        }
+      ]
+    },
+    "sources": [
+      {
+        "name": "NCCIH — Massage Therapy: What You Need To Know",
+        "url": "https://www.nccih.nih.gov/health/massage-therapy-what-you-need-to-know"
+      }
+    ]
   },
   {
     "slug": "what-to-wear-hijama",
@@ -681,17 +875,83 @@
     "service": "Wet cupping / Hijama",
     "area": "Streatham",
     "angle": "ask the clinic about access, privacy and clothing",
-    "summary": "Practical questions to ask the clinic about clothing, access and privacy before a hijama appointment."
+    "summary": "Practical questions to ask the clinic about clothing, access and privacy before a hijama appointment.",
+    "promiseTerms": ["clothing", "privacy"],
+    "content": {
+      "answer": {
+        "heading": "There is no published mandatory clothing rule",
+        "text": "The clinic does not publish a required outfit for hijama. Ask before travelling if you need to know how clothing access or privacy will be handled for the appointment you selected."
+      },
+      "sections": [
+        {
+          "heading": "Ask the clinic what clothing access is needed",
+          "paragraphs": [
+            "An operational question about access can be answered before booking without sending detailed health information through a general enquiry.",
+            "Ask for clarification if the answer affects whether the chosen service works for you."
+          ]
+        },
+        {
+          "heading": "Privacy starts with the practitioner route",
+          "paragraphs": [
+            "Women’s private appointments are with Sister Aisha Mejri. Men’s private appointments are with Brother Abu Layla.",
+            "Choose the matching route and confirm the service details shown by Fresha."
+          ]
+        },
+        {
+          "heading": "What can be confirmed before travelling?",
+          "paragraphs": [
+            "The clinic can confirm operational access, the address and the appointment attached to your booking. The four published services each have their own price and duration.",
+            "Use the contact page for an operational question and the generic selector when you are ready to choose an appointment."
+          ]
+        }
+      ]
+    }
   },
   {
     "slug": "can-i-drive-after-hijama",
-    "title": "Can I drive home after hijama? Questions to consider",
+    "title": "Can I drive home after hijama?",
     "keyword": "drive after hijama",
     "intent": "travel planning",
     "service": "Wet cupping / Hijama",
     "area": "South London",
     "angle": "individual decision and alternative travel planning",
-    "summary": "Questions to consider when planning the journey home after hijama, without assuming a particular outcome for every client."
+    "summary": "Questions to consider when planning the journey home after hijama, without assuming a particular outcome for every client.",
+    "promiseTerms": ["drive", "journey"],
+    "content": {
+      "answer": {
+        "heading": "There is no universal driving clearance",
+        "text": "The clinic does not assess whether someone should control a vehicle after an appointment. Each driver remains responsible for complying with the Highway Code; if there is uncertainty, arrange another journey option."
+      },
+      "sections": [
+        {
+          "heading": "What can the clinic say about driving?",
+          "paragraphs": [
+            "The clinic can confirm the address, the booked service and its published duration. It does not provide an individual driving assessment or a universal waiting period.",
+            "A web page cannot observe the driver, the vehicle or the conditions at the time of travel."
+          ]
+        },
+        {
+          "heading": "Plan the journey before the appointment",
+          "paragraphs": [
+            "The clinic is at 330 Streatham High Rd, London SW16 6HH. Use live directions to compare public transport, a taxi or a lift before setting out.",
+            "The contact page provides a click-only Google Maps link and the clinic telephone number for operational questions."
+          ]
+        },
+        {
+          "heading": "Read the official driving rule",
+          "paragraphs": [
+            "Highway Code Rule 90 gives drivers the official responsibility relevant to their ability to control a vehicle.",
+            "That rule is the authoritative starting point; this clinic guide does not add a cupping-specific clearance rule."
+          ]
+        }
+      ]
+    },
+    "sources": [
+      {
+        "name": "GOV.UK — The Highway Code, rules for drivers and motorcyclists",
+        "url": "https://www.gov.uk/guidance/the-highway-code/rules-for-drivers-and-motorcyclists-89-to-102"
+      }
+    ]
   },
   {
     "slug": "wet-cupping-streatham-hill",
