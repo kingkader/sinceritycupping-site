@@ -103,7 +103,19 @@ test("homepage excludes network fonts and retired claims", () => {
 test("homepage uses the approved accessible visual tokens", () => {
   assert.match(css, /--cream:\s*#fbf7ee/i);
   assert.match(css, /--forest:\s*#163129/i);
+  assert.match(css, /--control:\s*#7b8a82/i);
+  assert.match(
+    css,
+    /\.form-field input,\s*\.form-field textarea\s*\{[^}]*border:\s*1\.5px solid var\(--control\)/s,
+  );
   assert.match(css, /prefers-reduced-motion/);
+});
+
+test("homepage exposes the service-area links as a named navigation landmark", () => {
+  assert.match(
+    home,
+    /<nav\b[^>]*class="area-links reveal"[^>]*aria-label="Areas served"[^>]*>[\s\S]*?<\/nav>/i,
+  );
 });
 
 test("mobile navigation keeps no-JS content in flow and scopes collapse styles to JS", () => {

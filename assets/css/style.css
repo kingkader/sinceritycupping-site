@@ -903,7 +903,7 @@ details.faq .faq-body { padding: 0 1.2rem 1.1rem; font-size: 0.98rem; }
   font: inherit;
   color: var(--ink);
   padding: 0.75rem 0.95rem;
-  border: 1.5px solid var(--line);
+  border: 1.5px solid var(--control);
   border-radius: var(--r-inner);
   background: #fff;
   transition: border-color 0.2s ease, box-shadow 0.2s ease;

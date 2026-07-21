@@ -185,6 +185,14 @@ test("contact opening hours table has an accessible caption and row headers", ()
   assert.match(table, /<th\s+scope="row"[^>]*>Daily<\/th>/i);
 });
 
+test("contact directions card is a named section landmark", () => {
+  const contact = read("contact/index.html");
+  assert.match(
+    contact,
+    /<section\b[^>]*class="card"[^>]*aria-labelledby="directions-title"[^>]*>[\s\S]*?<h2 id="directions-title">/i,
+  );
+});
+
 test("contact required inputs do not appear invalid before interaction", () => {
   const contact = read("contact/index.html");
   const requiredInputs = [...contact.matchAll(/<input\b[^>]*\brequired\b[^>]*>/gi)]
