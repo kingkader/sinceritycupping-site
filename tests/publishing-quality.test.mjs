@@ -9,20 +9,20 @@ import test from "node:test";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const generatorPath = path.join(root, "scripts", "generate-articles.mjs");
-const generator = fs.readFileSync(generatorPath, "utf8");
 const business = JSON.parse(fs.readFileSync(path.join(root, "data", "business.json"), "utf8"));
 const topics = JSON.parse(fs.readFileSync(path.join(root, "data", "article-topics.json"), "utf8"));
 const manifest = JSON.parse(fs.readFileSync(path.join(root, "data", "article-manifest.json"), "utf8"));
 
-const fixedCustomSlugs = new Set(
-  [...(generator.match(/const CUSTOM_SLUGS = new Set\(\[([\s\S]*?)\]\);/)?.[1] ?? "")
-    .matchAll(/"([^"]+)"/g)]
-    .map((match) => match[1]),
-);
+const fixedCustomSlugs = new Set([
+  "first-hijama-appointment-streatham",
+  "wet-cupping-men-women-south-london",
+  "hijama-aftercare-london",
+]);
 
 const generatedRecords = manifest.filter((record) => !record.custom && !fixedCustomSlugs.has(record.slug));
 const protectedRecords = manifest.filter((record) => record.custom || fixedCustomSlugs.has(record.slug));
 const allRecords = manifest;
+const rendererRetired = /automatic article rendering is retired.*direct static edits.*human review/is;
 
 const bannedClaims = [
   /Tirmidhi\s*2051/i,
@@ -65,6 +65,9 @@ const bannedClaims = [
   /\b(?:pregnan(?:t|cy)|breastfeeding|diabetes|insulin|blood[ -]?thinners?|anticoagulants?)\b[^.!?]{0,100}\b(?:book|treat|session|suitable|unsuitable|contraindicat|avoid|must|should|can|cannot|eligible|allowed)\b/i,
   /\b(?:book|treat|session|suitable|unsuitable|contraindicat|avoid|must|should|can|cannot|eligible|allowed)\b[^.!?]{0,100}\b(?:pregnan(?:t|cy)|breastfeeding|diabetes|insulin|blood[ -]?thinners?|anticoagulants?)\b/i,
   /\bsterile (?:equipment|cups?|blades?|lancets?)\b/i,
+  /\b(?:treated|cupped) area\b[^.!?]{0,60}\b(?:must|should|needs? to)\b[^.!?]{0,30}\b(?:remain|stay|be kept)\b[^.!?]{0,20}\bdry\b/i,
+  /\b(?:wait|waiting)\b[^.!?]{0,40}\b(?:\d+|one|two|three|four|five|six|seven|eight|nine|ten|twelve) weeks?\b[^.!?]{0,35}\b(?:after childbirth|after birth|postpartum)\b/i,
+  /\bdriving may resume\b[^.!?]{0,50}\b(?:steady|well|ready)\b/i,
 ];
 
 function read(relativePath) {
@@ -143,14 +146,13 @@ const fixturePageModified = {
   ])),
 };
 
-function makeGeneratorFixture({fixtureTopics = [], fixtureManifest = [], mutateBusiness} = {}) {
+function makeGeneratorFixture({fixtureTopics = [], fixtureManifest = []} = {}) {
   const fixture = fs.mkdtempSync(path.join(os.tmpdir(), "sincerity-generator-"));
   fs.mkdirSync(path.join(fixture, "data"), {recursive: true});
   fs.mkdirSync(path.join(fixture, "articles"), {recursive: true});
   fs.mkdirSync(path.join(fixture, "blog"), {recursive: true});
 
   const fixtureBusiness = structuredClone(business);
-  if (mutateBusiness) mutateBusiness(fixtureBusiness);
 
   fs.writeFileSync(path.join(fixture, "data", "business.json"), `${JSON.stringify(fixtureBusiness, null, 2)}\n`);
   fs.writeFileSync(path.join(fixture, "data", "article-topics.json"), `${JSON.stringify(fixtureTopics, null, 2)}\n`);
@@ -198,9 +200,22 @@ function assertSentinelsUnchanged(fixture, before) {
 
 test("all 24 articles answer their own title and summary promises", () => {
   assert.equal(allRecords.length, 24);
+  const manifestSlugs = allRecords.map((record) => record.slug);
+  const topicSlugs = topics.map((topic) => topic.slug);
+  const articleDirectories = fs.readdirSync(path.join(root, "articles"), {withFileTypes: true})
+    .filter((entry) => entry.isDirectory())
+    .map((entry) => entry.name)
+    .sort();
+  assert.equal(new Set(manifestSlugs).size, manifestSlugs.length, "duplicate manifest slug");
+  assert.equal(new Set(topicSlugs).size, topicSlugs.length, "duplicate topic slug");
+  for (const slug of topicSlugs) assert.match(slug, /^[a-z0-9]+(?:-[a-z0-9]+)*$/, `unsafe topic slug: ${slug}`);
+  assert.deepEqual(articleDirectories, [...manifestSlugs].sort(), "missing or orphan committed article directory");
 
   for (const record of allRecords) {
-    const topic = topics.find((item) => item.slug === record.slug);
+    assert.match(record.slug, /^[a-z0-9]+(?:-[a-z0-9]+)*$/, `unsafe committed slug: ${record.slug}`);
+    const matchingTopics = topics.filter((item) => item.slug === record.slug);
+    assert.equal(matchingTopics.length, 1, `expected one topic for ${record.slug}`);
+    const [topic] = matchingTopics;
     assert.ok(topic, `missing topic for ${record.slug}`);
     assert.ok(topic.content?.answer?.heading, `missing answer heading for ${record.slug}`);
     assert.ok(topic.content?.answer?.text, `missing answer text for ${record.slug}`);
@@ -240,7 +255,7 @@ test("no two article bodies exceed 0.80 five-word-shingle similarity", () => {
   }
 });
 
-test("all publishable topic and LLM inputs exclude retired claims", () => {
+test("all committed topic, article, manifest and LLM sources exclude retired claims", () => {
   const sources = [
     ["data/article-topics.json", JSON.stringify(topics)],
     ["data/article-manifest.json", JSON.stringify(manifest)],
@@ -367,7 +382,7 @@ test("automatic new-topic publishing is disabled before any write for harmless a
     const result = runGenerator(fixture, ...item.args);
 
     assert.notEqual(result.status, 0, `${item.label}: generator unexpectedly succeeded`);
-    assert.match(result.stderr, /automatic article publishing is disabled.*manual review/i);
+    assert.match(result.stderr, rendererRetired);
     assertSentinelsUnchanged(fixture, before);
     assert.equal(fs.existsSync(path.join(fixture, "articles", slug, "index.html")), false);
   }
@@ -380,7 +395,7 @@ test("disabled publishing exits before reading project files", (t) => {
   const result = runGenerator(fixture, "--count=1");
 
   assert.notEqual(result.status, 0, result.stderr || result.stdout);
-  assert.match(result.stderr, /automatic article publishing is disabled.*manual review/i);
+  assert.match(result.stderr, rendererRetired);
   assert.doesNotMatch(result.stderr, /ENOENT|business\.json|article-topics/i);
   assert.deepEqual(fs.readdirSync(fixture), []);
 });
@@ -423,7 +438,7 @@ test("reviewed rerender rejects unsafe slugs before any write or path escape", (
     const result = runGenerator(fixture, "--count=0", "--rerender");
 
     assert.notEqual(result.status, 0, `${unsafeSlug}: generator unexpectedly succeeded`);
-    assert.match(result.stderr, /invalid.*slug/i);
+    assert.match(result.stderr, rendererRetired);
     assertSentinelsUnchanged(fixture, before);
     assert.deepEqual(fs.readFileSync(areaPath), areaBefore, `${unsafeSlug}: area path was mutated`);
   }
@@ -460,33 +475,31 @@ test("reviewed rerender rejects duplicate topic and manifest slugs before any wr
     const result = runGenerator(fixture, "--count=0", "--rerender");
 
     assert.notEqual(result.status, 0, `${item.label}: generator unexpectedly succeeded`);
-    assert.match(result.stderr, /duplicate.*slug/i);
+    assert.match(result.stderr, rendererRetired);
     assertSentinelsUnchanged(fixture, before);
   }
 });
 
-test("operator scripts and workflow expose reviewed rerendering only", () => {
+test("operator surfaces validate committed static articles without rendering or publishing", () => {
   const packageJson = JSON.parse(read("package.json"));
   const workflow = read(".github/workflows/seo-articles.yml");
   const bespokeWrapper = read("scripts/write-article.mjs");
 
-  assert.equal(
-    packageJson.scripts["rerender:articles"],
-    "node scripts/generate-articles.mjs --count=0 --rerender",
-  );
   assert.equal("generate:articles" in packageJson.scripts, false);
+  assert.equal("rerender:articles" in packageJson.scripts, false);
 
   assert.match(workflow, /workflow_dispatch:/);
-  assert.doesNotMatch(workflow, /\bschedule:|\bcron:|git-auto-commit|pages deploy|--bespoke|--count=[1-9]/i);
-  assert.match(workflow, /npm run rerender:articles/);
+  assert.match(workflow, /npm test/);
+  assert.match(workflow, /npm run build/);
+  assert.match(workflow, /npm run check:dist/);
   assert.match(workflow, /git diff --exit-code/);
-  assert.match(workflow, /git status --porcelain/);
+  assert.doesNotMatch(workflow, /generate-articles|write-article|rerender|\bschedule:|\bcron:|git-auto-commit|pages deploy|wrangler/i);
 
   assert.doesNotMatch(bespokeWrapper, /spawnSync|--bespoke/);
-  assert.match(bespokeWrapper, /manual review/i);
+  assert.match(bespokeWrapper, /(?:manual|human) review/i);
 });
 
-test("claim gate still rejects a banned reviewed topic before writing any output", (t) => {
+test("retired renderer rejects reviewed data containing a direct retired claim without writes", (t) => {
   const badTopic = {
     slug: "unsafe-fixture",
     title: "Unsafe fixture",
@@ -511,12 +524,12 @@ test("claim gate still rejects a banned reviewed topic before writing any output
   const result = runGenerator(fixture, "--count=0", "--rerender", "--date=2099-12-31");
 
   assert.equal(result.status, 1, result.stderr || result.stdout);
-  assert.match(result.stderr, /unsafe-fixture.*retired claim/i);
+  assert.match(result.stderr, rendererRetired);
   assertSentinelsUnchanged(fixture, before);
   assert.equal(fs.existsSync(path.join(fixture, "articles", "unsafe-fixture", "index.html")), false);
 });
 
-test("generator rejects retired lunar-date variants before writing any output", (t) => {
+test("retired renderer cannot publish lunar-date variants", (t) => {
   const variants = [
     "17th 19th 21st",
     "17th, 19th and 21st",
@@ -550,13 +563,13 @@ test("generator rejects retired lunar-date variants before writing any output", 
     const result = runGenerator(fixture, "--count=0", "--rerender", "--date=2099-12-31");
 
     assert.equal(result.status, 1, `${angle}: ${result.stderr || result.stdout}`);
-    assert.match(result.stderr, new RegExp(`${slug}.*retired claim`, "i"));
+    assert.match(result.stderr, rendererRetired);
     assertSentinelsUnchanged(fixture, before);
     assert.equal(fs.existsSync(path.join(fixture, "articles", slug, "index.html")), false);
   }
 });
 
-test("central gate rejects paraphrased care rules without mutating any output", (t) => {
+test("retired renderer cannot publish paraphrased care rules", (t) => {
   const variants = [
     "avoid showers for 24 hours",
     "avoid dairy after cupping",
@@ -618,7 +631,7 @@ test("central gate rejects paraphrased care rules without mutating any output", 
     const result = runGenerator(fixture, "--count=0", "--rerender", "--date=2099-12-31");
 
     assert.notEqual(result.status, 0, `${unsafeText}: generator unexpectedly succeeded`);
-    assert.match(result.stderr, new RegExp(`${slug}.*retired claim`, "i"));
+    assert.match(result.stderr, rendererRetired);
     assertSentinelsUnchanged(fixture, before);
     assert.equal(fs.existsSync(path.join(fixture, "articles", slug, "index.html")), false);
   }
@@ -648,7 +661,7 @@ test("bespoke publishing is disabled before any write for harmless and risky HTM
     const result = runGenerator(fixture, "--count=0", `--bespoke=${payloadPath}`);
 
     assert.notEqual(result.status, 0, result.stderr || result.stdout);
-    assert.match(result.stderr, /automatic article publishing is disabled.*manual review/i);
+    assert.match(result.stderr, rendererRetired);
     assertSentinelsUnchanged(fixture, before);
     assert.equal(fs.existsSync(path.join(fixture, "articles", slug, "index.html")), false);
   }
@@ -662,46 +675,19 @@ test("an empty bespoke flag is still rejected before any write", (t) => {
   const result = runGenerator(fixture, "--count=0", "--rerender", "--bespoke=");
 
   assert.notEqual(result.status, 0, result.stderr || result.stdout);
-  assert.match(result.stderr, /automatic article publishing is disabled.*manual review/i);
+  assert.match(result.stderr, rendererRetired);
   assertSentinelsUnchanged(fixture, before);
 });
 
-test("central gate permits a caveat that explicitly denies a universal rule", (t) => {
-  const topic = {
-    slug: "safe-caveat",
-    title: "Safe caveat",
-    keyword: "safe caveat",
-    intent: "test",
-    service: "Wet cupping",
-    area: "London",
-    angle: "scope boundary",
-    summary: "A safe fixture about the limits of generic guidance.",
-    promiseTerms: ["safe", "caveat"],
-    content: {
-      answer: {
-        heading: "The safe caveat",
-        text: "No universal rule on showers is provided. Do not assume that baths are prohibited.",
-      },
-      sections: [
-        {heading: "First safe section", paragraphs: ["Ask an operational question."]},
-        {heading: "Second safe section", paragraphs: ["Use an independent source."]},
-      ],
-    },
-  };
-  const record = {
-    slug: topic.slug,
-    title: topic.title,
-    summary: topic.summary,
-    date: "2025-01-02",
-    modified: "2026-07-21",
-  };
-  const fixture = makeGeneratorFixture({fixtureTopics: [topic], fixtureManifest: [record]});
-  t.after(() => fs.rmSync(fixture, {recursive: true, force: true}));
-
-  const result = runGenerator(fixture, "--count=0", "--rerender", "--date=2099-12-31");
-
-  assert.equal(result.status, 0, result.stderr || result.stdout);
-  assert.equal(fs.existsSync(path.join(fixture, "articles", topic.slug, "index.html")), true);
+test("all committed article paths are regular static files rather than links", () => {
+  for (const record of manifest) {
+    const articleDirectory = path.join(root, "articles", record.slug);
+    const articlePath = path.join(articleDirectory, "index.html");
+    assert.ok(fs.lstatSync(articleDirectory).isDirectory(), `non-directory article path: ${record.slug}`);
+    assert.equal(fs.lstatSync(articleDirectory).isSymbolicLink(), false, `linked article directory: ${record.slug}`);
+    assert.ok(fs.lstatSync(articlePath).isFile(), `non-file article page: ${record.slug}`);
+    assert.equal(fs.lstatSync(articlePath).isSymbolicLink(), false, `linked article page: ${record.slug}`);
+  }
 });
 
 test("privacy notice identifies the UK controller and required processing details", () => {
@@ -904,150 +890,89 @@ test("sitemap static and area lastmod values come only from stored page dates", 
 
 });
 
-test("future rerender dates cannot churn static or area sitemap entries", (t) => {
-  const fixture = makeGeneratorFixture();
-  t.after(() => fs.rmSync(fixture, {recursive: true, force: true}));
-  const first = runGenerator(fixture, "--count=0", "--rerender", "--date=2099-01-01");
-  assert.equal(first.status, 0, first.stderr || first.stdout);
-  const before = fs.readFileSync(path.join(fixture, "sitemap.xml"));
-  const second = runGenerator(fixture, "--count=0", "--rerender", "--date=2099-12-31");
-  assert.equal(second.status, 0, second.stderr || second.stdout);
-  const after = fs.readFileSync(path.join(fixture, "sitemap.xml"));
-  assert.deepEqual(after, before, "future invocation date changed unrelated sitemap lastmod values");
-});
-
-test("reviewed rerender output is byte-identical across invocation dates", (t) => {
-  const record = {
-    slug: "deterministic-rerender-fixture",
-    title: "A deterministic cupping rerender fixture",
-    summary: "A safe summary used to verify deterministic reviewed output.",
-    date: "2025-01-02",
-    modified: "2026-07-21",
-  };
-  const fixture = makeGeneratorFixture({fixtureManifest: [record]});
-  t.after(() => fs.rmSync(fixture, {recursive: true, force: true}));
-
-  const outputPaths = [
-    "data/article-manifest.json",
-    "blog/index.html",
-    "sitemap.xml",
-    "llms.txt",
-    "llms-full.txt",
-    `articles/${record.slug}/index.html`,
-  ];
-  const first = runGenerator(fixture, "--count=0", "--rerender", "--date=2026-07-21");
-  assert.equal(first.status, 0, first.stderr || first.stdout);
-  const before = new Map(outputPaths.map((relativePath) => [
-    relativePath,
-    fs.readFileSync(path.join(fixture, relativePath)),
-  ]));
-
-  const second = runGenerator(fixture, "--count=0", "--rerender", "--date=2099-12-31");
-  assert.equal(second.status, 0, second.stderr || second.stdout);
-  for (const relativePath of outputPaths) {
-    assert.deepEqual(
-      fs.readFileSync(path.join(fixture, relativePath)),
-      before.get(relativePath),
-      `${relativePath} changed only because the invocation date changed`,
-    );
+test("committed sitemap dates contain no runtime or future-date churn", () => {
+  const sitemap = read("sitemap.xml");
+  assert.doesNotMatch(sitemap, /<lastmod>2099-/);
+  for (const [urlPath, modified] of Object.entries(fixturePageModified)) {
+    if (urlPath === "/areas/") continue;
+    const expected = `<loc>${business.domain}${urlPath}</loc><lastmod>${modified}</lastmod>`;
+    assert.equal(sitemap.split(expected).length - 1, 1, `stored date drift for ${urlPath}`);
   }
 });
 
-test("explicit protected rerender uses structured topic content without dropping metadata", (t) => {
-  const record = {
-    slug: "protected-fixture",
-    title: "Protected article fixture",
-    summary: "A safe protected article summary.",
-    date: "2025-01-02",
-    modified: "2026-07-21",
-    custom: true,
-  };
-  const topic = {
-    slug: record.slug,
-    title: record.title,
-    summary: record.summary,
-    keyword: "protected article fixture",
-    intent: "test",
-    service: "Wet cupping",
-    area: "London",
-    angle: "safe structured content",
-    promiseTerms: ["protected", "article"],
-    content: {
-      answer: {heading: "The direct answer", text: "This protected article can be safely re-rendered from structured data."},
-      sections: [
-        {heading: "First safe section", paragraphs: ["Safe operational text."]},
-        {heading: "Second safe section", paragraphs: ["Safe operational text."]},
-      ],
-    },
-  };
-  const fixture = makeGeneratorFixture({fixtureTopics: [topic], fixtureManifest: [record]});
-  t.after(() => fs.rmSync(fixture, {recursive: true, force: true}));
+test("committed catalogue agrees across articles, blog, sitemap and both LLM files", () => {
+  const blog = read("blog/index.html");
+  const sitemap = read("sitemap.xml");
+  const llms = read("llms.txt");
+  const llmsFull = read("llms-full.txt");
+  const blogCards = [...blog.matchAll(/<article\b[^>]*class="[^"]*\bcard\b[^"]*"[^>]*>([\s\S]*?)<\/article>/gi)]
+    .map((match) => match[0]);
 
-  const result = runGenerator(fixture, "--count=0", "--rerender", "--rerender-protected", "--date=2099-12-31");
-  assert.equal(result.status, 0, result.stderr || result.stdout);
-  const articlePath = path.join(fixture, "articles", record.slug, "index.html");
-  assert.ok(fs.existsSync(articlePath), "protected article was not rendered");
-  const article = fs.readFileSync(articlePath, "utf8");
-  assert.match(article, /This protected article can be safely re-rendered from structured data\./);
-  const after = JSON.parse(fs.readFileSync(path.join(fixture, "data", "article-manifest.json"), "utf8"));
-  assert.deepEqual(after[0], record);
+  for (const record of manifest) {
+    const relativeUrl = `/articles/${record.slug}/`;
+    const absoluteUrl = `${business.domain}${relativeUrl}`;
+    assert.ok(fs.existsSync(path.join(root, "articles", record.slug, "index.html")), `missing article ${record.slug}`);
+    const matchingCards = blogCards.filter((card) => card.includes(`href="${relativeUrl}"`));
+    assert.equal(matchingCards.length, 1, `blog card drift for ${record.slug}`);
+    const [card] = matchingCards;
+    const cardText = visibleText(card);
+    assert.ok(cardText.includes(record.title), `blog title drift for ${record.slug}`);
+    assert.ok(cardText.includes(record.summary), `blog summary drift for ${record.slug}`);
+    assert.match(card, new RegExp(`<time\\b[^>]*datetime="${record.date}"`), `blog date drift for ${record.slug}`);
+    assert.equal(sitemap.split(`<loc>${absoluteUrl}</loc>`).length - 1, 1, `sitemap drift for ${record.slug}`);
+    const line = `[${record.title}](${absoluteUrl}): ${record.summary}`;
+    assert.equal(llms.split(line).length - 1, 1, `llms.txt drift for ${record.slug}`);
+    assert.equal(llmsFull.split(line).length - 1, 1, `llms-full.txt drift for ${record.slug}`);
+  }
 });
 
-test("article publication and modification dates remain separate on rerender", (t) => {
-  const record = {
-    slug: "date-fixture",
-    title: "A safe cupping date fixture",
-    summary: "A safe summary for generator date testing.",
-    date: "2025-01-02",
-    modified: "2025-03-04",
-  };
-  const topic = {
-    ...record,
-    keyword: "cupping date fixture",
-    intent: "test",
-    service: "Wet cupping",
-    area: "London",
-    angle: "published and updated dates",
-  };
-  delete topic.date;
-  delete topic.modified;
-  const fixture = makeGeneratorFixture({fixtureTopics: [topic], fixtureManifest: [record]});
-  t.after(() => fs.rmSync(fixture, {recursive: true, force: true}));
-
-  const result = runGenerator(fixture, "--count=0", "--rerender", "--date=2099-12-31");
-  assert.equal(result.status, 0, result.stderr || result.stdout);
-
-  const after = JSON.parse(fs.readFileSync(path.join(fixture, "data", "article-manifest.json"), "utf8"));
-  assert.equal(after[0].date, "2025-01-02");
-  assert.equal(after[0].modified, "2025-03-04");
-
-  const article = fs.readFileSync(path.join(fixture, "articles", record.slug, "index.html"), "utf8");
-  const schema = jsonLd(article).find((item) => item["@type"] === "Article");
-  assert.equal(schema.datePublished, "2025-01-02");
-  assert.equal(schema.dateModified, "2025-03-04");
+test("committed protected articles retain reviewed structured content and metadata", () => {
+  assert.equal(protectedRecords.length, 8);
+  for (const record of protectedRecords) {
+    const topic = topics.find((item) => item.slug === record.slug);
+    const article = read(`articles/${record.slug}/index.html`);
+    assert.ok(topic, `missing protected topic ${record.slug}`);
+    assert.match(article, new RegExp(topic.content.answer.heading.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "i"));
+    assert.match(article, new RegExp(topic.content.answer.text.slice(0, 48).replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "i"));
+    const schema = jsonLd(article).find((item) => item["@type"] === "Article");
+    assert.equal(schema?.headline, record.title);
+    assert.equal(schema?.description, record.summary);
+  }
 });
 
-test("generated hours labels, schema and LLM facts derive from business data", (t) => {
-  const fixture = makeGeneratorFixture({
-    mutateBusiness(fixtureBusiness) {
-      fixtureBusiness.openingHours = fixtureBusiness.openingHours.map((entry) => ({
-        ...entry,
-        opens: "09:15",
-        closes: "17:45",
-      }));
-    },
-  });
-  t.after(() => fs.rmSync(fixture, {recursive: true, force: true}));
+test("committed article publication and modification dates remain separate", () => {
+  for (const record of manifest) {
+    assert.match(record.date, /^\d{4}-\d{2}-\d{2}$/);
+    assert.match(record.modified, /^\d{4}-\d{2}-\d{2}$/);
+    assert.ok(record.date < record.modified, `publication date was not preserved for ${record.slug}`);
+    const article = read(`articles/${record.slug}/index.html`);
+    const schema = jsonLd(article).find((item) => item["@type"] === "Article");
+    assert.equal(schema?.datePublished, record.date, `published date drift for ${record.slug}`);
+    assert.equal(schema?.dateModified, record.modified, `modified date drift for ${record.slug}`);
+  }
+});
 
-  const result = runGenerator(fixture, "--count=0", "--rerender", "--date=2099-12-31");
-  assert.equal(result.status, 0, result.stderr || result.stdout);
+test("committed hours labels, schema and LLM facts derive from business data", () => {
+  assert.deepEqual(
+    business.openingHours.map((entry) => entry.day),
+    ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+    "business opening hours must contain each weekday once, in order",
+  );
+  const {opens, closes} = business.openingHours[0];
+  assert.match(opens, /^\d{2}:\d{2}$/);
+  assert.match(closes, /^\d{2}:\d{2}$/);
+  assert.ok(
+    business.openingHours.every((entry) => entry.opens === opens && entry.closes === closes),
+    "daily opening hours must use one consistent time range",
+  );
 
-  const blog = fs.readFileSync(path.join(fixture, "blog", "index.html"), "utf8");
-  const llms = fs.readFileSync(path.join(fixture, "llms.txt"), "utf8");
-  assert.match(visibleText(blog), /Open daily · 09:15–17:45/);
-  assert.match(blog, /"openingHours":"Mo-Su 09:15-17:45"/);
-  assert.match(llms, /Opening hours: daily 09:15–17:45/);
-  assert.doesNotMatch(`${blog}\n${llms}`, /10:00[–-]19:00/);
+  const blog = read("blog/index.html");
+  const llms = read("llms.txt");
+  const llmsFull = read("llms-full.txt");
+  assert.match(visibleText(blog), new RegExp(`Open daily · ${opens}–${closes}`));
+  assert.match(blog, new RegExp(`"openingHours":"Mo-Su ${opens}-${closes}"`));
+  assert.match(llms, new RegExp(`Opening hours: daily ${opens}–${closes}`));
+  assert.match(llmsFull, new RegExp(`Opening hours: daily ${opens}–${closes}`));
 });
 
 test("manifest separates original publication dates from both rewrite batches", () => {

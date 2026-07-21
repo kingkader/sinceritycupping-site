@@ -27,9 +27,32 @@ const publicEntries = [
   "_redirects",
 ];
 
-const missingEntries = publicEntries.filter((entry) => !fs.existsSync(path.join(root, entry)));
+const missingEntries = publicEntries.filter((entry) => {
+  try {
+    fs.lstatSync(path.join(root, entry));
+    return false;
+  } catch (error) {
+    if (error?.code === "ENOENT") return true;
+    throw error;
+  }
+});
 if (missingEntries.length) {
   throw new Error(`Missing public site entries: ${missingEntries.join(", ")}`);
+}
+
+function findSymlinks(absolutePath, relativePath) {
+  const stat = fs.lstatSync(absolutePath);
+  if (stat.isSymbolicLink()) return [relativePath];
+  if (!stat.isDirectory()) return [];
+  return fs.readdirSync(absolutePath)
+    .flatMap((name) => findSymlinks(path.join(absolutePath, name), path.join(relativePath, name)));
+}
+
+const publicSymlinks = publicEntries.flatMap((entry) => (
+  findSymlinks(path.join(root, entry), entry)
+));
+if (publicSymlinks.length) {
+  throw new Error(`Public site inputs must not contain symbolic links: ${publicSymlinks.join(", ")}`);
 }
 
 fs.rmSync(dist, {recursive: true, force: true});

@@ -76,15 +76,8 @@ const corePages = corePagePaths.map((relativePath) => ({
   source: read(relativePath),
 }));
 
-const generator = read("scripts/generate-articles.mjs");
 const manifest = JSON.parse(read("data/article-manifest.json"));
-const fixedCustomSlugs = new Set(
-  [...(generator.match(/const CUSTOM_SLUGS = new Set\(\[([\s\S]*?)\]\);/)?.[1] ?? "")
-    .matchAll(/"([^"]+)"/g)]
-    .map((match) => match[1]),
-);
-const generatedArticles = manifest
-  .filter((article) => !article.custom && !fixedCustomSlugs.has(article.slug))
+const articlePages = manifest
   .map((article) => ({
     relativePath: `articles/${article.slug}/index.html`,
     source: read(`articles/${article.slug}/index.html`),
@@ -155,10 +148,7 @@ test("business data keeps restrained social proof without stale source counts", 
 });
 
 test("every core shell uses the Cupping & prices navigation label and local fonts", () => {
-  for (const {relativePath, source} of [
-    ...corePages,
-    {relativePath: "scripts/generate-articles.mjs", source: generator},
-  ]) {
+  for (const {relativePath, source} of corePages) {
     assert.match(
       source,
       /Cupping (?:&|&amp;) prices/,
@@ -177,7 +167,6 @@ test("core shells use restrained public review wording", () => {
   for (const {relativePath, source} of corePages) {
     assert.match(visibleText(source), /100\+ public reviews/i, `stale review wording in ${relativePath}`);
   }
-  assert.match(generator, /\$\{business\.rating\.displayCount\} public reviews/);
 });
 
 test("contact publishes the same daily opening hours visibly and in metadata", () => {
@@ -284,34 +273,26 @@ test("generic core booking actions route to a selector", () => {
   }
 });
 
-test("core pages and their generator cannot publish retired claims", () => {
-  const sources = [
-    ...corePages,
-    {relativePath: "scripts/generate-articles.mjs", source: generator},
-  ];
-
-  for (const {relativePath, source} of sources) {
+test("committed core pages exclude retired claims", () => {
+  for (const {relativePath, source} of corePages) {
     for (const claim of retiredClaims) {
       assert.doesNotMatch(source, claim, `retired claim in ${relativePath}: ${claim}`);
     }
   }
 });
 
-test("core pages and their generator omit stale exact review splits", () => {
+test("committed core pages omit stale exact review splits", () => {
   const staleReviewSplit = /(?:\d[\d,]*\+?\s+(?:Google|Fresha)\s+reviews?|(?:Google|Fresha)\s+reviews?\s*[:\-]\s*\d|86\s+on\s+Fresha|24\s+on\s+Google)/i;
 
-  for (const {relativePath, source} of [
-    ...corePages,
-    {relativePath: "scripts/generate-articles.mjs", source: generator},
-  ]) {
+  for (const {relativePath, source} of corePages) {
     assert.doesNotMatch(source, staleReviewSplit, `stale review split in ${relativePath}`);
   }
 });
 
-test("generated article shells use generic booking links and stable clinic references", () => {
-  assert.ok(generatedArticles.length > 0, "expected generated article pages");
+test("committed article shells use generic booking links and stable clinic references", () => {
+  assert.equal(articlePages.length, manifest.length, "expected every committed article page");
 
-  for (const {relativePath, source} of generatedArticles) {
+  for (const {relativePath, source} of articlePages) {
     const allShellLinks = namedShellRegions(source).flatMap(anchors);
     const shellLinks = allShellLinks
       .filter((anchor) => /^Book(?: now| an appointment)?$/i.test(anchor.text));
@@ -333,8 +314,8 @@ test("generated article shells use generic booking links and stable clinic refer
   }
 });
 
-test("generated articles align visible review credit with structured authorship", () => {
-  for (const {relativePath, source} of generatedArticles) {
+test("committed articles align visible review credit with structured authorship", () => {
+  for (const {relativePath, source} of articlePages) {
     const article = jsonLd(source).find((item) => item["@type"] === "Article");
     assert.ok(article, `missing Article schema in ${relativePath}`);
     assert.deepEqual(article.author, {"@id": "https://sinceritycupping.co.uk/#clinic"});
@@ -343,10 +324,10 @@ test("generated articles align visible review credit with structured authorship"
   }
 });
 
-test("generated article summaries match their manifest records", () => {
-  const byPath = new Map(generatedArticles.map((article) => [article.relativePath, article.source]));
+test("committed article summaries match their manifest records", () => {
+  const byPath = new Map(articlePages.map((article) => [article.relativePath, article.source]));
 
-  for (const article of manifest.filter((item) => !item.custom && !fixedCustomSlugs.has(item.slug))) {
+  for (const article of manifest) {
     const relativePath = `articles/${article.slug}/index.html`;
     const source = byPath.get(relativePath);
     const description = source.match(/<meta name="description" content="([^"]*)">/i)?.[1];
@@ -356,20 +337,22 @@ test("generated article summaries match their manifest records", () => {
   }
 });
 
-test("core and generated links encode query-string separators", () => {
+test("core and committed article links encode query-string separators", () => {
   const unescapedQuerySeparator = /<a\b[^>]*\bhref="[^"]*&(?!amp;|quot;|apos;|lt;|gt;|#\d+;|#x[\da-f]+;)[^"]*"/i;
 
-  for (const {relativePath, source} of [...corePages, ...generatedArticles]) {
+  for (const {relativePath, source} of [...corePages, ...articlePages]) {
     assert.doesNotMatch(source, unescapedQuerySeparator, `unescaped link query in ${relativePath}`);
   }
 });
 
-test("generator keeps an official cupping safety source and a cupping-first blog heading", () => {
+test("committed articles keep an official cupping source and the blog remains cupping-first", () => {
   const blog = read("blog/index.html");
   const title = blog.match(/<title>([\s\S]*?)<\/title>/i)?.[1] ?? "";
   const heading = visibleText(blog.match(/<h1\b[\s\S]*?<\/h1>/i)?.[0] ?? "");
 
-  assert.match(generator, /https:\/\/www\.nccih\.nih\.gov\/health\/cupping/);
+  for (const {relativePath, source} of articlePages) {
+    assert.match(source, /https:\/\/www\.nccih\.nih\.gov\/health\/cupping/, `missing NCCIH source in ${relativePath}`);
+  }
   assert.match(title, /cupping/i);
   assert.match(heading, /cupping/i);
   assert.ok(

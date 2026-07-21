@@ -179,6 +179,51 @@ test("build fails clearly when an allowlisted source entry is missing", (t) => {
   assert.match(result.stderr, /Missing public site entries: robots\.txt/);
 });
 
+test("build rejects nested public symlinks before touching dist", (t) => {
+  const fixture = makeSourceFixtureWithout("not-a-public-entry");
+  const privateSource = path.join(fixture, "private-source.txt");
+  const publicLink = path.join(fixture, "assets", "nested", "leak.txt");
+  const distSentinel = path.join(fixture, "dist", "sentinel.txt");
+  fs.writeFileSync(privateSource, "PRIVATE SENTINEL\n");
+  fs.mkdirSync(path.dirname(publicLink), {recursive: true});
+  fs.symlinkSync("../../private-source.txt", publicLink);
+  fs.mkdirSync(path.dirname(distSentinel), {recursive: true});
+  fs.writeFileSync(distSentinel, "UNCHANGED DIST\n");
+  t.after(() => fs.rmSync(fixture, {recursive: true, force: true}));
+
+  const result = spawnSync(
+    process.execPath,
+    ["scripts/build-site.mjs", fixture],
+    {cwd: root, encoding: "utf8"},
+  );
+
+  assert.equal(result.status, 1, result.stderr || result.stdout);
+  assert.match(result.stderr, /symbolic link.*assets[\\/]nested[\\/]leak\.txt/i);
+  assert.equal(fs.readFileSync(distSentinel, "utf8"), "UNCHANGED DIST\n");
+  assert.equal(fs.existsSync(path.join(fixture, "dist", "assets", "nested", "leak.txt")), false);
+});
+
+test("build rejects a broken top-level public symlink before touching dist", (t) => {
+  const fixture = makeSourceFixtureWithout("not-a-public-entry");
+  const publicEntry = path.join(fixture, "privacy");
+  const distSentinel = path.join(fixture, "dist", "sentinel.txt");
+  fs.rmSync(publicEntry, {recursive: true});
+  fs.symlinkSync("missing-private-directory", publicEntry, "dir");
+  fs.mkdirSync(path.dirname(distSentinel), {recursive: true});
+  fs.writeFileSync(distSentinel, "UNCHANGED DIST\n");
+  t.after(() => fs.rmSync(fixture, {recursive: true, force: true}));
+
+  const result = spawnSync(
+    process.execPath,
+    ["scripts/build-site.mjs", fixture],
+    {cwd: root, encoding: "utf8"},
+  );
+
+  assert.equal(result.status, 1, result.stderr || result.stdout);
+  assert.match(result.stderr, /symbolic links?: privacy/i);
+  assert.equal(fs.readFileSync(distSentinel, "utf8"), "UNCHANGED DIST\n");
+});
+
 test("source check excludes the generated dist directory", () => {
   runBuild();
 

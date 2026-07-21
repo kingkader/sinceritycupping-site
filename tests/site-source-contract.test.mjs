@@ -37,10 +37,10 @@ test("all production HTML uses local font stacks only", () => {
   }
 });
 
-test("article generator cannot reintroduce Google Fonts", () => {
-  const generator = fs.readFileSync(
+test("retired article renderer tombstone contains no remote font dependency", () => {
+  const tombstone = fs.readFileSync(
     path.join(root, "scripts/generate-articles.mjs"),
     "utf8",
   );
-  assert.doesNotMatch(generator, remoteFonts);
+  assert.doesNotMatch(tombstone, remoteFonts);
 });

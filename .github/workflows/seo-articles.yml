@@ -1,4 +1,4 @@
-name: Validate reviewed SEO articles
+name: Validate static articles
 
 on:
   workflow_dispatch:
@@ -7,7 +7,7 @@ permissions:
   contents: read
 
 jobs:
-  validate-reviewed-content:
+  validate-static-content:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -18,16 +18,14 @@ jobs:
         with:
           node-version: "22"
 
-      - name: Rerender reviewed articles
-        run: npm run rerender:articles
+      - name: Test committed content
+        run: npm test
 
-      - name: Confirm rerender is deterministic
-        run: |
-          git diff --exit-code
-          if [ -n "$(git status --porcelain)" ]; then
-            git status --short
-            exit 1
-          fi
+      - name: Build allowlisted public site
+        run: npm run build
 
-      - name: Validate site
-        run: npm run check:source
+      - name: Validate built site
+        run: npm run check:dist
+
+      - name: Confirm validation did not edit tracked files
+        run: git diff --exit-code
