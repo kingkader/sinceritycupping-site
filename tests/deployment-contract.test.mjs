@@ -65,6 +65,13 @@ function assertPinnedActions(workflow, expectedNames) {
   for (const use of uses) assert.match(use, /@[0-9a-f]{40}$/, `action is not pinned to a full commit SHA: ${use}`);
 }
 
+function redirectRules(source) {
+  return source.split("\n")
+    .map((line) => line.trim())
+    .filter((line) => line && !line.startsWith("#"))
+    .map((line) => line.split(/\s+/));
+}
+
 test("production workflow validates and deploys only the allowlisted dist build", () => {
   const workflow = read(".github/workflows/deploy.yml");
   const commands = [...workflow.matchAll(/\bpages deploy\s+([^\s]+)/g)];
@@ -109,6 +116,37 @@ test("article workflow remains manual validation only", () => {
   assert.match(workflow, /npm run check:dist/);
   assert.match(workflow, /group:\s*sinceritycupping-production/);
   assert.match(workflow, /cancel-in-progress:\s*false/);
+});
+
+test("retired source and configuration paths are intercepted before stale assets can be served", () => {
+  const rules = redirectRules(read("_redirects"));
+  const guardedSources = [
+    "/package.json",
+    "/package-lock.json",
+    "/payload.json",
+    "/CNAME",
+    "/README.md",
+    "/AGENTS.md",
+    "/CLAUDE.md",
+    "/GEMINI.md",
+    "/.env",
+    "/.gitignore",
+    "/data/*",
+    "/dist/*",
+    "/docs/*",
+    "/scripts/*",
+    "/tests/*",
+    "/preview/*",
+    "/.git/*",
+    "/.github/*",
+    "/.wrangler/*",
+    "/assets/css/styles.css",
+  ];
+
+  for (const source of guardedSources) {
+    const matches = rules.filter((rule) => rule[0] === source);
+    assert.deepEqual(matches, [[source, "/404.html", "302"]], `missing safe edge redirect for ${source}`);
+  }
 });
 
 test("Cloudflare headers enforce security and safe cache policy", () => {
