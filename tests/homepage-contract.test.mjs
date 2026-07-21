@@ -130,7 +130,7 @@ test("mobile navigation keeps no-JS content in flow and scopes collapse styles t
 test("homepage footer links accessibility help to Contact", () => {
   const footer = home.match(/<footer\b[\s\S]*?<\/footer>/)?.[0];
   assert.ok(footer, "missing homepage footer");
-  assert.match(footer, /<a href="contact\/index\.html">Accessibility help<\/a>/);
+  assert.match(footer, /<a href="\/contact\/">Accessibility help<\/a>/);
 });
 
 test("every homepage image declares alt text and intrinsic dimensions", () => {

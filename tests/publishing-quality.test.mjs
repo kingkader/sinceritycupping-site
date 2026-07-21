@@ -139,10 +139,10 @@ const fixturePageModified = {
   "/contact/": "2026-07-21",
   "/blog/": "2026-07-21",
   "/privacy/": "2026-07-21",
-  "/areas/": "2026-07-20",
+  "/areas/": "2026-07-21",
   ...Object.fromEntries(business.serviceAreas.map((area) => [
     `/areas/${area.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "")}/`,
-    "2026-07-20",
+    "2026-07-21",
   ])),
 };
 

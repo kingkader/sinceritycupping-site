@@ -46,6 +46,7 @@ const publicDirectories = new Set([
 const coreRoutes = [
   "index.html",
   "about/index.html",
+  "areas/index.html",
   "blog/index.html",
   "contact/index.html",
   "privacy/index.html",
@@ -151,10 +152,10 @@ test("build creates the exact public site contract", () => {
 
   runBuild();
 
-  assert.equal(coreRoutes.length, 6);
+  assert.equal(coreRoutes.length, 7);
   assert.equal(areaSlugs.length, 15);
   assert.equal(articleSlugs.length, 24);
-  assert.equal(baselineRoutes.length, 45);
+  assert.equal(baselineRoutes.length, 46);
   assert.deepEqual(fs.readdirSync(dist).sort(), [...publicEntries].sort());
 
   for (const relativePath of requiredPublicPaths) {
@@ -232,5 +233,5 @@ test("source check excludes the generated dist directory", () => {
     encoding: "utf8",
   });
 
-  assert.match(output, /^Checked 47 HTML file\(s\)\./);
+  assert.match(output, /^Checked 48 HTML file\(s\)\./);
 });

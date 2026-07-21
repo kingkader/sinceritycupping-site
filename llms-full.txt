@@ -22,8 +22,25 @@ Prices and durations belong to the named appointment only. Current availability 
 
 ## Location and travel
 - Clinic: 330 Streatham High Rd, London SW16 6HH, United Kingdom.
-- Areas listed by the clinic: Streatham, Streatham Hill, Streatham Common, Balham, Brixton, Tooting, Clapham, Norbury, Tulse Hill, West Norwood, Herne Hill, Dulwich, Crystal Palace, Mitcham, Colliers Wood.
+- The listed places are service areas for the single Streatham clinic; they are not branches or separate appointment addresses.
 - Travellers should check a live map or transport service before setting out; published area guides do not guarantee journey times or parking.
+
+### Service-area pages
+- [Streatham](https://sinceritycupping.co.uk/areas/streatham/): Service-area context for the single clinic at 330 Streatham High Rd.
+- [Streatham Hill](https://sinceritycupping.co.uk/areas/streatham-hill/): Service-area context for the single clinic at 330 Streatham High Rd.
+- [Streatham Common](https://sinceritycupping.co.uk/areas/streatham-common/): Service-area context for the single clinic at 330 Streatham High Rd.
+- [Balham](https://sinceritycupping.co.uk/areas/balham/): Service-area context for the single clinic at 330 Streatham High Rd.
+- [Brixton](https://sinceritycupping.co.uk/areas/brixton/): Service-area context for the single clinic at 330 Streatham High Rd.
+- [Tooting](https://sinceritycupping.co.uk/areas/tooting/): Service-area context for the single clinic at 330 Streatham High Rd.
+- [Clapham](https://sinceritycupping.co.uk/areas/clapham/): Service-area context for the single clinic at 330 Streatham High Rd.
+- [Norbury](https://sinceritycupping.co.uk/areas/norbury/): Service-area context for the single clinic at 330 Streatham High Rd.
+- [Tulse Hill](https://sinceritycupping.co.uk/areas/tulse-hill/): Service-area context for the single clinic at 330 Streatham High Rd.
+- [West Norwood](https://sinceritycupping.co.uk/areas/west-norwood/): Service-area context for the single clinic at 330 Streatham High Rd.
+- [Herne Hill](https://sinceritycupping.co.uk/areas/herne-hill/): Service-area context for the single clinic at 330 Streatham High Rd.
+- [Dulwich](https://sinceritycupping.co.uk/areas/dulwich/): Service-area context for the single clinic at 330 Streatham High Rd.
+- [Crystal Palace](https://sinceritycupping.co.uk/areas/crystal-palace/): Service-area context for the single clinic at 330 Streatham High Rd.
+- [Mitcham](https://sinceritycupping.co.uk/areas/mitcham/): Service-area context for the single clinic at 330 Streatham High Rd.
+- [Colliers Wood](https://sinceritycupping.co.uk/areas/colliers-wood/): Service-area context for the single clinic at 330 Streatham High Rd.
 
 ## Care boundary
 Cupping is offered as complementary care. It is not a replacement for medical advice, diagnosis or treatment. The clinic can answer operational questions about its service; personal medical questions belong with an appropriately qualified healthcare professional. Independent general information: https://www.nccih.nih.gov/health/cupping
