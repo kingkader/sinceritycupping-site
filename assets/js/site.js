@@ -42,13 +42,6 @@
   if (reduced || !("IntersectionObserver" in window)) {
     showAll();
   } else {
-    var groups = {};
-    revealEls.forEach(function (el) {
-      var top = Math.round(el.getBoundingClientRect().top / 120);
-      groups[top] = groups[top] || 0;
-      el.style.setProperty("--d", Math.min(groups[top] * 90, 360) + "ms");
-      groups[top] += 1;
-    });
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
         if (entry.isIntersecting) {

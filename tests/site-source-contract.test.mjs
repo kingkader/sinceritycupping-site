@@ -68,3 +68,8 @@ test("brand home links derive their accessible names from their visible text", (
     /<a\b[^>]*class="(?:brand|footer-brand-row)"[^>]*\baria-label=/i,
   );
 });
+
+test("reveal enhancement avoids synchronous layout reads during startup", () => {
+  const script = fs.readFileSync(path.join(root, "assets/js/site.js"), "utf8");
+  assert.doesNotMatch(script, /\b(?:getBoundingClientRect|offsetTop|offsetHeight|clientHeight)\b/);
+});
