@@ -44,3 +44,27 @@ test("retired article renderer tombstone contains no remote font dependency", ()
   );
   assert.doesNotMatch(tombstone, remoteFonts);
 });
+
+test("reveal motion never fades readable content through low-contrast opacity states", () => {
+  const css = fs.readFileSync(path.join(root, "assets/css/style.css"), "utf8");
+  const revealRules = [...css.matchAll(/\.js\s+\.reveal(?:\.in)?\s*\{([^}]*)\}/g)];
+
+  assert.ok(revealRules.length >= 2, "expected the progressive reveal rules");
+  for (const rule of revealRules) assert.doesNotMatch(rule[1], /\bopacity\s*:/i);
+});
+
+test("brand home links derive their accessible names from their visible text", () => {
+  for (const file of productionHtml) {
+    const source = fs.readFileSync(file, "utf8");
+    assert.doesNotMatch(
+      source,
+      /<a\b[^>]*class="(?:brand|footer-brand-row)"[^>]*\baria-label=/i,
+      `redundant brand-link label in ${path.relative(root, file)}`,
+    );
+  }
+
+  assert.doesNotMatch(
+    fs.readFileSync(path.join(root, "scripts/generate-areas.mjs"), "utf8"),
+    /<a\b[^>]*class="(?:brand|footer-brand-row)"[^>]*\baria-label=/i,
+  );
+});

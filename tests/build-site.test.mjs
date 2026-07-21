@@ -32,17 +32,6 @@ const publicEntries = [
   "_redirects",
 ];
 
-const publicDirectories = new Set([
-  "about",
-  "areas",
-  "articles",
-  "assets",
-  "blog",
-  "contact",
-  "privacy",
-  "services",
-]);
-
 const coreRoutes = [
   "index.html",
   "about/index.html",
@@ -104,11 +93,27 @@ const baselineRoutes = [
   ...articleSlugs.map((slug) => `articles/${slug}/index.html`),
 ];
 
+const assetPaths = [
+  "assets/css/style.css",
+  "assets/img/back-cupping-glass-1200.avif",
+  "assets/img/back-cupping-glass-1200.jpg",
+  "assets/img/back-cupping-glass-1200.webp",
+  "assets/img/back-cupping-glass-480.avif",
+  "assets/img/back-cupping-glass-480.jpg",
+  "assets/img/back-cupping-glass-480.webp",
+  "assets/img/back-cupping-glass-800.avif",
+  "assets/img/back-cupping-glass-800.jpg",
+  "assets/img/back-cupping-glass-800.webp",
+  "assets/img/favicon.svg",
+  "assets/img/sincerity-cupping-logo.svg",
+  "assets/img/wet-cupping-therapy-1600.jpg",
+  "assets/js/site.js",
+];
+
 const requiredPublicPaths = [
   ...baselineRoutes,
   "404.html",
-  "assets/css/style.css",
-  "assets/js/site.js",
+  ...assetPaths,
   "apple-touch-icon.png",
   "favicon.ico",
   "favicon.svg",
@@ -121,6 +126,15 @@ const requiredPublicPaths = [
   "_redirects",
 ];
 
+function filesUnder(directory, prefix = "") {
+  return fs.readdirSync(directory, {withFileTypes: true}).flatMap((entry) => {
+    const relativePath = path.join(prefix, entry.name);
+    const absolutePath = path.join(directory, entry.name);
+    if (entry.isDirectory()) return filesUnder(absolutePath, relativePath);
+    return entry.isFile() ? [relativePath] : [];
+  });
+}
+
 function runBuild(...args) {
   return execFileSync(process.execPath, ["scripts/build-site.mjs", ...args], {
     cwd: root,
@@ -131,15 +145,11 @@ function runBuild(...args) {
 function makeSourceFixtureWithout(missingEntry) {
   const fixture = fs.mkdtempSync(path.join(os.tmpdir(), "sincerity-build-"));
 
-  for (const entry of publicEntries) {
-    if (entry === missingEntry) continue;
-
-    const target = path.join(fixture, entry);
-    if (publicDirectories.has(entry)) {
-      fs.mkdirSync(target, {recursive: true});
-    } else {
-      fs.writeFileSync(target, "fixture");
-    }
+  for (const relativePath of requiredPublicPaths) {
+    if (relativePath === missingEntry) continue;
+    const target = path.join(fixture, relativePath);
+    fs.mkdirSync(path.dirname(target), {recursive: true});
+    fs.copyFileSync(path.join(root, relativePath), target);
   }
 
   return fixture;
@@ -157,6 +167,7 @@ test("build creates the exact public site contract", () => {
   assert.equal(articleSlugs.length, 24);
   assert.equal(baselineRoutes.length, 46);
   assert.deepEqual(fs.readdirSync(dist).sort(), [...publicEntries].sort());
+  assert.deepEqual(filesUnder(dist).sort(), [...requiredPublicPaths].sort());
 
   for (const relativePath of requiredPublicPaths) {
     assert.ok(
@@ -164,6 +175,18 @@ test("build creates the exact public site contract", () => {
       `missing required public path: ${relativePath}`,
     );
   }
+});
+
+test("build excludes every unallowlisted nested file from dist", (t) => {
+  const fixture = makeSourceFixtureWithout("not-a-public-entry");
+  const privatePath = path.join(fixture, "assets", "private-credentials.env");
+  fs.writeFileSync(privatePath, "DO NOT PUBLISH\n");
+  t.after(() => fs.rmSync(fixture, {recursive: true, force: true}));
+
+  runBuild(fixture);
+
+  assert.equal(fs.existsSync(path.join(fixture, "dist", "assets", "private-credentials.env")), false);
+  assert.deepEqual(filesUnder(path.join(fixture, "dist")).sort(), [...requiredPublicPaths].sort());
 });
 
 test("build fails clearly when an allowlisted source entry is missing", (t) => {
