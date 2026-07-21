@@ -11,6 +11,7 @@ const areas = JSON.parse(fs.readFileSync(path.join(root, "data", "area-pages.jso
 const business = JSON.parse(fs.readFileSync(path.join(root, "data", "business.json"), "utf8"));
 const destination = "330 Streatham High Rd, London SW16 6HH";
 const destinationPlaceId = "ChIJ6-vLLJQHdkgRPrnWnRsH6_Q";
+const origin = "https://sinceritycupping.co.uk";
 const outputFiles = [
   "areas/index.html",
   ...areas.map(({slug}) => `areas/${slug}/index.html`),
@@ -174,6 +175,34 @@ test("each locality endpoint has exact origin-to-clinic directions and direct we
     assert.ok(men, `${area.slug}: missing direct men's route`);
     assert.equal(attribute(women, "href").replace(/&amp;/g, "&"), business.femaleBookingUrl, `${area.slug}: wrong women's route`);
     assert.equal(attribute(men, "href").replace(/&amp;/g, "&"), business.maleBookingUrl, `${area.slug}: wrong men's route`);
+  }
+});
+
+test("the area hub is the sole indexable local route while all locality endpoints remain usable", () => {
+  const hub = read("areas/index.html");
+  const hubRobots = hub.match(/<meta\b[^>]*name="robots"[^>]*content="([^"]+)"/i)?.[1];
+  const sitemap = read("sitemap.xml");
+  const sitemapRoutes = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[1]);
+  const llmCatalogues = [read("llms.txt"), read("llms-full.txt")];
+
+  assert.equal(hubRobots, "index, follow, max-image-preview:large");
+  assert.equal(sitemapRoutes.length, 31, "sitemap must contain exactly 31 indexable routes");
+  assert.ok(sitemapRoutes.includes(`${origin}/areas/`), "area hub must remain in the sitemap");
+
+  for (const area of areas) {
+    const route = `/areas/${area.slug}/`;
+    const absolute = `${origin}${route}`;
+    const html = read(`areas/${area.slug}/index.html`);
+    const robots = html.match(/<meta\b[^>]*name="robots"[^>]*content="([^"]+)"/i)?.[1];
+    const canonical = html.match(/<link\b[^>]*rel="canonical"[^>]*href="([^"]+)"/i)?.[1];
+
+    assert.equal(robots, "noindex, follow", `${area.slug}: wrong robots contract`);
+    assert.equal(canonical, absolute, `${area.slug}: canonical must remain self-referential`);
+    assert.ok(!sitemapRoutes.includes(absolute), `${area.slug}: noindex endpoint leaked into sitemap`);
+    assert.match(hub, new RegExp(`href="${escapeRegExp(route)}"`), `${area.slug}: hub link missing`);
+    for (const catalogue of llmCatalogues) {
+      assert.ok(!catalogue.includes(absolute), `${area.slug}: noindex endpoint leaked into an LLM catalogue`);
+    }
   }
 });
 

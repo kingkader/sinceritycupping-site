@@ -100,6 +100,24 @@ test("homepage excludes network fonts and retired claims", () => {
   );
 });
 
+test("homepage uses verified practitioner facts without unsupported experience or exclusive-setting claims", () => {
+  const experienceClaims = [
+    /\b(?:(?:more than|over)\s+)?(?:\d{2,}\+?|twenty|thirty|forty|fifty|sixty)(?:-|\s)+(?:combined\s+)?years?\b/i,
+    /\b(?:combined|together|between (?:the|both) practitioners?)\b[^.!?]{0,80}\b(?:\d{2,}\+?|twenty|thirty|forty|fifty|sixty)\s+years?\b/i,
+  ];
+  const exclusiveSettingClaims = [
+    /\b(?:female|women|woman|male|men|man)[ -]only\s+(?:environment|setting|clinic|room|space|premises)\b/i,
+    /\b(?:environment|setting|clinic|room|space|premises)\s+(?:is\s+)?(?:reserved\s+)?(?:exclusively|only)\s+for\s+(?:women|men|female|male)\b/i,
+  ];
+
+  assert.match(home, /Same-sex practitioners/i);
+  assert.match(home, /private appointments/i);
+  assert.match(home, /Sister Aisha sees women[\s\S]{0,80}Brother Abu Layla sees men/i);
+  for (const claim of [...experienceClaims, ...exclusiveSettingClaims]) {
+    assert.doesNotMatch(home, claim, `unsupported homepage paraphrase: ${claim}`);
+  }
+});
+
 test("homepage uses the approved accessible visual tokens", () => {
   assert.match(css, /--cream:\s*#fbf7ee/i);
   assert.match(css, /--forest:\s*#163129/i);

@@ -94,6 +94,10 @@ const retiredClaims = [
   /avoid[^.<]{0,80}\b(?:heavy meat|dairy)\b/i,
   /\b(?:diabetes|blood[ -]?thinners?)\b/i,
   /clinical standard/i,
+  /\b(?:(?:more than|over)\s+)?(?:\d{2,}\+?|twenty|thirty|forty|fifty|sixty)(?:-|\s)+(?:combined\s+)?years?\b/i,
+  /\b(?:combined|together|between (?:the|both) practitioners?)\b[^.!?]{0,80}\b(?:\d{2,}\+?|twenty|thirty|forty|fifty|sixty)\s+years?\b/i,
+  /\b(?:female|women|woman|male|men|man)[ -]only\s+(?:environment|setting|clinic|room|space|premises)\b/i,
+  /\b(?:environment|setting|clinic|room|space|premises)\s+(?:is\s+)?(?:reserved\s+)?(?:exclusively|only)\s+for\s+(?:women|men|female|male)\b/i,
 ];
 
 test("business data exposes the generic selector and four exact services", () => {
@@ -333,13 +337,13 @@ test("committed article shells use generic booking links and stable clinic refer
   }
 });
 
-test("committed articles align visible review credit with structured authorship", () => {
+test("committed articles use the clinic author without unverified review attribution", () => {
   for (const {relativePath, source} of articlePages) {
     const article = jsonLd(source).find((item) => item["@type"] === "Article");
     assert.ok(article, `missing Article schema in ${relativePath}`);
     assert.deepEqual(article.author, {"@id": "https://sinceritycupping.co.uk/#clinic"});
-    assert.equal(article.contributor?.name, "Sister Aisha Mejri");
-    assert.match(visibleText(source), /Clinic review by Sister Aisha Mejri/);
+    assert.equal("contributor" in article, false, `unverified contributor in ${relativePath}`);
+    assert.doesNotMatch(visibleText(source), /\b(?:Clinic review|Reviewed) by\b/i, `unverified review credit in ${relativePath}`);
   }
 });
 

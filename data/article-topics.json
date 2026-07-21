@@ -288,32 +288,31 @@
     "intent": "local appointment discovery",
     "service": "Wet cupping / Hijama",
     "area": "Balham",
-    "angle": "neutral route notes and exact booking choices",
-    "summary": "A Balham travel guide to the Streatham wet cupping clinic, with rail, Northern line and road-planning notes plus exact booking choices.",
+    "angle": "fixed-address planning with current Google Maps and TfL information",
+    "summary": "A Balham travel-planning guide to the one Streatham wet cupping clinic, using the fixed address, current journey tools and exact booking choices.",
     "promiseTerms": ["Balham", "travel"],
     "content": {
       "answer": {
         "heading": "Balham clients travel to the Streatham clinic",
-        "text": "Appointments are provided at 330 Streatham High Rd rather than in Balham. Plan the whole route to SW16 6HH and check live directions before setting out."
+        "text": "Appointments are provided at 330 Streatham High Rd, London SW16 6HH, not at a Balham branch. Start every live journey search with that complete destination."
       },
       "sections": [
         {
-          "heading": "Travel via Tooting Bec",
+          "heading": "Start from your actual Balham location",
           "paragraphs": [
-            "Published local route notes point drivers and bus users from Balham towards Tooting Bec and then Streatham High Road. Conditions can change, so use a live map for the final route.",
-            "Allow your own margin rather than relying on a fixed journey-time claim."
+            "Balham is the starting area, not the clinic address. Enter the place you will actually leave from in a live planner so its current results begin in the right place."
           ]
         },
         {
-          "heading": "Rail and Northern line planning from Balham",
+          "heading": "Use current Google Maps or TfL information",
           "paragraphs": [
-            "Balham's rail and Northern line connections can be combined with onward travel towards the Streatham stations. Check current National Rail and TfL information on the day."
+            "Open Google Maps with the clinic destination or use TfL's journey planner immediately before travel. Compare the live options shown there; this article does not prescribe a particular line, stop or road."
           ]
         },
         {
-          "heading": "Parking is not guaranteed",
+          "heading": "Check booking and destination together",
           "paragraphs": [
-            "The clinic does not promise an onsite parking space. Drivers should inspect current street signs and restrictions near the destination before leaving the vehicle."
+            "Match the SW16 6HH destination with the address in the Fresha confirmation before leaving Balham. Contact the clinic if the appointment choice or destination is unclear."
           ]
         }
       ]
@@ -326,8 +325,8 @@
     "intent": "local appointment discovery",
     "service": "Wet cupping / Hijama",
     "area": "Brixton",
-    "angle": "A23, bus and rail route notes",
-    "summary": "A Brixton travel guide for hijama at the Streatham clinic, covering the A23, bus and rail planning and what happens on arrival.",
+    "angle": "fixed-address planning with current Google Maps and TfL information",
+    "summary": "A Brixton travel-planning guide for hijama at the one Streatham clinic, using the fixed address, current journey tools and arrival checks.",
     "promiseTerms": ["Brixton", "travel"],
     "content": {
       "answer": {
@@ -336,16 +335,15 @@
       },
       "sections": [
         {
-          "heading": "The A23 route from Brixton",
+          "heading": "Plan from your exact Brixton starting point",
           "paragraphs": [
-            "Published route notes follow Brixton Hill towards Streatham High Road. Bus and car routes use the same broad A23 corridor, but stops and traffic conditions should be checked live.",
-            "A route description is not a guarantee of a particular journey time."
+            "Enter the street, stop or other place where you will actually begin. A broad Brixton label is less useful than a precise origin when a live planner builds current directions."
           ]
         },
         {
-          "heading": "Rail planning via Streatham Hill",
+          "heading": "Check live directions close to departure",
           "paragraphs": [
-            "Rail connections can be planned towards Streatham Hill, followed by the onward trip to the clinic. Check the current timetable and accessibility information before travel."
+            "Use Google Maps or TfL's journey planner for the current choices from your origin to the fixed clinic address. This page supplies no fixed directions; rely on the current planner result."
           ]
         },
         {
@@ -364,32 +362,31 @@
     "intent": "local appointment discovery",
     "service": "Wet cupping / Hijama",
     "area": "Tooting",
-    "angle": "route planning from Tooting Broadway or Tooting Bec",
-    "summary": "A Tooting travel guide to wet cupping in Streatham, with route notes from Tooting Broadway and Tooting Bec plus exact appointment durations.",
+    "angle": "fixed-address planning with current Google Maps and TfL information",
+    "summary": "A Tooting travel-planning guide for wet cupping at the one Streatham clinic, using the fixed address, current journey tools and exact appointment durations.",
     "promiseTerms": ["Tooting", "travel"],
     "content": {
       "answer": {
         "heading": "Travel from Tooting to 330 Streatham High Road",
-        "text": "Clients starting at Tooting Broadway or Tooting Bec travel towards the Streatham clinic. Use SW16 6HH as the destination and check live road or public-transport information."
+        "text": "The Tooting starting point belongs in a current journey planner, while the destination remains 330 Streatham High Rd, London SW16 6HH. The appointment is at that one clinic."
       },
       "sections": [
         {
-          "heading": "Route planning from two Tooting starting points",
+          "heading": "Set the exact Tooting origin",
           "paragraphs": [
-            "Published local notes cover routes from both Tooting Broadway and Tooting Bec towards Streatham High Road. Pick the starting point that matches where you actually are, rather than using a generic Tooting estimate.",
-            "Traffic around the main-road connections can add time, so leave a margin appropriate to the live conditions."
+            "Use the place where you will actually set out rather than the area name alone. Google Maps and TfL can then calculate from that origin to the fixed SW16 6HH destination using current information."
+          ]
+        },
+        {
+          "heading": "Read the live result instead of a static route",
+          "paragraphs": [
+            "Check the current options again near departure. This article does not claim a particular line, station, road, duration or distance from Tooting."
           ]
         },
         {
           "heading": "Use the duration of the exact service",
           "paragraphs": [
             "There is no single duration for every appointment. Women's wet cupping is listed as 45 minutes and men's wet cupping as 40 minutes; the two full spiritual appointments are longer at 90 and 80 minutes respectively."
-          ]
-        },
-        {
-          "heading": "Confirm before travelling",
-          "paragraphs": [
-            "Review the Fresha confirmation for the service, date and practitioner route. If it differs from what you selected, contact the clinic before beginning the journey."
           ]
         }
       ]
@@ -402,26 +399,25 @@
     "intent": "local appointment discovery",
     "service": "Wet cupping / Hijama",
     "area": "Clapham",
-    "angle": "routes via Balham and the Streatham clinic address",
-    "summary": "A Clapham travel guide for cupping therapy in Streatham, including routes via Balham, rail planning and the choices to check before leaving.",
+    "angle": "fixed-address planning with current Google Maps and TfL information",
+    "summary": "A Clapham travel-planning guide for cupping at the one Streatham clinic, using the fixed address, current journey tools and booking checks.",
     "promiseTerms": ["Clapham", "travel"],
     "content": {
       "answer": {
-        "heading": "Clapham clients travel through Balham towards Streatham",
-        "text": "Treatment is provided at the Streatham clinic, not at a Clapham branch. Published route notes start around Clapham Common or Clapham South and continue via Balham."
+        "heading": "Clapham clients travel to one Streatham clinic",
+        "text": "Treatment is provided at 330 Streatham High Rd, London SW16 6HH, not at a Clapham branch. Use that complete clinic address as the destination."
       },
       "sections": [
         {
-          "heading": "Bus or car travel from Clapham",
+          "heading": "Begin with your precise Clapham origin",
           "paragraphs": [
-            "The broad road route runs south through Balham towards Streatham High Road. Use live directions because traffic and bus stopping patterns can change.",
-            "Enter the full SW16 6HH postcode so the route ends at the clinic rather than elsewhere in Streatham."
+            "Enter the place where the journey will begin, not Clapham alone. A live planner can use that origin with the fixed clinic destination without this page asserting a particular connection."
           ]
         },
         {
-          "heading": "Rail connections via Balham",
+          "heading": "Use live Google Maps or TfL results",
           "paragraphs": [
-            "A rail journey can be planned via Balham towards the Streatham stations, followed by the final connection. Check the current timetable and any service disruption before departure."
+            "Open Google Maps or TfL's journey planner shortly before leaving and review what it currently shows. This guide does not prescribe a station transfer, line or road from Clapham."
           ]
         },
         {
@@ -440,26 +436,25 @@
     "intent": "local appointment discovery",
     "service": "Wet cupping / Hijama",
     "area": "Norbury",
-    "angle": "rail, A23 bus and road route notes",
-    "summary": "A Norbury travel guide for hijama in Streatham, covering rail, A23 buses, the road route and the exact clinic address.",
+    "angle": "fixed-address planning with current Google Maps and TfL information",
+    "summary": "A Norbury travel-planning guide for hijama at the one Streatham clinic, using the fixed address and current Google Maps or TfL information.",
     "promiseTerms": ["Norbury", "travel"],
     "content": {
       "answer": {
-        "heading": "Norbury clients travel north to Streatham",
-        "text": "The clinic is at 330 Streatham High Rd, London SW16 6HH. Published local notes describe rail, bus and road options from Norbury without promising a fixed journey time."
+        "heading": "Norbury clients travel to the Streatham clinic",
+        "text": "The clinic is at 330 Streatham High Rd, London SW16 6HH. There is no Norbury branch, so use that complete address as the destination in live directions."
       },
       "sections": [
         {
-          "heading": "Rail travel from Norbury",
+          "heading": "Start with the place you will leave from",
           "paragraphs": [
-            "The local route page describes Norbury to Streatham Common as one rail stop. Check the live timetable, platform and any disruption before relying on that connection.",
-            "Plan the onward part from the station to the clinic as part of the same journey."
+            "Enter your actual Norbury origin instead of asking a static page to choose one for you. The origin and the fixed SW16 6HH destination are the two details a current planner needs."
           ]
         },
         {
-          "heading": "A23 buses and road route",
+          "heading": "Use current Google Maps or TfL information",
           "paragraphs": [
-            "Buses on the A23 corridor pass along Streatham High Road. Drivers follow the main road north, subject to current traffic, restrictions and street signs."
+            "Google Maps and TfL's journey planner can show the options available when you intend to travel. This guide does not assert a bus, rail transfer, road direction, travel time or distance."
           ]
         },
         {
@@ -478,26 +473,25 @@
     "intent": "local appointment discovery",
     "service": "Wet cupping / Hijama",
     "area": "Tulse Hill",
-    "angle": "routes via Streatham Hill and current service choices",
-    "summary": "A Tulse Hill travel guide for wet cupping in Streatham, with bus, road and rail planning plus exact booking choices.",
+    "angle": "fixed-address planning with current Google Maps and TfL information",
+    "summary": "A Tulse Hill travel-planning guide for wet cupping at the one Streatham clinic, using the fixed address, current journey tools and exact booking choices.",
     "promiseTerms": ["Tulse Hill", "travel"],
     "content": {
       "answer": {
-        "heading": "Travel from Tulse Hill via Streatham Hill",
-        "text": "Published route notes direct Tulse Hill clients towards Streatham High Road through Streatham Hill. The appointment itself takes place at the one clinic at number 330."
+        "heading": "Travel from Tulse Hill to one Streatham clinic",
+        "text": "The appointment takes place at 330 Streatham High Rd, London SW16 6HH. Use that complete destination with your actual Tulse Hill starting point in a current planner."
       },
       "sections": [
         {
-          "heading": "Bus and road travel",
+          "heading": "Let a live planner compare current choices",
           "paragraphs": [
-            "Bus and car routes can run through Streatham Hill to the High Road. Check a live service or map before leaving because road conditions and stops can change.",
-            "No fixed travel time is promised by this guide."
+            "Open Google Maps or TfL's journey planner with the exact origin and clinic address. Review the current result instead of following directions printed here."
           ]
         },
         {
-          "heading": "Rail planning from Tulse Hill",
+          "heading": "Check the destination before departure",
           "paragraphs": [
-            "Rail can be planned towards the Streatham stations, followed by the final connection to the clinic. Confirm the current route and station access on the day."
+            "Confirm that number 330 and SW16 6HH appear in the live result and in the appointment details. Contact the clinic if the destination or booking is unclear."
           ]
         },
         {
@@ -516,32 +510,31 @@
     "intent": "local appointment discovery",
     "service": "Wet cupping / Hijama",
     "area": "West Norwood",
-    "angle": "bus, Knights Hill and rail route notes",
-    "summary": "A West Norwood travel guide for hijama in Streatham, including bus links, the Knights Hill road route and rail planning.",
+    "angle": "fixed-address planning with current Google Maps and TfL information",
+    "summary": "A West Norwood travel-planning guide for hijama at the one Streatham clinic, using the fixed address and current Google Maps or TfL information.",
     "promiseTerms": ["West Norwood", "travel"],
     "content": {
       "answer": {
         "heading": "West Norwood clients travel to Streatham High Road",
-        "text": "The service is delivered at 330 Streatham High Rd. Published local notes describe several ways to reach that address from West Norwood."
+        "text": "The service is delivered at 330 Streatham High Rd, London SW16 6HH. Use that full clinic destination with the place where you will actually leave West Norwood."
       },
       "sections": [
         {
-          "heading": "Bus travel towards Streatham High Road",
+          "heading": "Plan with a current origin and destination",
           "paragraphs": [
-            "Local bus routes can be planned from West Norwood towards Streatham High Road. Check TfL for the current stop, diversion and accessibility details.",
-            "Use the clinic's full address for the final walking section."
+            "Enter both places in Google Maps or TfL's journey planner shortly before travel. The live result, not a static route claim on this page, should supply the current options."
           ]
         },
         {
-          "heading": "Knights Hill road route",
+          "heading": "Avoid assumptions about the connection",
           "paragraphs": [
-            "The published road description runs via Knights Hill towards Streatham. Drivers remain responsible for live restrictions, traffic and legal parking signs."
+            "This guide supplies no fixed directions from West Norwood. Check the current planner result for the trip you intend to make."
           ]
         },
         {
-          "heading": "Rail via Tulse Hill or Streatham Hill",
+          "heading": "Match the route result to number 330",
           "paragraphs": [
-            "Rail options can be compared through Tulse Hill or Streatham Hill. Timetables vary, so choose using live journey information rather than a fixed estimate."
+            "Before leaving, confirm that the destination shown is 330 Streatham High Rd, London SW16 6HH rather than a general Streatham result."
           ]
         }
       ]
@@ -554,26 +547,25 @@
     "intent": "local appointment discovery",
     "service": "Wet cupping / Hijama",
     "area": "Herne Hill",
-    "angle": "routes via Tulse Hill or Brixton and arrival expectations",
-    "summary": "A Herne Hill travel guide for wet cupping in Streatham, with route options via Tulse Hill or Brixton and booking checks before leaving.",
+    "angle": "fixed-address planning with current Google Maps and TfL information",
+    "summary": "A Herne Hill travel-planning guide for wet cupping at the one Streatham clinic, using the fixed address, current journey tools and booking checks.",
     "promiseTerms": ["Herne Hill", "travel"],
     "content": {
       "answer": {
         "heading": "Herne Hill clients travel to the Streatham address",
-        "text": "There is no Herne Hill branch. Appointments take place at 330 Streatham High Rd, and the published route notes connect Herne Hill with the A23 corridor."
+        "text": "There is no Herne Hill branch. Appointments take place at 330 Streatham High Rd, London SW16 6HH, so use that complete address in current directions."
       },
       "sections": [
         {
-          "heading": "Travel via Tulse Hill or Brixton",
+          "heading": "Set the journey origin precisely",
           "paragraphs": [
-            "The broad route can run through Tulse Hill or Brixton before joining the A23 towards Streatham. Compare live bus, rail and road information for the time you intend to travel.",
-            "The better option can change with disruption and traffic."
+            "Enter the place in Herne Hill where you will actually set out. Google Maps or TfL can then use that origin with the one fixed clinic destination."
           ]
         },
         {
-          "heading": "Arrival begins with explanation and consent",
+          "heading": "Use current information, not a static connection",
           "paragraphs": [
-            "The practitioner explains the booked appointment and gives you time to ask questions before starting. Confirm that you have selected the correct women’s or men's route."
+            "Review the live planner result close to departure. This article does not claim a particular station transfer, line, road, journey time or distance from Herne Hill."
           ]
         },
         {
@@ -592,26 +584,25 @@
     "intent": "local appointment discovery",
     "service": "Wet cupping / Hijama",
     "area": "Crystal Palace",
-    "angle": "Norbury, Streatham Common and A23 route notes",
-    "summary": "A Crystal Palace travel guide for hijama in Streatham, with routes via Norbury or Streatham Common and live-journey checks.",
+    "angle": "fixed-address planning with current Google Maps and TfL information",
+    "summary": "A Crystal Palace travel-planning guide for hijama at the one Streatham clinic, using the fixed address and current journey information.",
     "promiseTerms": ["Crystal Palace", "travel"],
     "content": {
       "answer": {
-        "heading": "Travel from Crystal Palace via Norbury or Streatham Common",
-        "text": "The clinic is in Streatham at SW16 6HH. Published local notes describe approaches through Norbury or Streatham Common rather than a treatment location in Crystal Palace."
+        "heading": "Travel from Crystal Palace to one Streatham clinic",
+        "text": "The clinic is at 330 Streatham High Rd, London SW16 6HH. There is no Crystal Palace treatment location, so put that full Streatham address into current directions."
       },
       "sections": [
         {
-          "heading": "Bus travel from Crystal Palace",
+          "heading": "Use the exact Crystal Palace starting point",
           "paragraphs": [
-            "Bus routes may connect towards Streatham, with the useful option depending on current service patterns. Check TfL on the day and include the final stop-to-clinic section.",
-            "This guide does not promise a direct service at every time."
+            "Enter the street or place where you will actually begin instead of the area name alone. A live planner can use that origin with the clinic destination."
           ]
         },
         {
-          "heading": "Road route through Crown Point and Norbury",
+          "heading": "Check current Google Maps or TfL information",
           "paragraphs": [
-            "The published road description passes Crown Point and Norbury before joining the A23. Use live navigation and follow current road restrictions."
+            "Open Google Maps or TfL's journey planner near departure and assess the options it currently provides. This article supplies no fixed directions; rely on the current result."
           ]
         },
         {
@@ -630,26 +621,25 @@
     "intent": "local appointment discovery",
     "service": "Wet cupping / Hijama",
     "area": "Dulwich",
-    "angle": "routes via Tulse Hill or Streatham Hill",
-    "summary": "A Dulwich travel guide for cupping in Streatham, including routes via Tulse Hill or Streatham Hill and school-run planning.",
+    "angle": "fixed-address planning with current Google Maps and TfL information",
+    "summary": "A Dulwich travel-planning guide for cupping at the one Streatham clinic, using the fixed address, current journey tools and booking checks.",
     "promiseTerms": ["Dulwich", "travel"],
     "content": {
       "answer": {
         "heading": "Dulwich clients travel to one clinic in Streatham",
-        "text": "Cupping appointments are provided at 330 Streatham High Rd rather than at a Dulwich branch. Use the SW16 6HH destination in a live route planner."
+        "text": "Cupping appointments are provided at 330 Streatham High Rd, London SW16 6HH, not at a Dulwich branch. Use that complete destination in a live planner."
       },
       "sections": [
         {
-          "heading": "Travel via Tulse Hill or Streatham Hill",
+          "heading": "Start with your real Dulwich origin",
           "paragraphs": [
-            "Published local notes describe bus and car approaches through Tulse Hill or Streatham Hill. Which route works best depends on your starting point and current conditions.",
-            "Check live transport or road information before departure."
+            "Enter the exact place where you will set out instead of relying on a general Dulwich label. Google Maps or TfL can use that origin with the fixed clinic address."
           ]
         },
         {
-          "heading": "Allow for school-run traffic",
+          "heading": "Use current journey information",
           "paragraphs": [
-            "Some Dulwich roads can be busier around school travel periods. Build an appropriate margin into your own plan rather than relying on a promised arrival time."
+            "Review the live planner result close to departure. This page does not name a station transfer, transport line, road direction, travel time or distance from Dulwich."
           ]
         },
         {

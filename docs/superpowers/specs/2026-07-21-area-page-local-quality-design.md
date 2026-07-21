@@ -74,3 +74,7 @@ No package script, workflow, scheduled job, build step, or deploy step will acti
 ## Ownership boundaries
 
 This change will not edit `scripts/check-site.mjs`, `llms.txt`, `llms-full.txt`, article retired-claim patterns, or deployment controls. It will preserve unrelated article and core-page content apart from the already-approved homepage date correction and generated area pages.
+
+## Indexing amendment — 21 July 2026
+
+The area hub at `/areas/` is the sole indexable local landing page. The 15 locality pages remain useful, self-canonical user endpoints with `noindex, follow`, direct booking and directions, and links from the hub. They are intentionally absent from the sitemap and both LLM route catalogues. This consolidates local search signals around one clinic and one indexable hub while preserving practical pages for visitors.

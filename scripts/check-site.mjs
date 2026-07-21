@@ -24,10 +24,10 @@ const areaNames = new Map([
   ["mitcham", "Mitcham"],
   ["colliers-wood", "Colliers Wood"],
 ]);
-const expectedAreaRoutes = new Set([
-  "/areas/",
-  ...[...areaNames.keys()].map((slug) => `/areas/${slug}/`),
-]);
+const expectedAreaUserRoutes = new Set([...areaNames.keys()].map((slug) => `/areas/${slug}/`));
+const expectedPublishedAreaRoutes = new Set(["/areas/", ...expectedAreaUserRoutes]);
+const expectedIndexableAreaRoutes = new Set(["/areas/"]);
+const expectedIndexableRouteCount = 31;
 const forbiddenPublishedContent = [
   ["remote Google Font", /fonts\.googleapis\.com|fonts\.gstatic\.com/i],
   ["aggregate rating", /"(?:aggregateRating|ratingValue|reviewCount)"\s*:/i],
@@ -38,7 +38,8 @@ const forbiddenPublishedContent = [
   ["unsupported fixed duration", /\b60\s*(?:[–-]|to)\s*75\s*minutes?\b/i],
   ["unsupported frequency advice", /\bquarterly (?:rhythm|sessions?)\b/i],
   ["retired aftercare anchor", /\bfirst 48 hours\b/i],
-  ["unsupported environment claim", /\bfemale-only environment\b/i],
+  ["unsupported exclusive setting claim", /\b(?:female|women|woman|male|men|man)[ -]only\s+(?:environment|setting|clinic|room|space|premises)\b|\b(?:environment|setting|clinic|room|space|premises)\s+(?:is\s+)?(?:reserved\s+)?(?:exclusively|only)\s+for\s+(?:women|men|female|male)\b/i],
+  ["unsupported practitioner experience claim", /\b(?:(?:more than|over)\s+)?(?:\d{2,}\+?|twenty|thirty|forty|fifty|sixty)(?:-|\s)+(?:combined\s+)?years?\b|\b(?:combined|together|between (?:the|both) practitioners?)\b[^.!?]{0,80}\b(?:\d{2,}\+?|twenty|thirty|forty|fifty|sixty)\s+years?\b/i],
   ["unsupported suitability advice", /\bcheck suitability\b/i],
   ["passive keep-dry mandate", /\b(?:treated|cupped) (?:area|skin|sites?|marks?)\b[^.!?]{0,50}\b(?:must|should|needs? to|has to|is required to)\b[^.!?]{0,30}\b(?:remain|stay|be kept)\b[^.!?]{0,20}\bdry\b/i],
   ["direct keep-dry mandate", /\b(?:keep|leave)\b[^.!?]{0,40}\b(?:treated|cupped)?\s*(?:area|skin|sites?|marks?)\b[^.!?]{0,25}\bdry\b/i],
@@ -151,9 +152,13 @@ const schemaByRoute = new Map();
 for (const file of htmlFiles) {
   const html = fs.readFileSync(file, "utf8");
   const filePath = relative(file);
-  const robotsTag = [...html.matchAll(/<meta\b[^>]*>/gi)]
-    .find((tag) => attribute(tag[0], "name")?.toLowerCase() === "robots")?.[0];
-  const noindex = /(?:^|[,\s])noindex(?:$|[,\s])/i.test(attribute(robotsTag || "", "content") || "");
+  const route = routeForFile(file);
+  const isAreaUserEndpoint = expectedAreaUserRoutes.has(route);
+  const robotsTags = [...html.matchAll(/<meta\b[^>]*>/gi)]
+    .filter((tag) => attribute(tag[0], "name")?.toLowerCase() === "robots");
+  const robotsTag = robotsTags[0]?.[0];
+  const robotsContent = attribute(robotsTag || "", "content") || "";
+  const noindex = /(?:^|[,\s])noindex(?:$|[,\s])/i.test(robotsContent);
   const isPreview = filePath.startsWith("preview/");
   const isNotFound = filePath === "404.html";
   const isPublished = !isPreview;
@@ -199,19 +204,25 @@ for (const file of htmlFiles) {
     }
   }
 
-  if (noindex) {
+  if (isAreaUserEndpoint) {
+    if (robotsTags.length !== 1) report(file, `expected one robots tag, found ${robotsTags.length}`);
+    if (robotsContent !== "noindex, follow") report(file, `locality endpoint robots must be exactly noindex, follow; found ${robotsContent || "none"}`);
+  }
+
+  if (noindex && !isAreaUserEndpoint) {
     if (!isNotFound && !isPreview) report(file, "unexpected noindex page");
     continue;
   }
 
+  if (isAreaUserEndpoint && !noindex) report(file, "locality endpoint must be noindex, follow");
   if (isNotFound) report(file, "404 must remain noindex");
   if (canonicalTags.length !== 1) {
     report(file, `expected one canonical, found ${canonicalTags.length}`);
   } else {
     const canonical = attribute(canonicalTags[0][0], "href");
-    const expected = `${origin}${routeForFile(file)}`;
+    const expected = `${origin}${route}`;
     if (canonical !== expected) report(file, `canonical must be self-referential (${expected}), found ${canonical}`);
-    indexableCanonicals.push(canonical);
+    if (!noindex) indexableCanonicals.push(canonical);
   }
 
   const jsonScripts = [...html.matchAll(/<script\b[^>]*type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/gi)];
@@ -226,17 +237,27 @@ for (const file of htmlFiles) {
       report(file, `invalid JSON-LD block ${index + 1}: ${error.message}`);
     }
   });
-  schemaByRoute.set(routeForFile(file), nodes);
+  schemaByRoute.set(route, nodes);
 }
 
 const canonicalSet = new Set(indexableCanonicals);
 const canonicalRoutes = new Set([...canonicalSet].map((canonical) => new URL(canonical).pathname));
-const actualAreaRoutes = new Set([...canonicalRoutes].filter((route) => route.startsWith("/areas/")));
-for (const route of expectedAreaRoutes) {
-  if (!actualAreaRoutes.has(route)) errors.push(`missing exact area route: ${route}`);
+const builtAreaRoutes = new Set(htmlFiles.map(routeForFile).filter((route) => route.startsWith("/areas/")));
+const indexableAreaRoutes = new Set([...canonicalRoutes].filter((route) => route.startsWith("/areas/")));
+if (canonicalSet.size !== expectedIndexableRouteCount) {
+  errors.push(`expected exactly ${expectedIndexableRouteCount} indexable canonical routes, found ${canonicalSet.size}`);
 }
-for (const route of actualAreaRoutes) {
-  if (!expectedAreaRoutes.has(route)) errors.push(`unexpected area route outside exact hub and locality set: ${route}`);
+for (const route of expectedPublishedAreaRoutes) {
+  if (!builtAreaRoutes.has(route)) errors.push(`missing exact published area route: ${route}`);
+}
+for (const route of builtAreaRoutes) {
+  if (!expectedPublishedAreaRoutes.has(route)) errors.push(`unexpected area route outside exact hub and locality set: ${route}`);
+}
+for (const route of expectedIndexableAreaRoutes) {
+  if (!indexableAreaRoutes.has(route)) errors.push(`missing exact indexable area route: ${route}`);
+}
+for (const route of indexableAreaRoutes) {
+  if (!expectedIndexableAreaRoutes.has(route)) errors.push(`locality endpoint must not be indexable: ${route}`);
 }
 
 for (const [slug, name] of areaNames) {
@@ -287,6 +308,7 @@ for (const filename of ["llms.txt", "llms-full.txt"]) {
   }
   const routes = markdownInternalRoutes(fs.readFileSync(llmsPath, "utf8"));
   const routeSet = new Set(routes);
+  if (routes.length !== expectedIndexableRouteCount) errors.push(`${filename} must contain exactly ${expectedIndexableRouteCount} canonical route links, found ${routes.length}`);
   if (routes.length !== routeSet.size) errors.push(`${filename} contains duplicate canonical route links`);
   for (const canonical of canonicalSet) {
     if (!routeSet.has(canonical)) errors.push(`${filename} missing canonical route: ${canonical}`);
@@ -303,6 +325,7 @@ if (fs.existsSync(robotsPath) && /Disallow:\s*\/(?:\s|$)/im.test(fs.readFileSync
 if (fs.existsSync(sitemapPath)) {
   const sitemap = fs.readFileSync(sitemapPath, "utf8");
   const sitemapUrls = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[1]);
+  if (sitemapUrls.length !== expectedIndexableRouteCount) errors.push(`sitemap must contain exactly ${expectedIndexableRouteCount} URLs, found ${sitemapUrls.length}`);
   if (new Set(sitemapUrls).size !== sitemapUrls.length) errors.push("sitemap contains duplicate URLs");
   if (new Set(indexableCanonicals).size !== indexableCanonicals.length) errors.push("published HTML contains duplicate canonicals");
 

@@ -34,23 +34,6 @@ Prices and durations belong to the named appointment only. Current availability 
 - The listed places are service areas for the single Streatham clinic; they are not branches or separate appointment addresses.
 - Travellers should check a live map or transport service before setting out; published area guides do not guarantee journey times or parking.
 
-### Service-area pages
-- [Streatham](https://sinceritycupping.co.uk/areas/streatham/): Service-area context for the single clinic at 330 Streatham High Rd.
-- [Streatham Hill](https://sinceritycupping.co.uk/areas/streatham-hill/): Service-area context for the single clinic at 330 Streatham High Rd.
-- [Streatham Common](https://sinceritycupping.co.uk/areas/streatham-common/): Service-area context for the single clinic at 330 Streatham High Rd.
-- [Balham](https://sinceritycupping.co.uk/areas/balham/): Service-area context for the single clinic at 330 Streatham High Rd.
-- [Brixton](https://sinceritycupping.co.uk/areas/brixton/): Service-area context for the single clinic at 330 Streatham High Rd.
-- [Tooting](https://sinceritycupping.co.uk/areas/tooting/): Service-area context for the single clinic at 330 Streatham High Rd.
-- [Clapham](https://sinceritycupping.co.uk/areas/clapham/): Service-area context for the single clinic at 330 Streatham High Rd.
-- [Norbury](https://sinceritycupping.co.uk/areas/norbury/): Service-area context for the single clinic at 330 Streatham High Rd.
-- [Tulse Hill](https://sinceritycupping.co.uk/areas/tulse-hill/): Service-area context for the single clinic at 330 Streatham High Rd.
-- [West Norwood](https://sinceritycupping.co.uk/areas/west-norwood/): Service-area context for the single clinic at 330 Streatham High Rd.
-- [Herne Hill](https://sinceritycupping.co.uk/areas/herne-hill/): Service-area context for the single clinic at 330 Streatham High Rd.
-- [Dulwich](https://sinceritycupping.co.uk/areas/dulwich/): Service-area context for the single clinic at 330 Streatham High Rd.
-- [Crystal Palace](https://sinceritycupping.co.uk/areas/crystal-palace/): Service-area context for the single clinic at 330 Streatham High Rd.
-- [Mitcham](https://sinceritycupping.co.uk/areas/mitcham/): Service-area context for the single clinic at 330 Streatham High Rd.
-- [Colliers Wood](https://sinceritycupping.co.uk/areas/colliers-wood/): Service-area context for the single clinic at 330 Streatham High Rd.
-
 ## Care boundary
 Cupping is offered as complementary care. It is not a replacement for medical advice, diagnosis or treatment. The clinic can answer operational questions about its service; personal medical questions belong with an appropriately qualified healthcare professional. Independent general information: https://www.nccih.nih.gov/health/cupping
 
@@ -62,17 +45,17 @@ Cupping is offered as complementary care. It is not a replacement for medical ad
 - [How much does hijama cost in London? 2026 pricing guide](https://sinceritycupping.co.uk/articles/hijama-cost-london/): The clinic's four published hijama choices cost £45 or £80 and have service-specific durations of 40, 45, 80 or 90 minutes.
 - [Men's hijama appointments in South London: privacy and choice](https://sinceritycupping.co.uk/articles/mens-hijama-south-london/): Men can compare South London hijama choices, privacy, Brother Abu Layla's published role, prices and durations before booking.
 - [Women's cupping appointments in South London: privacy and choice](https://sinceritycupping.co.uk/articles/women-only-hijama-south-london/): Women can compare South London cupping choices, privacy, Sister Aisha Mejri's published role, prices and durations before booking.
-- [Cupping from Dulwich: travel to the Streatham clinic](https://sinceritycupping.co.uk/articles/cupping-dulwich/): A Dulwich travel guide for cupping in Streatham, including routes via Tulse Hill or Streatham Hill and school-run planning.
-- [Hijama from Brixton: travel to the Streatham clinic](https://sinceritycupping.co.uk/articles/hijama-brixton/): A Brixton travel guide for hijama at the Streatham clinic, covering the A23, bus and rail planning and what happens on arrival.
+- [Cupping from Dulwich: travel to the Streatham clinic](https://sinceritycupping.co.uk/articles/cupping-dulwich/): A Dulwich travel-planning guide for cupping at the one Streatham clinic, using the fixed address, current journey tools and booking checks.
+- [Hijama from Brixton: travel to the Streatham clinic](https://sinceritycupping.co.uk/articles/hijama-brixton/): A Brixton travel-planning guide for hijama at the one Streatham clinic, using the fixed address, current journey tools and arrival checks.
 - [Male hijama therapist in South London: privacy and booking](https://sinceritycupping.co.uk/articles/male-hijama-therapist-south-london/): Men can review a male practitioner, privacy arrangements and two exact South London appointment choices before booking.
-- [Wet cupping near Balham: travel directions and booking](https://sinceritycupping.co.uk/articles/wet-cupping-balham/): A Balham travel guide to the Streatham wet cupping clinic, with rail, Northern line and road-planning notes plus exact booking choices.
-- [Hijama from Crystal Palace: travel to Streatham](https://sinceritycupping.co.uk/articles/hijama-crystal-palace/): A Crystal Palace travel guide for hijama in Streatham, with routes via Norbury or Streatham Common and live-journey checks.
-- [Wet cupping from Herne Hill: travel to Streatham](https://sinceritycupping.co.uk/articles/wet-cupping-herne-hill/): A Herne Hill travel guide for wet cupping in Streatham, with route options via Tulse Hill or Brixton and booking checks before leaving.
-- [Hijama from West Norwood: travel to Streatham](https://sinceritycupping.co.uk/articles/hijama-west-norwood/): A West Norwood travel guide for hijama in Streatham, including bus links, the Knights Hill road route and rail planning.
-- [Wet cupping from Tulse Hill: travel and booking](https://sinceritycupping.co.uk/articles/wet-cupping-tulse-hill/): A Tulse Hill travel guide for wet cupping in Streatham, with bus, road and rail planning plus exact booking choices.
-- [Hijama from Norbury: travel to the Streatham clinic](https://sinceritycupping.co.uk/articles/hijama-norbury/): A Norbury travel guide for hijama in Streatham, covering rail, A23 buses, the road route and the exact clinic address.
-- [Cupping therapy from Clapham: travel and booking guide](https://sinceritycupping.co.uk/articles/cupping-therapy-clapham/): A Clapham travel guide for cupping therapy in Streatham, including routes via Balham, rail planning and the choices to check before leaving.
-- [Wet cupping from Tooting: travel and appointment choices](https://sinceritycupping.co.uk/articles/wet-cupping-tooting/): A Tooting travel guide to wet cupping in Streatham, with route notes from Tooting Broadway and Tooting Bec plus exact appointment durations.
+- [Wet cupping near Balham: travel directions and booking](https://sinceritycupping.co.uk/articles/wet-cupping-balham/): A Balham travel-planning guide to the one Streatham wet cupping clinic, using the fixed address, current journey tools and exact booking choices.
+- [Hijama from Crystal Palace: travel to Streatham](https://sinceritycupping.co.uk/articles/hijama-crystal-palace/): A Crystal Palace travel-planning guide for hijama at the one Streatham clinic, using the fixed address and current journey information.
+- [Wet cupping from Herne Hill: travel to Streatham](https://sinceritycupping.co.uk/articles/wet-cupping-herne-hill/): A Herne Hill travel-planning guide for wet cupping at the one Streatham clinic, using the fixed address, current journey tools and booking checks.
+- [Hijama from West Norwood: travel to Streatham](https://sinceritycupping.co.uk/articles/hijama-west-norwood/): A West Norwood travel-planning guide for hijama at the one Streatham clinic, using the fixed address and current Google Maps or TfL information.
+- [Wet cupping from Tulse Hill: travel and booking](https://sinceritycupping.co.uk/articles/wet-cupping-tulse-hill/): A Tulse Hill travel-planning guide for wet cupping at the one Streatham clinic, using the fixed address, current journey tools and exact booking choices.
+- [Hijama from Norbury: travel to the Streatham clinic](https://sinceritycupping.co.uk/articles/hijama-norbury/): A Norbury travel-planning guide for hijama at the one Streatham clinic, using the fixed address and current Google Maps or TfL information.
+- [Cupping therapy from Clapham: travel and booking guide](https://sinceritycupping.co.uk/articles/cupping-therapy-clapham/): A Clapham travel-planning guide for cupping at the one Streatham clinic, using the fixed address, current journey tools and booking checks.
+- [Wet cupping from Tooting: travel and appointment choices](https://sinceritycupping.co.uk/articles/wet-cupping-tooting/): A Tooting travel-planning guide for wet cupping at the one Streatham clinic, using the fixed address, current journey tools and exact appointment durations.
 - [Female hijama therapist in South London: privacy and booking](https://sinceritycupping.co.uk/articles/female-hijama-therapist-south-london/): Women can review a female practitioner, privacy arrangements and two exact South London appointment choices before booking.
 - [Cupping hygiene in South London: what to check before booking](https://sinceritycupping.co.uk/articles/clean-hijama-clinic-south-london/): A South London hygiene checklist for cupping clients: ask about single-use items, disposal, treatment-area preparation and written information.
 - [Choosing a cupping clinic in Streatham: insurance questions and published facts](https://sinceritycupping.co.uk/articles/insured-hijama-clinic-streatham/): A Streatham guide to asking a cupping clinic about insurance and checking prices, durations, privacy and care boundaries before booking.

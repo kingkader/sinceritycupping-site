@@ -126,7 +126,7 @@ function jsonLd(value) {
   return JSON.stringify(value).replace(/</g, "\\u003c");
 }
 
-function shell({title, description, canonical, schema, main, areasCurrent = false}) {
+function shell({title, description, canonical, schema, main, areasCurrent = false, robots = "index, follow, max-image-preview:large"}) {
   const areasCurrentAttribute = areasCurrent ? ' aria-current="page"' : "";
   const clinicDirectionsHref = escapeHtml(clinicDirectionsUrl);
   return `<!DOCTYPE html>
@@ -137,7 +137,7 @@ function shell({title, description, canonical, schema, main, areasCurrent = fals
 <title>${escapeHtml(title)}</title>
 <meta name="description" content="${escapeHtml(description)}">
 <link rel="canonical" href="${canonical}">
-<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="robots" content="${escapeHtml(robots)}">
 <meta property="og:type" content="website">
 <meta property="og:title" content="${escapeHtml(title)}">
 <meta property="og:description" content="${escapeHtml(description)}">
@@ -338,6 +338,7 @@ ${paragraphs}${directionsAction}
     title: `${area.heading} | Sincerity Cupping Clinic`,
     description,
     canonical,
+    robots: "noindex, follow",
     schema: areaSchema(area),
     main,
   });

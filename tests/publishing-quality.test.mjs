@@ -70,6 +70,30 @@ const bannedClaims = [
   /\bdriving may resume\b[^.!?]{0,50}\b(?:steady|well|ready)\b/i,
 ];
 
+const unsupportedTravelClaimPatterns = [
+  /\b(?:A|B|M)\d{1,4}\b/i,
+  /\b(?:Northern|Victoria|Piccadilly|Central|District|Jubilee|Circle|Elizabeth|Metropolitan|Bakerloo|Overground|DLR)\s+line\b/i,
+  /\b(?:bus(?:es)?|rail|train|road|car)\b[^.!?]{0,100}\b(?:via|through|towards|follow(?:s|ed)?|runs?|connect(?:s|ions?)?|one\s+(?:rail|train)\s+stop)\b/i,
+  /\b(?:via|through|towards|follow(?:s|ed)?|runs?|connect(?:s|ions?)?)\b[^.!?]{0,100}\b(?:bus(?:es)?|rail|train|road|car)\b/i,
+  /\b(?:routes?|journeys?)\s+(?:via|through)\s+[A-Z][^,.!?]{1,60}/,
+  /\b(?:walk(?:ing)?|journey|travel|drive)\b[^.!?]{0,60}\b\d+(?:\.\d+)?\s*(?:minutes?|mins?|hours?|miles?|kilometres?|kilometers?|km)\b/i,
+  /\b\d+(?:\.\d+)?\s*(?:minutes?|mins?|hours?|miles?|kilometres?|kilometers?|km)\b[^.!?]{0,60}\b(?:walk(?:ing)?|journey|travel|drive)\b/i,
+  /\b(?:published (?:local )?(?:route notes|road description)|school-run traffic|roads? can be busier|traffic[^.!?]{0,40}add time|parking is not guaranteed|onsite parking)\b/i,
+];
+
+const travelPlanningSlugs = new Set([
+  "cupping-dulwich",
+  "cupping-therapy-clapham",
+  "hijama-brixton",
+  "hijama-crystal-palace",
+  "hijama-norbury",
+  "hijama-west-norwood",
+  "wet-cupping-balham",
+  "wet-cupping-herne-hill",
+  "wet-cupping-tooting",
+  "wet-cupping-tulse-hill",
+]);
+
 function read(relativePath) {
   return fs.readFileSync(path.join(root, relativePath), "utf8");
 }
@@ -274,6 +298,27 @@ test("all committed topic, article, manifest and LLM sources exclude retired cla
   }
 });
 
+test("all published articles keep travel guidance live-planner based and free of unsupported route facts", () => {
+  assert.equal(allRecords.length, 24);
+
+  for (const record of allRecords) {
+    const relativePath = `articles/${record.slug}/index.html`;
+    const source = read(relativePath);
+    const body = articleBody(relativePath);
+
+    for (const pattern of unsupportedTravelClaimPatterns) {
+      assert.doesNotMatch(body, pattern, `${relativePath} contains unsupported route claim ${pattern}`);
+    }
+
+    if (travelPlanningSlugs.has(record.slug)) {
+      const prose = source.match(/<article\b[^>]*class="[^"]*prose[^"]*"[^>]*>([\s\S]*?)<\/article>/i)?.[1] ?? "";
+      assert.match(prose, /330 Streatham High Rd, London SW16 6HH/i, `${relativePath} omits the fixed clinic address`);
+      assert.match(prose, /href="https:\/\/www\.google\.com\/maps[^\"]*"/i, `${relativePath} omits live Google Maps planning`);
+      assert.match(prose, /href="https:\/\/tfl\.gov\.uk\/plan-a-journey\/"/i, `${relativePath} omits live TfL planning`);
+    }
+  }
+});
+
 test("all 24 article pages agree with manifest and use the safe article contract", () => {
   assert.equal(allRecords.length, 24);
 
@@ -300,13 +345,26 @@ test("all 24 article pages agree with manifest and use the safe article contract
     assert.equal(article.datePublished, record.date, `schema published date drift in ${relativePath}`);
     assert.equal(article.dateModified, record.modified, `schema modified date drift in ${relativePath}`);
     assert.deepEqual(article.author, {"@id": `${business.domain}/#clinic`}, `wrong author in ${relativePath}`);
-    assert.equal(article.contributor?.name, "Sister Aisha Mejri", `missing reviewer in ${relativePath}`);
+    assert.equal("contributor" in article, false, `unverified contributor in ${relativePath}`);
+    assert.doesNotMatch(visibleText(source), /\b(?:Clinic review|Reviewed) by\b/i, `unverified review credit in ${relativePath}`);
     assert.ok(article.citation?.some((item) => item.url === "https://www.nccih.nih.gov/health/cupping"), `missing NCCIH schema citation in ${relativePath}`);
     assert.match(prose, /href="https:\/\/www\.nccih\.nih\.gov\/health\/cupping"/i, `missing visible NCCIH source in ${relativePath}`);
     assert.match(visibleText(prose), /complementary care[^.]{0,120}not a replacement for medical advice/i, `missing care boundary in ${relativePath}`);
     assert.doesNotMatch(shell, /oiid=sv%3A\d+/i, `service-specific shell booking in ${relativePath}`);
     assert.match(shell, /href="\/#book"/, `missing generic shell booking in ${relativePath}`);
   }
+});
+
+test("article sources and retired renderer contain no unverified review attribution fields", () => {
+  for (const [label, records] of [["manifest", manifest], ["topics", topics]]) {
+    for (const record of records) {
+      assert.equal("contributor" in record, false, `${label} contributor field in ${record.slug}`);
+      assert.equal("reviewer" in record, false, `${label} reviewer field in ${record.slug}`);
+      assert.equal("reviewedBy" in record, false, `${label} reviewedBy field in ${record.slug}`);
+    }
+  }
+
+  assert.doesNotMatch(read("scripts/generate-articles.mjs"), /Clinic review by|"contributor"\s*:/i);
 });
 
 test("automatic new-topic publishing is disabled before any write for harmless and risky inputs", (t) => {
@@ -883,7 +941,10 @@ test("sitemap static and area lastmod values come only from stored page dates", 
 
   const productionSitemap = read("sitemap.xml");
   for (const [urlPath, modified] of Object.entries(pageModified)) {
-    if (urlPath === "/areas/") continue;
+    if (/^\/areas\/[^/]+\/$/.test(urlPath)) {
+      assert.doesNotMatch(productionSitemap, new RegExp(`<loc>${business.domain}${urlPath}</loc>`));
+      continue;
+    }
     const url = `${business.domain}${urlPath}`.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
     assert.match(productionSitemap, new RegExp(`<loc>${url}</loc><lastmod>${modified}</lastmod>`));
   }
@@ -894,7 +955,10 @@ test("committed sitemap dates contain no runtime or future-date churn", () => {
   const sitemap = read("sitemap.xml");
   assert.doesNotMatch(sitemap, /<lastmod>2099-/);
   for (const [urlPath, modified] of Object.entries(fixturePageModified)) {
-    if (urlPath === "/areas/") continue;
+    if (/^\/areas\/[^/]+\/$/.test(urlPath)) {
+      assert.equal(sitemap.includes(`<loc>${business.domain}${urlPath}</loc>`), false, `noindex route leaked into sitemap: ${urlPath}`);
+      continue;
+    }
     const expected = `<loc>${business.domain}${urlPath}</loc><lastmod>${modified}</lastmod>`;
     assert.equal(sitemap.split(expected).length - 1, 1, `stored date drift for ${urlPath}`);
   }
@@ -975,13 +1039,13 @@ test("committed hours labels, schema and LLM facts derive from business data", (
   assert.match(llmsFull, new RegExp(`Opening hours: daily ${opens}–${closes}`));
 });
 
-test("manifest separates original publication dates from both rewrite batches", () => {
+test("manifest preserves publication dates and records the attribution rewrite date", () => {
   assert.equal(generatedRecords.length, 16);
   assert.equal(protectedRecords.length, 8);
   const sitemap = read("sitemap.xml");
 
   for (const record of generatedRecords) {
-    assert.equal(record.modified, "2026-07-20", `wrong modified date for ${record.slug}`);
+    assert.equal(record.modified, "2026-07-21", `wrong modified date for ${record.slug}`);
     const article = read(`articles/${record.slug}/index.html`);
     const schema = jsonLd(article).find((item) => item["@type"] === "Article");
     assert.equal(schema?.datePublished, record.date, `published date drift for ${record.slug}`);

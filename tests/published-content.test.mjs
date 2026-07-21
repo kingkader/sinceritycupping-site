@@ -83,7 +83,7 @@ const articleSlugs = [
   "women-only-hijama-south-london",
 ];
 
-const requiredRoutes = [
+const indexableRoutes = [
   "/",
   "/services/",
   "/about/",
@@ -92,8 +92,8 @@ const requiredRoutes = [
   "/privacy/",
   ...articleSlugs.map((slug) => `/articles/${slug}/`),
   "/areas/",
-  ...areas.map(([slug]) => `/areas/${slug}/`),
 ];
+const areaUserRoutes = areas.map(([slug]) => `/areas/${slug}/`);
 
 const forbiddenPublishedContent = [
   /fonts\.googleapis\.com|fonts\.gstatic\.com/i,
@@ -110,7 +110,10 @@ const forbiddenPublishedContent = [
   /\b60\s*(?:[–-]|to)\s*75\s*minutes?\b/i,
   /\bquarterly (?:rhythm|sessions?)\b/i,
   /\bfirst 48 hours\b/i,
-  /\bfemale-only environment\b/i,
+  /\b(?:female|women|woman|male|men|man)[ -]only\s+(?:environment|setting|clinic|room|space|premises)\b/i,
+  /\b(?:environment|setting|clinic|room|space|premises)\s+(?:is\s+)?(?:reserved\s+)?(?:exclusively|only)\s+for\s+(?:women|men|female|male)\b/i,
+  /\b(?:(?:more than|over)\s+)?(?:\d{2,}\+?|twenty|thirty|forty|fifty|sixty)(?:-|\s)+(?:combined\s+)?years?\b/i,
+  /\b(?:combined|together|between (?:the|both) practitioners?)\b[^.!?]{0,80}\b(?:\d{2,}\+?|twenty|thirty|forty|fifty|sixty)\s+years?\b/i,
   /\bcheck suitability\b/i,
   /\b(?:treated|cupped) (?:area|skin|sites?|marks?)\b[^.!?]{0,50}\b(?:must|should|needs? to|has to|is required to)\b[^.!?]{0,30}\b(?:remain|stay|be kept)\b[^.!?]{0,20}\bdry\b/i,
   /\b(?:keep|leave)\b[^.!?]{0,40}\b(?:treated|cupped)?\s*(?:area|skin|sites?|marks?)\b[^.!?]{0,25}\bdry\b/i,
@@ -276,13 +279,13 @@ function linkByText(markup, text) {
     .find((match) => visibleText(match[2]) === text);
 }
 
-test("the build exposes exactly 46 indexable routes with complete self-consistent metadata", () => {
+test("the build exposes exactly 31 indexable routes with complete self-consistent metadata", () => {
   assert.equal(walkHtml(root).length, 48, "source HTML contract changed");
   const builtFiles = walkHtml(builtRoot);
   assert.equal(builtFiles.length, 47, "dist HTML contract changed");
 
   const indexable = builtFiles.filter((file) => !/<meta\s+name="robots"\s+content="[^"]*noindex/i.test(fs.readFileSync(file, "utf8")));
-  assert.equal(indexable.length, 46, "indexable route contract changed");
+  assert.equal(indexable.length, 31, "indexable route contract changed");
 
   for (const file of indexable) {
     const relative = path.relative(builtRoot, file);
@@ -313,12 +316,12 @@ test("the build exposes exactly 46 indexable routes with complete self-consisten
   }
 });
 
-test("sitemap, canonicals and built files have exact one-to-one route parity", () => {
+test("sitemap, indexable canonicals and built files have exact one-to-one route parity", () => {
   const entries = sitemapEntries(readFrom(builtRoot, "sitemap.xml"));
   const locs = entries.map(({loc}) => loc);
-  assert.equal(entries.length, 46);
+  assert.equal(entries.length, 31);
   assert.equal(new Set(locs).size, locs.length, "duplicate sitemap URL");
-  assert.deepEqual(new Set(locs), new Set(requiredRoutes.map((route) => `${origin}${route}`)));
+  assert.deepEqual(new Set(locs), new Set(indexableRoutes.map((route) => `${origin}${route}`)));
 
   const canonicalUrls = walkHtml(builtRoot)
     .map((file) => fs.readFileSync(file, "utf8"))
@@ -338,7 +341,7 @@ test("sitemap, canonicals and built files have exact one-to-one route parity", (
 });
 
 test("both LLM route catalogues exactly match every canonical sitemap route", () => {
-  const expected = requiredRoutes.map((route) => `${origin}${route}`);
+  const expected = indexableRoutes.map((route) => `${origin}${route}`);
 
   for (const filename of ["llms.txt", "llms-full.txt"]) {
     const routes = markdownInternalRoutes(readFrom(builtRoot, filename));
@@ -441,7 +444,13 @@ test("all 15 locality pages publish the exact service-area copy and schema contr
     const expectedHeading = slug === "streatham" ? "Wet cupping in Streatham" : `Wet cupping near ${name}`;
     const title = visibleText(html.match(/<title>[\s\S]*?<\/title>/i)?.[0] || "");
     const h1 = visibleText(html.match(/<h1\b[^>]*>[\s\S]*?<\/h1>/i)?.[0] || "");
+    const robotsTags = [...html.matchAll(/<meta\b[^>]*name="robots"[^>]*content="([^"]+)"[^>]*>/gi)];
+    const canonicalTags = [...html.matchAll(/<link\b[^>]*rel="canonical"[^>]*href="([^"]+)"[^>]*>/gi)];
 
+    assert.equal(robotsTags.length, 1, `${relative}: expected one robots tag`);
+    assert.equal(robotsTags[0][1], "noindex, follow", `${relative}: wrong robots contract`);
+    assert.equal(canonicalTags.length, 1, `${relative}: expected one canonical`);
+    assert.equal(canonicalTags[0][1], `${origin}/areas/${slug}/`, `${relative}: canonical must remain self-referential`);
     assert.equal(title, `${expectedHeading} | Sincerity Cupping Clinic`, `${relative}: wrong title`);
     assert.equal(h1, expectedHeading, `${relative}: wrong H1`);
     assert.match(text, /appointments take place at (?:our|the) (?:one|single) (?:clinic )?(?:in Streatham|Streatham clinic)/i);
@@ -521,22 +530,22 @@ test("locality-focused prose stays substantive and below 0.55 normalized similar
   t.diagnostic(`maximum normalized five-word-shingle similarity: ${maximum.score.toFixed(3)} (${maximum.left} / ${maximum.right})`);
 });
 
-test("area dates and both LLM catalogues identify one-clinic service areas", () => {
+test("area dates persist while only the indexable hub appears in discovery catalogues", () => {
   const pageModified = JSON.parse(fs.readFileSync(path.join(root, "data", "page-modified.json"), "utf8"));
   const sitemap = sitemapEntries(fs.readFileSync(path.join(root, "sitemap.xml"), "utf8"));
   const sitemapDates = new Map(sitemap.map(({loc, lastmod}) => [new URL(loc).pathname, lastmod]));
 
-  for (const route of ["/areas/", ...areas.map(([slug]) => `/areas/${slug}/`)]) {
+  for (const route of ["/areas/", ...areaUserRoutes]) {
     assert.equal(pageModified[route], "2026-07-21", `${route}: stored modified date is stale`);
-    assert.equal(sitemapDates.get(route), "2026-07-21", `${route}: sitemap modified date is stale`);
   }
+  assert.equal(sitemapDates.get("/areas/"), "2026-07-21", "/areas/: sitemap modified date is stale");
+  for (const route of areaUserRoutes) assert.ok(!sitemapDates.has(route), `${route}: noindex route leaked into sitemap`);
 
   for (const filename of ["llms.txt", "llms-full.txt"]) {
     const content = fs.readFileSync(path.join(root, filename), "utf8");
     assert.match(content, /service areas?[^.\n]*single Streatham clinic|single Streatham clinic[^.\n]*service areas?/i, `${filename}: one-clinic service-area meaning missing`);
-    for (const [slug] of areas) {
-      assert.match(content, new RegExp(`${origin.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}/areas/${slug}/`), `${filename}: missing ${slug} service-area link`);
-    }
+    assert.match(content, new RegExp(`${origin.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}/areas/`), `${filename}: indexable area hub missing`);
+    for (const route of areaUserRoutes) assert.ok(!content.includes(`${origin}${route}`), `${filename}: noindex route leaked into catalogue`);
   }
 });
 
@@ -595,18 +604,6 @@ test("the site checker rejects missing area routes and locality schema entity dr
       .replace(new RegExp(`<a\\b[^>]*href="${removedRoute}"[^>]*>[\\s\\S]*?<\\/a>`, "gi"), "");
     fs.writeFileSync(file, html);
   }
-  fs.writeFileSync(
-    path.join(missingRoute, "sitemap.xml"),
-    fs.readFileSync(path.join(missingRoute, "sitemap.xml"), "utf8")
-      .replace(/\s*<url><loc>https:\/\/sinceritycupping\.co\.uk\/areas\/colliers-wood\/<\/loc>[\s\S]*?<\/url>/, ""),
-  );
-  for (const filename of ["llms.txt", "llms-full.txt"]) {
-    fs.writeFileSync(
-      path.join(missingRoute, filename),
-      fs.readFileSync(path.join(missingRoute, filename), "utf8")
-        .replace(/^.*https:\/\/sinceritycupping\.co\.uk\/areas\/colliers-wood\/.*\n?/m, ""),
-    );
-  }
   const missingResult = runChecker(missingRoute);
   assert.equal(missingResult.status, 1, missingResult.stdout || missingResult.stderr);
   assert.match(missingResult.stderr, /areas\/colliers-wood|exact.*area|missing.*area/i);
@@ -648,12 +645,55 @@ test("the site checker validates both LLM catalogues against the canonical route
     fs.writeFileSync(
       target,
       fs.readFileSync(target, "utf8")
-        .replace(/^.*https:\/\/sinceritycupping\.co\.uk\/areas\/balham\/.*\n?/m, ""),
+        .replace(/^.*https:\/\/sinceritycupping\.co\.uk\/areas\/.*\n?/m, ""),
     );
 
     const result = runChecker(fixtureRoot);
     assert.equal(result.status, 1, `${filename}: ${result.stdout || result.stderr}`);
-    assert.match(result.stderr, new RegExp(`${filename.replace(".", "\\.")}.*(?:balham|route|canonical)|(?:balham|route|canonical).*${filename.replace(".", "\\.")}`, "i"));
+    assert.match(result.stderr, new RegExp(`${filename.replace(".", "\\.")}.*(?:areas|route|canonical)|(?:areas|route|canonical).*${filename.replace(".", "\\.")}`, "i"));
+  }
+});
+
+test("the site checker rejects unsupported homepage claim paraphrases", (t) => {
+  for (const copy of [
+    "Together the practitioners bring over forty years of experience.",
+    "Appointments take place in a private women-only room.",
+    "This clinic space is reserved exclusively for men.",
+  ]) {
+    const fixtureRoot = makeCheckerFixture(t);
+    const homepage = path.join(fixtureRoot, "index.html");
+    fs.writeFileSync(homepage, fs.readFileSync(homepage, "utf8").replace("</main>", `<p>${copy}</p></main>`));
+
+    const result = runChecker(fixtureRoot);
+    assert.equal(result.status, 1, `checker accepted unsupported claim: ${copy}`);
+    assert.match(result.stderr, /experience|environment|setting|exclusive|unsupported|forbidden/i);
+  }
+});
+
+test("the site checker enforces the noindex locality and discovery-catalogue boundary", (t) => {
+  const wrongRobots = makeCheckerFixture(t);
+  const wrongRobotsPage = path.join(wrongRobots, "areas", "balham", "index.html");
+  fs.writeFileSync(wrongRobotsPage, fs.readFileSync(wrongRobotsPage, "utf8").replace("noindex, follow", "noindex, nofollow"));
+  const robotsResult = runChecker(wrongRobots);
+  assert.equal(robotsResult.status, 1, robotsResult.stdout || robotsResult.stderr);
+  assert.match(robotsResult.stderr, /balham.*robots|robots.*balham|noindex, follow/i);
+
+  const wrongCanonical = makeCheckerFixture(t);
+  const wrongCanonicalPage = path.join(wrongCanonical, "areas", "balham", "index.html");
+  fs.writeFileSync(
+    wrongCanonicalPage,
+    fs.readFileSync(wrongCanonicalPage, "utf8").replace(`${origin}/areas/balham/`, `${origin}/areas/brixton/`),
+  );
+  const canonicalResult = runChecker(wrongCanonical);
+  assert.equal(canonicalResult.status, 1, canonicalResult.stdout || canonicalResult.stderr);
+  assert.match(canonicalResult.stderr, /balham.*canonical|canonical.*balham|self-referential/i);
+
+  for (const filename of ["llms.txt", "llms-full.txt"]) {
+    const extraRoute = makeCheckerFixture(t);
+    fs.appendFileSync(path.join(extraRoute, filename), `\n- [Balham endpoint](${origin}/areas/balham/)\n`);
+    const catalogueResult = runChecker(extraRoute);
+    assert.equal(catalogueResult.status, 1, catalogueResult.stdout || catalogueResult.stderr);
+    assert.match(catalogueResult.stderr, /non-canonical internal route|balham/i);
   }
 });
 
