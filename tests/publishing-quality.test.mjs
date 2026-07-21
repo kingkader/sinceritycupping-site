@@ -896,9 +896,9 @@ test("404 recovery assets and links resolve from a nested missing route", async 
   }
 
   for (const expected of [
-    "/assets/css/style.css?v=20260720",
+    "/assets/css/style.css?v=c1bedce9c888",
     "/assets/img/sincerity-cupping-logo.svg",
-    "/assets/js/site.js?v=20260720",
+    "/assets/js/site.js?v=939cec1c255b",
     "/services/",
     "/contact/",
     "/#book",

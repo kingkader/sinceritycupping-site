@@ -146,7 +146,7 @@ function shell({title, description, canonical, schema, main, areasCurrent = fals
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#163129">
 <link rel="icon" type="image/svg+xml" href="/assets/img/favicon.svg">
-<link rel="stylesheet" href="/assets/css/style.css?v=20260720">
+<link rel="stylesheet" href="/assets/css/style.css?v=c1bedce9c888">
 <script>document.documentElement.classList.add("js");</script>
 <script type="application/ld+json">${jsonLd(schema)}</script>
 </head>
@@ -228,7 +228,7 @@ ${main}
   <a class="btn btn-outline" href="https://wa.me/447552540000"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 0 1-13.5 7.8L3 21l1.2-4.5A9 9 0 1 1 21 12z"/><path d="M9 10a1 1 0 0 0 5 5"/></svg> WhatsApp</a>
 </nav>
 
-<script src="/assets/js/site.js?v=20260720" defer></script>
+<script src="/assets/js/site.js?v=939cec1c255b" defer></script>
 </body>
 </html>
 `;

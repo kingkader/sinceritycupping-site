@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import crypto from "node:crypto";
 import fs from "node:fs";
 import path from "node:path";
 import {fileURLToPath} from "node:url";
@@ -24,6 +25,35 @@ const productionHtml = [
   ...["about", "areas", "articles", "blog", "contact", "privacy", "services"]
     .flatMap((directory) => htmlFilesUnder(path.join(root, directory))),
 ];
+
+function assetVersion(relativePath) {
+  return crypto
+    .createHash("sha256")
+    .update(fs.readFileSync(path.join(root, relativePath)))
+    .digest("hex")
+    .slice(0, 12);
+}
+
+test("all production HTML uses content-addressed CSS and JavaScript cache keys", () => {
+  const expected = {
+    "assets/css/style.css": assetVersion("assets/css/style.css"),
+    "assets/js/site.js": assetVersion("assets/js/site.js"),
+  };
+
+  for (const file of productionHtml) {
+    const source = fs.readFileSync(file, "utf8");
+
+    for (const [asset, version] of Object.entries(expected)) {
+      const escapedAsset = asset.replaceAll(".", "\\.");
+      const match = source.match(new RegExp(`${escapedAsset}\\?v=([^\"']+)`));
+      assert.equal(
+        match?.[1],
+        version,
+        `stale ${asset} cache key in ${path.relative(root, file)}`,
+      );
+    }
+  }
+});
 
 test("all production HTML uses local font stacks only", () => {
   assert.ok(productionHtml.length >= 46, "expected every production HTML source");

@@ -163,7 +163,6 @@ test("every core shell uses the Cupping & prices navigation label and local font
       /fonts\.googleapis\.com|fonts\.gstatic\.com/,
       `remote font request in ${relativePath}`,
     );
-    assert.match(source, /20260720/, `stale asset version in ${relativePath}`);
   }
 });
 
