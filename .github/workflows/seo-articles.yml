@@ -1,16 +1,13 @@
-name: Publish SEO articles three times weekly
+name: Validate reviewed SEO articles
 
 on:
-  schedule:
-    - cron: "30 6 * * 1,3,5"
   workflow_dispatch:
 
 permissions:
-  contents: write
-  deployments: write
+  contents: read
 
 jobs:
-  publish:
+  validate-reviewed-content:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -21,21 +18,16 @@ jobs:
         with:
           node-version: "22"
 
-      - name: Generate scheduled wet cupping article (Mon/Wed/Fri)
-        run: node scripts/generate-articles.mjs --count=0
+      - name: Rerender reviewed articles
+        run: npm run rerender:articles
+
+      - name: Confirm rerender is deterministic
+        run: |
+          git diff --exit-code
+          if [ -n "$(git status --porcelain)" ]; then
+            git status --short
+            exit 1
+          fi
 
       - name: Validate site
-        run: node scripts/check-site.mjs
-
-      - name: Commit changes
-        uses: stefanzweifel/git-auto-commit-action@v5
-        with:
-          commit_message: "Publish scheduled wet cupping SEO article"
-          file_pattern: "articles/** blog/index.html sitemap.xml llms.txt data/article-manifest.json"
-
-      - name: Deploy to Cloudflare Pages
-        uses: cloudflare/wrangler-action@v3
-        with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy . --project-name=sinceritycupping --branch=main --commit-dirty=true
+        run: npm run check:source

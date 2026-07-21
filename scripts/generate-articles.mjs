@@ -4,9 +4,12 @@
 // data/article-manifest.json.
 //
 // Usage:
-//   node scripts/generate-articles.mjs --count=1        # scheduled publishing
 //   node scripts/generate-articles.mjs --count=0 --rerender
-//     # regenerate every existing non-custom article + blog/sitemap/llms
+//     # regenerate already-reviewed non-custom articles + blog/sitemap/llms
+//   add --rerender-protected only for an explicitly reviewed protected rewrite
+//
+// New and bespoke article publishing is intentionally disabled. Drafts must
+// pass manual review and be added to the manifest before this renderer is used.
 //
 // CUSTOM_SLUGS began as hand-written pages. They remain protected during a
 // normal rerender, but can now be rebuilt from audited structured content with
@@ -17,6 +20,27 @@ import path from "node:path";
 import process from "node:process";
 
 const root = process.cwd();
+const rawArgs = process.argv.slice(2);
+const args = new Map(rawArgs.map((arg, index, arr) => {
+  if (!arg.startsWith("--")) return [arg, true];
+  const equalsAt = arg.indexOf("=");
+  const [key, value] = equalsAt >= 0
+    ? [arg.slice(0, equalsAt), arg.slice(equalsAt + 1)]
+    : [arg, arr[index + 1]?.startsWith("--") ? "true" : arr[index + 1]];
+  return [key, value ?? "true"];
+}));
+
+const countOptions = rawArgs.filter((arg) => arg === "--count" || arg.startsWith("--count="));
+const countArgument = args.get("--count");
+const rerender = args.has("--rerender");
+const rerenderProtected = args.has("--rerender-protected");
+if (countOptions.length !== 1 || countArgument !== "0" || !rerender || args.has("--bespoke")) {
+  console.error("Automatic article publishing is disabled. New and bespoke articles require manual review; only --count=0 --rerender is allowed.");
+  process.exit(1);
+}
+
+const count = 0;
+const bespokePath = undefined;
 const business = JSON.parse(fs.readFileSync(path.join(root, "data", "business.json"), "utf8"));
 const topics = JSON.parse(fs.readFileSync(path.join(root, "data", "article-topics.json"), "utf8"));
 
@@ -26,19 +50,8 @@ const CUSTOM_SLUGS = new Set([
   "hijama-aftercare-london",
 ]);
 
-const args = new Map(process.argv.slice(2).map((arg, index, arr) => {
-  if (!arg.startsWith("--")) return [arg, true];
-  const [key, value] = arg.includes("=") ? arg.split("=") : [arg, arr[index + 1]?.startsWith("--") ? "true" : arr[index + 1]];
-  return [key, value ?? "true"];
-}));
-
-const count = Number(args.get("--count") || 1);
-const rerender = args.has("--rerender");
-const rerenderProtected = args.has("--rerender-protected");
-const bespokePath = args.get("--bespoke");
 const now = args.get("--date") ? new Date(String(args.get("--date"))) : new Date();
 const isoDate = now.toISOString().slice(0, 10);
-const year = String(now.getFullYear());
 const manifestPath = path.join(root, "data", "article-manifest.json");
 const manifest = fs.existsSync(manifestPath) ? JSON.parse(fs.readFileSync(manifestPath, "utf8")) : [];
 const pageModifiedPath = path.join(root, "data", "page-modified.json");
@@ -46,6 +59,16 @@ if (!fs.existsSync(pageModifiedPath)) {
   throw new Error("data/page-modified.json is required to build sitemap lastmod values");
 }
 const pageModified = JSON.parse(fs.readFileSync(pageModifiedPath, "utf8"));
+const storedYears = [
+  ...Object.values(pageModified),
+  ...manifest.flatMap((article) => [article.date, article.modified]),
+]
+  .filter((value) => /^\d{4}-\d{2}-\d{2}$/.test(String(value || "")))
+  .map((value) => Number(String(value).slice(0, 4)));
+if (storedYears.length === 0) {
+  throw new Error("At least one valid stored content date is required for deterministic rendering");
+}
+const year = String(Math.max(...storedYears));
 const used = new Set(manifest.map((article) => article.slug));
 
 function joinedPattern(...parts) {
@@ -146,6 +169,31 @@ function validatePublishableOutput(label, source) {
   }
 }
 
+const ARTICLE_SLUG = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
+function validateArticleSlugs(label, records) {
+  if (!Array.isArray(records)) {
+    console.error(`${label}: expected an array of reviewed records`);
+    process.exit(1);
+  }
+  const errors = [];
+  const seen = new Set();
+  records.forEach((record, index) => {
+    const slug = typeof record?.slug === "string" ? record.slug : "";
+    if (!ARTICLE_SLUG.test(slug)) {
+      errors.push(`${label}[${index}]: invalid article slug ${JSON.stringify(slug)}`);
+      return;
+    }
+    if (seen.has(slug)) errors.push(`${label}[${index}]: duplicate article slug ${JSON.stringify(slug)}`);
+    seen.add(slug);
+  });
+  if (errors.length) {
+    console.error(errors.join("\n"));
+    process.exit(1);
+  }
+}
+
+validateArticleSlugs("article topics", topics);
+validateArticleSlugs("article manifest", manifest);
 validateTopicsForPublishing(topics);
 validatePublishableOutput("business data", JSON.stringify(business));
 validatePublishableOutput("article manifest", JSON.stringify(manifest));

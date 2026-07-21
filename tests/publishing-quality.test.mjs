@@ -131,11 +131,11 @@ function decodeAttribute(value) {
 
 const fixturePageModified = {
   "/": "2026-07-20",
-  "/services/": "2026-07-20",
-  "/about/": "2026-07-20",
-  "/contact/": "2026-07-20",
-  "/blog/": "2026-07-20",
-  "/privacy/": "2026-07-20",
+  "/services/": "2026-07-21",
+  "/about/": "2026-07-21",
+  "/contact/": "2026-07-21",
+  "/blog/": "2026-07-21",
+  "/privacy/": "2026-07-21",
   "/areas/": "2026-07-20",
   ...Object.fromEntries(business.serviceAreas.map((area) => [
     `/areas/${area.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "")}/`,
@@ -294,7 +294,199 @@ test("all 24 article pages agree with manifest and use the safe article contract
   }
 });
 
-test("generator rejects a banned topic before writing any output", (t) => {
+test("automatic new-topic publishing is disabled before any write for harmless and risky inputs", (t) => {
+  const cases = [
+    {
+      label: "harmless explicit count",
+      args: ["--count=1"],
+      text: "A harmless operational guide.",
+    },
+    {
+      label: "harmless larger count",
+      args: ["--count=3"],
+      text: "Another harmless operational guide.",
+    },
+    {
+      label: "harmless implicit default",
+      args: [],
+      text: "A harmless default-invocation guide.",
+    },
+    {
+      label: "non-rerender count zero",
+      args: ["--count=0"],
+      text: "A harmless non-rerender guide.",
+    },
+    {
+      label: "non-canonical zero",
+      args: ["--count=0.0", "--rerender"],
+      text: "A harmless non-canonical-count guide.",
+    },
+    {
+      label: "zero-padded count",
+      args: ["--count=00", "--rerender"],
+      text: "A harmless zero-padded-count guide.",
+    },
+    {
+      label: "negative count",
+      args: ["--count=-1", "--rerender"],
+      text: "A harmless negative-count guide.",
+    },
+    {
+      label: "non-numeric count",
+      args: ["--count=not-a-number", "--rerender"],
+      text: "A harmless non-numeric-count guide.",
+    },
+    {
+      label: "conflicting duplicate counts",
+      args: ["--count=1", "--count=0", "--rerender"],
+      text: "A harmless duplicate-count guide.",
+    },
+    {
+      label: "risky paraphrase",
+      args: ["--count=1"],
+      text: "Have cupping twice per year.",
+    },
+  ];
+
+  for (const [index, item] of cases.entries()) {
+    const slug = `new-topic-disabled-${index}`;
+    const topic = {
+      slug,
+      title: "New topic fixture",
+      keyword: "new topic fixture",
+      intent: "test",
+      service: "Wet cupping",
+      area: "London",
+      angle: item.text,
+      summary: "A publishing lockout fixture.",
+    };
+    const fixture = makeGeneratorFixture({fixtureTopics: [topic]});
+    const before = seedOutputSentinels(fixture);
+    t.after(() => fs.rmSync(fixture, {recursive: true, force: true}));
+
+    const result = runGenerator(fixture, ...item.args);
+
+    assert.notEqual(result.status, 0, `${item.label}: generator unexpectedly succeeded`);
+    assert.match(result.stderr, /automatic article publishing is disabled.*manual review/i);
+    assertSentinelsUnchanged(fixture, before);
+    assert.equal(fs.existsSync(path.join(fixture, "articles", slug, "index.html")), false);
+  }
+});
+
+test("disabled publishing exits before reading project files", (t) => {
+  const fixture = fs.mkdtempSync(path.join(os.tmpdir(), "sincerity-empty-generator-"));
+  t.after(() => fs.rmSync(fixture, {recursive: true, force: true}));
+
+  const result = runGenerator(fixture, "--count=1");
+
+  assert.notEqual(result.status, 0, result.stderr || result.stdout);
+  assert.match(result.stderr, /automatic article publishing is disabled.*manual review/i);
+  assert.doesNotMatch(result.stderr, /ENOENT|business\.json|article-topics/i);
+  assert.deepEqual(fs.readdirSync(fixture), []);
+});
+
+test("reviewed rerender rejects unsafe slugs before any write or path escape", (t) => {
+  const unsafeSlugs = [
+    "../areas/balham",
+    "/absolute/article",
+    "%2e%2e%2fareas%2fbalham",
+    "nested/article",
+    "Uppercase-Slug",
+  ];
+
+  for (const unsafeSlug of unsafeSlugs) {
+    const record = {
+      slug: unsafeSlug,
+      title: "Unsafe slug fixture",
+      summary: "A safe summary paired with an unsafe storage path.",
+      date: "2025-01-02",
+      modified: "2026-07-21",
+    };
+    const topic = {
+      ...record,
+      keyword: "unsafe slug fixture",
+      intent: "test",
+      service: "Wet cupping",
+      area: "London",
+      angle: "safe fixture content",
+    };
+    delete topic.date;
+    delete topic.modified;
+    const fixture = makeGeneratorFixture({fixtureTopics: [topic], fixtureManifest: [record]});
+    const areaPath = path.join(fixture, "areas", "balham", "index.html");
+    fs.mkdirSync(path.dirname(areaPath), {recursive: true});
+    fs.writeFileSync(areaPath, "AREA SENTINEL\n");
+    const before = seedOutputSentinels(fixture);
+    const areaBefore = fs.readFileSync(areaPath);
+    t.after(() => fs.rmSync(fixture, {recursive: true, force: true}));
+
+    const result = runGenerator(fixture, "--count=0", "--rerender");
+
+    assert.notEqual(result.status, 0, `${unsafeSlug}: generator unexpectedly succeeded`);
+    assert.match(result.stderr, /invalid.*slug/i);
+    assertSentinelsUnchanged(fixture, before);
+    assert.deepEqual(fs.readFileSync(areaPath), areaBefore, `${unsafeSlug}: area path was mutated`);
+  }
+});
+
+test("reviewed rerender rejects duplicate topic and manifest slugs before any write", (t) => {
+  const record = {
+    slug: "duplicate-slug-fixture",
+    title: "Duplicate slug fixture",
+    summary: "A safe duplicate-slug validation fixture.",
+    date: "2025-01-02",
+    modified: "2026-07-21",
+  };
+  const topic = {
+    slug: record.slug,
+    title: record.title,
+    summary: record.summary,
+    keyword: "duplicate slug fixture",
+    intent: "test",
+    service: "Wet cupping",
+    area: "London",
+    angle: "safe fixture content",
+  };
+  const cases = [
+    {label: "topic", fixtureTopics: [topic, structuredClone(topic)], fixtureManifest: [record]},
+    {label: "manifest", fixtureTopics: [topic], fixtureManifest: [record, structuredClone(record)]},
+  ];
+
+  for (const item of cases) {
+    const fixture = makeGeneratorFixture(item);
+    const before = seedOutputSentinels(fixture);
+    t.after(() => fs.rmSync(fixture, {recursive: true, force: true}));
+
+    const result = runGenerator(fixture, "--count=0", "--rerender");
+
+    assert.notEqual(result.status, 0, `${item.label}: generator unexpectedly succeeded`);
+    assert.match(result.stderr, /duplicate.*slug/i);
+    assertSentinelsUnchanged(fixture, before);
+  }
+});
+
+test("operator scripts and workflow expose reviewed rerendering only", () => {
+  const packageJson = JSON.parse(read("package.json"));
+  const workflow = read(".github/workflows/seo-articles.yml");
+  const bespokeWrapper = read("scripts/write-article.mjs");
+
+  assert.equal(
+    packageJson.scripts["rerender:articles"],
+    "node scripts/generate-articles.mjs --count=0 --rerender",
+  );
+  assert.equal("generate:articles" in packageJson.scripts, false);
+
+  assert.match(workflow, /workflow_dispatch:/);
+  assert.doesNotMatch(workflow, /\bschedule:|\bcron:|git-auto-commit|pages deploy|--bespoke|--count=[1-9]/i);
+  assert.match(workflow, /npm run rerender:articles/);
+  assert.match(workflow, /git diff --exit-code/);
+  assert.match(workflow, /git status --porcelain/);
+
+  assert.doesNotMatch(bespokeWrapper, /spawnSync|--bespoke/);
+  assert.match(bespokeWrapper, /manual review/i);
+});
+
+test("claim gate still rejects a banned reviewed topic before writing any output", (t) => {
   const badTopic = {
     slug: "unsafe-fixture",
     title: "Unsafe fixture",
@@ -305,20 +497,23 @@ test("generator rejects a banned topic before writing any output", (t) => {
     angle: "normally settles within 24 to 48 hours",
     summary: "A deliberately unsafe publishing fixture.",
   };
-  const fixture = makeGeneratorFixture({fixtureTopics: [badTopic]});
+  const record = {
+    slug: badTopic.slug,
+    title: badTopic.title,
+    summary: badTopic.summary,
+    date: "2025-01-02",
+    modified: "2026-07-21",
+  };
+  const fixture = makeGeneratorFixture({fixtureTopics: [badTopic], fixtureManifest: [record]});
+  const before = seedOutputSentinels(fixture);
   t.after(() => fs.rmSync(fixture, {recursive: true, force: true}));
 
-  const result = runGenerator(fixture, "--count=1", "--date=2099-12-31");
+  const result = runGenerator(fixture, "--count=0", "--rerender", "--date=2099-12-31");
 
   assert.equal(result.status, 1, result.stderr || result.stdout);
   assert.match(result.stderr, /unsafe-fixture.*retired claim/i);
-  assert.equal(fs.readFileSync(path.join(fixture, "blog", "index.html"), "utf8"), "UNCHANGED BLOG");
-  assert.equal(
-    fs.readFileSync(path.join(fixture, "data", "article-manifest.json"), "utf8"),
-    "[]\n",
-  );
+  assertSentinelsUnchanged(fixture, before);
   assert.equal(fs.existsSync(path.join(fixture, "articles", "unsafe-fixture", "index.html")), false);
-  assert.equal(fs.existsSync(path.join(fixture, "llms.txt")), false);
 });
 
 test("generator rejects retired lunar-date variants before writing any output", (t) => {
@@ -341,20 +536,23 @@ test("generator rejects retired lunar-date variants before writing any output", 
       angle,
       summary: "A deliberately unsafe publishing fixture.",
     };
-    const fixture = makeGeneratorFixture({fixtureTopics: [badTopic]});
+    const record = {
+      slug,
+      title: badTopic.title,
+      summary: badTopic.summary,
+      date: "2025-01-02",
+      modified: "2026-07-21",
+    };
+    const fixture = makeGeneratorFixture({fixtureTopics: [badTopic], fixtureManifest: [record]});
+    const before = seedOutputSentinels(fixture);
     t.after(() => fs.rmSync(fixture, {recursive: true, force: true}));
 
-    const result = runGenerator(fixture, "--count=1", "--date=2099-12-31");
+    const result = runGenerator(fixture, "--count=0", "--rerender", "--date=2099-12-31");
 
     assert.equal(result.status, 1, `${angle}: ${result.stderr || result.stdout}`);
     assert.match(result.stderr, new RegExp(`${slug}.*retired claim`, "i"));
-    assert.equal(fs.readFileSync(path.join(fixture, "blog", "index.html"), "utf8"), "UNCHANGED BLOG");
-    assert.equal(
-      fs.readFileSync(path.join(fixture, "data", "article-manifest.json"), "utf8"),
-      "[]\n",
-    );
+    assertSentinelsUnchanged(fixture, before);
     assert.equal(fs.existsSync(path.join(fixture, "articles", slug, "index.html")), false);
-    assert.equal(fs.existsSync(path.join(fixture, "llms.txt")), false);
   }
 });
 
@@ -406,11 +604,18 @@ test("central gate rejects paraphrased care rules without mutating any output", 
         ],
       },
     };
-    const fixture = makeGeneratorFixture({fixtureTopics: [badTopic]});
+    const record = {
+      slug,
+      title: badTopic.title,
+      summary: badTopic.summary,
+      date: "2025-01-02",
+      modified: "2026-07-21",
+    };
+    const fixture = makeGeneratorFixture({fixtureTopics: [badTopic], fixtureManifest: [record]});
     const before = seedOutputSentinels(fixture);
     t.after(() => fs.rmSync(fixture, {recursive: true, force: true}));
 
-    const result = runGenerator(fixture, "--count=1", "--date=2099-12-31");
+    const result = runGenerator(fixture, "--count=0", "--rerender", "--date=2099-12-31");
 
     assert.notEqual(result.status, 0, `${unsafeText}: generator unexpectedly succeeded`);
     assert.match(result.stderr, new RegExp(`${slug}.*retired claim`, "i"));
@@ -419,8 +624,9 @@ test("central gate rejects paraphrased care rules without mutating any output", 
   }
 });
 
-test("central gate rejects unsafe bespoke HTML before mutating any output", (t) => {
+test("bespoke publishing is disabled before any write for harmless and risky HTML", (t) => {
   const variants = [
+    "<p>A harmless operational article.</p>",
     "<p>Do <strong>not</strong> exercise after cupping.</p>",
     "<p>Do not<br>exercise after hijama.</p>",
   ];
@@ -442,10 +648,22 @@ test("central gate rejects unsafe bespoke HTML before mutating any output", (t) 
     const result = runGenerator(fixture, "--count=0", `--bespoke=${payloadPath}`);
 
     assert.notEqual(result.status, 0, result.stderr || result.stdout);
-    assert.match(result.stderr, new RegExp(`${slug}.*retired claim`, "i"));
+    assert.match(result.stderr, /automatic article publishing is disabled.*manual review/i);
     assertSentinelsUnchanged(fixture, before);
     assert.equal(fs.existsSync(path.join(fixture, "articles", slug, "index.html")), false);
   }
+});
+
+test("an empty bespoke flag is still rejected before any write", (t) => {
+  const fixture = makeGeneratorFixture();
+  const before = seedOutputSentinels(fixture);
+  t.after(() => fs.rmSync(fixture, {recursive: true, force: true}));
+
+  const result = runGenerator(fixture, "--count=0", "--rerender", "--bespoke=");
+
+  assert.notEqual(result.status, 0, result.stderr || result.stdout);
+  assert.match(result.stderr, /automatic article publishing is disabled.*manual review/i);
+  assertSentinelsUnchanged(fixture, before);
 });
 
 test("central gate permits a caveat that explicitly denies a universal rule", (t) => {
@@ -470,10 +688,17 @@ test("central gate permits a caveat that explicitly denies a universal rule", (t
       ],
     },
   };
-  const fixture = makeGeneratorFixture({fixtureTopics: [topic]});
+  const record = {
+    slug: topic.slug,
+    title: topic.title,
+    summary: topic.summary,
+    date: "2025-01-02",
+    modified: "2026-07-21",
+  };
+  const fixture = makeGeneratorFixture({fixtureTopics: [topic], fixtureManifest: [record]});
   t.after(() => fs.rmSync(fixture, {recursive: true, force: true}));
 
-  const result = runGenerator(fixture, "--count=1", "--date=2099-12-31");
+  const result = runGenerator(fixture, "--count=0", "--rerender", "--date=2099-12-31");
 
   assert.equal(result.status, 0, result.stderr || result.stdout);
   assert.equal(fs.existsSync(path.join(fixture, "articles", topic.slug, "index.html")), true);
@@ -523,34 +748,68 @@ test("privacy notice documents the clinic's actual data flows and retention end 
 
   assert.match(row("Email enquiries"), /mailto|Gmail/i);
   assert.match(row("Email enquiries"), /Article 6\(1\)\(b\)/i);
+  assert.match(row("Phone enquiries"), /answer an enquiry|appointment administration/i);
+  assert.match(row("Phone enquiries"), /telecom|telephone provider/i);
+  assert.match(row("Phone enquiries"), /Article 6\(1\)\(b\)/i);
   assert.match(row("Fresha bookings"), /appointment administration/i);
   assert.match(row("Fresha bookings"), /Article 6\(1\)\(b\)/i);
-  assert.match(row("Financial and legal records"), /Article 6\(1\)\(c\)/i);
+  assert.match(row("Financial records"), /Article 6\(1\)\(c\)/i);
+  assert.doesNotMatch(row("Financial records"), /complaint|claim|Article 6\(1\)\(f\)/i);
+  const complaintRow = row("Complaints");
+  const legalClaimRow = row("Legal claims");
+  assert.notEqual(complaintRow, legalClaimRow, "complaints and legal claims need separate processing rows");
+  assert.match(complaintRow, /Article 6\(1\)\(f\)/i);
+  assert.match(complaintRow, /separate valid Article 9 condition/i);
+  assert.doesNotMatch(complaintRow, /Article 9\(2\)\(f\)/i);
+  assert.match(legalClaimRow, /Article 6\(1\)\(f\)/i);
+  assert.match(legalClaimRow, /Article 9\(2\)\(f\)/i);
+  assert.match(legalClaimRow, /actual or prospective|legal advice|legal rights/i);
   assert.match(row("Cloudflare security logs"), /Article 6\(1\)\(f\)/i);
   assert.match(row("Consultation safety information"), /contract steps|contract performance/i);
   assert.match(row("Consultation safety information"), /Article 9\(2\)\(a\).*explicit consent/i);
-  assert.match(text, /Article 9\(2\)\(f\) only when information is needed for an actual legal claim/i);
+  assert.match(text, /consultation consent does not cover complaint handling/i);
+  assert.match(text, /Article 6\(1\)\(f\).*Article 9\(2\)\(f\).*(?:legal claim|legal advice|legal rights)/i);
 
   assert.match(text, /contact details, chosen service and appointment time are needed to arrange/i);
-  assert.match(text, /detailed health information must not be sent through (?:a|the) general enquiry/i);
+  assert.match(text, /do not send detailed health information (?:by|through) (?:email,? WhatsApp (?:or|and) Fresha|Fresha,? email (?:or|and) WhatsApp)/i);
+  assert.match(text, /provide necessary health information privately during the consultation|approved private channel/i);
   assert.match(text, /declining necessary in-person safety questions may mean the clinic cannot proceed/i);
+  assert.match(text, /telephone or telecom provider/i);
 
   for (const criterion of [
-    /enquiry is resolved and any agreed follow-up has ended/i,
-    /booking administration, complaint and payment period has ended/i,
-    /consultation relationship and any insurer or legal-claims period has ended/i,
+    /enquiry is answered and any requested follow-up is complete/i,
+    /appointment is completed or cancelled and (?:the )?booking, refund and payment administration is closed/i,
+    /appointment and any directly related safety follow-up are complete/i,
     /statutory financial-record period has ended/i,
-    /Cloudflare's security-log period has ended/i,
+    /complaint response and any agreed follow-up are complete/i,
+    /legal advice, proceedings or legal rights no longer require the record/i,
+    /security event is closed and the log is no longer needed/i,
+    /clinic-created call note follows the enquiry criterion/i,
   ]) assert.match(text, criterion);
 
   for (const href of [
     "https://terms.fresha.com/privacy-policy",
-    "https://policies.google.com/privacy",
-    "https://www.whatsapp.com/legal/privacy-policy-eea",
-    "https://www.cloudflare.com/privacypolicy/",
+    "https://policies.google.com/privacy?hl=en-GB",
+    "https://policies.google.com/privacy/frameworks?hl=en-GB",
+    "https://www.whatsapp.com/legal/privacy-policy-uk",
+    "https://www.cloudflare.com/policies/privacy/",
+    "https://www.cloudflare.com/en-gb/cloudflare-customer-dpa/",
   ]) assert.match(privacy, new RegExp(`href="${href.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}"`));
 
-  assert.match(text, /provider-specific (?:adequacy|UK Addendum|IDTA) safeguards/i);
+  assert.match(text, /processing outside the UK may occur under each provider's official (?:notice|terms)/i);
+  assert.match(text, /only where a valid UK transfer mechanism applies/i);
+  assert.match(text, /ask (?:the clinic|us) for (?:the )?relevant safeguard details or a copy/i);
+  assert.doesNotMatch(text, /we (?:checked|verified) (?:the )?(?:account|DPA|contract)|our DPA with/i);
+});
+
+test("internal privacy verification note records what still needs operational confirmation", () => {
+  const note = read("docs/privacy-provider-verification.md");
+
+  assert.match(note, /account-specific (?:contracts|DPAs).*not (?:inspected|verified)/i);
+  assert.match(note, /Fresha.*Cloudflare.*Google.*WhatsApp/is);
+  assert.match(note, /telecom provider.*not (?:identified|verified)/i);
+  assert.match(note, /before making stronger controller-processor or transfer-mechanism claims/i);
+  assert.doesNotMatch(note, /release blocker|blocks? (?:launch|publication)/i);
 });
 
 test("contact loads Google Maps only after an explicit directions click", () => {
@@ -657,6 +916,43 @@ test("future rerender dates cannot churn static or area sitemap entries", (t) =>
   assert.deepEqual(after, before, "future invocation date changed unrelated sitemap lastmod values");
 });
 
+test("reviewed rerender output is byte-identical across invocation dates", (t) => {
+  const record = {
+    slug: "deterministic-rerender-fixture",
+    title: "A deterministic cupping rerender fixture",
+    summary: "A safe summary used to verify deterministic reviewed output.",
+    date: "2025-01-02",
+    modified: "2026-07-21",
+  };
+  const fixture = makeGeneratorFixture({fixtureManifest: [record]});
+  t.after(() => fs.rmSync(fixture, {recursive: true, force: true}));
+
+  const outputPaths = [
+    "data/article-manifest.json",
+    "blog/index.html",
+    "sitemap.xml",
+    "llms.txt",
+    "llms-full.txt",
+    `articles/${record.slug}/index.html`,
+  ];
+  const first = runGenerator(fixture, "--count=0", "--rerender", "--date=2026-07-21");
+  assert.equal(first.status, 0, first.stderr || first.stdout);
+  const before = new Map(outputPaths.map((relativePath) => [
+    relativePath,
+    fs.readFileSync(path.join(fixture, relativePath)),
+  ]));
+
+  const second = runGenerator(fixture, "--count=0", "--rerender", "--date=2099-12-31");
+  assert.equal(second.status, 0, second.stderr || second.stdout);
+  for (const relativePath of outputPaths) {
+    assert.deepEqual(
+      fs.readFileSync(path.join(fixture, relativePath)),
+      before.get(relativePath),
+      `${relativePath} changed only because the invocation date changed`,
+    );
+  }
+});
+
 test("explicit protected rerender uses structured topic content without dropping metadata", (t) => {
   const record = {
     slug: "protected-fixture",
@@ -743,7 +1039,7 @@ test("generated hours labels, schema and LLM facts derive from business data", (
   });
   t.after(() => fs.rmSync(fixture, {recursive: true, force: true}));
 
-  const result = runGenerator(fixture, "--count=0", "--date=2099-12-31");
+  const result = runGenerator(fixture, "--count=0", "--rerender", "--date=2099-12-31");
   assert.equal(result.status, 0, result.stderr || result.stdout);
 
   const blog = fs.readFileSync(path.join(fixture, "blog", "index.html"), "utf8");

@@ -2,21 +2,21 @@
 
 Fast static rebuild for `sinceritycupping.co.uk`.
 
-The content now reflects the current offer: insured wet cupping / hijama for men and women in Streatham, delivered by expert practitioners with 40 years combined experience in a clean and serene environment.
+The content reflects the current published wet cupping / hijama choices for women and men in Streatham.
 
 ## What is included
 
 - Indexable static HTML with no WordPress `noindex, nofollow`.
 - Local SEO schema for the clinic, wet cupping service, address, geo coordinates, hours and reviews.
 - `robots.txt`, `sitemap.xml` and `llms.txt` for SEO, AEO and GEO discovery.
-- Three-times-weekly article workflow in `.github/workflows/seo-articles.yml` (Monday, Wednesday and Friday).
-- Dependency-free article generator in `scripts/generate-articles.mjs`.
+- Manual workflow in `.github/workflows/seo-articles.yml` that verifies reviewed article data rerenders deterministically.
+- Dependency-free renderer in `scripts/generate-articles.mjs`; new and bespoke article publishing is disabled pending manual review.
 
 ## Local commands
 
 ```bash
 python3 -m http.server 8080
-npm run generate:articles
+npm run rerender:articles
 npm run check
 ```
 
