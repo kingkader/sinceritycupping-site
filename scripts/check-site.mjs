@@ -7,6 +7,27 @@ const root = path.resolve(process.cwd(), requestedRoot);
 const origin = "https://sinceritycupping.co.uk";
 const htmlFiles = [];
 const errors = [];
+const areaNames = new Map([
+  ["streatham", "Streatham"],
+  ["streatham-hill", "Streatham Hill"],
+  ["streatham-common", "Streatham Common"],
+  ["balham", "Balham"],
+  ["brixton", "Brixton"],
+  ["tooting", "Tooting"],
+  ["clapham", "Clapham"],
+  ["norbury", "Norbury"],
+  ["tulse-hill", "Tulse Hill"],
+  ["west-norwood", "West Norwood"],
+  ["herne-hill", "Herne Hill"],
+  ["dulwich", "Dulwich"],
+  ["crystal-palace", "Crystal Palace"],
+  ["mitcham", "Mitcham"],
+  ["colliers-wood", "Colliers Wood"],
+]);
+const expectedAreaRoutes = new Set([
+  "/areas/",
+  ...[...areaNames.keys()].map((slug) => `/areas/${slug}/`),
+]);
 const forbiddenPublishedContent = [
   ["remote Google Font", /fonts\.googleapis\.com|fonts\.gstatic\.com/i],
   ["aggregate rating", /"(?:aggregateRating|ratingValue|reviewCount)"\s*:/i],
@@ -19,6 +40,13 @@ const forbiddenPublishedContent = [
   ["retired aftercare anchor", /\bfirst 48 hours\b/i],
   ["unsupported environment claim", /\bfemale-only environment\b/i],
   ["unsupported suitability advice", /\bcheck suitability\b/i],
+  ["passive keep-dry mandate", /\b(?:treated|cupped) (?:area|skin|sites?|marks?)\b[^.!?]{0,50}\b(?:must|should|needs? to|has to|is required to)\b[^.!?]{0,30}\b(?:remain|stay|be kept)\b[^.!?]{0,20}\bdry\b/i],
+  ["direct keep-dry mandate", /\b(?:keep|leave)\b[^.!?]{0,40}\b(?:treated|cupped)?\s*(?:area|skin|sites?|marks?)\b[^.!?]{0,25}\bdry\b/i],
+  ["washing mandate", /\b(?:avoid|skip|do not|don't|hold off on|refrain from)\b[^.!?]{0,90}\b(?:showers?|baths?|bathe|bathing|wash(?:ing)?|pools?|swimming|saunas?|steam rooms?)\b/i],
+  ["exercise mandate", /\b(?:avoid|skip|do not|don't|hold off on|refrain from)\b[^.!?]{0,90}\b(?:gyms?|exercise|sport|training|sweat(?:ing)?)\b/i],
+  ["food mandate", /\b(?:avoid|skip|do not|don't|hold off on|refrain from)\b[^.!?]{0,90}\b(?:meat|dairy)\b/i],
+  ["post-birth mandate", /\b(?:wait|waiting|delay)\b[^.!?]{0,60}\b(?:\d+|one|two|three|four|five|six|seven|eight|nine|ten|twelve) weeks?\b[^.!?]{0,35}\b(?:after childbirth|after birth|postpartum)\b/i],
+  ["driving mandate", /\bdriving may resume\b[^.!?]{0,50}\b(?:steady|well|ready)\b/i],
 ];
 
 function walk(directory) {
@@ -70,6 +98,31 @@ function inspectSchemaNames(value, file, location = "JSON-LD") {
   for (const [key, child] of Object.entries(value)) inspectSchemaNames(child, file, `${location}.${key}`);
 }
 
+function schemaNodes(document) {
+  return Array.isArray(document?.["@graph"]) ? document["@graph"] : [document];
+}
+
+function containsSchemaKey(value, key) {
+  if (Array.isArray(value)) return value.some((item) => containsSchemaKey(item, key));
+  if (!value || typeof value !== "object") return false;
+  return Object.hasOwn(value, key) || Object.values(value).some((child) => containsSchemaKey(child, key));
+}
+
+function containsSchemaType(value, types) {
+  if (Array.isArray(value)) return value.some((item) => containsSchemaType(item, types));
+  if (!value || typeof value !== "object") return false;
+  const ownTypes = Array.isArray(value["@type"]) ? value["@type"] : [value["@type"]];
+  if (ownTypes.some((type) => types.has(type))) return true;
+  return Object.values(value).some((child) => containsSchemaType(child, types));
+}
+
+function markdownInternalRoutes(markup) {
+  return [...markup.matchAll(/\]\((https:\/\/sinceritycupping\.co\.uk[^)\s]*)\)/g)]
+    .map((match) => new URL(match[1]))
+    .filter((url) => url.origin === origin)
+    .map((url) => `${origin}${url.pathname}`);
+}
+
 function internalAnchorHrefs(html) {
   return [...html.matchAll(/<a\b[^>]*\bhref="([^"]+)"/gi)].map((match) => match[1]);
 }
@@ -94,6 +147,7 @@ walk(root);
 htmlFiles.sort();
 
 const indexableCanonicals = [];
+const schemaByRoute = new Map();
 for (const file of htmlFiles) {
   const html = fs.readFileSync(file, "utf8");
   const filePath = relative(file);
@@ -162,21 +216,85 @@ for (const file of htmlFiles) {
 
   const jsonScripts = [...html.matchAll(/<script\b[^>]*type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/gi)];
   if (jsonScripts.length === 0) report(file, "missing JSON-LD");
+  const nodes = [];
   jsonScripts.forEach((match, index) => {
     try {
-      inspectSchemaNames(JSON.parse(match[1]), file, `JSON-LD block ${index + 1}`);
+      const document = JSON.parse(match[1]);
+      inspectSchemaNames(document, file, `JSON-LD block ${index + 1}`);
+      nodes.push(...schemaNodes(document));
     } catch (error) {
       report(file, `invalid JSON-LD block ${index + 1}: ${error.message}`);
     }
   });
+  schemaByRoute.set(routeForFile(file), nodes);
+}
+
+const canonicalSet = new Set(indexableCanonicals);
+const canonicalRoutes = new Set([...canonicalSet].map((canonical) => new URL(canonical).pathname));
+const actualAreaRoutes = new Set([...canonicalRoutes].filter((route) => route.startsWith("/areas/")));
+for (const route of expectedAreaRoutes) {
+  if (!actualAreaRoutes.has(route)) errors.push(`missing exact area route: ${route}`);
+}
+for (const route of actualAreaRoutes) {
+  if (!expectedAreaRoutes.has(route)) errors.push(`unexpected area route outside exact hub and locality set: ${route}`);
+}
+
+for (const [slug, name] of areaNames) {
+  const route = `/areas/${slug}/`;
+  const nodes = schemaByRoute.get(route) || [];
+  const services = nodes.filter((node) => node?.["@type"] === "Service");
+  const breadcrumbs = nodes.filter((node) => node?.["@type"] === "BreadcrumbList");
+  const duplicatesBusiness = nodes.some((node) => containsSchemaType(
+    node,
+    new Set(["LocalBusiness", "HealthAndBeautyBusiness"]),
+  ));
+  if (nodes.length !== 2) errors.push(`${route}: expected only one Service and one BreadcrumbList schema node`);
+  if (services.length !== 1) errors.push(`${route}: expected exactly one Service schema node`);
+  if (breadcrumbs.length !== 1) errors.push(`${route}: expected exactly one BreadcrumbList schema node`);
+  if (duplicatesBusiness) errors.push(`${route}: must not duplicate a LocalBusiness or HealthAndBeautyBusiness entity`);
+  if (nodes.some((node) => containsSchemaKey(node, "address"))) errors.push(`${route}: must not duplicate a clinic address`);
+
+  const [service] = services;
+  if (service) {
+    if (service["@id"] !== `${origin}${route}#service`) errors.push(`${route}: Service @id is incorrect`);
+    if (service.serviceType !== "Wet cupping") errors.push(`${route}: Service serviceType must be Wet cupping`);
+    if (service.url !== `${origin}${route}`) errors.push(`${route}: Service URL is incorrect`);
+    if (JSON.stringify(service.areaServed) !== JSON.stringify({"@type": "Place", name})) errors.push(`${route}: Service areaServed is incorrect`);
+    if (JSON.stringify(service.provider) !== JSON.stringify({"@id": `${origin}/#clinic`})) errors.push(`${route}: Service provider must reference ${origin}/#clinic`);
+  }
+
+  const [breadcrumb] = breadcrumbs;
+  if (breadcrumb) {
+    const actual = breadcrumb.itemListElement?.map(({position, name: itemName, item}) => ({position, name: itemName, item}));
+    const expected = [
+      {position: 1, name: "Home", item: `${origin}/`},
+      {position: 2, name: "Areas", item: `${origin}/areas/`},
+      {position: 3, name, item: `${origin}${route}`},
+    ];
+    if (JSON.stringify(actual) !== JSON.stringify(expected)) errors.push(`${route}: BreadcrumbList items are incorrect`);
+  }
 }
 
 const robotsPath = path.join(root, "robots.txt");
 const sitemapPath = path.join(root, "sitemap.xml");
-const llmsPath = path.join(root, "llms.txt");
 if (!fs.existsSync(robotsPath)) errors.push("missing robots.txt");
 if (!fs.existsSync(sitemapPath)) errors.push("missing sitemap.xml");
-if (!fs.existsSync(llmsPath)) errors.push("missing llms.txt");
+for (const filename of ["llms.txt", "llms-full.txt"]) {
+  const llmsPath = path.join(root, filename);
+  if (!fs.existsSync(llmsPath)) {
+    errors.push(`missing ${filename}`);
+    continue;
+  }
+  const routes = markdownInternalRoutes(fs.readFileSync(llmsPath, "utf8"));
+  const routeSet = new Set(routes);
+  if (routes.length !== routeSet.size) errors.push(`${filename} contains duplicate canonical route links`);
+  for (const canonical of canonicalSet) {
+    if (!routeSet.has(canonical)) errors.push(`${filename} missing canonical route: ${canonical}`);
+  }
+  for (const route of routeSet) {
+    if (!canonicalSet.has(route)) errors.push(`${filename} contains a non-canonical internal route: ${route}`);
+  }
+}
 
 if (fs.existsSync(robotsPath) && /Disallow:\s*\/(?:\s|$)/im.test(fs.readFileSync(robotsPath, "utf8"))) {
   errors.push("robots.txt blocks crawling");
@@ -189,7 +307,6 @@ if (fs.existsSync(sitemapPath)) {
   if (new Set(indexableCanonicals).size !== indexableCanonicals.length) errors.push("published HTML contains duplicate canonicals");
 
   const sitemapSet = new Set(sitemapUrls);
-  const canonicalSet = new Set(indexableCanonicals);
   for (const canonical of canonicalSet) if (!sitemapSet.has(canonical)) errors.push(`canonical missing from sitemap: ${canonical}`);
   for (const loc of sitemapSet) {
     if (!canonicalSet.has(loc)) errors.push(`sitemap URL has no indexable canonical: ${loc}`);
@@ -226,4 +343,4 @@ if (errors.length) {
   process.exit(1);
 }
 
-console.log(`Checked ${htmlFiles.length} HTML file(s). Metadata, routes, JSON-LD, clean links, sitemap and llms.txt look OK.`);
+console.log(`Checked ${htmlFiles.length} HTML file(s). Metadata, routes, JSON-LD, clean links, sitemap and both LLM catalogues look OK.`);

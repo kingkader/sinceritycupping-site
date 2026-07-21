@@ -8,7 +8,13 @@ import {fileURLToPath} from "node:url";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const origin = "https://sinceritycupping.co.uk";
-const directionsUrl = "https://www.google.com/maps?q=place_id:ChIJ6-vLLJQHdkgRPrnWnRsH6_Q&amp;place_id=ChIJ6-vLLJQHdkgRPrnWnRsH6_Q";
+const business = JSON.parse(fs.readFileSync(path.join(root, "data", "business.json"), "utf8"));
+const destinationPlaceId = "ChIJ6-vLLJQHdkgRPrnWnRsH6_Q";
+const hubDirectionsUrl = `https://www.google.com/maps/dir/?${new URLSearchParams({
+  api: "1",
+  destination: "330 Streatham High Rd, London SW16 6HH",
+  destination_place_id: destinationPlaceId,
+}).toString()}`.replaceAll("&", "&amp;");
 const publicEntries = [
   "index.html",
   "404.html",
@@ -106,6 +112,13 @@ const forbiddenPublishedContent = [
   /\bfirst 48 hours\b/i,
   /\bfemale-only environment\b/i,
   /\bcheck suitability\b/i,
+  /\b(?:treated|cupped) (?:area|skin|sites?|marks?)\b[^.!?]{0,50}\b(?:must|should|needs? to|has to|is required to)\b[^.!?]{0,30}\b(?:remain|stay|be kept)\b[^.!?]{0,20}\bdry\b/i,
+  /\b(?:keep|leave)\b[^.!?]{0,40}\b(?:treated|cupped)?\s*(?:area|skin|sites?|marks?)\b[^.!?]{0,25}\bdry\b/i,
+  /\b(?:avoid|skip|do not|don't|hold off on|refrain from)\b[^.!?]{0,90}\b(?:showers?|baths?|bathe|bathing|wash(?:ing)?|pools?|swimming|saunas?|steam rooms?)\b/i,
+  /\b(?:avoid|skip|do not|don't|hold off on|refrain from)\b[^.!?]{0,90}\b(?:gyms?|exercise|sport|training|sweat(?:ing)?)\b/i,
+  /\b(?:avoid|skip|do not|don't|hold off on|refrain from)\b[^.!?]{0,90}\b(?:meat|dairy)\b/i,
+  /\b(?:wait|waiting|delay)\b[^.!?]{0,60}\b(?:\d+|one|two|three|four|five|six|seven|eight|nine|ten|twelve) weeks?\b[^.!?]{0,35}\b(?:after childbirth|after birth|postpartum)\b/i,
+  /\bdriving may resume\b[^.!?]{0,50}\b(?:steady|well|ready)\b/i,
 ];
 
 let fixture;
@@ -223,6 +236,41 @@ function sitemapEntries(markup) {
     .map((match) => ({loc: match[1], lastmod: match[2]}));
 }
 
+function markdownInternalRoutes(markup) {
+  return [...markup.matchAll(/\]\((https:\/\/sinceritycupping\.co\.uk[^)\s]*)\)/g)]
+    .map((match) => new URL(match[1]))
+    .filter((url) => url.origin === origin)
+    .map((url) => `${origin}${url.pathname}`);
+}
+
+function areaDirectionsUrl(name) {
+  const params = new URLSearchParams({
+    api: "1",
+    origin: `${name}, London`,
+    destination: "330 Streatham High Rd, London SW16 6HH",
+    destination_place_id: destinationPlaceId,
+  });
+  return `https://www.google.com/maps/dir/?${params.toString()}`.replaceAll("&", "&amp;");
+}
+
+function escapedHref(value) {
+  return value.replaceAll("&", "&amp;");
+}
+
+function makeCheckerFixture(t) {
+  const directory = fs.mkdtempSync(path.join(os.tmpdir(), "sincerity-checker-full-"));
+  fs.cpSync(builtRoot, directory, {recursive: true});
+  t.after(() => fs.rmSync(directory, {recursive: true, force: true}));
+  return directory;
+}
+
+function runChecker(directory) {
+  return spawnSync(process.execPath, [path.join(root, "scripts", "check-site.mjs"), directory], {
+    cwd: root,
+    encoding: "utf8",
+  });
+}
+
 function linkByText(markup, text) {
   return [...markup.matchAll(/<a\b([^>]*)>([\s\S]*?)<\/a>/gi)]
     .find((match) => visibleText(match[2]) === text);
@@ -289,6 +337,17 @@ test("sitemap, canonicals and built files have exact one-to-one route parity", (
   assert.ok(!locs.includes(`${origin}/404.html`), "404 must stay out of sitemap");
 });
 
+test("both LLM route catalogues exactly match every canonical sitemap route", () => {
+  const expected = requiredRoutes.map((route) => `${origin}${route}`);
+
+  for (const filename of ["llms.txt", "llms-full.txt"]) {
+    const routes = markdownInternalRoutes(readFrom(builtRoot, filename));
+    assert.equal(routes.length, expected.length, `${filename}: route catalogue size drift`);
+    assert.equal(new Set(routes).size, routes.length, `${filename}: duplicate route catalogue entry`);
+    assert.deepEqual(new Set(routes), new Set(expected), `${filename}: canonical route catalogue drift`);
+  }
+});
+
 test("all published shells use clean global routes and safe generic booking controls", () => {
   for (const file of walkHtml(builtRoot)) {
     const relative = path.relative(builtRoot, file);
@@ -344,7 +403,9 @@ test("the areas hub clearly describes service areas for one inclusive Streatham 
   const html = readFrom(builtRoot, "areas/index.html");
   const main = html.match(/<main\b[\s\S]*?<\/main>/i)?.[0] || "";
   const text = visibleText(main);
+  const title = visibleText(html.match(/<title>[\s\S]*?<\/title>/i)?.[0] || "");
 
+  assert.equal(title, "South London Cupping Areas | Sincerity Cupping Clinic");
   assert.match(text, /one clinic[^.]*330 Streatham High Rd[^.]*SW16 6HH/i);
   assert.match(text, /service areas?, not branches/i);
   assert.match(text, /open daily[^.]*10:00[^.]*19:00/i);
@@ -352,7 +413,10 @@ test("the areas hub clearly describes service areas for one inclusive Streatham 
   assert.ok(text.toLowerCase().indexOf("wet cupping") < text.toLowerCase().indexOf("hijama"), "hub must lead with cupping");
   assert.match(text, /complementary care[^.]*not a replacement for medical advice, diagnosis or treatment/i);
   assert.match(html, /nccih\.nih\.gov\/health\/cupping/i);
-  assert.match(html, new RegExp(directionsUrl.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
+  const hubMapHrefs = [...html.matchAll(/<a\b[^>]*href="(https:\/\/www\.google\.com\/maps[^"]+)"/gi)]
+    .map((match) => match[1]);
+  assert.ok(hubMapHrefs.length > 0, "hub is missing directions links");
+  assert.deepEqual(new Set(hubMapHrefs), new Set([hubDirectionsUrl]), "hub directions must use the fixed clinic destination");
   assert.match(html, /href="\/#book"/i);
 
   for (const [slug, name] of areas) {
@@ -378,7 +442,7 @@ test("all 15 locality pages publish the exact service-area copy and schema contr
     const title = visibleText(html.match(/<title>[\s\S]*?<\/title>/i)?.[0] || "");
     const h1 = visibleText(html.match(/<h1\b[^>]*>[\s\S]*?<\/h1>/i)?.[0] || "");
 
-    assert.equal(title, expectedHeading, `${relative}: wrong title`);
+    assert.equal(title, `${expectedHeading} | Sincerity Cupping Clinic`, `${relative}: wrong title`);
     assert.equal(h1, expectedHeading, `${relative}: wrong H1`);
     assert.match(text, /appointments take place at (?:our|the) (?:one|single) (?:clinic )?(?:in Streatham|Streatham clinic)/i);
     assert.match(text, /330 Streatham High Rd[^.]*SW16 6HH/i);
@@ -390,9 +454,27 @@ test("all 15 locality pages publish the exact service-area copy and schema contr
     assert.match(text, /new single-use cups and blades/i);
     assert.match(text, /complementary care[^.]*not a replacement for medical advice, diagnosis or treatment/i);
     assert.match(html, /nccih\.nih\.gov\/health\/cupping/i);
-    assert.match(html, new RegExp(directionsUrl.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
+    const mapHrefs = [...html.matchAll(/<a\b[^>]*href="(https:\/\/www\.google\.com\/maps[^"]+)"/gi)]
+      .map((match) => match[1]);
+    assert.ok(mapHrefs.length > 0, `${relative}: missing directions links`);
+    assert.deepEqual(
+      new Set(mapHrefs),
+      new Set([hubDirectionsUrl, areaDirectionsUrl(name)]),
+      `${relative}: directions must use only the fixed clinic destination and locality-origin route`,
+    );
+    const localityDirections = linkByText(main, `Open directions from ${name}`);
+    assert.ok(localityDirections, `${relative}: missing locality directions action`);
+    assert.equal(attribute(localityDirections[0], "href"), areaDirectionsUrl(name));
     assert.match(html, /href="\/#book"/i);
-    assert.doesNotMatch(html, /oiid=sv%3A(?:14524918|15058937)/i);
+    const womenBooking = linkByText(main, "Book women’s wet cupping");
+    const menBooking = linkByText(main, "Book men’s wet cupping");
+    assert.ok(womenBooking, `${relative}: missing direct women’s booking link`);
+    assert.ok(menBooking, `${relative}: missing direct men’s booking link`);
+    assert.equal(attribute(womenBooking[0], "href"), escapedHref(business.femaleBookingUrl));
+    assert.equal(attribute(menBooking[0], "href"), escapedHref(business.maleBookingUrl));
+    assert.equal(html.split("oiid=sv%3A15058937").length - 1, 1, `${relative}: women’s standard service ID must appear exactly once`);
+    assert.equal(html.split("oiid=sv%3A14524918").length - 1, 1, `${relative}: men’s standard service ID must appear exactly once`);
+    assert.doesNotMatch(html, /oiid=sv%3A(?:15623186|15623194)/i, `${relative}: full-spiritual service IDs are not approved for area pages`);
 
     const documents = allJsonLd(html, relative);
     const nodes = schemaNodes(documents);
@@ -504,6 +586,99 @@ test("the site checker rejects missing image attributes and unresolved root-rela
   assert.match(result.stderr, /image|alt|width|height|unresolved|missing\/|missing\.png/i);
 });
 
+test("the site checker rejects missing area routes and locality schema entity drift", (t) => {
+  const missingRoute = makeCheckerFixture(t);
+  const removedRoute = "/areas/colliers-wood/";
+  fs.rmSync(path.join(missingRoute, "areas", "colliers-wood"), {recursive: true});
+  for (const file of walkHtml(missingRoute)) {
+    const html = fs.readFileSync(file, "utf8")
+      .replace(new RegExp(`<a\\b[^>]*href="${removedRoute}"[^>]*>[\\s\\S]*?<\\/a>`, "gi"), "");
+    fs.writeFileSync(file, html);
+  }
+  fs.writeFileSync(
+    path.join(missingRoute, "sitemap.xml"),
+    fs.readFileSync(path.join(missingRoute, "sitemap.xml"), "utf8")
+      .replace(/\s*<url><loc>https:\/\/sinceritycupping\.co\.uk\/areas\/colliers-wood\/<\/loc>[\s\S]*?<\/url>/, ""),
+  );
+  for (const filename of ["llms.txt", "llms-full.txt"]) {
+    fs.writeFileSync(
+      path.join(missingRoute, filename),
+      fs.readFileSync(path.join(missingRoute, filename), "utf8")
+        .replace(/^.*https:\/\/sinceritycupping\.co\.uk\/areas\/colliers-wood\/.*\n?/m, ""),
+    );
+  }
+  const missingResult = runChecker(missingRoute);
+  assert.equal(missingResult.status, 1, missingResult.stdout || missingResult.stderr);
+  assert.match(missingResult.stderr, /areas\/colliers-wood|exact.*area|missing.*area/i);
+
+  const wrongSchema = makeCheckerFixture(t);
+  const page = path.join(wrongSchema, "areas", "balham", "index.html");
+  const mutated = fs.readFileSync(page, "utf8")
+    .replace(
+      '"@graph":[',
+      '"@graph":[{"@type":"HealthAndBeautyBusiness","@id":"https://sinceritycupping.co.uk/areas/balham/#fake-clinic","name":"Fake Balham clinic","address":{"@type":"PostalAddress","name":"Balham"}},',
+    )
+    .replace(
+      '"provider":{"@id":"https://sinceritycupping.co.uk/#clinic"}',
+      '"provider":{"@id":"https://sinceritycupping.co.uk/areas/balham/#fake-clinic"}',
+    );
+  fs.writeFileSync(page, mutated);
+  const schemaResult = runChecker(wrongSchema);
+  assert.equal(schemaResult.status, 1, schemaResult.stdout || schemaResult.stderr);
+  assert.match(schemaResult.stderr, /balham.*(?:Service|provider|LocalBusiness|address)|(?:Service|provider|LocalBusiness|address).*balham/i);
+
+  const nestedBusiness = makeCheckerFixture(t);
+  const nestedPage = path.join(nestedBusiness, "areas", "balham", "index.html");
+  fs.writeFileSync(
+    nestedPage,
+    fs.readFileSync(nestedPage, "utf8").replace(
+      '"name":"Wet cupping near Balham","serviceType"',
+      '"name":"Wet cupping near Balham","subjectOf":{"@type":"HealthAndBeautyBusiness","name":"Fake nested Balham clinic"},"serviceType"',
+    ),
+  );
+  const nestedResult = runChecker(nestedBusiness);
+  assert.equal(nestedResult.status, 1, nestedResult.stdout || nestedResult.stderr);
+  assert.match(nestedResult.stderr, /balham.*(?:LocalBusiness|HealthAndBeautyBusiness|business entity)/i);
+});
+
+test("the site checker validates both LLM catalogues against the canonical route set", (t) => {
+  for (const filename of ["llms.txt", "llms-full.txt"]) {
+    const fixtureRoot = makeCheckerFixture(t);
+    const target = path.join(fixtureRoot, filename);
+    fs.writeFileSync(
+      target,
+      fs.readFileSync(target, "utf8")
+        .replace(/^.*https:\/\/sinceritycupping\.co\.uk\/areas\/balham\/.*\n?/m, ""),
+    );
+
+    const result = runChecker(fixtureRoot);
+    assert.equal(result.status, 1, `${filename}: ${result.stdout || result.stderr}`);
+    assert.match(result.stderr, new RegExp(`${filename.replace(".", "\\.")}.*(?:balham|route|canonical)|(?:balham|route|canonical).*${filename.replace(".", "\\.")}`, "i"));
+  }
+});
+
+test("the site checker rejects passive and euphemistic direct-care mandates", (t) => {
+  const variants = [
+    "The treated area must remain dry for a day.",
+    "The cupped area has to stay dry for 24 hours.",
+    "Keep the cupped skin dry for 24 hours.",
+    "Do not shower for 24 hours.",
+    "Avoid exercise for 24 hours.",
+    "Wait eight weeks after childbirth before booking.",
+    "Driving may resume when you feel steady.",
+  ];
+
+  for (const text of variants) {
+    const fixtureRoot = makeCheckerFixture(t);
+    const target = path.join(fixtureRoot, "areas", "balham", "index.html");
+    fs.writeFileSync(target, fs.readFileSync(target, "utf8").replace("</main>", `<p>${text}</p></main>`));
+
+    const result = runChecker(fixtureRoot);
+    assert.equal(result.status, 1, `${text}: ${result.stdout || result.stderr}`);
+    assert.match(result.stderr, /balham.*(?:care|mandate|dry|washing|exercise|post-birth|driving|forbidden)/i);
+  }
+});
+
 test("the manual area renderer is deterministic and refuses unreviewed or symlinked destinations before writing", (t) => {
   const makeFixture = () => {
     const directory = fs.mkdtempSync(path.join(os.tmpdir(), "sincerity-area-renderer-"));
@@ -511,6 +686,7 @@ test("the manual area renderer is deterministic and refuses unreviewed or symlin
     fs.mkdirSync(path.join(directory, "data"), {recursive: true});
     fs.cpSync(path.join(root, "scripts", "generate-areas.mjs"), path.join(directory, "scripts", "generate-areas.mjs"));
     fs.cpSync(path.join(root, "data", "area-pages.json"), path.join(directory, "data", "area-pages.json"));
+    fs.cpSync(path.join(root, "data", "business.json"), path.join(directory, "data", "business.json"));
     t.after(() => fs.rmSync(directory, {recursive: true, force: true}));
     return directory;
   };

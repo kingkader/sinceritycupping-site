@@ -17,6 +17,7 @@
 - [About](https://sinceritycupping.co.uk/about/): Clinic story, values and practitioner profiles.
 - [Contact](https://sinceritycupping.co.uk/contact/): Phone, WhatsApp, address, map, opening hours and enquiry form.
 - [Guides](https://sinceritycupping.co.uk/blog/): Plain-English wet cupping guides and local booking information.
+- [Privacy](https://sinceritycupping.co.uk/privacy/): How the clinic handles enquiries, booking links and external website services.
 - [Service areas](https://sinceritycupping.co.uk/areas/): Fifteen local route pages for the single clinic at 330 Streatham High Rd, not branch listings.
 
 ## Service-area pages for the single Streatham clinic

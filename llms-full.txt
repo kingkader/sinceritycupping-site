@@ -15,6 +15,15 @@
 
 Prices and durations belong to the named appointment only. Current availability and booking confirmation are handled on Fresha after the client chooses an appointment.
 
+## Main pages
+- [Home](https://sinceritycupping.co.uk/): Clinic overview and women’s and men’s booking routes.
+- [Cupping & prices](https://sinceritycupping.co.uk/services/): Four named appointment choices with exact prices and durations.
+- [About](https://sinceritycupping.co.uk/about/): Clinic values and published practitioner roles.
+- [Contact](https://sinceritycupping.co.uk/contact/): Phone, WhatsApp, address, map and daily opening hours.
+- [Guides](https://sinceritycupping.co.uk/blog/): The complete catalogue of published cupping guides.
+- [Privacy](https://sinceritycupping.co.uk/privacy/): Website enquiry, booking-link and external-service data handling.
+- [Service areas](https://sinceritycupping.co.uk/areas/): Hub for fifteen service areas served by the single Streatham clinic.
+
 ## Practitioners and privacy
 - Sister Aisha Mejri is the women's cupping practitioner and sees women for private appointments.
 - Brother Abu Layla is the men's cupping practitioner and sees men for private appointments.
