@@ -59,6 +59,8 @@ test("article workflow remains manual validation only", () => {
   assert.match(workflow, /npm test/);
   assert.match(workflow, /npm run build/);
   assert.match(workflow, /npm run check:dist/);
+  assert.match(workflow, /group:\s*sinceritycupping-production/);
+  assert.match(workflow, /cancel-in-progress:\s*false/);
 });
 
 test("Cloudflare headers enforce security and safe cache policy", () => {

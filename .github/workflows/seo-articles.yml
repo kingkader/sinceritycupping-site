@@ -6,6 +6,10 @@ on:
 permissions:
   contents: read
 
+concurrency:
+  group: sinceritycupping-production
+  cancel-in-progress: false
+
 jobs:
   validate-static-content:
     runs-on: ubuntu-latest
