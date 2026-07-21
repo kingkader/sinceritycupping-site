@@ -162,6 +162,14 @@ test("homepage hero publishes resolution-responsive image candidates", () => {
   }
 });
 
+test("homepage LCP image paints immediately instead of waiting for reveal JavaScript", () => {
+  const figure = home.match(/<figure\b[^>]*class="[^"]*hero-media[^"]*"[^>]*>[\s\S]*?<\/figure>/)?.[0];
+
+  assert.ok(figure, "missing hero media figure");
+  assert.doesNotMatch(figure.match(/<figure\b[^>]*>/)?.[0] ?? "", /\breveal\b/);
+  assert.match(figure, /<img\b[^>]*\bfetchpriority="high"/i);
+});
+
 test("every responsive homepage hero candidate exists", () => {
   for (const width of [480, 800, 1200]) {
     for (const extension of ["avif", "webp", "jpg"]) {

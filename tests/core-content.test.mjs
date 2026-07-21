@@ -196,6 +196,17 @@ test("contact required inputs do not appear invalid before interaction", () => {
   }
 });
 
+test("contact form cannot leak an enquiry into the URL when JavaScript is unavailable", () => {
+  const contact = read("contact/index.html");
+  const form = contact.match(/<form\b[^>]*id="enquiry-form"[^>]*>[\s\S]*?<\/form>/i)?.[0];
+
+  assert.ok(form, "missing contact enquiry form");
+  assert.match(form, /<button\b[^>]*type="button"[^>]*data-email-submit[^>]*>Prepare email<\/button>/i);
+  assert.match(contact, /<noscript>[\s\S]*?(?:call|email|WhatsApp)[\s\S]*?<\/noscript>/i);
+  assert.match(contact, /submitButton\.type\s*=\s*"submit"/);
+  assert.match(contact, /form\.addEventListener\("submit"/);
+});
+
 test("services gives a visible evidence-led complementary-care safety boundary", () => {
   const services = read("services/index.html");
   const text = visibleText(services);

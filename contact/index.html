@@ -112,10 +112,11 @@
               <p class="form-hint" id="form-privacy">Please do not include detailed medical information.</p>
             </div>
             <div class="form-field full">
-              <button class="btn btn-solid" type="submit">Prepare email</button>
+              <button class="btn btn-solid" type="button" data-email-submit>Prepare email</button>
               <p class="form-hint" id="form-status" role="status" aria-live="polite"></p>
             </div>
           </form>
+          <noscript><p class="form-hint">This form needs JavaScript to prepare an email. You can instead <a href="mailto:sincerityruqyah@gmail.com">email the clinic</a>, <a href="tel:+447552540000">call 07552 540000</a> or use WhatsApp.</p></noscript>
         </div>
       </div>
     </div>
@@ -193,7 +194,9 @@
 (function () {
   var form = document.getElementById("enquiry-form");
   var status = document.getElementById("form-status");
-  if (!form || !status) return;
+  var submitButton = form && form.querySelector("[data-email-submit]");
+  if (!form || !status || !submitButton) return;
+  submitButton.type = "submit";
 
   form.addEventListener("input", function (event) {
     if (event.target.matches("input, textarea")) event.target.removeAttribute("aria-invalid");
