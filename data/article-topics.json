@@ -1016,40 +1016,6 @@
     ]
   },
   {
-    "slug": "cupping-colliers-wood",
-    "title": "Cupping from Colliers Wood: travel to Streatham",
-    "keyword": "cupping Colliers Wood",
-    "intent": "local appointment discovery",
-    "service": "Wet cupping / Hijama",
-    "area": "Colliers Wood",
-    "angle": "route planning via Tooting",
-    "summary": "A Colliers Wood travel guide to the Streatham clinic, with route planning via Tooting and current booking checks.",
-    "promiseTerms": [
-      "Colliers Wood",
-      "travel"
-    ],
-    "content": {
-      "answer": {
-        "heading": "Colliers Wood clients travel via Tooting towards Streatham",
-        "text": "The clinic is at 330 Streatham High Rd. Use live transport or road information for the route from Colliers Wood."
-      },
-      "sections": [
-        {
-          "heading": "Plan the travel connection",
-          "paragraphs": [
-            "Routes can connect through Tooting before continuing to Streatham. Check the current service rather than assuming a fixed connection."
-          ]
-        },
-        {
-          "heading": "Check the booked appointment",
-          "paragraphs": [
-            "Review the audience, name, price and duration in the Fresha confirmation before beginning the journey."
-          ]
-        }
-      ]
-    }
-  },
-  {
     "slug": "hijama-questions-consultation",
     "title": "Questions to ask before a hijama appointment",
     "keyword": "hijama appointment questions",
@@ -1452,6 +1418,40 @@
           "heading": "Select an exact service",
           "paragraphs": [
             "Women's and men's choices have their own prices, durations and booking links. Review the confirmation before travelling."
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "slug": "cupping-colliers-wood",
+    "title": "Cupping from Colliers Wood: travel to Streatham",
+    "keyword": "cupping Colliers Wood",
+    "intent": "local appointment discovery",
+    "service": "Wet cupping / Hijama",
+    "area": "Colliers Wood",
+    "angle": "route planning via Tooting",
+    "summary": "A Colliers Wood travel guide to the Streatham clinic, with route planning via Tooting and current booking checks.",
+    "promiseTerms": [
+      "Colliers Wood",
+      "travel"
+    ],
+    "content": {
+      "answer": {
+        "heading": "Colliers Wood clients travel via Tooting towards Streatham",
+        "text": "The clinic is at 330 Streatham High Rd. Use live transport or road information for the route from Colliers Wood."
+      },
+      "sections": [
+        {
+          "heading": "Plan the travel connection",
+          "paragraphs": [
+            "Routes can connect through Tooting before continuing to Streatham. Check the current service rather than assuming a fixed connection."
+          ]
+        },
+        {
+          "heading": "Check the booked appointment",
+          "paragraphs": [
+            "Review the audience, name, price and duration in the Fresha confirmation before beginning the journey."
           ]
         }
       ]
