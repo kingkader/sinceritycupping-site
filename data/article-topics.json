@@ -1016,40 +1016,6 @@
     ]
   },
   {
-    "slug": "hijama-questions-consultation",
-    "title": "Questions to ask before a hijama appointment",
-    "keyword": "hijama appointment questions",
-    "intent": "pre-booking preparation",
-    "service": "Wet cupping / Hijama",
-    "area": "London",
-    "angle": "service facts, privacy, evidence and care boundaries",
-    "summary": "A practical list of questions about price, duration, practitioner route, privacy, process evidence and care boundaries.",
-    "promiseTerms": [
-      "questions",
-      "privacy"
-    ],
-    "content": {
-      "answer": {
-        "heading": "Ask questions that can be answered with evidence",
-        "text": "Useful questions connect to a service name, document, process or current booking confirmation rather than a broad promise."
-      },
-      "sections": [
-        {
-          "heading": "Ask about privacy and the booking route",
-          "paragraphs": [
-            "Confirm who provides the appointment and how practical privacy questions are handled before you book."
-          ]
-        },
-        {
-          "heading": "Ask about the exact service",
-          "paragraphs": [
-            "Confirm the price, duration and what the appointment name refers to. Personal medical questions belong with a healthcare professional."
-          ]
-        }
-      ]
-    }
-  },
-  {
     "slug": "hijama-thornton-heath",
     "title": "Hijama from Thornton Heath: travel to the Streatham clinic",
     "keyword": "hijama Thornton Heath",
@@ -1452,6 +1418,40 @@
           "heading": "Check the booked appointment",
           "paragraphs": [
             "Review the audience, name, price and duration in the Fresha confirmation before beginning the journey."
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "slug": "hijama-questions-consultation",
+    "title": "Questions to ask before a hijama appointment",
+    "keyword": "hijama appointment questions",
+    "intent": "pre-booking preparation",
+    "service": "Wet cupping / Hijama",
+    "area": "London",
+    "angle": "service facts, privacy, evidence and care boundaries",
+    "summary": "A practical list of questions about price, duration, practitioner route, privacy, process evidence and care boundaries.",
+    "promiseTerms": [
+      "questions",
+      "privacy"
+    ],
+    "content": {
+      "answer": {
+        "heading": "Ask questions that can be answered with evidence",
+        "text": "Useful questions connect to a service name, document, process or current booking confirmation rather than a broad promise."
+      },
+      "sections": [
+        {
+          "heading": "Ask about privacy and the booking route",
+          "paragraphs": [
+            "Confirm who provides the appointment and how practical privacy questions are handled before you book."
+          ]
+        },
+        {
+          "heading": "Ask about the exact service",
+          "paragraphs": [
+            "Confirm the price, duration and what the appointment name refers to. Personal medical questions belong with a healthcare professional."
           ]
         }
       ]
