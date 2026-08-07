@@ -1016,40 +1016,6 @@
     ]
   },
   {
-    "slug": "hijama-thornton-heath",
-    "title": "Hijama from Thornton Heath: travel to the Streatham clinic",
-    "keyword": "hijama Thornton Heath",
-    "intent": "local appointment discovery",
-    "service": "Wet cupping / Hijama",
-    "area": "Thornton Heath",
-    "angle": "fixed-address planning with current Google Maps and TfL information",
-    "summary": "A Thornton Heath travel-planning guide for hijama at the one Streatham clinic, using the fixed address and current journey information.",
-    "promiseTerms": [
-      "Thornton Heath",
-      "travel"
-    ],
-    "content": {
-      "answer": {
-        "heading": "Thornton Heath clients travel to the Streatham clinic",
-        "text": "The clinic is at 330 Streatham High Rd, London SW16 6HH. There is no Thornton Heath branch, so use that complete address as the destination in live directions."
-      },
-      "sections": [
-        {
-          "heading": "Use your exact Thornton Heath starting point",
-          "paragraphs": [
-            "Enter the place where you will set out rather than the area name alone. A current planner can use that origin with the fixed clinic destination."
-          ]
-        },
-        {
-          "heading": "Check live Google Maps or TfL information",
-          "paragraphs": [
-            "Open Google Maps or TfL's journey planner near departure. This guide does not name a fixed route, station or travel time from Thornton Heath."
-          ]
-        }
-      ]
-    }
-  },
-  {
     "slug": "wet-cupping-mitcham",
     "title": "Wet cupping from Mitcham: travel to Streatham",
     "keyword": "wet cupping Mitcham",
@@ -1452,6 +1418,40 @@
           "heading": "Ask about the exact service",
           "paragraphs": [
             "Confirm the price, duration and what the appointment name refers to. Personal medical questions belong with a healthcare professional."
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "slug": "hijama-thornton-heath",
+    "title": "Hijama from Thornton Heath: travel to the Streatham clinic",
+    "keyword": "hijama Thornton Heath",
+    "intent": "local appointment discovery",
+    "service": "Wet cupping / Hijama",
+    "area": "Thornton Heath",
+    "angle": "fixed-address planning with current Google Maps and TfL information",
+    "summary": "A Thornton Heath travel-planning guide for hijama at the one Streatham clinic, using the fixed address and current journey information.",
+    "promiseTerms": [
+      "Thornton Heath",
+      "travel"
+    ],
+    "content": {
+      "answer": {
+        "heading": "Thornton Heath clients travel to the Streatham clinic",
+        "text": "The clinic is at 330 Streatham High Rd, London SW16 6HH. There is no Thornton Heath branch, so use that complete address as the destination in live directions."
+      },
+      "sections": [
+        {
+          "heading": "Use your exact Thornton Heath starting point",
+          "paragraphs": [
+            "Enter the place where you will set out rather than the area name alone. A current planner can use that origin with the fixed clinic destination."
+          ]
+        },
+        {
+          "heading": "Check live Google Maps or TfL information",
+          "paragraphs": [
+            "Open Google Maps or TfL's journey planner near departure. This guide does not name a fixed route, station or travel time from Thornton Heath."
           ]
         }
       ]
