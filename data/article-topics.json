@@ -1016,40 +1016,6 @@
     ]
   },
   {
-    "slug": "wet-cupping-mitcham",
-    "title": "Wet cupping from Mitcham: travel to Streatham",
-    "keyword": "wet cupping Mitcham",
-    "intent": "local appointment discovery",
-    "service": "Wet cupping / Hijama",
-    "area": "Mitcham",
-    "angle": "fixed-address planning with current Google Maps and TfL information",
-    "summary": "A Mitcham travel-planning guide for wet cupping at the one Streatham clinic, using the fixed address and current journey tools.",
-    "promiseTerms": [
-      "Mitcham",
-      "travel"
-    ],
-    "content": {
-      "answer": {
-        "heading": "Mitcham clients travel to one clinic in Streatham",
-        "text": "Appointments are provided at 330 Streatham High Rd, London SW16 6HH, not at a Mitcham branch. Use that complete destination in a live planner."
-      },
-      "sections": [
-        {
-          "heading": "Start with your real Mitcham origin",
-          "paragraphs": [
-            "Enter the exact place where you will set out instead of relying on a general Mitcham label. Google Maps or TfL can use that origin with the fixed clinic address."
-          ]
-        },
-        {
-          "heading": "Use current journey information",
-          "paragraphs": [
-            "Review the live planner result close to departure. This page does not name a station transfer, transport line, road direction, travel time or distance from Mitcham."
-          ]
-        }
-      ]
-    }
-  },
-  {
     "slug": "cupping-stockwell",
     "title": "Cupping from Stockwell: travel to the Streatham clinic",
     "keyword": "cupping Stockwell",
@@ -1452,6 +1418,40 @@
           "heading": "Check live Google Maps or TfL information",
           "paragraphs": [
             "Open Google Maps or TfL's journey planner near departure. This guide does not name a fixed route, station or travel time from Thornton Heath."
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "slug": "wet-cupping-mitcham",
+    "title": "Wet cupping from Mitcham: travel to Streatham",
+    "keyword": "wet cupping Mitcham",
+    "intent": "local appointment discovery",
+    "service": "Wet cupping / Hijama",
+    "area": "Mitcham",
+    "angle": "fixed-address planning with current Google Maps and TfL information",
+    "summary": "A Mitcham travel-planning guide for wet cupping at the one Streatham clinic, using the fixed address and current journey tools.",
+    "promiseTerms": [
+      "Mitcham",
+      "travel"
+    ],
+    "content": {
+      "answer": {
+        "heading": "Mitcham clients travel to one clinic in Streatham",
+        "text": "Appointments are provided at 330 Streatham High Rd, London SW16 6HH, not at a Mitcham branch. Use that complete destination in a live planner."
+      },
+      "sections": [
+        {
+          "heading": "Start with your real Mitcham origin",
+          "paragraphs": [
+            "Enter the exact place where you will set out instead of relying on a general Mitcham label. Google Maps or TfL can use that origin with the fixed clinic address."
+          ]
+        },
+        {
+          "heading": "Use current journey information",
+          "paragraphs": [
+            "Review the live planner result close to departure. This page does not name a station transfer, transport line, road direction, travel time or distance from Mitcham."
           ]
         }
       ]
