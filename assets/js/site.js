@@ -32,6 +32,34 @@
     });
   }
 
+  // Local guide discovery: never store or transmit a visitor's search terms.
+  var guideSearch = document.querySelector("[data-guide-search]");
+  if (guideSearch) {
+    var query = document.querySelector("#guide-query");
+    var reset = document.querySelector("[data-guide-reset]");
+    var status = document.querySelector("#guide-search-status");
+    var empty = document.querySelector("#guide-empty");
+    var guides = Array.prototype.slice.call(document.querySelectorAll("[data-guide-card]"));
+    if (query && reset && status && empty) {
+      var guideText = guides.map(function (card) { return card.textContent.toLowerCase(); });
+      function filterGuides() {
+        var words = query.value.toLowerCase().trim().split(/\s+/).filter(Boolean);
+        var count = 0;
+        guides.forEach(function (card, index) {
+          var match = words.every(function (word) { return guideText[index].indexOf(word) !== -1; });
+          card.hidden = !match;
+          if (match) count += 1;
+        });
+        status.textContent = count + (count === 1 ? " guide found" : " guides found");
+        empty.hidden = count !== 0;
+      }
+      query.addEventListener("input", filterGuides);
+      reset.addEventListener("click", function () { query.value = ""; filterGuides(); query.focus(); });
+      guideSearch.hidden = false;
+      filterGuides();
+    }
+  }
+
   var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var revealEls = Array.prototype.slice.call(document.querySelectorAll(".reveal"));
 

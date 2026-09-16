@@ -261,12 +261,12 @@ test("the renderer is deterministic and its output matches every committed area 
   }
 });
 
-test("the homepage modification date reflects its published area-copy change", () => {
+test("the homepage modification date reflects its redesign content change", () => {
   const pageModified = JSON.parse(read("data/page-modified.json"));
-  assert.equal(pageModified["/"], "2026-07-21", "stored homepage date is stale");
+  assert.equal(pageModified["/"], "2026-09-16", "stored homepage date is stale");
 
   const sitemap = read("sitemap.xml");
   const homepage = sitemap.match(/<url>\s*<loc>https:\/\/sinceritycupping\.co\.uk\/<\/loc>\s*<lastmod>([^<]+)<\/lastmod>/i);
   assert.ok(homepage, "sitemap is missing the homepage entry");
-  assert.equal(homepage[1], "2026-07-21", "sitemap homepage date is stale");
+  assert.equal(homepage[1], "2026-09-16", "sitemap homepage date is stale");
 });

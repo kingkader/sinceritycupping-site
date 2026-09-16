@@ -1,0 +1,39 @@
+{
+  "reason": "Unreviewed religious timing reintroduced upstream; existing content safety test fails. Preserved for Abdul review, not public.",
+  "records": [
+    {
+      "slug": "hijama-sunnah-days",
+      "title": "Hijama on sunnah days: timing, booking and what the clinic offers",
+      "keyword": "hijama sunnah days",
+      "intent": "faith-and-timing research",
+      "service": "Wet cupping / Hijama",
+      "area": "London",
+      "angle": "published availability and honest framing of sunnah timing alongside what the clinic can offer",
+      "summary": "How to check availability around sunnah days, with context on what the clinic publishes and what a reliable Islamic calendar source should confirm.",
+      "promiseTerms": [
+        "sunnah",
+        "timing"
+      ],
+      "content": {
+        "answer": {
+          "heading": "Check Fresha availability for the dates you want",
+          "text": "The clinic is open every day and Fresha shows live availability. Whether a particular Islamic date corresponds to a sunnah day is a separate question; check a reliable Islamic calendar source for that confirmation."
+        },
+        "sections": [
+          {
+            "heading": "What the clinic can confirm about timing",
+            "paragraphs": [
+              "The clinic can confirm that it is open every day and that Fresha shows the next available slots. It does not publish a separate sunnah-day booking route."
+            ]
+          },
+          {
+            "heading": "Where to find sunnah-day information",
+            "paragraphs": [
+              "Use a reliable Islamic calendar or a knowledgeable scholar to identify the relevant lunar dates. This guide does not calculate those dates or assert which are recommended."
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}

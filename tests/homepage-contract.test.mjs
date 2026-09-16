@@ -33,7 +33,7 @@ function anchorHrefByText(markup, label) {
 test("homepage leads with the approved inclusive cupping message", () => {
   assert.match(
     home,
-    /<h1>Private, professional cupping in South London<\/h1>/,
+    /<h1>Cupping &amp; hijama in Streatham, London<\/h1>/,
   );
   assert.match(home, /every faith and background/);
   assert.match(home, /Everyone is welcome/);

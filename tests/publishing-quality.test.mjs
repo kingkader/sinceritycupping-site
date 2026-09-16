@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import {spawnSync} from "node:child_process";
 import fs from "node:fs";
+import {createHash} from "node:crypto";
 import http from "node:http";
 import os from "node:os";
 import path from "node:path";
@@ -157,11 +158,11 @@ function decodeAttribute(value) {
 }
 
 const fixturePageModified = {
-  "/": "2026-07-21",
-  "/services/": "2026-07-21",
-  "/about/": "2026-07-21",
-  "/contact/": "2026-07-21",
-  "/blog/": "2026-07-21",
+  "/": "2026-09-16",
+  "/services/": "2026-09-16",
+  "/about/": "2026-09-16",
+  "/contact/": "2026-09-16",
+  "/blog/": "2026-09-16",
   "/privacy/": "2026-07-21",
   "/areas/": "2026-07-21",
   ...Object.fromEntries(business.serviceAreas.map((area) => [
@@ -896,9 +897,9 @@ test("404 recovery assets and links resolve from a nested missing route", async 
   }
 
   for (const expected of [
-    "/assets/css/style.css?v=c1bedce9c888",
+    `/assets/css/style.css?v=${createHash("sha256").update(fs.readFileSync(path.join(root, "assets/css/style.css"))).digest("hex").slice(0, 12)}`,
     "/assets/img/sincerity-cupping-logo.svg",
-    "/assets/js/site.js?v=939cec1c255b",
+    `/assets/js/site.js?v=${createHash("sha256").update(fs.readFileSync(path.join(root, "assets/js/site.js"))).digest("hex").slice(0, 12)}`,
     "/services/",
     "/contact/",
     "/#book",
