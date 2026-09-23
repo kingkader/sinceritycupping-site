@@ -788,13 +788,13 @@
   },
   {
     "slug": "hijama-cost-london",
-    "title": "How much does hijama cost in London? 2026 pricing guide",
+    "title": "Hijama cost in Streatham: compare the four appointments",
     "keyword": "hijama cost London",
     "intent": "pricing research",
     "service": "Wet cupping / Hijama",
-    "area": "London",
-    "angle": "four exact prices and durations",
-    "summary": "The clinic's four published hijama choices cost £45 or £80 and have service-specific durations of 40, 45, 80 or 90 minutes.",
+    "area": "Streatham, London",
+    "angle": "four exact prices, durations and Fresha booking handoff",
+    "summary": "Compare Sincerity’s £45 and £80 hijama costs in Streatham, including women’s and men’s durations and the Fresha booking handoff.",
     "promiseTerms": [
       "cost",
       "durations"
@@ -802,30 +802,30 @@
     "content": {
       "answer": {
         "heading": "Hijama at this clinic costs £45 or £80",
-        "text": "The price depends on the exact appointment: wet cupping is £45 and a full spiritual appointment is £80. Women’s and men’s routes have different published durations, so check the named Fresha service before confirming."
+        "text": "At Sincerity Cupping Clinic in Streatham, standard wet cupping/hijama is £45 and the longer full spiritual appointment is £80. The exact duration depends on the women’s or men’s service selected."
       },
       "sections": [
         {
           "heading": "Four current prices and durations",
           "items": [
-            "Women’s wet cupping: £45 and 45 minutes.",
-            "Men’s wet cupping: £45 and 40 minutes.",
-            "Women’s full spiritual appointment: £80 and 90 minutes.",
-            "Men’s full spiritual appointment: £80 and 80 minutes."
+            "Women’s wet cupping / General Cupping (upto 10 cups) (Female): £45 and 45 minutes.",
+            "Men’s wet cupping / General Cupping (upto 10 cups) (Male): £45 and 40 minutes.",
+            "Women’s longer full spiritual appointment / Full Body Cupping (Female): £80 and 90 minutes.",
+            "Men’s longer full spiritual appointment / Full Body Cupping (Male): £80 and 80 minutes."
           ]
         },
         {
-          "heading": "Choose the women’s or men’s route",
+          "heading": "Which service should I choose?",
           "paragraphs": [
-            "Sister Aisha Mejri provides private appointments for women. Brother Abu Layla provides private appointments for men.",
-            "The generic selector on this site lets you choose the intended audience and service before Fresha opens."
+            "Start with the service wanted, not just the price. The £45 routes are standard wet cupping appointments; the £80 routes are longer listed appointments with different durations.",
+            "A higher price does not prove a better outcome. Ask the clinic what the longer appointment includes before selecting it."
           ]
         },
         {
-          "heading": "Check the cost shown by Fresha",
+          "heading": "Why does Fresha show Sincerity Ruqyah Centre?",
           "paragraphs": [
-            "Review the service name, price, duration and appointment details in Fresha before confirming. Contact the clinic if the booking screen does not match the option you intended to select.",
-            "This page reports Sincerity’s own published prices; it does not claim to be a survey of every London provider."
+            "The cupping clinic operates within Sincerity Ruqyah Centre at the same Streatham address. Check the service name, practitioner route, price, duration, date and time before confirming.",
+            "Use the Fresha confirmation as the booking record. A phone, WhatsApp or email enquiry is not the same as a confirmed appointment."
           ]
         }
       ]
