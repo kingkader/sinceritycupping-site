@@ -225,8 +225,8 @@
     "intent": "practitioner preference",
     "service": "Wet cupping / Hijama",
     "area": "South London",
-    "angle": "named practitioner, privacy and exact appointment choices",
-    "summary": "Women can review a female practitioner, privacy arrangements and two exact South London appointment choices before booking.",
+    "angle": "named practitioner, verified women’s Fresha labels, privacy questions and booking checks",
+    "summary": "Women can verify Sister Aisha Mejri’s published role, the two women’s Fresha labels, privacy questions and Streatham booking details before confirming.",
     "promiseTerms": [
       "female",
       "privacy"
@@ -234,27 +234,28 @@
     "content": {
       "answer": {
         "heading": "The female practitioner for women is Sister Aisha Mejri",
-        "text": "Sister Aisha Mejri sees women for private cupping appointments. The clinic publishes her role so clients can choose the correct practitioner route before leaving the website."
+        "text": "Sister Aisha Mejri is the published women’s cupping practitioner for private women’s appointments at Sincerity Cupping Clinic in Streatham. Women should use the women’s booking route, then check the live Fresha label, price and duration before confirming."
       },
       "sections": [
         {
-          "heading": "Privacy starts with the right booking route",
+          "heading": "Check the women’s Fresha labels before confirming",
           "paragraphs": [
-            "Women have a separate booking path from men. Check that the Fresha confirmation names the service you intended to select, and contact the clinic if anything is unclear.",
-            "You can ask an operational privacy question before booking without sending detailed health information through a general web form."
+            "The website’s booking buttons open Fresha under the Sincerity Ruqyah Centre name at the same 330 Streatham High Road address.",
+            "The £45 women’s route selected “General Cupping (upto 10 cups) (Female)” for 45 minutes when checked; the £80 women’s route selected “Full Body cupping (Female)” for 1 hr 30 min."
           ]
         },
         {
-          "heading": "Two published appointments for women",
+          "heading": "The two women’s choices are different services",
           "items": [
-            "Women's wet cupping: £45 and 45 minutes.",
-            "Women's full spiritual appointment: £80 and 90 minutes."
+            "Women’s wet cupping: £45 and 45 minutes on the website, selected on Fresha as “General Cupping (upto 10 cups) (Female)”.",
+            "Women’s longer full-body/spiritual appointment: £80 and 90 minutes on the website, selected on Fresha as “Full Body cupping (Female)”."
           ]
         },
         {
-          "heading": "Every faith and background is welcome",
+          "heading": "Privacy and practical questions to ask first",
           "paragraphs": [
-            "The clinic welcomes women of every faith and background. Hijama is used as a secondary name for wet cupping, not as a condition for attending."
+            "The women’s route is separate from the men’s route. Ask before booking if clothing, access, arrival arrangements, the treatment space or who will see you affects your decision.",
+            "Keep personal medical questions with an appropriately qualified healthcare professional; ask the clinic only for operational service information."
           ]
         }
       ]
