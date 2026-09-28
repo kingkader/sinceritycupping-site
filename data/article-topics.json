@@ -1,35 +1,44 @@
 [
   {
     "slug": "first-hijama-appointment-streatham",
-    "title": "What to expect at your first hijama appointment",
-    "keyword": "hijama appointment Streatham",
-    "intent": "first-time client preparation",
+    "title": "Your first cupping appointment in Streatham: booking and arrival",
+    "keyword": "first cupping appointment Streatham",
+    "intent": "first-time booking and arrival preparation",
     "service": "Wet cupping / Hijama",
     "area": "Streatham",
-    "angle": "consultation, consent, privacy and booking choices",
-    "summary": "A calm overview of the consultation, consent, privacy and practical questions to ask before a first hijama appointment in Streatham.",
+    "angle": "booking confirmation, arrival planning, privacy and practical questions",
+    "summary": "Know which appointment to book, how Fresha confirmation works, where to find the Streatham clinic and what practical questions to ask before your first visit.",
     "promiseTerms": [
       "first",
-      "privacy"
+      "Fresha",
+      "Streatham",
+      "practical questions"
     ],
     "content": {
       "answer": {
-        "heading": "Your first step is choosing the correct appointment",
-        "text": "Start with the women’s or men’s route and check the service name, price, duration and practitioner before confirming. The practitioner explains the booked service and gives you a private opportunity to ask questions before anything begins."
+        "heading": "Start with the right appointment",
+        "text": "You do not need to know every term before contacting the clinic. Wet cupping is also called hijama. If you are unsure which listed service matches what you want, ask the clinic to explain the choices before booking."
       },
       "sections": [
         {
-          "heading": "Who will you see at a first appointment?",
+          "heading": "Check your booking confirmation",
           "paragraphs": [
-            "Sister Aisha Mejri provides private appointments for women. Brother Abu Layla provides private appointments for men.",
-            "These named routes let you choose the intended practitioner before Fresha opens."
+            "Bookings open on Fresha under Sincerity Ruqyah Centre. The about page explains that this is the same centre and the same Streatham address. Before confirming, check the service name, practitioner route, date, time, price and duration shown on the booking screen.",
+            "If you cannot find a suitable time, ask the clinic about availability. A WhatsApp message, phone call or email enquiry is not a confirmed appointment; use the Fresha confirmation as the record of your booked time."
+          ]
+        },
+        {
+          "heading": "Plan your arrival in Streatham",
+          "paragraphs": [
+            "The clinic is at 330 Streatham High Rd, London SW16 6HH, within Sincerity Ruqyah Centre. Use the contact page for the address, map link, phone number and WhatsApp route, and check live directions close to your appointment because transport and traffic can change.",
+            "If entrance access, stairs or another practical arrangement matters to your visit, ask the clinic before travelling."
           ]
         },
         {
           "heading": "Privacy and consent come before the service",
           "paragraphs": [
-            "The practitioner explains the stages of the service and gives you an opportunity to ask operational questions. You remain free to pause and ask for clarification before agreeing to proceed.",
-            "Detailed personal medical questions belong with an appropriately qualified healthcare professional."
+            "The practitioner explains the booked service and gives you a private opportunity to ask questions before anything begins. You remain free to pause and ask for clarification before agreeing to proceed.",
+            "Useful questions include who will see you, how privacy is arranged, what happens during the booked service, what clothing or access arrangement is practical, and who to contact afterwards."
           ]
         },
         {
