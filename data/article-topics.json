@@ -940,37 +940,46 @@
     "intent": "appointment logistics",
     "service": "Wet cupping / Hijama",
     "area": "Streatham",
-    "angle": "ask the clinic about access, privacy and clothing",
-    "summary": "Practical questions to ask the clinic about clothing, access and privacy before a hijama appointment.",
+    "angle": "clothing access checklist, privacy, practitioner route and booking details",
+    "summary": "Clothing-access questions for hijama in Streatham, including what to ask about privacy, practitioner route and booking details.",
     "promiseTerms": [
       "clothing",
       "privacy"
     ],
     "content": {
       "answer": {
-        "heading": "There is no published mandatory clothing rule",
-        "text": "The clinic does not publish a required outfit for hijama. Ask before travelling if you need to know how clothing access or privacy will be handled for the appointment you selected."
+        "heading": "There is no published mandatory outfit",
+        "text": "The clinic does not publish a mandatory hijama outfit. Ask before travelling if clothing access, changing arrangements or practitioner privacy affects the appointment you selected."
       },
       "sections": [
         {
-          "heading": "Ask the clinic what clothing access is needed",
+          "heading": "Start with the area and service, not a fixed outfit",
           "paragraphs": [
-            "An operational question about access can be answered before booking without sending detailed health information through a general enquiry.",
-            "Ask for clarification if the answer affects whether the chosen service works for you."
+            "There is no published one-outfit rule for every hijama appointment. Use the four appointment choices to confirm whether you are booking women’s wet cupping, men’s wet cupping or a longer full spiritual appointment, then ask what access is needed for that specific booking.",
+            "Keep the question practical: “What clothing access will be needed for the service I booked?” is different from sending detailed health information through a general enquiry."
+          ]
+        },
+        {
+          "heading": "Use this clothing access checklist",
+          "items": [
+            "Ask whether the booked service needs access to a particular body area before you choose what to wear.",
+            "Ask whether tight layers, one-piece clothing or complicated fastenings would make access difficult.",
+            "Ask how privacy and changing arrangements are handled if you need to adjust clothing at the clinic.",
+            "Check the service name, practitioner route, price and duration in Fresha before travelling."
           ]
         },
         {
           "heading": "Privacy starts with the practitioner route",
           "paragraphs": [
-            "Women’s private appointments are with Sister Aisha Mejri. Men’s private appointments are with Brother Abu Layla.",
-            "Choose the matching route and confirm the service details shown by Fresha."
+            "The about page names Sister Aisha Mejri as the women’s cupping practitioner and Brother Abu Layla as the men’s cupping practitioner. Choose the matching route if practitioner privacy matters to you.",
+            "If a privacy, access or clothing detail affects whether you want to proceed, ask before booking rather than waiting until arrival."
           ]
         },
         {
           "heading": "What can be confirmed before travelling?",
           "paragraphs": [
-            "The clinic can confirm operational access, the address and the appointment attached to your booking. The four published services each have their own price and duration.",
-            "Use the contact page for an operational question and the generic selector when you are ready to choose an appointment."
+            "The clinic can confirm operational access, the address and the appointment attached to your booking. The prices page lists four services: women’s wet cupping, men’s wet cupping and two longer full spiritual appointments.",
+            "For a non-medical clothing or access question, use the contact page, WhatsApp or phone. The contact form tells clients not to include detailed medical information."
           ]
         }
       ]
