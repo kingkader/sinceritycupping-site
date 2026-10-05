@@ -96,47 +96,58 @@
   },
   {
     "slug": "hijama-aftercare-london",
-    "title": "Hijama aftercare in London: using your clinic instructions",
-    "keyword": "hijama aftercare London",
-    "intent": "post-appointment information",
+    "title": "Hijama aftercare in Streatham: written instructions and help routes",
+    "keyword": "hijama aftercare Streatham",
+    "intent": "post-appointment aftercare help routing",
     "service": "Wet cupping / Hijama",
-    "area": "London",
-    "angle": "follow written clinic information and ask if anything is unclear",
-    "summary": "How to use the written information supplied for your own appointment and where to direct clinic or medical questions.",
+    "area": "Streatham",
+    "angle": "written aftercare, before-leaving checks and safe help routes",
+    "summary": "After hijama at Sincerity in Streatham, use the clinic's written aftercare, check what to ask before leaving and route medical concerns to NHS or a clinician.",
     "promiseTerms": [
       "aftercare",
-      "instructions"
+      "written instructions",
+      "help routes"
     ],
     "content": {
       "answer": {
-        "heading": "Use the instructions supplied for your own appointment",
-        "text": "This guide does not set a universal hijama aftercare routine. Use any information supplied for your appointment, ask the clinic to explain its operational policy, and take a medical concern to an appropriately qualified healthcare professional."
+        "heading": "Start with your own written instructions",
+        "text": "After hijama at Sincerity Cupping Clinic in Streatham, use the written aftercare information given for your own appointment. Before you leave, check who to contact for practical questions, and take any medical concern to NHS 111, 999 in an emergency, or an appropriately qualified healthcare professional."
       },
       "sections": [
         {
-          "heading": "What can the clinic answer about aftercare?",
+          "heading": "Check these points before you leave",
+          "items": [
+            "Which written aftercare sheet or instructions apply to the service you had.",
+            "How the clinic wants you to handle a practical question about the dressing or appointment record.",
+            "Which contact route to use if you need to ask a non-medical question later.",
+            "Which concerns should go straight to a healthcare professional, NHS 111 or 999."
+          ],
           "paragraphs": [
-            "The clinic can explain the information it supplied, the service you booked and how to contact it with an operational question.",
-            "A generic web article cannot replace information based on an individual medical assessment."
+            "This checklist is practical, not a recovery timetable. It does not prescribe washing, food, exercise, driving, repeat cupping or medication decisions."
+          ]
+        },
+        {
+          "heading": "Use the right help routes",
+          "paragraphs": [
+            "For non-medical clinic questions, use the contact page, call 07552 540000 or message on WhatsApp. The contact form asks clients not to include detailed medical information, so keep sensitive health details for a private consultation or a healthcare professional.",
+            "NHS 111 can help if you think you need medical help right now and can direct you to the right place. Call 999 for a life-threatening emergency."
           ]
         },
         {
           "heading": "Use independent cupping information",
           "paragraphs": [
-            "NCCIH publishes an overview of cupping research and possible side effects. Read that independent source alongside the clinic’s operational information.",
-            "The absence of a fixed routine here is deliberate: this page does not prescribe washing, diet, activity or repeat-appointment rules."
-          ]
-        },
-        {
-          "heading": "Where should a medical concern go?",
-          "paragraphs": [
-            "For a medical concern that is not an emergency, contact an appropriately qualified healthcare professional or NHS 111. Call 999 for a life-threatening emergency.",
-            "Do not rely on WhatsApp or a clinic web page for emergency assessment."
+            "The NCCIH guide to cupping explains that cupping research is limited and describes possible side effects, including temporary marks, skin discoloration, scars, burns and infections.",
+            "Cupping is complementary care, not a replacement for medical advice, diagnosis or treatment.",
+            "A public article cannot tailor aftercare to your appointment, health history or the instructions you were given in person."
           ]
         }
       ]
     },
     "sources": [
+      {
+        "name": "NCCIH — Cupping",
+        "url": "https://www.nccih.nih.gov/health/cupping"
+      },
       {
         "name": "NHS — When to use 111",
         "url": "https://www.nhs.uk/nhs-services/urgent-and-emergency-care-services/when-to-use-111/"
