@@ -294,8 +294,8 @@
     "intent": "practitioner preference",
     "service": "Wet cupping / Hijama",
     "area": "South London",
-    "angle": "named practitioner, privacy and exact appointment choices",
-    "summary": "Men can review a male practitioner, privacy arrangements and two exact South London appointment choices before booking.",
+    "angle": "named practitioner, verified men’s Fresha labels, privacy questions and booking checks",
+    "summary": "Men can verify Brother Abu Layla’s published role, the two men’s Fresha labels, privacy questions and Streatham booking checks before confirming.",
     "promiseTerms": [
       "male",
       "privacy"
@@ -303,27 +303,28 @@
     "content": {
       "answer": {
         "heading": "The male practitioner for men is Brother Abu Layla",
-        "text": "Brother Abu Layla sees men for private cupping appointments. His published role lets clients select the men's route without guessing who provides the appointment."
+        "text": "Brother Abu Layla is the published men’s cupping practitioner for private men’s appointments at Sincerity Cupping Clinic in Streatham. Men should use the men’s booking route, then check the live Fresha label, price and duration before confirming."
       },
       "sections": [
         {
-          "heading": "Privacy and questions before booking",
+          "heading": "Check the men’s Fresha labels before confirming",
           "paragraphs": [
-            "The men's booking path is separate from the women's path. Ask the clinic about operational arrangements before you commit if privacy or access affects your choice.",
-            "The clinic can explain its service, while personal medical questions should go to an appropriately qualified healthcare professional."
+            "The website’s booking buttons open Fresha under the Sincerity Ruqyah Centre name at the same 330 Streatham High Road address.",
+            "The £45 men’s route selected “General Cupping (upto 10 cups) (Male)” for 40 minutes when checked; the £80 men’s route selected “Full Body Cupping (Male)” for 1 hr 20 min."
           ]
         },
         {
-          "heading": "Two published appointments for men",
+          "heading": "The two men’s choices are different services",
           "items": [
-            "Men's wet cupping: £45 and 40 minutes.",
-            "Men's full spiritual appointment: £80 and 80 minutes."
+            "Men’s wet cupping: £45 and 40 minutes on the website, selected on Fresha as “General Cupping (upto 10 cups) (Male)”.",
+            "Men’s longer full-body/spiritual appointment: £80 and 80 minutes on the website, selected on Fresha as “Full Body Cupping (Male)”."
           ]
         },
         {
-          "heading": "Check the confirmation",
+          "heading": "Privacy and practical questions to ask first",
           "paragraphs": [
-            "Fresha handles the booking after a service is selected. Review the service name, price, duration and practitioner route shown before confirming."
+            "The men’s route is separate from the women’s route. Ask before booking if clothing, access, arrival arrangements, the treatment space or who will see you affects your decision.",
+            "Keep personal medical questions with an appropriately qualified healthcare professional; ask the clinic only for operational service information."
           ]
         }
       ]
