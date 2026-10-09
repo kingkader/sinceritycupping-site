@@ -1010,37 +1010,44 @@
     "intent": "travel planning",
     "service": "Wet cupping / Hijama",
     "area": "South London",
-    "angle": "individual decision and alternative travel planning",
-    "summary": "Questions to consider when planning the journey home after hijama, without assuming a particular outcome for every client.",
+    "angle": "driver responsibility, live journey options and another-way-home planning",
+    "summary": "Use Highway Code Rule 90, Sincerity’s Streatham journey details and clinic contact routes to decide whether to drive yourself or arrange another way home.",
     "promiseTerms": [
       "drive",
       "journey"
     ],
     "content": {
       "answer": {
-        "heading": "There is no universal driving clearance",
-        "text": "The clinic does not assess whether someone should control a vehicle after an appointment. Each driver remains responsible for complying with the Highway Code; if there is uncertainty, arrange another journey option."
+        "heading": "Start with the direct answer",
+        "text": "Sincerity Cupping Clinic does not issue a universal waiting period after hijama. The clinic can confirm your booked service, the address and the published appointment duration; it cannot assess the driver, vehicle, traffic or how someone feels after an individual appointment."
       },
       "sections": [
         {
-          "heading": "What can the clinic say about driving?",
+          "heading": "Plan the journey before booking if driving is uncertain",
           "paragraphs": [
-            "The clinic can confirm the address, the booked service and its published duration. It does not provide an individual driving assessment or a universal waiting period.",
-            "A web page cannot observe the driver, the vehicle or the conditions at the time of travel."
+            "The clinic is at 330 Streatham High Rd, London SW16 6HH, within Sincerity Ruqyah Centre. Use the contact page map link with that full address, then compare driving yourself with public transport, a taxi or a lift before selecting an appointment time.",
+            "If travel uncertainty would affect your booking, contact the clinic before confirming. The clinic can answer operational questions about the address, opening hours and the service attached to your booking; it does not provide a driving assessment."
           ]
         },
         {
-          "heading": "Plan the journey before the appointment",
+          "heading": "Match the route to the appointment you booked",
           "paragraphs": [
-            "The clinic is at 330 Streatham High Rd, London SW16 6HH. Use live directions to compare public transport, a taxi or a lift before setting out.",
-            "The contact page provides a click-only Google Maps link and the clinic telephone number for operational questions."
+            "Sincerity publishes four appointment choices: women’s wet cupping, £45 and 45 minutes; men’s wet cupping, £45 and 40 minutes; women’s full spiritual appointment, £80 and 90 minutes; and men’s full spiritual appointment, £80 and 80 minutes.",
+            "Those durations are appointment labels, not recovery or driving rules. Fresha handles confirmation under Sincerity Ruqyah Centre, so check the service, practitioner route, time, price and any payment or cancellation terms before confirming."
           ]
         },
         {
-          "heading": "Read the official driving rule",
+          "heading": "On the day, pause if the answer changes",
           "paragraphs": [
-            "Highway Code Rule 90 gives drivers the official responsibility relevant to their ability to control a vehicle.",
-            "That rule is the authoritative starting point; this clinic guide does not add a cupping-specific clearance rule."
+            "After the appointment, reassess before leaving. If driving yourself no longer feels like the right journey option, use the alternative travel route you planned or ask the clinic a non-medical operational question.",
+            "For after-appointment practical questions, use the written information from your own visit and the aftercare help-route guide. Personal medical questions, medicine questions and urgent concerns belong with an appropriately qualified healthcare professional or the relevant urgent-help service, not a public website article."
+          ]
+        },
+        {
+          "heading": "Evidence and safety",
+          "paragraphs": [
+            "The National Center for Complementary and Integrative Health describes wet cupping as cupping where the skin is pierced and blood flows into the cup; it also says cupping research is limited and lists possible side effects such as skin discoloration, scars, burns and infections.",
+            "Cupping is complementary care, not a replacement for medical advice, diagnosis or treatment. This driving guide only helps with journey planning and source-checking."
           ]
         }
       ]
@@ -1049,6 +1056,10 @@
       {
         "name": "GOV.UK — The Highway Code, rules for drivers and motorcyclists",
         "url": "https://www.gov.uk/guidance/the-highway-code/rules-for-drivers-and-motorcyclists-89-to-102"
+      },
+      {
+        "name": "NCCIH — Cupping",
+        "url": "https://www.nccih.nih.gov/health/cupping"
       }
     ]
   },
