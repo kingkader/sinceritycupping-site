@@ -26,7 +26,6 @@
   ],
   "environment": "clean and serene",
   "googleMapsUrl": "https://www.google.com/maps?q=place_id:ChIJ6-vLLJQHdkgRPrnWnRsH6_Q&place_id=ChIJ6-vLLJQHdkgRPrnWnRsH6_Q",
-  "freshaProfileUrl": "https://www.fresha.com/a/sincerity-cupping-clinic-london-330-streatham-high-road-juyfvsn5",
   "birdeyeUrl": "https://reviews.birdeye.com/sincerity-cupping-clinic-171612344902935",
   "openingHours": [
     {
@@ -147,11 +146,10 @@
     }
   ],
   "sameAs": [
-    "https://www.google.com/maps?cid=5018211418466808892",
-    "https://www.fresha.com/a/sincerity-cupping-clinic-london-330-streatham-high-road-juyfvsn5",
+    "https://www.google.com/maps?cid=17648207379975027006",
     "https://reviews.birdeye.com/sincerity-cupping-clinic-171612344902935"
   ],
-  "googleBusinessProfileUrl": "https://www.google.com/maps?cid=5018211418466808892",
+  "googleBusinessProfileUrl": "https://www.google.com/maps?cid=17648207379975027006",
   "femaleBookingUrl": "https://www.fresha.com/book-now/sincerity-ruqyah-centre-en3ghpfz/services?lid=1080569&oiid=sv%3A15058937&share=true&pId=1024551",
   "maleBookingUrl": "https://www.fresha.com/book-now/sincerity-ruqyah-centre-en3ghpfz/services?lid=1080569&oiid=sv%3A14524918&share=true&pId=1024551",
   "fullBodyMaleBookingUrl": "https://www.fresha.com/book-now/sincerity-ruqyah-centre-en3ghpfz/services?lid=1080569&oiid=sv%3A15623194&share=true&pId=1024551",
