@@ -1,0 +1,59 @@
+name: Deploy LucidMark
+
+on:
+  push:
+    branches: [lucidmark-site]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: lucidmark-production
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+
+      - name: Setup Node
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: "22"
+
+      - name: Build site
+        run: python3 build/build.py
+
+      - name: Create Pages project if missing
+        continue-on-error: true
+        uses: cloudflare/wrangler-action@9acf94ace14e7dc412b076f2c5c20b8ce93c79cd # v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages project create lucidmark --production-branch=main
+
+      - name: Deploy to Cloudflare Pages
+        uses: cloudflare/wrangler-action@9acf94ace14e7dc412b076f2c5c20b8ce93c79cd # v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy dist --project-name=lucidmark --branch=main --commit-dirty=true
+
+      - name: Check what the token may change (status codes only)
+        env:
+          T: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          A: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          api() { curl -s -o /tmp/r.json -w "%{http_code}" -H "Authorization: Bearer $T" "https://api.cloudflare.com/client/v4$1"; }
+          echo "pages project: $(api /accounts/$A/pages/projects/lucidmark)"
+          echo "zone lookup: $(api '/zones?name=lucidmark.co.uk')"
+          Z=$(python3 -c "import json;r=json.load(open('/tmp/r.json'));print(r['result'][0]['id'] if r.get('result') else '')")
+          echo "zone found: ${Z:+yes}"
+          if [ -n "$Z" ]; then
+            echo "dns read: $(api /zones/$Z/dns_records)"
+            echo "worker routes read: $(api /zones/$Z/workers/routes)"
+          fi

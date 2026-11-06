@@ -1,0 +1,23 @@
+# LucidMark
+
+> LucidMark manages Google Ads for UK local businesses. It is a trading name of Axonis Ltd (company number 16436487, London).
+
+## What LucidMark does
+- Free Google Ads audit: a score out of 100, the money at risk each month, the top 3 fixes and what's working.
+- Ongoing management: conversion tracking, campaign setup, daily account checks, a weekly search-term clean-up, careful budget and bid changes, and ads written only from facts on the client's own website.
+- A plain-English report by email every Monday.
+
+## Prices (per month, ad spend paid to Google separately)
+- Starter £499: ad spend up to £1,500
+- Growth £750: £1,500 to £4,000
+- Pro £999: £4,000 to £8,000
+- Scale: 15% of ad spend over £8,000
+- 3-month minimum, then month to month. The client owns their Google Ads account. No guaranteed results.
+
+## Pages
+- [Home](https://lucidmark.co.uk/)
+- [Free Google Ads audit](https://lucidmark.co.uk/free-audit/)
+- [Privacy](https://lucidmark.co.uk/privacy/)
+- [Terms](https://lucidmark.co.uk/terms/)
+
+Contact: hello@lucidmark.co.uk

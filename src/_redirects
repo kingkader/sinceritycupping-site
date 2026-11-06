@@ -1,0 +1,11 @@
+/about/      /          301
+/about-lucidmark/ /     301
+/solar/      /          301
+/cleaning/   /          301
+/pricing/    /#prices   301
+/contact/    /free-audit/ 301
+/contact-us/ /free-audit/ 301
+/feed/       /          301
+/home/       /          301
+/wp-admin/*  /          301
+/wp-login.php /         301
