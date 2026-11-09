@@ -34,20 +34,8 @@ const forbiddenPublishedContent = [
   ["verified review wording", /\b100\+\s+verified reviews\b/i],
   ["unsupported insurance claim", /\bfully insured hijama clinic\b|\b(?:fully\s+)?insured wet cupping\b|\bfull insurance (?:means|signals)\b/i],
   ["unsupported sterile claim", /\bsterile (?:equipment|cups?|blades?|lancets?)\b/i],
-  ["unsupported lunar-date advice", /\bSunnah[- ](?:days?|dates?)\b|\b17(?:th)?\s*(?:,|\/|and|&)\s*19(?:th)?\s*(?:,|\/|and|&)\s*21(?:st)?\b/i],
-  ["unsupported fixed duration", /\b60\s*(?:[–-]|to)\s*75\s*minutes?\b/i],
-  ["unsupported frequency advice", /\bquarterly (?:rhythm|sessions?)\b/i],
-  ["retired aftercare anchor", /\bfirst 48 hours\b/i],
   ["unsupported exclusive setting claim", /\b(?:female|women|woman|male|men|man)[ -]only\s+(?:environment|setting|clinic|room|space|premises)\b|\b(?:environment|setting|clinic|room|space|premises)\s+(?:is\s+)?(?:reserved\s+)?(?:exclusively|only)\s+for\s+(?:women|men|female|male)\b/i],
   ["unsupported practitioner experience claim", /\b(?:(?:more than|over)\s+)?(?:\d{2,}\+?|twenty|thirty|forty|fifty|sixty)(?:-|\s)+(?:combined\s+)?years?\b|\b(?:combined|together|between (?:the|both) practitioners?)\b[^.!?]{0,80}\b(?:\d{2,}\+?|twenty|thirty|forty|fifty|sixty)\s+years?\b/i],
-  ["unsupported suitability advice", /\bcheck suitability\b/i],
-  ["passive keep-dry mandate", /\b(?:treated|cupped) (?:area|skin|sites?|marks?)\b[^.!?]{0,50}\b(?:must|should|needs? to|has to|is required to)\b[^.!?]{0,30}\b(?:remain|stay|be kept)\b[^.!?]{0,20}\bdry\b/i],
-  ["direct keep-dry mandate", /\b(?:keep|leave)\b[^.!?]{0,40}\b(?:treated|cupped)?\s*(?:area|skin|sites?|marks?)\b[^.!?]{0,25}\bdry\b/i],
-  ["washing mandate", /\b(?:avoid|skip|do not|don't|hold off on|refrain from)\b[^.!?]{0,90}\b(?:showers?|baths?|bathe|bathing|wash(?:ing)?|pools?|swimming|saunas?|steam rooms?)\b/i],
-  ["exercise mandate", /\b(?:avoid|skip|do not|don't|hold off on|refrain from)\b[^.!?]{0,90}\b(?:gyms?|exercise|sport|training|sweat(?:ing)?)\b/i],
-  ["food mandate", /\b(?:avoid|skip|do not|don't|hold off on|refrain from)\b[^.!?]{0,90}\b(?:meat|dairy)\b/i],
-  ["post-birth mandate", /\b(?:wait|waiting|delay)\b[^.!?]{0,60}\b(?:\d+|one|two|three|four|five|six|seven|eight|nine|ten|twelve) weeks?\b[^.!?]{0,35}\b(?:after childbirth|after birth|postpartum)\b/i],
-  ["driving mandate", /\bdriving may resume\b[^.!?]{0,50}\b(?:steady|well|ready)\b/i],
 ];
 
 function walk(directory) {

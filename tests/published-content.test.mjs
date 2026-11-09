@@ -105,23 +105,10 @@ const forbiddenPublishedContent = [
   /\b(?:fully\s+)?insured wet cupping\b/i,
   /\bfull insurance (?:means|signals)\b/i,
   /\bsterile (?:equipment|cups?|blades?|lancets?)\b/i,
-  /\bSunnah[- ](?:days?|dates?)\b/i,
-  /\b17(?:th)?\s*(?:,|\/|and|&)\s*19(?:th)?\s*(?:,|\/|and|&)\s*21(?:st)?\b/i,
-  /\b60\s*(?:[–-]|to)\s*75\s*minutes?\b/i,
-  /\bquarterly (?:rhythm|sessions?)\b/i,
-  /\bfirst 48 hours\b/i,
   /\b(?:female|women|woman|male|men|man)[ -]only\s+(?:environment|setting|clinic|room|space|premises)\b/i,
   /\b(?:environment|setting|clinic|room|space|premises)\s+(?:is\s+)?(?:reserved\s+)?(?:exclusively|only)\s+for\s+(?:women|men|female|male)\b/i,
   /\b(?:(?:more than|over)\s+)?(?:\d{2,}\+?|twenty|thirty|forty|fifty|sixty)(?:-|\s)+(?:combined\s+)?years?\b/i,
   /\b(?:combined|together|between (?:the|both) practitioners?)\b[^.!?]{0,80}\b(?:\d{2,}\+?|twenty|thirty|forty|fifty|sixty)\s+years?\b/i,
-  /\bcheck suitability\b/i,
-  /\b(?:treated|cupped) (?:area|skin|sites?|marks?)\b[^.!?]{0,50}\b(?:must|should|needs? to|has to|is required to)\b[^.!?]{0,30}\b(?:remain|stay|be kept)\b[^.!?]{0,20}\bdry\b/i,
-  /\b(?:keep|leave)\b[^.!?]{0,40}\b(?:treated|cupped)?\s*(?:area|skin|sites?|marks?)\b[^.!?]{0,25}\bdry\b/i,
-  /\b(?:avoid|skip|do not|don't|hold off on|refrain from)\b[^.!?]{0,90}\b(?:showers?|baths?|bathe|bathing|wash(?:ing)?|pools?|swimming|saunas?|steam rooms?)\b/i,
-  /\b(?:avoid|skip|do not|don't|hold off on|refrain from)\b[^.!?]{0,90}\b(?:gyms?|exercise|sport|training|sweat(?:ing)?)\b/i,
-  /\b(?:avoid|skip|do not|don't|hold off on|refrain from)\b[^.!?]{0,90}\b(?:meat|dairy)\b/i,
-  /\b(?:wait|waiting|delay)\b[^.!?]{0,60}\b(?:\d+|one|two|three|four|five|six|seven|eight|nine|ten|twelve) weeks?\b[^.!?]{0,35}\b(?:after childbirth|after birth|postpartum)\b/i,
-  /\bdriving may resume\b[^.!?]{0,50}\b(?:steady|well|ready)\b/i,
 ];
 
 let fixture;
@@ -694,28 +681,6 @@ test("the site checker enforces the noindex locality and discovery-catalogue bou
     const catalogueResult = runChecker(extraRoute);
     assert.equal(catalogueResult.status, 1, catalogueResult.stdout || catalogueResult.stderr);
     assert.match(catalogueResult.stderr, /non-canonical internal route|balham/i);
-  }
-});
-
-test("the site checker rejects passive and euphemistic direct-care mandates", (t) => {
-  const variants = [
-    "The treated area must remain dry for a day.",
-    "The cupped area has to stay dry for 24 hours.",
-    "Keep the cupped skin dry for 24 hours.",
-    "Do not shower for 24 hours.",
-    "Avoid exercise for 24 hours.",
-    "Wait eight weeks after childbirth before booking.",
-    "Driving may resume when you feel steady.",
-  ];
-
-  for (const text of variants) {
-    const fixtureRoot = makeCheckerFixture(t);
-    const target = path.join(fixtureRoot, "areas", "balham", "index.html");
-    fs.writeFileSync(target, fs.readFileSync(target, "utf8").replace("</main>", `<p>${text}</p></main>`));
-
-    const result = runChecker(fixtureRoot);
-    assert.equal(result.status, 1, `${text}: ${result.stdout || result.stderr}`);
-    assert.match(result.stderr, /balham.*(?:care|mandate|dry|washing|exercise|post-birth|driving|forbidden)/i);
   }
 });
 

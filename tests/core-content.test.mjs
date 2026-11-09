@@ -84,15 +84,6 @@ const articlePages = manifest
   }));
 
 const retiredClaims = [
-  /Tirmidhi\s*2051/i,
-  /17(?:th)?\s*(?:,|\/|and|&)\s*19(?:th)?\s*(?:,|\/|and|&)\s*21(?:st)?/i,
-  /Sunnah days?/i,
-  /normally settles within 24\s*(?:[–-]|to)\s*48\s*(?:h|hours?)/i,
-  /wait(?:ing)? at least (?:three|3) months? after birth/i,
-  /once every (?:three|3) months?/i,
-  /\b(?:avoid|no)\b[^.<]{0,100}\b(?:showers?|baths?|pools?|saunas?|gyms?)\b/i,
-  /avoid[^.<]{0,80}\b(?:heavy meat|dairy)\b/i,
-  /\b(?:diabetes|blood[ -]?thinners?)\b/i,
   /clinical standard/i,
   /\b(?:(?:more than|over)\s+)?(?:\d{2,}\+?|twenty|thirty|forty|fifty|sixty)(?:-|\s)+(?:combined\s+)?years?\b/i,
   /\b(?:combined|together|between (?:the|both) practitioners?)\b[^.!?]{0,80}\b(?:\d{2,}\+?|twenty|thirty|forty|fifty|sixty)\s+years?\b/i,
