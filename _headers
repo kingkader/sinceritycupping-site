@@ -45,3 +45,6 @@
 
 /llms-full.txt
   Cache-Control: public, max-age=3600, stale-while-revalidate=3600
+
+https://sinceritycupping.pages.dev/*
+  X-Robots-Tag: noindex

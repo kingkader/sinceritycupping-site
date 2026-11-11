@@ -1,0 +1,41 @@
+name: Preview on Cloudflare Pages
+
+on:
+  push:
+    branches: [redesign]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: sinceritycupping-preview
+  cancel-in-progress: true
+
+jobs:
+  preview:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+
+      - name: Setup Node
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: "22"
+
+      - name: Test committed site
+        run: npm test
+
+      - name: Build allowlisted public site
+        run: npm run build
+
+      - name: Validate built site
+        run: npm run check:dist
+
+      - name: Deploy preview (not the live site)
+        uses: cloudflare/wrangler-action@9acf94ace14e7dc412b076f2c5c20b8ce93c79cd # v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy dist --project-name=sinceritycupping --branch=redesign --commit-dirty=true

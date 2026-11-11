@@ -7,7 +7,7 @@ import test from "node:test";
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const home = fs.readFileSync(path.join(root, "index.html"), "utf8");
 const css = fs.readFileSync(path.join(root, "assets/css/style.css"), "utf8");
-const heroSizes = "(max-width: 700px) calc(100vw - 3rem), (max-width: 980px) 540px, (max-width: 1200px) 42vw, 540px";
+const heroSizes = "(max-width: 800px) 100vw, 62vw";
 
 function escapeRegExp(value) {
   return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
@@ -33,7 +33,7 @@ function anchorHrefByText(markup, label) {
 test("homepage leads with the approved inclusive cupping message", () => {
   assert.match(
     home,
-    /<h1>Cupping &amp; hijama in Streatham, London<\/h1>/,
+    /<h1>Hijama &amp; wet cupping in Streatham\. Booked in a minute\.<\/h1>/,
   );
   assert.match(home, /every faith and background/);
   assert.match(home, /Everyone is welcome/);

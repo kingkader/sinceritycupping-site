@@ -144,9 +144,9 @@ function shell({title, description, canonical, schema, main, areasCurrent = fals
 <meta property="og:url" content="${canonical}">
 <meta property="og:image" content="${origin}/assets/img/wet-cupping-therapy-1600.jpg">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#163129">
+<meta name="theme-color" content="#0b211c">
 <link rel="icon" type="image/svg+xml" href="/assets/img/favicon.svg">
-<link rel="stylesheet" href="/assets/css/style.css?v=8ce32fddf2bc">
+<link rel="stylesheet" href="/assets/css/style.css?v=5ee3ec76dea4">
 <script>document.documentElement.classList.add("js");</script>
 <script type="application/ld+json">${jsonLd(schema)}</script>
 </head>
