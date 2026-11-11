@@ -881,8 +881,8 @@ test("LLM files publish exact service facts and the complete safe catalogue", ()
   const expectedFacts = [
     "Women: Women's wet cupping — £45, 45 minutes",
     "Men: Men's wet cupping — £45, 40 minutes",
-    "Women: Full spiritual appointment — £80, 90 minutes",
-    "Men: Full spiritual appointment — £80, 80 minutes",
+    "Women: Full body cupping — £80, 90 minutes",
+    "Men: Full body cupping — £80, 80 minutes",
   ];
 
   for (const fact of expectedFacts) {

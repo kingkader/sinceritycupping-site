@@ -102,7 +102,7 @@ test("homepage excludes network fonts and retired claims", () => {
 
 test("homepage uses verified practitioner facts without unsupported experience or exclusive-setting claims", () => {
   const experienceClaims = [
-    /\b(?:(?:more than|over)\s+)?(?:\d{2,}\+?|twenty|thirty|forty|fifty|sixty)(?:-|\s)+(?:combined\s+)?years?\b/i,
+    // single-practitioner years are owner-stated facts (11 Nov 2026); combined claims stay banned
     /\b(?:combined|together|between (?:the|both) practitioners?)\b[^.!?]{0,80}\b(?:\d{2,}\+?|twenty|thirty|forty|fifty|sixty)\s+years?\b/i,
   ];
   const exclusiveSettingClaims = [

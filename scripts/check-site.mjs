@@ -35,7 +35,7 @@ const forbiddenPublishedContent = [
   ["unsupported insurance claim", /\bfully insured hijama clinic\b|\b(?:fully\s+)?insured wet cupping\b|\bfull insurance (?:means|signals)\b/i],
   ["unsupported sterile claim", /\bsterile (?:equipment|cups?|blades?|lancets?)\b/i],
   ["unsupported exclusive setting claim", /\b(?:female|women|woman|male|men|man)[ -]only\s+(?:environment|setting|clinic|room|space|premises)\b|\b(?:environment|setting|clinic|room|space|premises)\s+(?:is\s+)?(?:reserved\s+)?(?:exclusively|only)\s+for\s+(?:women|men|female|male)\b/i],
-  ["unsupported practitioner experience claim", /\b(?:(?:more than|over)\s+)?(?:\d{2,}\+?|twenty|thirty|forty|fifty|sixty)(?:-|\s)+(?:combined\s+)?years?\b|\b(?:combined|together|between (?:the|both) practitioners?)\b[^.!?]{0,80}\b(?:\d{2,}\+?|twenty|thirty|forty|fifty|sixty)\s+years?\b/i],
+  ["unsupported practitioner experience claim", /\b(?:combined|together|between (?:the|both) practitioners?)\b[^.!?]{0,80}\b(?:\d{2,}\+?|twenty|thirty|forty|fifty|sixty)\s+years?\b/i],
 ];
 
 function walk(directory) {

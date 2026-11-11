@@ -85,7 +85,7 @@ const articlePages = manifest
 
 const retiredClaims = [
   /clinical standard/i,
-  /\b(?:(?:more than|over)\s+)?(?:\d{2,}\+?|twenty|thirty|forty|fifty|sixty)(?:-|\s)+(?:combined\s+)?years?\b/i,
+  // single-practitioner years are owner-stated facts (11 Nov 2026); combined claims stay banned
   /\b(?:combined|together|between (?:the|both) practitioners?)\b[^.!?]{0,80}\b(?:\d{2,}\+?|twenty|thirty|forty|fifty|sixty)\s+years?\b/i,
   /\b(?:female|women|woman|male|men|man)[ -]only\s+(?:environment|setting|clinic|room|space|premises)\b/i,
   /\b(?:environment|setting|clinic|room|space|premises)\s+(?:is\s+)?(?:reserved\s+)?(?:exclusively|only)\s+for\s+(?:women|men|female|male)\b/i,
@@ -114,14 +114,14 @@ test("business data exposes the generic selector and four exact services", () =>
       },
       {
         audience: "Women",
-        name: "Full spiritual appointment",
+        name: "Full body cupping",
         price: "£80",
         durationMinutes: 90,
         bookingUrl: "https://www.fresha.com/book-now/sincerity-ruqyah-centre-en3ghpfz/services?lid=1080569&oiid=sv%3A15623186&share=true&pId=1024551",
       },
       {
         audience: "Men",
-        name: "Full spiritual appointment",
+        name: "Full body cupping",
         price: "£80",
         durationMinutes: 80,
         bookingUrl: "https://www.fresha.com/book-now/sincerity-ruqyah-centre-en3ghpfz/services?lid=1080569&oiid=sv%3A15623194&share=true&pId=1024551",
