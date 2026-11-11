@@ -96,7 +96,7 @@ test("homepage excludes network fonts and retired claims", () => {
   assert.doesNotMatch(home, /fonts\.googleapis\.com|fonts\.gstatic\.com/);
   assert.doesNotMatch(
     home,
-    /Tirmidhi 2051|17th, 19th and 21st|clinical standard/i,
+    /Tirmidhi 2051|clinical standard/i,
   );
 });
 

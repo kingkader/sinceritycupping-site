@@ -186,7 +186,7 @@ test("the area hub is the sole indexable local route while all locality endpoint
   const llmCatalogues = [read("llms.txt"), read("llms-full.txt")];
 
   assert.equal(hubRobots, "index, follow, max-image-preview:large");
-  assert.equal(sitemapRoutes.length, 31, "sitemap must contain exactly 31 indexable routes");
+  assert.equal(sitemapRoutes.length, 36, "sitemap must contain exactly 36 indexable routes");
   assert.ok(sitemapRoutes.includes(`${origin}/areas/`), "area hub must remain in the sitemap");
 
   for (const area of areas) {
@@ -263,10 +263,10 @@ test("the renderer is deterministic and its output matches every committed area 
 
 test("the homepage modification date reflects its redesign content change", () => {
   const pageModified = JSON.parse(read("data/page-modified.json"));
-  assert.equal(pageModified["/"], "2026-09-16", "stored homepage date is stale");
+  assert.equal(pageModified["/"], "2026-11-11", "stored homepage date is stale");
 
   const sitemap = read("sitemap.xml");
   const homepage = sitemap.match(/<url>\s*<loc>https:\/\/sinceritycupping\.co\.uk\/<\/loc>\s*<lastmod>([^<]+)<\/lastmod>/i);
   assert.ok(homepage, "sitemap is missing the homepage entry");
-  assert.equal(homepage[1], "2026-09-16", "sitemap homepage date is stale");
+  assert.equal(homepage[1], "2026-11-11", "sitemap homepage date is stale");
 });

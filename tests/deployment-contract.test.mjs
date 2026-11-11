@@ -204,5 +204,5 @@ test("CSP allows each intentional inline executable script by exact hash", () =>
     }
   }
 
-  assert.equal(executableScriptCount, 48);
+  assert.equal(executableScriptCount, 53);
 });

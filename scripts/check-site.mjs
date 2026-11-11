@@ -27,7 +27,7 @@ const areaNames = new Map([
 const expectedAreaUserRoutes = new Set([...areaNames.keys()].map((slug) => `/areas/${slug}/`));
 const expectedPublishedAreaRoutes = new Set(["/areas/", ...expectedAreaUserRoutes]);
 const expectedIndexableAreaRoutes = new Set(["/areas/"]);
-const expectedIndexableRouteCount = 31;
+const expectedIndexableRouteCount = 36;
 const forbiddenPublishedContent = [
   ["remote Google Font", /fonts\.googleapis\.com|fonts\.gstatic\.com/i],
   ["aggregate rating", /"(?:aggregateRating|ratingValue|reviewCount)"\s*:/i],

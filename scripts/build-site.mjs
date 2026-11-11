@@ -31,6 +31,11 @@ const areaSlugs = [
   "west-norwood",
 ];
 const articleSlugs = [
+  "how-to-prepare-for-hijama",
+  "sunnah-days-for-hijama",
+  "what-happens-during-wet-cupping",
+  "what-to-do-after-hijama",
+  "who-should-not-have-hijama",
   "can-i-drive-after-hijama",
   "clean-hijama-clinic-south-london",
   "cupping-dulwich",

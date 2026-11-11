@@ -20,8 +20,10 @@ const fixedCustomSlugs = new Set([
   "hijama-aftercare-london",
 ]);
 
-const generatedRecords = manifest.filter((record) => !record.custom && !fixedCustomSlugs.has(record.slug));
-const protectedRecords = manifest.filter((record) => record.custom || fixedCustomSlugs.has(record.slug));
+// Owner-approved advice guides (added Nov 2026) carry "guide": true and are counted apart from the July 2026 rewrite set.
+const guideRecords = manifest.filter((record) => record.guide === true);
+const generatedRecords = manifest.filter((record) => !record.guide && !record.custom && !fixedCustomSlugs.has(record.slug));
+const protectedRecords = manifest.filter((record) => !record.guide && (record.custom || fixedCustomSlugs.has(record.slug)));
 const allRecords = manifest;
 const rendererRetired = /automatic article rendering is retired.*direct static edits.*human review/is;
 
@@ -121,8 +123,8 @@ function decodeAttribute(value) {
 }
 
 const fixturePageModified = {
-  "/": "2026-09-16",
-  "/services/": "2026-09-16",
+  "/": "2026-11-11",
+  "/services/": "2026-11-11",
   "/about/": "2026-09-16",
   "/contact/": "2026-09-16",
   "/blog/": "2026-09-16",
@@ -186,8 +188,9 @@ function assertSentinelsUnchanged(fixture, before) {
   }
 }
 
-test("all 24 articles answer their own title and summary promises", () => {
-  assert.equal(allRecords.length, 24);
+test("all 29 articles answer their own title and summary promises", () => {
+  assert.equal(allRecords.length, 29);
+  assert.equal(guideRecords.length, 5);
   const manifestSlugs = allRecords.map((record) => record.slug);
   const topicSlugs = topics.map((topic) => topic.slug);
   const articleDirectories = fs.readdirSync(path.join(root, "articles"), {withFileTypes: true})
@@ -263,7 +266,7 @@ test("all committed topic, article, manifest and LLM sources exclude retired cla
 });
 
 test("all published articles keep travel guidance live-planner based and free of unsupported route facts", () => {
-  assert.equal(allRecords.length, 24);
+  assert.equal(allRecords.length, 29);
 
   for (const record of allRecords) {
     const relativePath = `articles/${record.slug}/index.html`;
@@ -283,8 +286,8 @@ test("all published articles keep travel guidance live-planner based and free of
   }
 });
 
-test("all 24 article pages agree with manifest and use the safe article contract", () => {
-  assert.equal(allRecords.length, 24);
+test("all 29 article pages agree with manifest and use the safe article contract", () => {
+  assert.equal(allRecords.length, 29);
 
   for (const record of allRecords) {
     const relativePath = `articles/${record.slug}/index.html`;
@@ -313,7 +316,8 @@ test("all 24 article pages agree with manifest and use the safe article contract
     assert.doesNotMatch(visibleText(source), /\b(?:Clinic review|Reviewed) by\b/i, `unverified review credit in ${relativePath}`);
     assert.ok(article.citation?.some((item) => item.url === "https://www.nccih.nih.gov/health/cupping"), `missing NCCIH schema citation in ${relativePath}`);
     assert.match(prose, /href="https:\/\/www\.nccih\.nih\.gov\/health\/cupping"/i, `missing visible NCCIH source in ${relativePath}`);
-    assert.match(visibleText(prose), /complementary care[^.]{0,120}not a replacement for medical advice/i, `missing care boundary in ${relativePath}`);
+    // Owner decision (Nov 2026): the advice guides do not repeat the care-boundary sentence in the body; the footer carries it on every page.
+    if (!record.guide) assert.match(visibleText(prose), /complementary care[^.]{0,120}not a replacement for medical advice/i, `missing care boundary in ${relativePath}`);
     assert.doesNotMatch(shell, /oiid=sv%3A\d+/i, `service-specific shell booking in ${relativePath}`);
     assert.match(shell, /href="\/#book"/, `missing generic shell booking in ${relativePath}`);
   }

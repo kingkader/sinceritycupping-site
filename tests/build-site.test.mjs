@@ -61,6 +61,11 @@ const areaSlugs = [
 ];
 
 const articleSlugs = [
+  "how-to-prepare-for-hijama",
+  "sunnah-days-for-hijama",
+  "what-happens-during-wet-cupping",
+  "what-to-do-after-hijama",
+  "who-should-not-have-hijama",
   "can-i-drive-after-hijama",
   "clean-hijama-clinic-south-london",
   "cupping-dulwich",
@@ -164,8 +169,8 @@ test("build creates the exact public site contract", () => {
 
   assert.equal(coreRoutes.length, 7);
   assert.equal(areaSlugs.length, 15);
-  assert.equal(articleSlugs.length, 24);
-  assert.equal(baselineRoutes.length, 46);
+  assert.equal(articleSlugs.length, 29);
+  assert.equal(baselineRoutes.length, 51);
   assert.deepEqual(fs.readdirSync(dist).sort(), [...publicEntries].sort());
   assert.deepEqual(filesUnder(dist).sort(), [...requiredPublicPaths].sort());
 
@@ -256,5 +261,5 @@ test("source check excludes the generated dist directory", () => {
     encoding: "utf8",
   });
 
-  assert.match(output, /^Checked 48 HTML file\(s\)\./);
+  assert.match(output, /^Checked 53 HTML file\(s\)\./);
 });

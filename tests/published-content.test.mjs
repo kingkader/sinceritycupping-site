@@ -57,6 +57,11 @@ const areas = [
 ];
 
 const articleSlugs = [
+  "how-to-prepare-for-hijama",
+  "sunnah-days-for-hijama",
+  "what-happens-during-wet-cupping",
+  "what-to-do-after-hijama",
+  "who-should-not-have-hijama",
   "can-i-drive-after-hijama",
   "clean-hijama-clinic-south-london",
   "cupping-dulwich",
@@ -266,13 +271,13 @@ function linkByText(markup, text) {
     .find((match) => visibleText(match[2]) === text);
 }
 
-test("the build exposes exactly 31 indexable routes with complete self-consistent metadata", () => {
-  assert.equal(walkHtml(root).length, 48, "source HTML contract changed");
+test("the build exposes exactly 36 indexable routes with complete self-consistent metadata", () => {
+  assert.equal(walkHtml(root).length, 53, "source HTML contract changed");
   const builtFiles = walkHtml(builtRoot);
-  assert.equal(builtFiles.length, 47, "dist HTML contract changed");
+  assert.equal(builtFiles.length, 52, "dist HTML contract changed");
 
   const indexable = builtFiles.filter((file) => !/<meta\s+name="robots"\s+content="[^"]*noindex/i.test(fs.readFileSync(file, "utf8")));
-  assert.equal(indexable.length, 31, "indexable route contract changed");
+  assert.equal(indexable.length, 36, "indexable route contract changed");
 
   for (const file of indexable) {
     const relative = path.relative(builtRoot, file);
@@ -306,7 +311,7 @@ test("the build exposes exactly 31 indexable routes with complete self-consisten
 test("sitemap, indexable canonicals and built files have exact one-to-one route parity", () => {
   const entries = sitemapEntries(readFrom(builtRoot, "sitemap.xml"));
   const locs = entries.map(({loc}) => loc);
-  assert.equal(entries.length, 31);
+  assert.equal(entries.length, 36);
   assert.equal(new Set(locs).size, locs.length, "duplicate sitemap URL");
   assert.deepEqual(new Set(locs), new Set(indexableRoutes.map((route) => `${origin}${route}`)));
 

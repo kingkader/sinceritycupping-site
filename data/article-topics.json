@@ -1132,40 +1132,6 @@
     }
   },
   {
-    "slug": "how-to-prepare-for-hijama",
-    "title": "How to prepare for a hijama appointment",
-    "keyword": "how to prepare for hijama",
-    "intent": "pre-appointment preparation",
-    "service": "Wet cupping / Hijama",
-    "area": "London",
-    "angle": "ask the clinic for its preparation guidance and read independent sources",
-    "summary": "Questions to ask the clinic about preparation, with a reminder that medical concerns belong with a healthcare professional rather than a web guide.",
-    "promiseTerms": [
-      "prepare",
-      "hijama"
-    ],
-    "content": {
-      "answer": {
-        "heading": "Ask the clinic what preparation it recommends",
-        "text": "Preparation guidance for hijama is best sourced from the clinic you have booked with. This guide does not publish a fixed routine because the relevant details depend on the exact appointment and on individual circumstances."
-      },
-      "sections": [
-        {
-          "heading": "What preparation questions can the clinic answer?",
-          "paragraphs": [
-            "The clinic can explain its own operational process, including any steps it asks clients to take before arriving. Ask before booking if preparation affects whether the appointment works for you."
-          ]
-        },
-        {
-          "heading": "Keep medical questions separate",
-          "paragraphs": [
-            "Questions about whether hijama is appropriate for your health circumstances belong with an appropriately qualified healthcare professional, not a clinic's preparation notes or a web guide."
-          ]
-        }
-      ]
-    }
-  },
-  {
     "slug": "what-to-eat-before-hijama",
     "title": "What to eat before a hijama appointment",
     "keyword": "what to eat before hijama",
@@ -1228,40 +1194,6 @@
           "heading": "Questions to ask about hygiene and consent",
           "paragraphs": [
             "Ask which items are single-use, how used equipment is disposed of and how consent is handled before the appointment begins. A clinic that cannot answer these clearly is worth approaching with caution."
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "slug": "what-happens-during-wet-cupping",
-    "title": "What happens during a wet cupping session?",
-    "keyword": "what happens during wet cupping",
-    "intent": "practice explanation",
-    "service": "Wet cupping / Hijama",
-    "area": "London",
-    "angle": "independent NCCIH definition alongside the clinic's published process",
-    "summary": "An independent summary of what wet cupping involves, using the NCCIH definition, with a reminder that individual outcomes are not predictable.",
-    "promiseTerms": [
-      "session",
-      "process"
-    ],
-    "content": {
-      "answer": {
-        "heading": "Wet cupping involves suction and skin piercing",
-        "text": "The NCCIH describes wet cupping as a form of cupping in which the skin is pierced before blood flows into the cup. That definition identifies the method; it does not establish a promised individual outcome."
-      },
-      "sections": [
-        {
-          "heading": "What the clinic can explain",
-          "paragraphs": [
-            "The clinic can describe the steps in the service you booked and answer operational questions. Your practitioner will explain the session before it begins and give you the opportunity to ask questions."
-          ]
-        },
-        {
-          "heading": "What this guide does not predict",
-          "paragraphs": [
-            "Wet cupping is a complementary therapy. This guide does not claim it will treat, cure or prevent any medical condition. Take individual health questions to a healthcare professional."
           ]
         }
       ]
@@ -1466,6 +1398,272 @@
           "heading": "Use current journey information",
           "paragraphs": [
             "Review the live planner result close to departure. This page does not name a station transfer, transport line, road direction, travel time or distance from Mitcham."
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "slug": "how-to-prepare-for-hijama",
+    "title": "How to prepare for hijama: food, water and what to wear",
+    "keyword": "how to prepare for hijama",
+    "intent": "pre-appointment preparation",
+    "service": "Wet cupping / Hijama",
+    "area": "Streatham",
+    "angle": "the clinic's own published advice, approved by the owner on 11 Nov 2026",
+    "summary": "How to prepare for a hijama appointment at our Streatham clinic: when to stop eating, what to drink, what to wear and what to tell your practitioner.",
+    "promiseTerms": [
+      "prepare",
+      "hijama"
+    ],
+    "content": {
+      "answer": {
+        "heading": "Stop eating six hours before your appointment",
+        "text": "Do not eat for at least six hours before your hijama session. Keep drinking water, complete the patient form when you book, and wear loose clothing."
+      },
+      "sections": [
+        {
+          "heading": "Food and drink before hijama",
+          "paragraphs": [
+            "Do not eat for at least six hours before your session. A morning appointment means most of those hours pass overnight. Drink plenty of water in the hours and days before you come. Do not smoke or drink alcohol before your session, or after it."
+          ]
+        },
+        {
+          "heading": "Tell your practitioner before the day",
+          "paragraphs": [
+            "Complete the patient form when you book. Use it to share any medical conditions, medicines or allergies, so your practitioner knows before you arrive. If you are not sure hijama is right for you, read who should check with a doctor first ."
+          ]
+        },
+        {
+          "heading": "What to wear",
+          "paragraphs": [
+            "Wear comfortable, loose clothing. The areas being cupped need to be uncovered, so avoid tight layers and complicated fastenings. Our guide on what to wear to a hijama appointment has more detail."
+          ]
+        },
+        {
+          "heading": "For Muslim clients: intention and wudu",
+          "paragraphs": [
+            "If you are Muslim, make a sincere intention (niyyah) to seek healing from Allah, and make wudu before your session. Everyone else is just as welcome. You do not need a religious reason to book."
+          ]
+        },
+        {
+          "heading": "On the day",
+          "paragraphs": [
+            "Your appointment starts with a private consultation, so there is time to ask questions before anything begins. A standard session takes 40 to 45 minutes. See what happens during a wet cupping session , and plan ahead with our aftercare guide ."
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "slug": "what-happens-during-wet-cupping",
+    "title": "What happens during a wet cupping (hijama) session?",
+    "keyword": "what happens during wet cupping",
+    "intent": "session explanation",
+    "service": "Wet cupping / Hijama",
+    "area": "Streatham",
+    "angle": "the clinic's own published advice, approved by the owner on 11 Nov 2026",
+    "summary": "A step-by-step look at a wet cupping session in Streatham: the consultation, cup placement, the small surface openings, how long it takes and how it ends.",
+    "promiseTerms": [
+      "wet cupping",
+      "session"
+    ],
+    "content": {
+      "answer": {
+        "heading": "A wet cupping session has four stages",
+        "text": "A wet cupping session starts with a private consultation. Then the cups are placed, small surface openings are made and the cups are reapplied, and the area is cleaned and dressed."
+      },
+      "sections": [
+        {
+          "heading": "1. Private consultation",
+          "paragraphs": [
+            "You talk with your practitioner in private. You agree which points will be cupped, and you can ask anything you like. A standard appointment covers up to ten cups, and can include the sunnah points if you want them."
+          ]
+        },
+        {
+          "heading": "2. Cup placement",
+          "paragraphs": [
+            "You lie down on a treatment bed. Your practitioner places single-use cups on the skin and creates suction with a hand pump. We do not use fire or mouth suction."
+          ]
+        },
+        {
+          "heading": "3. Wet cupping",
+          "paragraphs": [
+            "After a few minutes the cups are removed. Small, superficial openings are made in the skin with a single-use blade, and the cups are briefly reapplied to draw out a small amount of blood."
+          ]
+        },
+        {
+          "heading": "4. Cleaning and dressing",
+          "paragraphs": [
+            "The cups are removed, the area is cleaned and dressed, and you are given aftercare information to take home. Our aftercare guide explains the first few days."
+          ]
+        },
+        {
+          "heading": "How long does a session take?",
+          "paragraphs": [
+            "Women’s wet cupping is a 45-minute appointment and men’s wet cupping is 40 minutes. Both cost £45. Longer appointments are listed on the Cupping & prices page ."
+          ]
+        },
+        {
+          "heading": "Who will I see, and what is used?",
+          "paragraphs": [
+            "Women see Sister Aisha Mejri. Men see Brother Abu Layla. Cups and blades are single-use: used once for one client, then disposed of safely. Bed covers are single-use and your practitioner wears gloves. If anything feels uncomfortable at any point, say so straight away."
+          ]
+        },
+        {
+          "heading": "Before you come",
+          "paragraphs": [
+            "Do not eat for six hours before your session. The full list is in how to prepare for hijama ."
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "slug": "what-to-do-after-hijama",
+    "title": "What to do after hijama: aftercare for the first days",
+    "keyword": "what to do after hijama",
+    "intent": "aftercare",
+    "service": "Wet cupping / Hijama",
+    "area": "Streatham",
+    "angle": "the clinic's own published advice, approved by the owner on 11 Nov 2026",
+    "summary": "Hijama aftercare from our Streatham clinic: rest, water, light food, keeping the cupped areas dry, when to exercise again and how long the marks last.",
+    "promiseTerms": [
+      "after hijama",
+      "aftercare"
+    ],
+    "content": {
+      "answer": {
+        "heading": "Rest, drink water and keep the cupped areas dry",
+        "text": "After hijama, rest, drink plenty of water and eat light food. Keep the cupped areas dry for the first 6 to 12 hours, and leave hard exercise for two to three days."
+      },
+      "sections": [
+        {
+          "heading": "The first 24 hours",
+          "paragraphs": [
+            "Rest. Give your body time to recover. Drink plenty of water. Eat light food. Honey and dates are a good choice. Leave heavy meals for later. Keep the cupped areas dry for the first 6 to 12 hours. You can shower, but keep the cupped areas out of the water at first. Do not scratch or pick at the cupped areas. They heal on their own. Do not smoke. Some practitioners advise leaving cold food and cold drinks for 24 hours. Avoid sexual intercourse for 24 hours."
+          ]
+        },
+        {
+          "heading": "The next few days",
+          "paragraphs": [
+            "Keep the areas clean. Wash gently with water, then apply a little olive oil or black seed oil. Leave hard exercise and heavy physical work for two to three days. Keep drinking water."
+          ]
+        },
+        {
+          "heading": "What is normal after hijama?",
+          "paragraphs": [
+            "Round marks, a little like bruises, appear where the cups were. They usually fade within 3 to 10 days. Mild soreness where the cups were is also normal, and usually settles within a day or two."
+          ]
+        },
+        {
+          "heading": "When to get in touch",
+          "paragraphs": [
+            "If something worries you after your session, message the clinic on WhatsApp 07552 540000 . For anything urgent, contact your GP or NHS 111, or call 999 in an emergency."
+          ]
+        },
+        {
+          "heading": "Planning your next visit",
+          "paragraphs": [
+            "Muslim clients may like to book on the sunnah days for hijama . Before your next session, the same preparation applies: see how to prepare for hijama ."
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "slug": "sunnah-days-for-hijama",
+    "title": "Sunnah days for hijama: the 17th, 19th and 21st, with dates",
+    "keyword": "sunnah days for hijama",
+    "intent": "timing",
+    "service": "Wet cupping / Hijama",
+    "area": "Streatham",
+    "angle": "the clinic's own published advice, approved by the owner on 11 Nov 2026",
+    "summary": "The sunnah days for hijama are the 17th, 19th and 21st of the Islamic month. See the next dates in the UK calendar, and what to do if you cannot wait.",
+    "promiseTerms": [
+      "sunnah days",
+      "hijama"
+    ],
+    "content": {
+      "answer": {
+        "heading": "The sunnah days are the 17th, 19th and 21st of the Islamic month",
+        "text": "The sunnah days for hijama are the 17th, 19th and 21st of each Islamic (Hijri) month. Hijama is still allowed on any other day when you need it."
+      },
+      "sections": [
+        {
+          "heading": "Where do the sunnah days come from?",
+          "paragraphs": [
+            "A hadith in Sunan Abu Dawud mentions cupping on the 17th, 19th and 21st of the month ( Sunan Abu Dawud 3861 , graded hasan by al-Albani). The Prophet ﷺ also named cupping among the best of treatments ( Sahih al-Bukhari 5696 )."
+          ]
+        },
+        {
+          "heading": "The next sunnah days for hijama",
+          "paragraphs": [
+            "These are the 17th, 19th and 21st of the coming Islamic months, shown as UK calendar dates. Jumada al-Akhirah 1448: Fri 27 Nov 2026, Sun 29 Nov 2026, Tue 1 Dec 2026 Rajab 1448: Sat 26 Dec 2026, Mon 28 Dec 2026, Wed 30 Dec 2026 Sha’ban 1448: Mon 25 Jan 2027, Wed 27 Jan 2027, Fri 29 Jan 2027 Ramadan 1448: Wed 24 Feb 2027, Fri 26 Feb 2027, Sun 28 Feb 2027 Shawwal 1448: Thu 25 Mar 2027, Sat 27 Mar 2027, Mon 29 Mar 2027 Dhu al-Qa’dah 1448: Sat 24 Apr 2027, Mon 26 Apr 2027, Wed 28 Apr 2027 Dhu al-Hijjah 1448: Sun 23 May 2027, Tue 25 May 2027, Thu 27 May 2027 Muharram 1449: Tue 22 Jun 2027, Thu 24 Jun 2027, Sat 26 Jun 2027 These dates follow the calculated Islamic calendar. They can move by one day with the sighting of the moon, so check close to the time."
+          ]
+        },
+        {
+          "heading": "What if I cannot wait for those days?",
+          "paragraphs": [
+            "You do not have to wait. Scholars agree that hijama is permissible and beneficial on any day when it is needed. If you are in discomfort, book the day that suits you."
+          ]
+        },
+        {
+          "heading": "How to book a sunnah day",
+          "paragraphs": [
+            "Pick your date early and choose the women’s or men’s appointment . If you cannot see a time that suits you, message us on WhatsApp 07552 540000 . The clinic is open daily, 10:00–19:00."
+          ]
+        },
+        {
+          "heading": "Getting ready",
+          "paragraphs": [
+            "Read how to prepare for hijama before you come, and what to do after hijama for the days that follow."
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "slug": "who-should-not-have-hijama",
+    "title": "Who should not have hijama? When to ask a doctor first",
+    "keyword": "who should not have hijama",
+    "intent": "suitability",
+    "service": "Wet cupping / Hijama",
+    "area": "Streatham",
+    "angle": "the clinic's own published advice, approved by the owner on 11 Nov 2026",
+    "summary": "When to speak to a doctor before hijama: pregnancy, blood-thinning medicine, bleeding disorders, severe anaemia, chemotherapy, a pacemaker and more.",
+    "promiseTerms": [
+      "hijama",
+      "doctor"
+    ],
+    "content": {
+      "answer": {
+        "heading": "Speak to a doctor first if any of these apply",
+        "text": "Hijama draws a small amount of blood, so some people should speak to a doctor before they book. Tell us about any condition or medicine on the patient form."
+      },
+      "sections": [
+        {
+          "heading": "Check with a doctor before booking",
+          "paragraphs": [
+            "Pregnancy. Hijama on certain points should be avoided during pregnancy. Blood-thinning medicine, such as warfarin. The risk of bleeding may be higher. Bleeding disorders, such as haemophilia. Severe anaemia. Hijama removes blood and may make anaemia worse. Chemotherapy. Speak to your oncologist first. Skin infections or open wounds where the cups would go. A pacemaker. Tell your practitioner beforehand. Recent blood donation. Wait at least two weeks. The very elderly and the very young need extra care and professional guidance."
+          ]
+        },
+        {
+          "heading": "Tell us before the day",
+          "paragraphs": [
+            "Complete the patient form when you book, and list any medical conditions, medicines and allergies. Your practitioner reads it before your appointment."
+          ]
+        },
+        {
+          "heading": "What happens at the clinic",
+          "paragraphs": [
+            "Every appointment starts with a private conversation. If something you tell us means we should not go ahead that day, we will pause or postpone the appointment. Medical decisions stay with your doctor."
+          ]
+        },
+        {
+          "heading": "If none of this applies to you",
+          "paragraphs": [
+            "Read how to prepare for hijama and what happens during a session , then choose your appointment."
           ]
         }
       ]
