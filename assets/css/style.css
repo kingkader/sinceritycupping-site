@@ -611,3 +611,26 @@ details.faq .faq-body { padding: 0 1.15rem 1.1rem; font-size: 1rem; color: var(-
   .site-header, .util-bar, .mobile-bar, .cta-band, .guide-search, .hero-actions, .booking-help, .hero-media { display: none; }
   .section { padding-block: 1rem; }
 }
+
+/* ---- v5 · 14 Nov 2026 · price and booking buttons on the first phone screen, a client review beside them, larger tap targets ---- */
+.hero-proof { margin: 1.15rem 0.2rem 0; max-width: 31rem; padding-left: 0.95rem; border-left: 2px solid var(--accent); }
+.hero-proof blockquote { margin: 0; color: var(--cream); font-size: 1rem; line-height: 1.45; }
+.hero-proof figcaption { margin-top: 0.3rem; color: var(--muted); font-size: 0.88rem; }
+.hero-proof cite { font-style: normal; }
+.hero-proof a { display: inline-flex; align-items: center; min-height: 32px; color: var(--cream); }
+.util-inner { min-height: 44px; }
+.util-bar a { min-height: 44px; }
+.breadcrumbs a { display: inline-flex; align-items: center; min-height: 32px; }
+.site-footer li { margin-bottom: 0.1em; }
+.site-footer li a, .site-footer p a { display: inline-flex; align-items: center; min-height: 34px; }
+.site-footer address a { display: inline-block; padding-block: 0.3rem; }
+.card .card-cta a { display: inline-flex; align-items: center; min-height: 44px; }
+@media (max-width: 460px) {
+  .hero-media { height: 16rem; }
+  .hero-inner { padding-top: 7.2rem; }
+  .hero-chips { display: none; }
+  .hero h1 { font-size: clamp(2.05rem, 9.4vw, 2.45rem); margin-bottom: 0.55rem; }
+  .hero p.lede { font-size: 1rem; line-height: 1.45; }
+  .hero-book { margin-top: 0.8rem; padding: 0.9rem; }
+  .hero-price { margin-bottom: 0.7rem; }
+}
