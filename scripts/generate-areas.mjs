@@ -146,6 +146,7 @@ function shell({title, description, canonical, schema, main, areasCurrent = fals
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#0b211c">
 <link rel="icon" type="image/svg+xml" href="/assets/img/favicon.svg">
+<link rel="preload" href="/assets/fonts/outfit-latin-var.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/assets/css/style.css?v=8cb41241b1ed">
 <script>document.documentElement.classList.add("js");</script>
 <script type="application/ld+json">${jsonLd(schema)}</script>
