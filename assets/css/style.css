@@ -1,4 +1,4 @@
-/* Sincerity Cupping Clinic — "Light clinic" design system v6 (14 Nov 2026)
+/* Sincerity Cupping Clinic — "Cups" design system v7 (14 Nov 2026). The base below is v6; the identity layer is at the end of the file.
    Cream ground, forest ink, white cards, forest stripes for contrast, one orange accent for every booking action, Outfit type.
    (v4 "Bold and modern", the dark look, is in git history: commit e726393.) */
 
@@ -30,7 +30,7 @@
   --accent-hover: #ff8f61;
   --accent-ink: #1f0e06;
   --accent-text: #b03c14;
-  --open: #1c7a4c;
+  --open: #17683f;
 
   --r-lg: 22px;
   --r-md: 16px;
@@ -208,42 +208,6 @@ address { font-style: normal; }
 .section-head .eyebrow { color: var(--open); font-size: 0.8rem; }
 .compact-cta { padding-block: clamp(2.5rem, 5vw, 4rem); }
 
-/* ---------- Homepage hero ---------- */
-.hero {
-  display: grid; grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr); gap: clamp(1.8rem, 4.5vw, 4.5rem); align-items: center;
-  max-width: var(--container); margin-inline: auto;
-  padding: clamp(2.2rem, 5vw, 4.4rem) clamp(1.25rem, 4.5vw, 3rem) clamp(2.6rem, 5vw, 4.6rem);
-}
-.hero .hero-inner { order: 1; padding: 0; max-width: none; min-width: 0; }
-.hero-media { order: 2; position: relative; isolation: isolate; margin: 0 18px 18px 0; aspect-ratio: 4 / 5; max-height: 40rem; justify-self: end; width: 100%; }
-.hero-media picture, .hero-media img { display: block; width: 100%; height: 100%; }
-.hero-media img { object-fit: cover; object-position: 50% 30%; border-radius: 28px; box-shadow: var(--shadow-card); }
-.hero-media::after { content: ""; position: absolute; inset: 18px -18px -18px 18px; z-index: -1; border-radius: 28px; background: var(--tint); }
-.hero-copy { min-width: 0; max-width: 39rem; }
-.hero-chips { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 0 0 1.3rem; padding: 0; list-style: none; }
-.hero-chips li {
-  margin: 0; padding: 0.42rem 0.9rem; border-radius: 999px; font-size: 0.88rem; font-weight: 600; color: var(--ink);
-  background: var(--surface); border: 1px solid var(--line);
-  display: inline-flex; align-items: center; gap: 0.45rem;
-}
-.hero-chips .is-open::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--open); }
-.hero h1 { max-width: 13.5ch; font-size: clamp(2.6rem, 5.2vw, 4.3rem); margin-bottom: 1.1rem; }
-.hero h1 span { display: block; max-width: none; margin-top: 0.4em; font-size: 0.42em; line-height: 1.2; letter-spacing: -0.01em; font-weight: 600; color: var(--accent-text); }
-.hero p.lede { font-size: clamp(1.08rem, 1.5vw, 1.25rem); line-height: 1.55; color: var(--text); max-width: 34rem; }
-.hero-book {
-  margin-top: 1.7rem; padding: 1.15rem; max-width: 31rem;
-  background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-lg);
-  box-shadow: var(--shadow-card);
-}
-.hero-price { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; margin: 0 0.2rem 0.9rem; max-width: none; }
-.hero-price span { color: var(--muted); font-size: 0.98rem; }
-.hero-price strong { font-size: 2.1rem; font-weight: 700; letter-spacing: -0.03em; line-height: 1; color: var(--ink); }
-.hero-actions { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.65rem; margin: 0; }
-.hero-actions .btn { min-height: 58px; font-size: 1.06rem; padding-inline: 0.8rem; }
-.hero-notes { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.2rem 1.2rem; margin: 0.75rem 0.2rem 0; }
-.booking-caption { margin: 0; color: var(--muted); font-size: 0.86rem; }
-.hero-notes .text-link { font-size: 0.95rem; }
-.welcome-line { margin: 1.3rem 0 0; color: var(--muted); font-size: 0.98rem; max-width: 31rem; }
 
 .fact-strip { background: transparent; padding: 0 clamp(1.1rem, 4.5vw, 3rem) clamp(1rem, 3vw, 2rem); }
 .fact-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); padding-block: 1.4rem; background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-lg); box-shadow: var(--shadow-card); }
@@ -573,15 +537,7 @@ details.faq .faq-body { padding: 0 1.15rem 1.1rem; font-size: 1rem; color: var(-
   .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
   .site-footer { padding-bottom: calc(6.2rem + env(safe-area-inset-bottom)); }
   .cta-band { flex-direction: column; align-items: flex-start; border-radius: 22px; }
-  .hero { grid-template-columns: 1fr; gap: 2rem; padding-top: 1.5rem; }
-  .hero-media { aspect-ratio: 16 / 11; max-height: none; margin: 0 12px 12px 0; width: auto; justify-self: stretch; }
-  .hero-media::after { inset: 12px -12px -12px 12px; }
   .fact-grid { padding-inline: 1rem; }
-  .hero h1 { max-width: 12ch; }
-  .hero-chips { margin-bottom: 1rem; }
-  .hero-chips li { font-size: 0.8rem; padding: 0.34rem 0.6rem; }
-  .hero-book { margin-top: 1.3rem; }
-  .hero-book { max-width: none; }
   .booking-grid, .answer-grid { grid-template-columns: 1fr; gap: 0.9rem; }
   .fact-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem 0; }
   .fact-grid p { padding-left: 1rem; }
@@ -602,10 +558,6 @@ details.faq .faq-body { padding: 0 1.15rem 1.1rem; font-size: 1rem; color: var(-
   body { font-size: 1rem; }
   h1 { font-size: clamp(2.5rem, 12.5vw, 3.1rem); }
   .section { padding-block: 3.3rem; }
-  .hero h1 { font-size: clamp(2.3rem, 11vw, 2.8rem); }
-  .hero p.lede { font-size: 1.04rem; }
-  .hero-actions .btn { font-size: 0.94rem; padding-inline: 0.4rem; text-align: center; }
-  .hero-notes { flex-direction: column; align-items: flex-start; }
   .trust-item, .visit-steps li, .practitioner-row, .guide-row { grid-template-columns: 2.7rem minmax(0, 1fr); gap: 0.85rem; padding: 1.1rem; }
   .trust-number, .visit-steps li > span, .guide-number, .practitioner-index { width: 2.7rem; height: 2.7rem; }
   .cta-actions, .cta-actions .btn { width: 100%; }
@@ -623,11 +575,6 @@ details.faq .faq-body { padding: 0 1.15rem 1.1rem; font-size: 1rem; color: var(-
 }
 
 /* ---- Review beside the booking buttons, larger tap targets, first-screen fit on phones ---- */
-.hero-proof { margin: 1.15rem 0.2rem 0; max-width: 31rem; padding-left: 0.95rem; border-left: 2px solid var(--accent); }
-.hero-proof blockquote { margin: 0; color: var(--ink); font-size: 1rem; line-height: 1.45; }
-.hero-proof figcaption { margin-top: 0.3rem; color: var(--muted); font-size: 0.88rem; }
-.hero-proof cite { font-style: normal; }
-.hero-proof a { display: inline-flex; align-items: center; min-height: 32px; color: var(--ink); }
 .util-inner { min-height: 44px; }
 .util-bar a { min-height: 44px; }
 .breadcrumbs a { display: inline-flex; align-items: center; min-height: 32px; }
@@ -636,10 +583,219 @@ details.faq .faq-body { padding: 0 1.15rem 1.1rem; font-size: 1rem; color: var(-
 .site-footer address a { display: inline-block; padding-block: 0.3rem; }
 .card .card-cta a { display: inline-flex; align-items: center; min-height: 44px; }
 @media (max-width: 460px) {
-  .hero { padding-top: 1.1rem; }
-  .hero-chips { display: none; }
-  .hero h1 { font-size: clamp(2.05rem, 9.4vw, 2.45rem); margin-bottom: 0.55rem; }
-  .hero p.lede { font-size: 1rem; line-height: 1.45; }
-  .hero-book { margin-top: 0.8rem; padding: 0.9rem; }
-  .hero-price { margin-bottom: 0.7rem; }
+}
+
+/* ================= v7 · 14 Nov 2026 · "Cups" identity =================
+   Instrument Serif headlines, cup-shaped photo windows, ring lines, forest panels on a cream page. */
+@font-face { font-family: "Instrument Serif"; src: url("/assets/fonts/instrument-serif.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: "Instrument Serif"; src: url("/assets/fonts/instrument-serif-italic.woff2") format("woff2"); font-weight: 400; font-style: italic; font-display: swap; }
+
+:root {
+  --display: "Instrument Serif", "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+  --pine: #0f2a22;
+  --cup: 999px 999px 22px 22px;
+  --rings:
+    radial-gradient(circle at var(--rx, 84%) var(--ry, 34%), rgba(251, 247, 238, 0) 0 7.4rem, rgba(251, 247, 238, 0.11) 7.4rem 7.5rem, rgba(251, 247, 238, 0) 7.5rem 11rem, rgba(251, 247, 238, 0.08) 11rem 11.1rem, rgba(251, 247, 238, 0) 11.1rem 15rem, rgba(251, 247, 238, 0.055) 15rem 15.1rem, rgba(251, 247, 238, 0) 15.1rem),
+    radial-gradient(70% 90% at var(--rx, 84%) var(--ry, 34%), #23543f 0%, rgba(35, 84, 63, 0) 68%);
+}
+
+/* Forest panels carry light-on-dark colours; the booking card inside the hero goes back to dark-on-light. */
+.page-hero, .hero-panel {
+  --ink: var(--cream); --text: #dbe6e0; --muted: #a9bdb3; --surface: #1b3b30; --raised: #24493c; --tint: rgba(251, 247, 238, 0.1);
+  --line: rgba(251, 247, 238, 0.14); --line-strong: rgba(251, 247, 238, 0.32);
+  --accent-text: #ff9466; --open: #7fd1a6;
+  color: var(--text);
+}
+.section-dark { color: var(--text); }
+.hero-book {
+  --ink: var(--forest); --text: #2c4239; --muted: #52675d; --surface: #ffffff; --raised: #e3ede5; --tint: #dcebdd;
+  --line: rgba(22, 49, 41, 0.13); --line-strong: rgba(22, 49, 41, 0.32);
+  --accent-text: #b03c14; --open: #17683f;
+  color: var(--text);
+}
+
+/* ---------- Type ---------- */
+h1, h2, .booking-card h3, .brand-name, .footer-wordmark, .appointment-price, .hero-price strong { font-family: var(--display); font-weight: 400; }
+h1 { font-size: clamp(2.9rem, 6.6vw, 5.4rem); line-height: 0.96; letter-spacing: -0.012em; }
+h2 { font-size: clamp(2.2rem, 4.3vw, 3.5rem); line-height: 1.02; letter-spacing: -0.01em; font-weight: 400; }
+.answer-block h2 { font-size: clamp(1.85rem, 2.9vw, 2.45rem); }
+.prose h2 { font-size: clamp(1.85rem, 3vw, 2.45rem); }
+.page-hero h1 { font-size: clamp(2.7rem, 5.6vw, 4.7rem); line-height: 0.98; }
+.booking-card h3 { font-size: clamp(2.1rem, 3.4vw, 2.8rem); letter-spacing: -0.01em; }
+.appointment-price { font-size: 3.3rem; letter-spacing: -0.01em; line-height: 1; }
+.appointment-price span { font-family: var(--font); }
+.brand-name { font-size: 1.7rem; letter-spacing: 0; line-height: 1; }
+.footer-wordmark { font-size: 1.9rem; letter-spacing: 0; }
+.site-footer h2, .site-footer h4 { font-family: var(--font); font-weight: 600; }
+.cta-band h2 { max-width: 16ch; }
+
+/* ---------- Homepage hero (phone first) ---------- */
+.hero { padding: 0.6rem 0 clamp(1.4rem, 4vw, 3rem); }
+.hero .hero-inner { display: flex; flex-direction: column; padding-inline: 0.7rem; }
+.hero-panel {
+  order: 1; position: relative; overflow: hidden; display: grid; grid-template-columns: minmax(0, 1fr); gap: 0.8rem;
+  padding: 1rem 1.15rem 3.5rem; border-radius: 28px; background: var(--rings), var(--pine); --rx: 74%; --ry: 22%;
+}
+.hero-chips { display: none; margin: 0; padding: 0; list-style: none; gap: 0.5rem; flex-wrap: wrap; }
+.hero-chips li {
+  margin: 0; padding: 0.42rem 0.9rem; border-radius: 999px; font-size: 0.88rem; font-weight: 600; color: var(--ink);
+  background: rgba(251, 247, 238, 0.1); border: 1px solid var(--line-strong);
+  display: inline-flex; align-items: center; gap: 0.45rem; white-space: nowrap;
+}
+.hero-chips .is-open::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--open); }
+.hero-cups { display: flex; align-items: flex-end; gap: 9px; height: 7.6rem; }
+.hero-cups figure {
+  margin: 0; flex: 1 1 0; min-width: 0; border-radius: 999px 999px 14px 14px; overflow: hidden; background: var(--surface);
+  box-shadow: 0 0 0 1px rgba(251, 247, 238, 0.3); animation: cup-float 8s ease-in-out infinite;
+}
+.hero-cups picture, .hero-cups img { display: block; width: 100%; height: 100%; }
+.hero-cups img { object-fit: cover; }
+.hero-media { order: 2; height: 100%; }
+.hero-media img { object-position: 50% 30%; }
+.hero-cup-a { order: 1; height: 76%; animation-delay: -2.6s; }
+.hero-cup-b { order: 3; height: 62%; animation-delay: -5.2s; }
+@keyframes cup-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+.hero h1 { margin: 0; max-width: none; font-size: min(11vw, 2.75rem); text-wrap: wrap; }
+.hero h1 span { display: block; margin-top: 0.2em; font-style: italic; font-size: 0.58em; line-height: 1.15; letter-spacing: 0; color: var(--accent-text); }
+.hero-book {
+  order: 2; position: relative; z-index: 2; margin: -2.6rem 0.75rem 0; padding: 0.95rem;
+  background: var(--surface); border: 1px solid var(--line); border-radius: 22px; box-shadow: var(--shadow-card);
+}
+.hero-price { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; margin: 0 0.2rem 0.7rem; max-width: none; }
+.hero-price span { color: var(--muted); font-size: 0.98rem; }
+.hero-price strong { font-size: 2.6rem; line-height: 0.9; color: var(--ink); }
+.hero-actions { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.6rem; margin: 0; }
+.hero-book .hero-actions .btn { min-height: 58px; font-size: 1rem; padding-inline: 0.5rem; text-align: center; }
+.hero-notes { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.2rem 1.2rem; margin: 0.7rem 0.2rem 0; }
+.booking-caption { margin: 0; color: var(--muted); font-size: 0.86rem; }
+.hero-notes .text-link { font-size: 0.95rem; }
+.hero .lede { order: 3; margin: 1.5rem 0.6rem 0; font-size: 1.14rem; line-height: 1.5; color: var(--text); max-width: 34rem; }
+.hero-proof { order: 4; margin: 1.4rem 0.6rem 0; padding: 0 0 0 1rem; border-left: 2px solid var(--accent); max-width: 34rem; }
+.hero-proof blockquote { margin: 0; font-family: var(--display); font-style: italic; font-size: 1.5rem; line-height: 1.18; color: var(--ink); }
+.hero-proof figcaption { margin-top: 0.5rem; color: var(--muted); font-size: 0.88rem; }
+.hero-proof cite { font-style: normal; }
+.hero-proof a { display: inline-flex; align-items: center; min-height: 32px; color: var(--ink); }
+.welcome-line { order: 5; margin: 1.1rem 0.6rem 0; color: var(--muted); font-size: 0.98rem; max-width: 34rem; }
+
+@media (min-width: 801px) {
+  .hero { padding-top: 1rem; }
+  .hero .hero-inner {
+    --ink: var(--cream); --text: #dbe6e0; --muted: #a9bdb3; --surface: #1b3b30; --raised: #24493c; --tint: rgba(251, 247, 238, 0.1);
+    --line: rgba(251, 247, 238, 0.14); --line-strong: rgba(251, 247, 238, 0.32); --accent-text: #ff9466; --open: #7fd1a6;
+    color: var(--text);
+    display: grid; grid-template-columns: minmax(0, 1.06fr) minmax(0, 0.94fr); column-gap: clamp(2rem, 4.5vw, 4.5rem); align-content: center;
+    width: min(100% - 2rem, 1320px); max-width: none; margin-inline: auto; padding: clamp(2.1rem, 3.8vw, 3.3rem) clamp(2.2rem, 4.4vw, 4rem);
+    border-radius: 36px; background: var(--rings), var(--pine); --rx: 77%; --ry: 42%;
+  }
+  .hero-panel { display: contents; }
+  .hero-chips { display: flex; margin-bottom: 1.5rem; }
+  .hero-chips, .hero h1, .hero .lede, .hero-book { grid-column: 1; }
+  .hero-chips { grid-row: 1; } .hero h1 { grid-row: 2; } .hero .lede { grid-row: 3; } .hero-book { grid-row: 4; }
+  .hero h1 { font-size: clamp(2.6rem, 5.4vw, 5rem); }
+  .hero .lede { order: 1; margin: 1.3rem 0 0; font-size: clamp(1.1rem, 1.5vw, 1.28rem); }
+  .hero-book { order: 2; margin: 1.7rem 0 0; max-width: 31rem; padding: 1.15rem; }
+  .hero-book .hero-actions .btn { font-size: 1.06rem; }
+  .hero-proof { grid-column: 1; grid-row: 5; margin: 2.1rem 0 0; }
+  .welcome-line { grid-column: 2; grid-row: 5; margin: 2.1rem 0 0; align-self: start; max-width: none; }
+  .hero-cups {
+    grid-column: 2; grid-row: 1 / span 4; align-self: end; height: min(30rem, 56vh); gap: 14px;
+    display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: end;
+  }
+  .hero-cups figure { border-radius: 999px 999px 26px 26px; box-shadow: 0 0 0 1px rgba(251, 247, 238, 0.32), 0 30px 60px -30px rgba(0, 0, 0, 0.65); }
+  .hero-media { height: 100%; }
+  .hero-cup-a { height: 72%; margin-bottom: 10%; }
+  .hero-cup-b { height: 60%; align-self: center; }
+}
+
+/* ---------- Facts with icons ---------- */
+.fact-grid p { display: grid; grid-template-columns: 2.7rem minmax(0, 1fr); column-gap: 0.8rem; align-items: center; }
+.fact-grid svg { grid-row: 1 / span 2; width: 2.7rem; height: 2.7rem; padding: 0.62rem; border-radius: 50%; background: var(--tint); color: var(--ink); }
+.fact-grid strong, .fact-grid span { grid-column: 2; }
+.fact-grid span { margin-top: 0.1rem; }
+
+/* ---------- Booking cards, answers, reviews ---------- */
+.booking-card { position: relative; overflow: hidden; border-radius: 28px; }
+.booking-card::after {
+  content: ""; position: absolute; width: 10.5rem; height: 10.5rem; right: -3.4rem; top: -3.4rem; border-radius: 50%;
+  border: 1.5rem solid var(--tint); pointer-events: none;
+}
+.booking-card > * { position: relative; z-index: 1; }
+.booking-help p { padding: 0.6rem 1rem; background: var(--surface); border: 1px solid var(--line); border-radius: 16px; }
+.answer-block { border-radius: 28px; }
+.answer-block-accent { background: var(--tint); border-color: transparent; }
+.review { border-radius: 24px; }
+.review-rating::before { content: none; }
+.review-rating[data-stars]::before { content: "★★★★★"; letter-spacing: 0.12em; margin-right: 0.55rem; color: var(--accent); }
+.review-rating[data-stars="4"]::before { content: "★★★★☆"; }
+.review-featured blockquote { font-family: var(--display); font-style: italic; font-weight: 400; font-size: clamp(1.8rem, 3.1vw, 2.6rem); line-height: 1.1; letter-spacing: 0; }
+
+/* ---------- Next sunnah days ---------- */
+.sunnah-next { width: 100%; margin: 0.1rem 0 1.1rem; padding: 1rem; border-radius: 22px; background: var(--surface); border: 1px solid var(--line); }
+.sunnah-next-title { margin: 0 0 0.7rem; font-weight: 600; color: var(--ink); font-size: 0.98rem; }
+.sunnah-chips { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.5rem; list-style: none; margin: 0 0 0.75rem; padding: 0; }
+.sunnah-chips li {
+  margin: 0; padding: 0.75rem 0.3rem 0.7rem; border-radius: 999px 999px 14px 14px; background: var(--pine); color: var(--cream);
+  text-align: center; line-height: 1.05; display: flex; flex-direction: column; gap: 0.12rem;
+}
+.sunnah-chips .wd { font-size: 0.76rem; letter-spacing: 0.09em; text-transform: uppercase; color: #a9bdb3; }
+.sunnah-chips .day { font-family: var(--display); font-size: 2.1rem; line-height: 1; }
+.sunnah-chips .mon { font-size: 0.86rem; font-weight: 600; }
+.answer-block p.sunnah-note, .sunnah-note { margin: 0; font-size: 0.86rem; color: var(--muted); }
+.answer-block p.sunnah-next-title { color: var(--ink); font-size: 0.98rem; }
+
+/* ---------- Cup-shaped photo windows ---------- */
+.media-card { border-radius: var(--cup); max-width: 24rem; }
+.media-card img, .media-card.tall img { aspect-ratio: 4 / 5; }
+.media-card figcaption { text-align: center; padding: 0.8rem 1.2rem 1rem; }
+
+/* ---------- The visit: a line of rings ---------- */
+.visit-steps { gap: 0; }
+.visit-steps li, .section-dark .visit-steps li { position: relative; background: transparent; border: 0; border-radius: 0; padding: 0 0 1.7rem; grid-template-columns: 3.4rem minmax(0, 1fr); }
+.visit-steps li:last-child { padding-bottom: 0; }
+.visit-steps li::before { content: ""; position: absolute; left: 1.7rem; top: 3.9rem; bottom: 0.5rem; width: 1px; background: var(--line-strong); }
+.visit-steps li:last-child::before { display: none; }
+.visit-steps li > span {
+  width: 3.4rem; height: 3.4rem; border-radius: 50%; background: transparent; border: 1px solid var(--accent); color: var(--ink);
+  box-shadow: 0 0 0 5px rgba(255, 122, 69, 0.13); font-family: var(--display); font-weight: 400; font-size: 1.4rem;
+}
+.visit-steps h3 { font-size: 1.22rem; margin-top: 0.35rem; }
+.practitioner-index { font-family: var(--display); font-weight: 400; font-size: 1.5rem; background: var(--surface); border: 1px solid var(--line-strong); }
+
+/* ---------- Panels with rings ---------- */
+.cta-band {
+  border-radius: 32px;
+  background:
+    radial-gradient(circle at 94% 8%, rgba(31, 14, 6, 0) 0 5rem, rgba(31, 14, 6, 0.14) 5rem 5.1rem, rgba(31, 14, 6, 0) 5.1rem 8rem, rgba(31, 14, 6, 0.1) 8rem 8.1rem, rgba(31, 14, 6, 0) 8.1rem 11rem, rgba(31, 14, 6, 0.07) 11rem 11.1rem, rgba(31, 14, 6, 0) 11.1rem),
+    var(--accent);
+}
+.page-hero {
+  margin: 0.7rem clamp(0.7rem, 1.6vw, 1.25rem) 0; border-radius: 28px; border-bottom: 0; overflow: hidden;
+  background: var(--rings), var(--pine); --rx: 90%; --ry: 12%;
+}
+.section-dark { background: var(--rings), var(--deep); --rx: 6%; --ry: 8%; }
+.site-footer { background: var(--rings), var(--deep); --rx: 94%; --ry: 14%; }
+
+@media (min-width: 981px) {
+  .trust-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .trust-item { display: flex; flex-direction: column; gap: 0.9rem; padding: 1.6rem; border-radius: 24px; }
+}
+@media (max-width: 980px) {
+  .media-card { margin-inline: auto; }
+  .media-card img, .media-card.tall img { aspect-ratio: 4 / 5; }
+}
+@media (max-width: 800px) {
+  .fact-grid p { padding: 0.2rem 0.4rem; border-left: 0; }
+  .fact-grid svg { width: 2.4rem; height: 2.4rem; padding: 0.55rem; }
+  .fact-grid p { grid-template-columns: 2.4rem minmax(0, 1fr); column-gap: 0.65rem; }
+  .media-card { max-width: 19rem; }
+}
+@media (max-width: 460px) {
+  .hero-notes { flex-direction: column; align-items: flex-start; }
+  .hero-book .hero-actions .btn { font-size: 0.95rem; padding-inline: 0.3rem; }
+}
+@media (max-width: 460px) and (max-height: 600px) {
+  .hero-cups { height: 4.7rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-cups figure { animation: none; }
 }

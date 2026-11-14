@@ -60,6 +60,26 @@
     }
   }
 
+  // Next sunnah days: the dates come from the page (copied from the guide); only the next three are shown.
+  var sunnah = document.querySelector("[data-sunnah-dates]");
+  if (sunnah && window.Intl) {
+    try {
+      var p = new Intl.DateTimeFormat("en-GB", { timeZone: "Europe/London", year: "numeric", month: "2-digit", day: "2-digit" }).formatToParts(new Date());
+      var part = function (t) { return p.filter(function (x) { return x.type === t; })[0].value; };
+      var today = part("year") + "-" + part("month") + "-" + part("day");
+      var next = sunnah.getAttribute("data-sunnah-dates").split(",").filter(function (d) { return d >= today; }).slice(0, 3);
+      var list = sunnah.querySelector(".sunnah-chips");
+      next.forEach(function (d) {
+        var b = d.split("-"), date = new Date(+b[0], +b[1] - 1, +b[2]), li = document.createElement("li");
+        [["wd", { weekday: "short" }], ["day", { day: "numeric" }], ["mon", { month: "short" }]].forEach(function (f) {
+          var s = document.createElement("span"); s.className = f[0]; s.textContent = date.toLocaleDateString("en-GB", f[1]); li.appendChild(s);
+        });
+        list.appendChild(li);
+      });
+      if (next.length) sunnah.hidden = false;
+    } catch (e) { /* leave the guide link as the way to the dates */ }
+  }
+
   var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var revealEls = Array.prototype.slice.call(document.querySelectorAll(".reveal"));
 

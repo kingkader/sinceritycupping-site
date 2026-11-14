@@ -147,7 +147,8 @@ function shell({title, description, canonical, schema, main, areasCurrent = fals
 <meta name="theme-color" content="#0b211c">
 <link rel="icon" type="image/svg+xml" href="/assets/img/favicon.svg">
 <link rel="preload" href="/assets/fonts/outfit-latin-var.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/assets/css/style.css?v=586deb2e0e54">
+<link rel="preload" href="/assets/fonts/instrument-serif.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/css/style.css?v=1f21b5aadb13">
 <script>document.documentElement.classList.add("js");</script>
 <script type="application/ld+json">${jsonLd(schema)}</script>
 </head>
@@ -230,7 +231,7 @@ ${main}
   <a class="btn btn-outline" href="https://wa.me/447552540000"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 0 1-13.5 7.8L3 21l1.2-4.5A9 9 0 1 1 21 12z"/><path d="M9 10a1 1 0 0 0 5 5"/></svg> WhatsApp</a>
 </nav>
 
-<script src="/assets/js/site.js?v=bce3f3aaee45" defer></script>
+<script src="/assets/js/site.js?v=cffc27813cdd" defer></script>
 </body>
 </html>
 `;

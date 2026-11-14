@@ -100,7 +100,10 @@ const baselineRoutes = [
 
 const assetPaths = [
   "assets/css/style.css",
+  "assets/fonts/OFL-InstrumentSerif.txt",
   "assets/fonts/OFL-Outfit.txt",
+  "assets/fonts/instrument-serif-italic.woff2",
+  "assets/fonts/instrument-serif.woff2",
   "assets/fonts/outfit-latin-var.woff2",
   "assets/img/cupping-cups-box-480.avif",
   "assets/img/cupping-cups-box-480.jpg",
