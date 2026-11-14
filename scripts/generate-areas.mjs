@@ -148,7 +148,7 @@ function shell({title, description, canonical, schema, main, areasCurrent = fals
 <link rel="icon" type="image/svg+xml" href="/assets/img/favicon.svg">
 <link rel="preload" href="/assets/fonts/outfit-latin-var.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/assets/fonts/instrument-serif.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/assets/css/style.css?v=1f21b5aadb13">
+<link rel="stylesheet" href="/assets/css/style.css?v=4063a5860f7e">
 <script>document.documentElement.classList.add("js");</script>
 <script type="application/ld+json">${jsonLd(schema)}</script>
 </head>

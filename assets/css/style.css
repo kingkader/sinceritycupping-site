@@ -589,9 +589,11 @@ details.faq .faq-body { padding: 0 1.15rem 1.1rem; font-size: 1rem; color: var(-
    Instrument Serif headlines, cup-shaped photo windows, ring lines, forest panels on a cream page. */
 @font-face { font-family: "Instrument Serif"; src: url("/assets/fonts/instrument-serif.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
 @font-face { font-family: "Instrument Serif"; src: url("/assets/fonts/instrument-serif-italic.woff2") format("woff2"); font-weight: 400; font-style: italic; font-display: swap; }
+/* A stand-in sized like Instrument Serif, so headings do not jump when the real font arrives. */
+@font-face { font-family: "Instrument Serif Fallback"; src: local("Georgia"), local("Noto Serif"); size-adjust: 76%; ascent-override: 99%; descent-override: 31%; line-gap-override: 0%; }
 
 :root {
-  --display: "Instrument Serif", "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+  --display: "Instrument Serif", "Instrument Serif Fallback", Georgia, serif;
   --pine: #0f2a22;
   --cup: 999px 999px 22px 22px;
   --rings:
