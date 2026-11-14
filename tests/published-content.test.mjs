@@ -403,7 +403,7 @@ test("the areas hub clearly describes service areas for one inclusive Streatham 
   assert.equal(title, "South London Cupping Areas | Sincerity Cupping Clinic");
   assert.match(text, /one clinic[^.]*330 Streatham High Rd[^.]*SW16 6HH/i);
   assert.match(text, /service areas?, not branches/i);
-  assert.match(text, /open daily[^.]*10:00[^.]*19:00/i);
+  assert.match(text, /open daily[^.]*10:00[^.]*19:00[^.]*20:30/i);
   assert.match(text, /every faith and background/i);
   assert.ok(text.toLowerCase().indexOf("wet cupping") < text.toLowerCase().indexOf("hijama"), "hub must lead with cupping");
   assert.match(text, /complementary care[^.]*not a replacement for medical advice, diagnosis or treatment/i);

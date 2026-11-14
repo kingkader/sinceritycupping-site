@@ -166,8 +166,8 @@ test("core shells use restrained public review wording", () => {
 test("contact publishes the same daily opening hours visibly and in metadata", () => {
   const contact = read("contact/index.html");
 
-  assert.match(visibleText(contact), /Daily, 10:00–19:00/);
-  assert.match(contact, /"openingHours"\s*:\s*"Mo-Su 10:00-19:00"/);
+  assert.match(visibleText(contact), /Monday to Friday 10:00–19:00, Saturday and Sunday 10:00–20:30/);
+  assert.match(contact, /"openingHours"\s*:\s*\["Mo-Fr 10:00-19:00","Sa-Su 10:00-20:30"\]/);
 });
 
 test("contact opening hours table has an accessible caption and row headers", () => {
@@ -176,7 +176,8 @@ test("contact opening hours table has an accessible caption and row headers", ()
 
   assert.ok(table, "missing contact opening-hours table");
   assert.match(table, /<caption>[^<]*opening hours[^<]*<\/caption>/i);
-  assert.match(table, /<th\s+scope="row"[^>]*>Daily<\/th>/i);
+  assert.match(table, /<th\s+scope="row"[^>]*>Monday to Friday<\/th>/i);
+  assert.match(table, /<th\s+scope="row"[^>]*>Saturday and Sunday<\/th>/i);
 });
 
 test("contact directions card is a named section landmark", () => {

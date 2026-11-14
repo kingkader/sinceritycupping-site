@@ -990,21 +990,22 @@ test("committed hours labels, schema and LLM facts derive from business data", (
     ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
     "business opening hours must contain each weekday once, in order",
   );
-  const {opens, closes} = business.openingHours[0];
-  assert.match(opens, /^\d{2}:\d{2}$/);
-  assert.match(closes, /^\d{2}:\d{2}$/);
-  assert.ok(
-    business.openingHours.every((entry) => entry.opens === opens && entry.closes === closes),
-    "daily opening hours must use one consistent time range",
-  );
+  const weekday = business.openingHours.slice(0, 5);
+  const weekend = business.openingHours.slice(5);
+  const {opens, closes} = weekday[0];
+  const {opens: weOpens, closes: weCloses} = weekend[0];
+  for (const value of [opens, closes, weOpens, weCloses]) assert.match(value, /^\d{2}:\d{2}$/);
+  assert.ok(weekday.every((entry) => entry.opens === opens && entry.closes === closes), "weekday hours must match");
+  assert.ok(weekend.every((entry) => entry.opens === weOpens && entry.closes === weCloses), "weekend hours must match");
 
   const blog = read("blog/index.html");
   const llms = read("llms.txt");
   const llmsFull = read("llms-full.txt");
-  assert.match(visibleText(blog), new RegExp(`Open daily · ${opens}–${closes}`));
-  assert.match(blog, new RegExp(`"openingHours":"Mo-Su ${opens}-${closes}"`));
-  assert.match(llms, new RegExp(`Opening hours: daily ${opens}–${closes}`));
-  assert.match(llmsFull, new RegExp(`Opening hours: daily ${opens}–${closes}`));
+  assert.match(visibleText(blog), new RegExp(`Mon–Fri ${opens}–${closes} · Sat–Sun ${weOpens}–${weCloses}`));
+  assert.match(blog, new RegExp(`"openingHours":\\["Mo-Fr ${opens}-${closes}","Sa-Su ${weOpens}-${weCloses}"\\]`));
+  const fact = new RegExp(`Opening hours: Monday to Friday ${opens}–${closes}, Saturday and Sunday ${weOpens}–${weCloses}`);
+  assert.match(llms, fact);
+  assert.match(llmsFull, fact);
 });
 
 test("manifest preserves publication dates and records the attribution rewrite date", () => {

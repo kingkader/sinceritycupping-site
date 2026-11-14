@@ -156,7 +156,7 @@ function shell({title, description, canonical, schema, main, areasCurrent = fals
 <div class="util-bar">
   <div class="container util-inner">
     <a class="util-item util-hide-m" href="${clinicDirectionsHref}">330 Streatham High Rd, SW16 6HH</a>
-    <span class="util-item util-hide-m">Open daily · 10:00–19:00</span>
+    <span class="util-item util-hide-m">Open daily from 10:00</span>
     <span class="spacer"></span>
     <a class="util-item" href="tel:+447552540000">07552 540000</a>
     <a class="util-item" href="https://wa.me/447552540000">WhatsApp</a>
@@ -212,7 +212,7 @@ ${main}
       <div>
         <h2>Visit</h2>
         <address><a href="${clinicDirectionsHref}">330 Streatham High Rd<br>London SW16 6HH</a><br><a href="tel:+447552540000">07552 540000</a><br><a href="https://wa.me/447552540000">WhatsApp the clinic</a></address>
-        <p>Open daily · 10:00–19:00</p>
+        <p>Mon–Fri 10:00–19:00 · Sat–Sun 10:00–20:30</p>
         <p><a href="/#book">Book an appointment</a></p>
       </div>
     </div>
@@ -309,7 +309,7 @@ ${paragraphs}${directionsAction}
       <div class="section-head">
         <p class="eyebrow">Book directly</p>
         <h2 id="clinic-facts-${area.slug}">Book wet cupping at the one Streatham clinic</h2>
-        <p>All appointments take place at the one clinic in Streatham: 330 Streatham High Rd, London SW16 6HH. The clinic is open daily, 10:00–19:00.</p>
+        <p>All appointments take place at the one clinic in Streatham: 330 Streatham High Rd, London SW16 6HH. Open daily 10:00–19:00 (20:30 weekends).</p>
       </div>
       <div class="card-grid">
         <article class="card"><h3>For women</h3><p>Women’s wet cupping is £45 for 45 minutes with Sister Aisha Mejri.</p><p><a class="btn btn-solid" href="${escapeHtml(business.femaleBookingUrl)}">Book women’s wet cupping</a></p></article>
@@ -397,7 +397,7 @@ function renderHub() {
         <p class="eyebrow">One location</p>
         <h2 id="one-clinic">One clinic for every area listed</h2>
         <p>There is one clinic at 330 Streatham High Rd, London SW16 6HH. The local pages below describe service areas, not branches, mobile treatment locations or separate premises.</p>
-        <p>The clinic is open daily, 10:00–19:00. Women and men of every faith and background are welcome for private same-sex appointments.</p>
+        <p>The clinic is open daily: 10:00–19:00 weekdays, 10:00–20:30 weekends. Women and men of every faith and background are welcome for private same-sex appointments.</p>
         <p><a class="btn btn-solid" href="${escapeHtml(clinicDirectionsUrl)}">Open Google Maps directions</a></p>
       </div>
       <div class="note-card">
