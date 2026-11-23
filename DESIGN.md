@@ -1,24 +1,24 @@
 ---
 name: Sincerity Cupping Clinic
-description: The clinic's appointment card. Mineral ground, white card paper, green-black ink, one plum accent for the act of booking.
+description: The clinic's appointment card. Mineral ground, white card paper, green-black ink, one teal accent for the act of booking.
 colors:
-  ground: "#e9ece8"
-  ground-2: "#dfe4de"
-  paper: "#fbfbf8"
-  ink: "#121a17"
-  ink-2: "#26302b"
-  muted: "#4a554f"
+  ground: "#e7eeec"
+  ground-2: "#dbe6e3"
+  paper: "#fbfcfb"
+  ink: "#10201d"
+  ink-2: "#22332f"
+  muted: "#475752"
   control: "#6b766f"
-  rule: "#cfd5ce"
-  rule-strong: "#a9b2aa"
-  plum: "#6a2245"
-  plum-hover: "#7f2c55"
-  plum-press: "#561a37"
-  plum-ink: "#fff7fb"
-  plum-tint: "#f4eaef"
+  rule: "#cbd8d4"
+  rule-strong: "#a3b5b0"
+  teal: "#0e5b57"
+  teal-hover: "#127069"
+  teal-press: "#0a4744"
+  teal-ink: "#f2fbfa"
+  teal-tint: "#e2f0ed"
   open: "#2c7a4f"
-  night: "#121a17"
-  night-2: "#1b2521"
+  night: "#10201d"
+  night-2: "#1a2b27"
   night-text: "#d7dfda"
   night-muted: "#a6b3ac"
 typography:
@@ -83,18 +83,18 @@ spacing:
   gutter: "clamp(1.25rem, 4.5vw, 3rem)"
 components:
   button-primary:
-    backgroundColor: "{colors.plum}"
-    textColor: "{colors.plum-ink}"
+    backgroundColor: "{colors.teal}"
+    textColor: "{colors.teal-ink}"
     typography: "{typography.body}"
     rounded: "{rounded.md}"
     padding: "0.85rem 1.4rem"
     height: "54px"
   button-primary-hover:
-    backgroundColor: "{colors.plum-hover}"
-    textColor: "{colors.plum-ink}"
+    backgroundColor: "{colors.teal-hover}"
+    textColor: "{colors.teal-ink}"
   button-primary-active:
-    backgroundColor: "{colors.plum-press}"
-    textColor: "{colors.plum-ink}"
+    backgroundColor: "{colors.teal-press}"
+    textColor: "{colors.teal-ink}"
   button-outline:
     backgroundColor: "transparent"
     textColor: "{colors.ink}"
@@ -115,11 +115,11 @@ components:
     rounded: "12px"
     padding: "0.75rem 0.8rem"
   appointment-choice-selected:
-    backgroundColor: "{colors.plum}"
-    textColor: "{colors.plum-ink}"
+    backgroundColor: "{colors.teal}"
+    textColor: "{colors.teal-ink}"
   appointment-bar:
-    backgroundColor: "{colors.plum}"
-    textColor: "{colors.plum-ink}"
+    backgroundColor: "{colors.teal}"
+    textColor: "{colors.teal-ink}"
     rounded: "0"
     height: "60px"
   week-day-today:
@@ -138,8 +138,8 @@ components:
     padding: "0 1rem"
     height: "44px"
   row-link-hover:
-    backgroundColor: "{colors.plum-tint}"
-    textColor: "{colors.plum}"
+    backgroundColor: "{colors.teal-tint}"
+    textColor: "{colors.teal}"
   pill:
     backgroundColor: "{colors.paper}"
     textColor: "{colors.ink}"
@@ -175,23 +175,23 @@ components:
 
 The site is the clinic's appointment card, not a brochure. The homepage opens on a working booking slip: treatment and price, practitioner choice, the week's opening hours, and one booking bar. Every page after it keeps that idea. Content sits on white card paper laid over a cool mineral ground. Lists become rows on one slip, split by hairline rules. They are not grids of separate tiles.
 
-The world is calm and clinical-premium, never spa-pastel and never religious decoration. Colour stays almost silent: green-black ink on bone and white. One plum, taken from a cupping case, appears only where the visitor acts: the booking buttons, the chosen practitioner, focus rings, link hovers. Every figure that answers "when, how long, how much" is set in one tabular mono. The visitor reads it like the printed card a front desk hands you.
+The world is calm and clinical-premium, never spa-pastel and never religious decoration. Colour stays almost silent: green-black ink on bone and white. One teal, taken from a cupping case, appears only where the visitor acts: the booking buttons, the chosen practitioner, focus rings, link hovers. Every figure that answers "when, how long, how much" is set in one tabular mono. The visitor reads it like the printed card a front desk hands you.
 
-Density is moderate. Phones come first, because most visitors arrive from Maps on a phone. On a 390 x 844 screen the whole appointment card, including its plum booking bar, sits in the first viewport.
+Density is moderate. Phones come first, because most visitors arrive from Maps on a phone. On a 390 x 844 screen the whole appointment card, including its teal booking bar, sits in the first viewport.
 
 **Key Characteristics:**
 - Mineral ground, white paper slips, hairline rows.
-- One plum accent, used only for actions and the selected choice.
+- One teal accent, used only for actions and the selected choice.
 - Schibsted Grotesk for words. Red Hat Mono for every time, price, duration and year count.
 - Soft, low, cool-green shadows that lift slips off the ground. No hard edges, no glows.
 - Motion after Emil Kowalski: fast custom ease-out, small press scale, hover only on fine pointers, reduced motion honoured.
 
 ## Colors
 
-A near-monochrome cool mineral palette, with one deep plum held back for the act of booking.
+A near-monochrome cool mineral palette, with one deep teal held back for the act of booking.
 
 ### Primary
-- **Cupping-Case Plum** (plum): primary buttons, the appointment card's booking bar, the selected practitioner choice, focus outlines, text selection, link hover colour and the underline colour on in-prose and CTA links. Hover deepens to **Lit Plum** (plum-hover) and press drops to **Pressed Plum** (plum-press). Text on plum is **Plum Paper** (plum-ink). **Plum Wash** (plum-tint) is the hover fill on row links only.
+- **Cupping-Case Teal** (teal): primary buttons, the appointment card's booking bar, the selected practitioner choice, focus outlines, text selection, link hover colour and the underline colour on in-prose and CTA links. Hover deepens to **Lit Teal** (teal-hover) and press drops to **Pressed Teal** (teal-press). Text on teal is **Teal Paper** (teal-ink). **Teal Wash** (teal-tint) is the hover fill on row links only.
 
 ### Tertiary
 - **Open Green** (open): only the small dot before "Open now" on the appointment card. It is a status light, not a brand colour.
@@ -209,7 +209,7 @@ A near-monochrome cool mineral palette, with one deep plum held back for the act
 - **Night** (night, night-2, night-text, night-muted, plus a 16% night-text rule): the utility bar, the single booking band per page and the footer.
 
 ### Named Rules
-**The Plum-Means-Act Rule.** Plum appears only on something you press, on the choice you have made, or on focus. Never use it for headings, decoration, backgrounds, icons or section fills.
+**The Teal-Means-Act Rule.** Teal appears only on something you press, on the choice you have made, or on focus. Never use it for headings, decoration, backgrounds, icons or section fills.
 
 **The One Dark Block Rule.** Night is for chrome (utility bar, footer) and for one booking band per page. Content sections never go dark.
 
@@ -252,8 +252,8 @@ A light hybrid. Slips are lifted off the mineral ground by one soft, cool-tinted
 ### Shadow Vocabulary
 - **Card** (`box-shadow: 0 1px 1px rgba(18,26,23,0.04), 0 14px 34px -16px rgba(18,26,23,0.24)`): every slip and card at rest, and an open FAQ item.
 - **Lift** (`box-shadow: 0 1px 2px rgba(18,26,23,0.06), 0 20px 40px -18px rgba(18,26,23,0.3)`): card hover on fine pointers (with a 2px rise), and the opened phone menu.
-- **Inset hairline** (`box-shadow: inset 0 0 0 1px #cfd5ce`): closed FAQ items, the brand mark, the current nav pill, quiet notes.
-- **Focus halo on fields** (`box-shadow: 0 0 0 4px rgba(106,34,69,0.16)`): text inputs on focus, with a plum border.
+- **Inset hairline** (`box-shadow: inset 0 0 0 1px #cbd8d4`): closed FAQ items, the brand mark, the current nav pill, quiet notes.
+- **Focus halo on fields** (`box-shadow: 0 0 0 4px rgba(106,34,69,0.16)`): text inputs on focus, with a teal border.
 
 ### Named Rules
 **The Slip-Not-Tiles Rule.** A list of like things is one paper surface with hairline rows, not a grid of separate shadowed tiles. Only an open-ended set of articles may use separate cards.
@@ -265,23 +265,23 @@ Gentle, consistent rounding. Slips and the appointment card use 20px. Buttons an
 ## Components
 
 ### Buttons
-Firm and quiet. Plum is the only filled colour.
+Firm and quiet. Teal is the only filled colour.
 - **Shape:** gently rounded (14px), 54px tall. The small variant is a 44px pill.
-- **Primary:** plum fill with plum-paper text, 600 weight, and an arrow icon that slides 3px on hover.
-- **Hover / Active:** hover deepens to plum-hover, but only under `(hover: hover) and (pointer: fine)`. Press scales to 0.97 and fills plum-press.
+- **Primary:** teal fill with teal-paper text, 600 weight, and an arrow icon that slides 3px on hover.
+- **Hover / Active:** hover deepens to teal-hover, but only under `(hover: hover) and (pointer: fine)`. Press scales to 0.97 and fills teal-press.
 - **Outline:** transparent with a strong-hairline border. On hover the border goes ink and the fill goes paper.
-- **On night:** a ghost button with a 40% night-text border. The booking action stays plum.
+- **On night:** a ghost button with a 40% night-text border. The booking action stays teal.
 
 ### The Appointment Card (signature)
 A paper slip (20px, card shadow) with stacked rows split by hairlines:
 1. **Head row:** treatment name, a mono duration in muted grey, and a mono price on the right.
-2. **Practitioner choice:** a fieldset with two radio cards side by side, each showing name, who it is for, and mono years. The selected card fills plum with plum-paper text. The selection plays a spring scale (0.96 to 1, 360ms, `cubic-bezier(0.34, 1.4, 0.64, 1)`), and the custom radio dot thickens to a 5px ring. Choosing also swaps the duration text.
+2. **Practitioner choice:** a fieldset with two radio cards side by side, each showing name, who it is for, and mono years. The selected card fills teal with teal-paper text. The selection plays a spring scale (0.96 to 1, 360ms, `cubic-bezier(0.34, 1.4, 0.64, 1)`), and the custom radio dot thickens to a 5px ring. Choosing also swaps the duration text.
 3. **Week strip:** seven cells (day initial plus mono hours). Today is marked in solid ink, set from London time. An open-status line below has a green or grey dot.
-4. **Booking bar:** a full-width, 60px plum bar with label and arrow at opposite ends. The two practitioners' booking links share one grid cell. The unchosen one crossfades out with opacity, a 2px blur and a 4px drop (220ms ease-out). It also goes `visibility: hidden`, so only one link is ever focusable. Without `:has()`, both show side by side.
-5. **Note row:** muted small text with a plum-underlined WhatsApp link.
+4. **Booking bar:** a full-width, 60px teal bar with label and arrow at opposite ends. The two practitioners' booking links share one grid cell. The unchosen one crossfades out with opacity, a 2px blur and a 4px drop (220ms ease-out). It also goes `visibility: hidden`, so only one link is ever focusable. Without `:has()`, both show side by side.
+5. **Note row:** muted small text with a teal-underlined WhatsApp link.
 
 ### Slips (lists as rows)
-Trust points, visit steps, commitments, practitioners and guides are each one paper slip with 1.2rem x 1.35rem rows split by hairlines. Practitioner and guide rows end in a pill row link. Its hairline border turns plum with a plum-wash fill on hover. Booking slips put a large mono price under the name and a full-width primary button at the bottom.
+Trust points, visit steps, commitments, practitioners and guides are each one paper slip with 1.2rem x 1.35rem rows split by hairlines. Practitioner and guide rows end in a pill row link. Its hairline border turns teal with a teal-wash fill on hover. Booking slips put a large mono price under the name and a full-width primary button at the bottom.
 
 ### Cards / Containers
 - **Corner Style:** 20px.
@@ -291,7 +291,7 @@ Trust points, visit steps, commitments, practitioners and guides are each one pa
 
 ### Inputs / Fields
 - **Style:** paper fill, 1.5px control-grey border, 10px radius (14px for guide search), 52–54px tall.
-- **Focus:** plum border plus a 4px plum halo at 16%.
+- **Focus:** teal border plus a 4px teal halo at 16%.
 - **Error:** a red border on invalid input that has content.
 
 ### Chips (pills)
@@ -318,9 +318,9 @@ All photographs are pre-existing stock photographs already in the repo. None are
 ## Do's and Don'ts
 
 ### Do:
-- **Do** keep plum (#6a2245) for actions, the selected choice and focus only.
+- **Do** keep teal (#0e5b57) for actions, the selected choice and focus only.
 - **Do** set every time, price, duration, hour, year count and date in Red Hat Mono with tabular numerals.
-- **Do** build lists as one paper slip with 1px hairline rows (#cfd5ce).
+- **Do** build lists as one paper slip with 1px hairline rows (#cbd8d4).
 - **Do** gate every hover effect behind `(hover: hover) and (pointer: fine)`, and give pressables a 0.97 press scale.
 - **Do** use the ease-out curve `cubic-bezier(0.23, 1, 0.32, 1)` for movement, and honour `prefers-reduced-motion`.
 - **Do** keep touch targets at least 44px tall (48–60px for booking actions).
@@ -329,7 +329,7 @@ All photographs are pre-existing stock photographs already in the repo. None are
 ### Don't:
 - **Don't** put small labels, kickers or eyebrow lines above headings.
 - **Don't** number things that are not a sequence. Numerals like 01–04 belong only to ordered steps, such as the four stages of a visit.
-- **Don't** use plum for headings, backgrounds, decoration or section fills.
+- **Don't** use teal for headings, backgrounds, decoration or section fills.
 - **Don't** split a list of like items into separately shadowed tiles.
 - **Don't** add a second dark content block to a page. One night booking band is the limit.
 - **Don't** fade text in from transparent, and don't animate on hover for touch pointers.

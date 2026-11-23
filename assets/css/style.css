@@ -1,5 +1,5 @@
-/* Sincerity Cupping Clinic — "Appointment card" design system v5 (Nov 2026)
-   Mineral ground, white card paper, near-black green ink, one plum accent kept for actions.
+/* Sincerity Cupping Clinic — "Appointment card" design system v5, Clinic Teal (Nov 2026)
+   Mineral ground, white card paper, near-black green ink, one clinic-teal accent kept for actions.
    Schibsted Grotesk for words, Red Hat Mono for every time, price and duration. */
 
 @font-face {
@@ -18,23 +18,23 @@
 }
 
 :root {
-  --ground: #e9ece8;
-  --ground-2: #dfe4de;
-  --paper: #fbfbf8;
-  --ink: #121a17;
-  --ink-2: #26302b;
-  --muted: #4a554f;
+  --ground: #e7eeec;
+  --ground-2: #dbe6e3;
+  --paper: #fbfcfb;
+  --ink: #10201d;
+  --ink-2: #22332f;
+  --muted: #475752;
   --control: #6b766f;
-  --rule: #cfd5ce;
-  --rule-strong: #a9b2aa;
-  --plum: #6a2245;
-  --plum-hover: #7f2c55;
-  --plum-press: #561a37;
-  --plum-ink: #fff7fb;
-  --plum-tint: #f4eaef;
+  --rule: #cbd8d4;
+  --rule-strong: #a3b5b0;
+  --plum: #0e5b57;
+  --plum-hover: #127069;
+  --plum-press: #0a4744;
+  --plum-ink: #f2fbfa;
+  --plum-tint: #e2f0ed;
   --open: #2c7a4f;
-  --night: #121a17;
-  --night-2: #1b2521;
+  --night: #10201d;
+  --night-2: #1a2b27;
   --night-text: #d7dfda;
   --night-muted: #a6b3ac;
   --night-rule: rgba(215, 223, 218, 0.16);
@@ -139,7 +139,7 @@ address { font-style: normal; }
 
 .site-header {
   position: sticky; top: 0; z-index: 50;
-  background: rgba(233, 236, 232, 0.88);
+  background: rgba(231, 238, 236, 0.88);
   backdrop-filter: saturate(1.4) blur(12px); -webkit-backdrop-filter: saturate(1.4) blur(12px);
   border-bottom: 1px solid transparent;
   transition: border-color 200ms ease;
@@ -261,7 +261,7 @@ address { font-style: normal; }
 .appt-for { font-size: 0.85rem; color: var(--muted); }
 .appt-yrs { font-size: 0.8rem; color: var(--muted); }
 .appt-opt:has(input:checked) { border-color: var(--plum); background: var(--plum); color: var(--plum-ink); animation: appt-pick 360ms var(--spring); }
-.appt-opt:has(input:checked) .appt-for, .appt-opt:has(input:checked) .appt-yrs { color: rgba(255, 247, 251, 0.78); }
+.appt-opt:has(input:checked) .appt-for, .appt-opt:has(input:checked) .appt-yrs { color: rgba(242, 251, 250, 0.8); }
 .appt-opt:has(input:checked) input { border-color: var(--plum-ink); background: var(--plum); }
 @keyframes appt-pick { from { transform: scale(0.96); } to { transform: scale(1); } }
 @media (hover: hover) and (pointer: fine) { .appt-opt:hover { border-color: var(--rule-strong); } .appt-opt:has(input:checked):hover { border-color: var(--plum); } }
@@ -283,7 +283,7 @@ address { font-style: normal; }
   min-height: 60px; border-radius: 0; justify-content: space-between; padding-inline: 1.15rem;
   font-size: 1.05rem;
 }
-.appt-cta + .appt-cta { border-left: 1px solid rgba(255, 247, 251, 0.22); }
+.appt-cta + .appt-cta { border-left: 1px solid rgba(242, 251, 250, 0.22); }
 @supports selector(:has(*)) {
   .appt-go { grid-template-columns: 1fr; }
   .appt-cta { grid-area: 1 / 1; transition: opacity 220ms var(--ease-out), filter 220ms var(--ease-out), transform 220ms var(--ease-out), background 160ms ease; }
@@ -533,7 +533,7 @@ details.faq .faq-body { padding: 0 1.1rem 1.05rem; font-size: 1rem; color: var(-
   border: 1.5px solid var(--control); border-radius: var(--r-sm); background: var(--paper);
   transition: border-color 160ms ease, box-shadow 160ms ease;
 }
-.form-field input:focus, .form-field textarea:focus { outline: none; border-color: var(--plum); box-shadow: 0 0 0 4px rgba(106, 34, 69, 0.16); }
+.form-field input:focus, .form-field textarea:focus { outline: none; border-color: var(--plum); box-shadow: 0 0 0 4px rgba(14, 91, 87, 0.18); }
 .form-field input:invalid:not(:placeholder-shown) { border-color: #b3261e; }
 .form-hint { font-size: 0.9rem; color: var(--muted); }
 
@@ -544,7 +544,7 @@ details.faq .faq-body { padding: 0 1.1rem 1.05rem; font-size: 1rem; color: var(-
   width: 100%; min-width: 0; min-height: 54px; font: inherit; color: var(--ink); padding: 0.8rem 1rem;
   background: var(--paper); border: 1.5px solid var(--control); border-radius: var(--r-md);
 }
-.search-controls input:focus { outline: none; border-color: var(--plum); box-shadow: 0 0 0 4px rgba(106, 34, 69, 0.16); }
+.search-controls input:focus { outline: none; border-color: var(--plum); box-shadow: 0 0 0 4px rgba(14, 91, 87, 0.18); }
 .search-controls input::placeholder { color: var(--muted); }
 .search-controls button { cursor: pointer; }
 .search-status { font-size: 0.88rem; color: var(--muted); margin: 0.6rem 0 0; }
@@ -573,7 +573,7 @@ details.faq .faq-body { padding: 0 1.1rem 1.05rem; font-size: 1rem; color: var(-
 .mobile-bar {
   position: fixed; bottom: 0; left: 0; right: 0; z-index: 60; display: none; gap: 0.45rem;
   padding: 0.55rem 0.7rem max(0.55rem, env(safe-area-inset-bottom));
-  background: rgba(251, 251, 248, 0.94); backdrop-filter: saturate(1.4) blur(12px); -webkit-backdrop-filter: saturate(1.4) blur(12px);
+  background: rgba(251, 252, 251, 0.94); backdrop-filter: saturate(1.4) blur(12px); -webkit-backdrop-filter: saturate(1.4) blur(12px);
   border-top: 1px solid var(--rule);
 }
 .mobile-bar .btn { flex: 1; min-width: 0; min-height: 48px; padding: 0.55rem 0.5rem; font-size: 0.95rem; white-space: nowrap; border-radius: 999px; }

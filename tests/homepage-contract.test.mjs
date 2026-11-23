@@ -119,9 +119,9 @@ test("homepage uses verified practitioner facts without unsupported experience o
 });
 
 test("homepage uses the approved accessible visual tokens", () => {
-  // Appointment card look (v5, chosen by the owner 23 Nov 2026)
-  assert.match(css, /--paper:\s*#fbfbf8/i);
-  assert.match(css, /--ink:\s*#121a17/i);
+  // Appointment card look (v5, chosen by the owner 23 Nov 2026; Clinic Teal colours)
+  assert.match(css, /--paper:\s*#fbfcfb/i);
+  assert.match(css, /--ink:\s*#10201d/i);
   assert.match(css, /--control:\s*#6b766f/i);
   assert.match(
     css,

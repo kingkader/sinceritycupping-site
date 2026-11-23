@@ -144,10 +144,10 @@ function shell({title, description, canonical, schema, main, areasCurrent = fals
 <meta property="og:url" content="${canonical}">
 <meta property="og:image" content="${origin}/assets/img/wet-cupping-therapy-1600.jpg">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#0b211c">
+<meta name="theme-color" content="#e7eeec">
 <link rel="icon" type="image/svg+xml" href="/assets/img/favicon.svg">
 <link rel="preload" href="/assets/fonts/schibsted-grotesk-latin-var.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/assets/css/style.css?v=fe90dc23ae64">
+<link rel="stylesheet" href="/assets/css/style.css?v=e14d8e132843">
 <script>document.documentElement.classList.add("js");</script>
 <script type="application/ld+json">${jsonLd(schema)}</script>
 </head>

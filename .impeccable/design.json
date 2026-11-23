@@ -7,7 +7,7 @@
       "ground": {
         "role": "neutral",
         "displayName": "Mineral Bone",
-        "canonical": "#e9ece8",
+        "canonical": "#e7eeec",
         "tonalRamp": [
           "#464746",
           "#747674",
@@ -22,7 +22,7 @@
       "ground-2": {
         "role": "neutral",
         "displayName": "Shaded Bone",
-        "canonical": "#dfe4de",
+        "canonical": "#dbe6e3",
         "tonalRamp": [
           "#434443",
           "#70726f",
@@ -37,7 +37,7 @@
       "paper": {
         "role": "neutral",
         "displayName": "Card Paper",
-        "canonical": "#fbfbf8",
+        "canonical": "#fbfcfb",
         "tonalRamp": [
           "#4b4b4a",
           "#7e7e7c",
@@ -52,7 +52,7 @@
       "ink": {
         "role": "neutral",
         "displayName": "Green-Black Ink",
-        "canonical": "#121a17",
+        "canonical": "#10201d",
         "tonalRamp": [
           "#050807",
           "#090d0c",
@@ -67,7 +67,7 @@
       "ink-2": {
         "role": "neutral",
         "displayName": "Soft Ink",
-        "canonical": "#26302b",
+        "canonical": "#22332f",
         "tonalRamp": [
           "#0b0e0d",
           "#131816",
@@ -82,7 +82,7 @@
       "muted": {
         "role": "neutral",
         "displayName": "Lichen Grey",
-        "canonical": "#4a554f",
+        "canonical": "#475752",
         "tonalRamp": [
           "#161a18",
           "#252a28",
@@ -112,7 +112,7 @@
       "rule": {
         "role": "neutral",
         "displayName": "Hairline",
-        "canonical": "#cfd5ce",
+        "canonical": "#cbd8d4",
         "tonalRamp": [
           "#3e403e",
           "#686a67",
@@ -127,7 +127,7 @@
       "rule-strong": {
         "role": "neutral",
         "displayName": "Strong Hairline",
-        "canonical": "#a9b2aa",
+        "canonical": "#a3b5b0",
         "tonalRamp": [
           "#333533",
           "#545955",
@@ -139,10 +139,10 @@
           "#f6f7f6"
         ]
       },
-      "plum": {
+      "teal": {
         "role": "primary",
-        "displayName": "Cupping-Case Plum",
-        "canonical": "#6a2245",
+        "displayName": "Cupping-Case Teal",
+        "canonical": "#0e5b57",
         "tonalRamp": [
           "#200a15",
           "#351122",
@@ -154,10 +154,10 @@
           "#f0e9ec"
         ]
       },
-      "plum-hover": {
+      "teal-hover": {
         "role": "primary",
-        "displayName": "Lit Plum",
-        "canonical": "#7f2c55",
+        "displayName": "Lit Teal",
+        "canonical": "#127069",
         "tonalRamp": [
           "#260d1a",
           "#40162a",
@@ -169,10 +169,10 @@
           "#f2eaee"
         ]
       },
-      "plum-press": {
+      "teal-press": {
         "role": "primary",
-        "displayName": "Pressed Plum",
-        "canonical": "#561a37",
+        "displayName": "Pressed Teal",
+        "canonical": "#0a4744",
         "tonalRamp": [
           "#1a0811",
           "#2b0d1c",
@@ -184,10 +184,10 @@
           "#eee8eb"
         ]
       },
-      "plum-ink": {
+      "teal-ink": {
         "role": "primary",
-        "displayName": "Plum Paper",
-        "canonical": "#fff7fb",
+        "displayName": "Teal Paper",
+        "canonical": "#f2fbfa",
         "tonalRamp": [
           "#4d4a4b",
           "#807c7e",
@@ -199,10 +199,10 @@
           "#fffeff"
         ]
       },
-      "plum-tint": {
+      "teal-tint": {
         "role": "primary",
-        "displayName": "Plum Wash",
-        "canonical": "#f4eaef",
+        "displayName": "Teal Wash",
+        "canonical": "#e2f0ed",
         "tonalRamp": [
           "#494648",
           "#7a7578",
@@ -232,7 +232,7 @@
       "night": {
         "role": "neutral",
         "displayName": "Night",
-        "canonical": "#121a17",
+        "canonical": "#10201d",
         "tonalRamp": [
           "#050807",
           "#090d0c",
@@ -247,7 +247,7 @@
       "night-2": {
         "role": "neutral",
         "displayName": "Night Raised",
-        "canonical": "#1b2521",
+        "canonical": "#1a2b27",
         "tonalRamp": [
           "#080b0a",
           "#0e1210",
@@ -333,13 +333,13 @@
       },
       {
         "name": "inset-hairline",
-        "value": "inset 0 0 0 1px #cfd5ce",
+        "value": "inset 0 0 0 1px #cbd8d4",
         "purpose": "Quiet containers: closed FAQ, brand mark, current nav pill, notes."
       },
       {
         "name": "field-focus",
         "value": "0 0 0 4px rgba(106,34,69,0.16)",
-        "purpose": "Text inputs on focus with plum border."
+        "purpose": "Text inputs on focus with teal border."
       }
     ],
     "motion": [
@@ -429,39 +429,39 @@
       "refersTo": "button-primary",
       "description": "The booking action. The only filled colour on the site.",
       "html": "<a class=\"ds-btn\" href=\"#\">See times and book<svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5 12h14M13 6l6 6-6 6\"/></svg></a>",
-      "css": ":host{--ground:#e9ece8;--ground-2:#dfe4de;--paper:#fbfbf8;--ink:#121a17;--ink-2:#26302b;--muted:#4a554f;--control:#6b766f;--rule:#cfd5ce;--rule-strong:#a9b2aa;--plum:#6a2245;--plum-hover:#7f2c55;--plum-press:#561a37;--plum-ink:#fff7fb;--plum-tint:#f4eaef;--open:#2c7a4f;--night:#121a17;--shadow-card:0 1px 1px rgba(18,26,23,0.04),0 14px 34px -16px rgba(18,26,23,0.24);--ease-out:cubic-bezier(0.23,1,0.32,1);--spring:cubic-bezier(0.34,1.4,0.64,1);--font:'Schibsted Grotesk','Helvetica Neue',Arial,system-ui,sans-serif;--mono:'Red Hat Mono',ui-monospace,Menlo,monospace} .ds-btn{display:inline-flex;align-items:center;justify-content:space-between;gap:.55rem;min-height:54px;padding:.85rem 1.4rem;border-radius:14px;background:var(--plum);color:var(--plum-ink);font:600 1.02rem/1.2 var(--font);text-decoration:none;border:1.5px solid transparent;transition:background 160ms ease,transform 160ms var(--ease-out)} .ds-btn svg{transition:transform 200ms var(--ease-out)} .ds-btn:active{transform:scale(.97);background:var(--plum-press)} .ds-btn:focus-visible{outline:2px solid var(--plum);outline-offset:3px} @media (hover:hover) and (pointer:fine){.ds-btn:hover{background:var(--plum-hover)} .ds-btn:hover svg{transform:translateX(3px)}}"
+      "css": ":host{--ground:#e7eeec;--ground-2:#dbe6e3;--paper:#fbfcfb;--ink:#10201d;--ink-2:#22332f;--muted:#475752;--control:#6b766f;--rule:#cbd8d4;--rule-strong:#a3b5b0;--teal:#0e5b57;--teal-hover:#127069;--teal-press:#0a4744;--teal-ink:#f2fbfa;--teal-tint:#e2f0ed;--open:#2c7a4f;--night:#10201d;--shadow-card:0 1px 1px rgba(18,26,23,0.04),0 14px 34px -16px rgba(18,26,23,0.24);--ease-out:cubic-bezier(0.23,1,0.32,1);--spring:cubic-bezier(0.34,1.4,0.64,1);--font:'Schibsted Grotesk','Helvetica Neue',Arial,system-ui,sans-serif;--mono:'Red Hat Mono',ui-monospace,Menlo,monospace} .ds-btn{display:inline-flex;align-items:center;justify-content:space-between;gap:.55rem;min-height:54px;padding:.85rem 1.4rem;border-radius:14px;background:var(--teal);color:var(--teal-ink);font:600 1.02rem/1.2 var(--font);text-decoration:none;border:1.5px solid transparent;transition:background 160ms ease,transform 160ms var(--ease-out)} .ds-btn svg{transition:transform 200ms var(--ease-out)} .ds-btn:active{transform:scale(.97);background:var(--teal-press)} .ds-btn:focus-visible{outline:2px solid var(--teal);outline-offset:3px} @media (hover:hover) and (pointer:fine){.ds-btn:hover{background:var(--teal-hover)} .ds-btn:hover svg{transform:translateX(3px)}}"
     },
     {
       "name": "Outline Button",
       "kind": "button",
       "refersTo": "button-outline",
-      "description": "Secondary action beside a plum booking button.",
+      "description": "Secondary action beside a teal booking button.",
       "html": "<a class=\"ds-btn-o\" href=\"#\">Ask on WhatsApp</a>",
-      "css": ":host{--ground:#e9ece8;--ground-2:#dfe4de;--paper:#fbfbf8;--ink:#121a17;--ink-2:#26302b;--muted:#4a554f;--control:#6b766f;--rule:#cfd5ce;--rule-strong:#a9b2aa;--plum:#6a2245;--plum-hover:#7f2c55;--plum-press:#561a37;--plum-ink:#fff7fb;--plum-tint:#f4eaef;--open:#2c7a4f;--night:#121a17;--shadow-card:0 1px 1px rgba(18,26,23,0.04),0 14px 34px -16px rgba(18,26,23,0.24);--ease-out:cubic-bezier(0.23,1,0.32,1);--spring:cubic-bezier(0.34,1.4,0.64,1);--font:'Schibsted Grotesk','Helvetica Neue',Arial,system-ui,sans-serif;--mono:'Red Hat Mono',ui-monospace,Menlo,monospace} .ds-btn-o{display:inline-flex;align-items:center;min-height:54px;padding:.85rem 1.4rem;border-radius:14px;border:1.5px solid var(--rule-strong);color:var(--ink);font:600 1.02rem/1.2 var(--font);text-decoration:none;transition:border-color 160ms ease,background 160ms ease,transform 160ms var(--ease-out)} .ds-btn-o:active{transform:scale(.97)} .ds-btn-o:focus-visible{outline:2px solid var(--plum);outline-offset:3px} @media (hover:hover) and (pointer:fine){.ds-btn-o:hover{border-color:var(--ink);background:var(--paper)}}"
+      "css": ":host{--ground:#e7eeec;--ground-2:#dbe6e3;--paper:#fbfcfb;--ink:#10201d;--ink-2:#22332f;--muted:#475752;--control:#6b766f;--rule:#cbd8d4;--rule-strong:#a3b5b0;--teal:#0e5b57;--teal-hover:#127069;--teal-press:#0a4744;--teal-ink:#f2fbfa;--teal-tint:#e2f0ed;--open:#2c7a4f;--night:#10201d;--shadow-card:0 1px 1px rgba(18,26,23,0.04),0 14px 34px -16px rgba(18,26,23,0.24);--ease-out:cubic-bezier(0.23,1,0.32,1);--spring:cubic-bezier(0.34,1.4,0.64,1);--font:'Schibsted Grotesk','Helvetica Neue',Arial,system-ui,sans-serif;--mono:'Red Hat Mono',ui-monospace,Menlo,monospace} .ds-btn-o{display:inline-flex;align-items:center;min-height:54px;padding:.85rem 1.4rem;border-radius:14px;border:1.5px solid var(--rule-strong);color:var(--ink);font:600 1.02rem/1.2 var(--font);text-decoration:none;transition:border-color 160ms ease,background 160ms ease,transform 160ms var(--ease-out)} .ds-btn-o:active{transform:scale(.97)} .ds-btn-o:focus-visible{outline:2px solid var(--teal);outline-offset:3px} @media (hover:hover) and (pointer:fine){.ds-btn-o:hover{border-color:var(--ink);background:var(--paper)}}"
     },
     {
       "name": "Appointment Card",
       "kind": "custom",
       "refersTo": "appointment-card",
-      "description": "Signature slip: mono price, practitioner choice that springs plum, week strip with today in ink, full-width plum booking bar.",
+      "description": "Signature slip: mono price, practitioner choice that springs teal, week strip with today in ink, full-width teal booking bar.",
       "html": "<div class=\"ds-appt\"><p class=\"ds-head\"><span>Wet cupping</span><span class=\"ds-num ds-len\">45 min</span><strong class=\"ds-num\">£45</strong></p><fieldset class=\"ds-who\"><legend>Choose your practitioner</legend><label class=\"ds-opt\"><input type=\"radio\" name=\"ds-p\" checked><span class=\"ds-n\">Sister Aisha</span><span class=\"ds-f\">For women</span><span class=\"ds-num ds-f\">20 years</span></label><label class=\"ds-opt\"><input type=\"radio\" name=\"ds-p\"><span class=\"ds-n\">Brother Abu Layla</span><span class=\"ds-f\">For men</span><span class=\"ds-num ds-f\">10 years</span></label></fieldset><ol class=\"ds-week\"><li><b>M</b><span class=\"ds-num\">10–7</span></li><li class=\"ds-today\"><b>T</b><span class=\"ds-num\">10–7</span></li><li><b>W</b><span class=\"ds-num\">10–7</span></li><li><b>T</b><span class=\"ds-num\">10–7</span></li><li><b>F</b><span class=\"ds-num\">10–7</span></li><li><b>S</b><span class=\"ds-num\">10–8.30</span></li><li><b>S</b><span class=\"ds-num\">10–8.30</span></li></ol><a class=\"ds-bar\" href=\"#\">Book for women<svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5 12h14M13 6l6 6-6 6\"/></svg></a></div>",
-      "css": ":host{--ground:#e9ece8;--ground-2:#dfe4de;--paper:#fbfbf8;--ink:#121a17;--ink-2:#26302b;--muted:#4a554f;--control:#6b766f;--rule:#cfd5ce;--rule-strong:#a9b2aa;--plum:#6a2245;--plum-hover:#7f2c55;--plum-press:#561a37;--plum-ink:#fff7fb;--plum-tint:#f4eaef;--open:#2c7a4f;--night:#121a17;--shadow-card:0 1px 1px rgba(18,26,23,0.04),0 14px 34px -16px rgba(18,26,23,0.24);--ease-out:cubic-bezier(0.23,1,0.32,1);--spring:cubic-bezier(0.34,1.4,0.64,1);--font:'Schibsted Grotesk','Helvetica Neue',Arial,system-ui,sans-serif;--mono:'Red Hat Mono',ui-monospace,Menlo,monospace} .ds-appt{max-width:30rem;background:var(--paper);border-radius:20px;box-shadow:var(--shadow-card);overflow:hidden;font-family:var(--font);color:var(--ink)} .ds-num{font-family:var(--mono);font-variant-numeric:tabular-nums} .ds-head{display:flex;align-items:baseline;gap:.6rem;margin:0;padding:1rem 1.15rem;font-weight:600} .ds-len{color:var(--muted);font-weight:400;font-size:.9rem} .ds-head strong{margin-left:auto;font-size:1.6rem;font-weight:500;letter-spacing:-.03em;line-height:1} .ds-who{margin:0;padding:.9rem 1.15rem 1rem;border:0;border-top:1px solid var(--rule);display:grid;grid-template-columns:1fr 1fr;gap:.55rem} .ds-who legend{float:left;width:100%;grid-column:1/-1;font-size:.82rem;color:var(--muted);font-weight:500;padding:0} .ds-opt{display:grid;grid-template-columns:1.1rem 1fr;column-gap:.55rem;padding:.75rem .8rem;border:1px solid var(--rule);border-radius:12px;cursor:pointer;line-height:1.3;transition:border-color 200ms var(--ease-out),background 200ms ease,transform 160ms var(--ease-out)} .ds-opt:active{transform:scale(.98)} .ds-opt input{appearance:none;margin:.15rem 0 0;width:1.1rem;height:1.1rem;border-radius:50%;border:1.5px solid var(--control);grid-row:1/span 3;transition:border-width 220ms var(--ease-out)} .ds-opt:has(input:checked){background:var(--plum);border-color:var(--plum);color:var(--plum-ink);animation:ds-pick 360ms var(--spring)} .ds-opt:has(input:checked) input{border-width:5px;border-color:var(--plum-ink);background:var(--plum)} .ds-opt:has(input:focus-visible){outline:2px solid var(--plum);outline-offset:3px} .ds-n{font-weight:600} .ds-f{font-size:.82rem;opacity:.8} @keyframes ds-pick{from{transform:scale(.96)}to{transform:scale(1)}} .ds-week{list-style:none;margin:0;padding:.9rem 1.15rem 1rem;border-top:1px solid var(--rule);display:grid;grid-template-columns:repeat(7,1fr);gap:.25rem;text-align:center} .ds-week li{padding:.4rem 0;border-radius:8px;color:var(--muted);line-height:1.25} .ds-week b{display:block;font-size:.85rem;color:var(--ink)} .ds-week .ds-num{display:block;font-size:.66rem;white-space:nowrap} .ds-week .ds-today{background:var(--ink);color:#d7dfda} .ds-week .ds-today b{color:#fff} .ds-bar{display:flex;align-items:center;justify-content:space-between;min-height:60px;padding:0 1.15rem;background:var(--plum);color:var(--plum-ink);font-weight:600;text-decoration:none;transition:background 160ms ease,transform 220ms var(--ease-out)} .ds-bar:active{transform:scale(.985)} @media (hover:hover) and (pointer:fine){.ds-bar:hover{background:var(--plum-hover)} .ds-opt:hover{border-color:var(--rule-strong)} .ds-opt:has(input:checked):hover{border-color:var(--plum)}}"
+      "css": ":host{--ground:#e7eeec;--ground-2:#dbe6e3;--paper:#fbfcfb;--ink:#10201d;--ink-2:#22332f;--muted:#475752;--control:#6b766f;--rule:#cbd8d4;--rule-strong:#a3b5b0;--teal:#0e5b57;--teal-hover:#127069;--teal-press:#0a4744;--teal-ink:#f2fbfa;--teal-tint:#e2f0ed;--open:#2c7a4f;--night:#10201d;--shadow-card:0 1px 1px rgba(18,26,23,0.04),0 14px 34px -16px rgba(18,26,23,0.24);--ease-out:cubic-bezier(0.23,1,0.32,1);--spring:cubic-bezier(0.34,1.4,0.64,1);--font:'Schibsted Grotesk','Helvetica Neue',Arial,system-ui,sans-serif;--mono:'Red Hat Mono',ui-monospace,Menlo,monospace} .ds-appt{max-width:30rem;background:var(--paper);border-radius:20px;box-shadow:var(--shadow-card);overflow:hidden;font-family:var(--font);color:var(--ink)} .ds-num{font-family:var(--mono);font-variant-numeric:tabular-nums} .ds-head{display:flex;align-items:baseline;gap:.6rem;margin:0;padding:1rem 1.15rem;font-weight:600} .ds-len{color:var(--muted);font-weight:400;font-size:.9rem} .ds-head strong{margin-left:auto;font-size:1.6rem;font-weight:500;letter-spacing:-.03em;line-height:1} .ds-who{margin:0;padding:.9rem 1.15rem 1rem;border:0;border-top:1px solid var(--rule);display:grid;grid-template-columns:1fr 1fr;gap:.55rem} .ds-who legend{float:left;width:100%;grid-column:1/-1;font-size:.82rem;color:var(--muted);font-weight:500;padding:0} .ds-opt{display:grid;grid-template-columns:1.1rem 1fr;column-gap:.55rem;padding:.75rem .8rem;border:1px solid var(--rule);border-radius:12px;cursor:pointer;line-height:1.3;transition:border-color 200ms var(--ease-out),background 200ms ease,transform 160ms var(--ease-out)} .ds-opt:active{transform:scale(.98)} .ds-opt input{appearance:none;margin:.15rem 0 0;width:1.1rem;height:1.1rem;border-radius:50%;border:1.5px solid var(--control);grid-row:1/span 3;transition:border-width 220ms var(--ease-out)} .ds-opt:has(input:checked){background:var(--teal);border-color:var(--teal);color:var(--teal-ink);animation:ds-pick 360ms var(--spring)} .ds-opt:has(input:checked) input{border-width:5px;border-color:var(--teal-ink);background:var(--teal)} .ds-opt:has(input:focus-visible){outline:2px solid var(--teal);outline-offset:3px} .ds-n{font-weight:600} .ds-f{font-size:.82rem;opacity:.8} @keyframes ds-pick{from{transform:scale(.96)}to{transform:scale(1)}} .ds-week{list-style:none;margin:0;padding:.9rem 1.15rem 1rem;border-top:1px solid var(--rule);display:grid;grid-template-columns:repeat(7,1fr);gap:.25rem;text-align:center} .ds-week li{padding:.4rem 0;border-radius:8px;color:var(--muted);line-height:1.25} .ds-week b{display:block;font-size:.85rem;color:var(--ink)} .ds-week .ds-num{display:block;font-size:.66rem;white-space:nowrap} .ds-week .ds-today{background:var(--ink);color:#d7dfda} .ds-week .ds-today b{color:#fff} .ds-bar{display:flex;align-items:center;justify-content:space-between;min-height:60px;padding:0 1.15rem;background:var(--teal);color:var(--teal-ink);font-weight:600;text-decoration:none;transition:background 160ms ease,transform 220ms var(--ease-out)} .ds-bar:active{transform:scale(.985)} @media (hover:hover) and (pointer:fine){.ds-bar:hover{background:var(--teal-hover)} .ds-opt:hover{border-color:var(--rule-strong)} .ds-opt:has(input:checked):hover{border-color:var(--teal)}}"
     },
     {
       "name": "Slip with hairline rows",
       "kind": "card",
       "refersTo": "slip",
-      "description": "Any list of like things: one paper surface, 1px hairline rows, pill row link that turns plum on hover.",
+      "description": "Any list of like things: one paper surface, 1px hairline rows, pill row link that turns teal on hover.",
       "html": "<div class=\"ds-slip\"><article class=\"ds-row\"><div><h3>Sister Aisha Mejri</h3><p class=\"ds-meta\">For women · <span class=\"ds-num\">20 years</span></p></div><a href=\"#\">Book</a></article><article class=\"ds-row\"><div><h3>Brother Abu Layla</h3><p class=\"ds-meta\">For men · <span class=\"ds-num\">10 years</span></p></div><a href=\"#\">Book</a></article></div>",
-      "css": ":host{--ground:#e9ece8;--ground-2:#dfe4de;--paper:#fbfbf8;--ink:#121a17;--ink-2:#26302b;--muted:#4a554f;--control:#6b766f;--rule:#cfd5ce;--rule-strong:#a9b2aa;--plum:#6a2245;--plum-hover:#7f2c55;--plum-press:#561a37;--plum-ink:#fff7fb;--plum-tint:#f4eaef;--open:#2c7a4f;--night:#121a17;--shadow-card:0 1px 1px rgba(18,26,23,0.04),0 14px 34px -16px rgba(18,26,23,0.24);--ease-out:cubic-bezier(0.23,1,0.32,1);--spring:cubic-bezier(0.34,1.4,0.64,1);--font:'Schibsted Grotesk','Helvetica Neue',Arial,system-ui,sans-serif;--mono:'Red Hat Mono',ui-monospace,Menlo,monospace} .ds-slip{background:var(--paper);border-radius:20px;box-shadow:var(--shadow-card);overflow:hidden;font-family:var(--font);color:var(--ink)} .ds-num{font-family:var(--mono);font-variant-numeric:tabular-nums} .ds-row{display:grid;grid-template-columns:1fr auto;gap:1rem;align-items:center;padding:1.2rem 1.35rem;border-top:1px solid var(--rule)} .ds-row:first-child{border-top:0} .ds-row h3{margin:0 0 .15rem;font-size:1.2rem;font-weight:600;letter-spacing:-.015em} .ds-meta{margin:0;color:var(--muted);font-size:.9rem} .ds-row a{display:inline-flex;align-items:center;min-height:44px;padding:0 1rem;border:1px solid var(--rule-strong);border-radius:999px;font-weight:600;font-size:.93rem;color:var(--ink);text-decoration:none;transition:border-color 160ms ease,background 160ms ease,transform 160ms var(--ease-out)} .ds-row a:active{transform:scale(.97)} .ds-row a:focus-visible{outline:2px solid var(--plum);outline-offset:3px} @media (hover:hover) and (pointer:fine){.ds-row a:hover{border-color:var(--plum);color:var(--plum);background:var(--plum-tint)}}"
+      "css": ":host{--ground:#e7eeec;--ground-2:#dbe6e3;--paper:#fbfcfb;--ink:#10201d;--ink-2:#22332f;--muted:#475752;--control:#6b766f;--rule:#cbd8d4;--rule-strong:#a3b5b0;--teal:#0e5b57;--teal-hover:#127069;--teal-press:#0a4744;--teal-ink:#f2fbfa;--teal-tint:#e2f0ed;--open:#2c7a4f;--night:#10201d;--shadow-card:0 1px 1px rgba(18,26,23,0.04),0 14px 34px -16px rgba(18,26,23,0.24);--ease-out:cubic-bezier(0.23,1,0.32,1);--spring:cubic-bezier(0.34,1.4,0.64,1);--font:'Schibsted Grotesk','Helvetica Neue',Arial,system-ui,sans-serif;--mono:'Red Hat Mono',ui-monospace,Menlo,monospace} .ds-slip{background:var(--paper);border-radius:20px;box-shadow:var(--shadow-card);overflow:hidden;font-family:var(--font);color:var(--ink)} .ds-num{font-family:var(--mono);font-variant-numeric:tabular-nums} .ds-row{display:grid;grid-template-columns:1fr auto;gap:1rem;align-items:center;padding:1.2rem 1.35rem;border-top:1px solid var(--rule)} .ds-row:first-child{border-top:0} .ds-row h3{margin:0 0 .15rem;font-size:1.2rem;font-weight:600;letter-spacing:-.015em} .ds-meta{margin:0;color:var(--muted);font-size:.9rem} .ds-row a{display:inline-flex;align-items:center;min-height:44px;padding:0 1rem;border:1px solid var(--rule-strong);border-radius:999px;font-weight:600;font-size:.93rem;color:var(--ink);text-decoration:none;transition:border-color 160ms ease,background 160ms ease,transform 160ms var(--ease-out)} .ds-row a:active{transform:scale(.97)} .ds-row a:focus-visible{outline:2px solid var(--teal);outline-offset:3px} @media (hover:hover) and (pointer:fine){.ds-row a:hover{border-color:var(--teal);color:var(--teal);background:var(--teal-tint)}}"
     },
     {
       "name": "Text input",
       "kind": "input",
       "refersTo": "input",
-      "description": "Paper field, control-grey border, plum border and halo on focus.",
+      "description": "Paper field, control-grey border, teal border and halo on focus.",
       "html": "<label class=\"ds-field\"><span>Search the guides</span><input type=\"search\" placeholder=\"e.g. aftercare\"></label>",
-      "css": ":host{--ground:#e9ece8;--ground-2:#dfe4de;--paper:#fbfbf8;--ink:#121a17;--ink-2:#26302b;--muted:#4a554f;--control:#6b766f;--rule:#cfd5ce;--rule-strong:#a9b2aa;--plum:#6a2245;--plum-hover:#7f2c55;--plum-press:#561a37;--plum-ink:#fff7fb;--plum-tint:#f4eaef;--open:#2c7a4f;--night:#121a17;--shadow-card:0 1px 1px rgba(18,26,23,0.04),0 14px 34px -16px rgba(18,26,23,0.24);--ease-out:cubic-bezier(0.23,1,0.32,1);--spring:cubic-bezier(0.34,1.4,0.64,1);--font:'Schibsted Grotesk','Helvetica Neue',Arial,system-ui,sans-serif;--mono:'Red Hat Mono',ui-monospace,Menlo,monospace} .ds-field{display:flex;flex-direction:column;gap:.4rem;font-family:var(--font);max-width:24rem} .ds-field span{font-weight:600;font-size:.94rem;color:var(--ink)} .ds-field input{font:inherit;color:var(--ink);padding:.85rem 1rem;min-height:52px;border:1.5px solid var(--control);border-radius:10px;background:var(--paper);transition:border-color 160ms ease,box-shadow 160ms ease} .ds-field input::placeholder{color:var(--muted)} .ds-field input:focus{outline:none;border-color:var(--plum);box-shadow:0 0 0 4px rgba(106,34,69,.16)}"
+      "css": ":host{--ground:#e7eeec;--ground-2:#dbe6e3;--paper:#fbfcfb;--ink:#10201d;--ink-2:#22332f;--muted:#475752;--control:#6b766f;--rule:#cbd8d4;--rule-strong:#a3b5b0;--teal:#0e5b57;--teal-hover:#127069;--teal-press:#0a4744;--teal-ink:#f2fbfa;--teal-tint:#e2f0ed;--open:#2c7a4f;--night:#10201d;--shadow-card:0 1px 1px rgba(18,26,23,0.04),0 14px 34px -16px rgba(18,26,23,0.24);--ease-out:cubic-bezier(0.23,1,0.32,1);--spring:cubic-bezier(0.34,1.4,0.64,1);--font:'Schibsted Grotesk','Helvetica Neue',Arial,system-ui,sans-serif;--mono:'Red Hat Mono',ui-monospace,Menlo,monospace} .ds-field{display:flex;flex-direction:column;gap:.4rem;font-family:var(--font);max-width:24rem} .ds-field span{font-weight:600;font-size:.94rem;color:var(--ink)} .ds-field input{font:inherit;color:var(--ink);padding:.85rem 1rem;min-height:52px;border:1.5px solid var(--control);border-radius:10px;background:var(--paper);transition:border-color 160ms ease,box-shadow 160ms ease} .ds-field input::placeholder{color:var(--muted)} .ds-field input:focus{outline:none;border-color:var(--teal);box-shadow:0 0 0 4px rgba(106,34,69,.16)}"
     },
     {
       "name": "Navigation",
@@ -469,7 +469,7 @@
       "refersTo": "nav-link",
       "description": "Pill links; shaded-bone hover; current page is a paper pill with an inset hairline.",
       "html": "<nav class=\"ds-nav\"><a href=\"#\" aria-current=\"page\">Home</a><a href=\"#\">Prices</a><a href=\"#\">About</a><a href=\"#\">Guides</a><a href=\"#\">Contact</a></nav>",
-      "css": ":host{--ground:#e9ece8;--ground-2:#dfe4de;--paper:#fbfbf8;--ink:#121a17;--ink-2:#26302b;--muted:#4a554f;--control:#6b766f;--rule:#cfd5ce;--rule-strong:#a9b2aa;--plum:#6a2245;--plum-hover:#7f2c55;--plum-press:#561a37;--plum-ink:#fff7fb;--plum-tint:#f4eaef;--open:#2c7a4f;--night:#121a17;--shadow-card:0 1px 1px rgba(18,26,23,0.04),0 14px 34px -16px rgba(18,26,23,0.24);--ease-out:cubic-bezier(0.23,1,0.32,1);--spring:cubic-bezier(0.34,1.4,0.64,1);--font:'Schibsted Grotesk','Helvetica Neue',Arial,system-ui,sans-serif;--mono:'Red Hat Mono',ui-monospace,Menlo,monospace} .ds-nav{display:flex;gap:.15rem;padding:.5rem;background:var(--ground);font-family:var(--font)} .ds-nav a{display:inline-flex;align-items:center;min-height:44px;padding:.5rem .8rem;border-radius:999px;font-size:.96rem;font-weight:500;color:var(--ink-2);text-decoration:none;transition:background 160ms ease,color 160ms ease} .ds-nav a[aria-current=page]{background:var(--paper);color:var(--ink);box-shadow:inset 0 0 0 1px var(--rule)} .ds-nav a:focus-visible{outline:2px solid var(--plum);outline-offset:3px} @media (hover:hover) and (pointer:fine){.ds-nav a:hover{background:var(--ground-2);color:var(--ink)}}"
+      "css": ":host{--ground:#e7eeec;--ground-2:#dbe6e3;--paper:#fbfcfb;--ink:#10201d;--ink-2:#22332f;--muted:#475752;--control:#6b766f;--rule:#cbd8d4;--rule-strong:#a3b5b0;--teal:#0e5b57;--teal-hover:#127069;--teal-press:#0a4744;--teal-ink:#f2fbfa;--teal-tint:#e2f0ed;--open:#2c7a4f;--night:#10201d;--shadow-card:0 1px 1px rgba(18,26,23,0.04),0 14px 34px -16px rgba(18,26,23,0.24);--ease-out:cubic-bezier(0.23,1,0.32,1);--spring:cubic-bezier(0.34,1.4,0.64,1);--font:'Schibsted Grotesk','Helvetica Neue',Arial,system-ui,sans-serif;--mono:'Red Hat Mono',ui-monospace,Menlo,monospace} .ds-nav{display:flex;gap:.15rem;padding:.5rem;background:var(--ground);font-family:var(--font)} .ds-nav a{display:inline-flex;align-items:center;min-height:44px;padding:.5rem .8rem;border-radius:999px;font-size:.96rem;font-weight:500;color:var(--ink-2);text-decoration:none;transition:background 160ms ease,color 160ms ease} .ds-nav a[aria-current=page]{background:var(--paper);color:var(--ink);box-shadow:inset 0 0 0 1px var(--rule)} .ds-nav a:focus-visible{outline:2px solid var(--teal);outline-offset:3px} @media (hover:hover) and (pointer:fine){.ds-nav a:hover{background:var(--ground-2);color:var(--ink)}}"
     },
     {
       "name": "Pill",
@@ -477,31 +477,31 @@
       "refersTo": "pill",
       "description": "Paper pill link for areas and topics.",
       "html": "<div class=\"ds-pills\"><a class=\"ds-pill\" href=\"#\">Streatham</a><a class=\"ds-pill\" href=\"#\">Brixton</a><a class=\"ds-pill\" href=\"#\">Tooting</a></div>",
-      "css": ":host{--ground:#e9ece8;--ground-2:#dfe4de;--paper:#fbfbf8;--ink:#121a17;--ink-2:#26302b;--muted:#4a554f;--control:#6b766f;--rule:#cfd5ce;--rule-strong:#a9b2aa;--plum:#6a2245;--plum-hover:#7f2c55;--plum-press:#561a37;--plum-ink:#fff7fb;--plum-tint:#f4eaef;--open:#2c7a4f;--night:#121a17;--shadow-card:0 1px 1px rgba(18,26,23,0.04),0 14px 34px -16px rgba(18,26,23,0.24);--ease-out:cubic-bezier(0.23,1,0.32,1);--spring:cubic-bezier(0.34,1.4,0.64,1);--font:'Schibsted Grotesk','Helvetica Neue',Arial,system-ui,sans-serif;--mono:'Red Hat Mono',ui-monospace,Menlo,monospace} .ds-pills{display:flex;flex-wrap:wrap;gap:.5rem;font-family:var(--font)} .ds-pill{display:inline-flex;align-items:center;min-height:44px;padding:.45rem 1rem;background:var(--paper);border:1px solid var(--rule);border-radius:999px;font-size:.95rem;font-weight:500;color:var(--ink);text-decoration:none;transition:border-color 160ms ease,transform 160ms var(--ease-out)} .ds-pill:active{transform:scale(.97)} .ds-pill:focus-visible{outline:2px solid var(--plum);outline-offset:3px} @media (hover:hover) and (pointer:fine){.ds-pill:hover{border-color:var(--ink)}}"
+      "css": ":host{--ground:#e7eeec;--ground-2:#dbe6e3;--paper:#fbfcfb;--ink:#10201d;--ink-2:#22332f;--muted:#475752;--control:#6b766f;--rule:#cbd8d4;--rule-strong:#a3b5b0;--teal:#0e5b57;--teal-hover:#127069;--teal-press:#0a4744;--teal-ink:#f2fbfa;--teal-tint:#e2f0ed;--open:#2c7a4f;--night:#10201d;--shadow-card:0 1px 1px rgba(18,26,23,0.04),0 14px 34px -16px rgba(18,26,23,0.24);--ease-out:cubic-bezier(0.23,1,0.32,1);--spring:cubic-bezier(0.34,1.4,0.64,1);--font:'Schibsted Grotesk','Helvetica Neue',Arial,system-ui,sans-serif;--mono:'Red Hat Mono',ui-monospace,Menlo,monospace} .ds-pills{display:flex;flex-wrap:wrap;gap:.5rem;font-family:var(--font)} .ds-pill{display:inline-flex;align-items:center;min-height:44px;padding:.45rem 1rem;background:var(--paper);border:1px solid var(--rule);border-radius:999px;font-size:.95rem;font-weight:500;color:var(--ink);text-decoration:none;transition:border-color 160ms ease,transform 160ms var(--ease-out)} .ds-pill:active{transform:scale(.97)} .ds-pill:focus-visible{outline:2px solid var(--teal);outline-offset:3px} @media (hover:hover) and (pointer:fine){.ds-pill:hover{border-color:var(--ink)}}"
     },
     {
       "name": "Booking band",
       "kind": "card",
       "refersTo": "cta-band",
-      "description": "The one dark block per page; booking action stays plum.",
+      "description": "The one dark block per page; booking action stays teal.",
       "html": "<div class=\"ds-band\"><div><h2>Ready when you are.</h2><p>Open 7 days, until <span class=\"ds-num\">20:30</span> at weekends.</p></div><a class=\"ds-b\" href=\"#\">Book on Fresha</a></div>",
-      "css": ":host{--ground:#e9ece8;--ground-2:#dfe4de;--paper:#fbfbf8;--ink:#121a17;--ink-2:#26302b;--muted:#4a554f;--control:#6b766f;--rule:#cfd5ce;--rule-strong:#a9b2aa;--plum:#6a2245;--plum-hover:#7f2c55;--plum-press:#561a37;--plum-ink:#fff7fb;--plum-tint:#f4eaef;--open:#2c7a4f;--night:#121a17;--shadow-card:0 1px 1px rgba(18,26,23,0.04),0 14px 34px -16px rgba(18,26,23,0.24);--ease-out:cubic-bezier(0.23,1,0.32,1);--spring:cubic-bezier(0.34,1.4,0.64,1);--font:'Schibsted Grotesk','Helvetica Neue',Arial,system-ui,sans-serif;--mono:'Red Hat Mono',ui-monospace,Menlo,monospace} .ds-band{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1.5rem;padding:clamp(1.8rem,4.5vw,3rem);background:var(--night);color:#d7dfda;border-radius:24px;font-family:var(--font)} .ds-band h2{color:#fff;margin:0 0 .25em;font-size:1.9rem;letter-spacing:-.03em;font-weight:600} .ds-band p{color:#a6b3ac;margin:0} .ds-num{font-family:var(--mono)} .ds-b{display:inline-flex;align-items:center;min-height:54px;padding:.85rem 1.4rem;border-radius:14px;background:var(--plum);color:var(--plum-ink);font-weight:600;text-decoration:none;transition:background 160ms ease,transform 160ms var(--ease-out)} .ds-b:active{transform:scale(.97)} .ds-b:focus-visible{outline:2px solid #fff;outline-offset:3px} @media (hover:hover) and (pointer:fine){.ds-b:hover{background:var(--plum-hover)}}"
+      "css": ":host{--ground:#e7eeec;--ground-2:#dbe6e3;--paper:#fbfcfb;--ink:#10201d;--ink-2:#22332f;--muted:#475752;--control:#6b766f;--rule:#cbd8d4;--rule-strong:#a3b5b0;--teal:#0e5b57;--teal-hover:#127069;--teal-press:#0a4744;--teal-ink:#f2fbfa;--teal-tint:#e2f0ed;--open:#2c7a4f;--night:#10201d;--shadow-card:0 1px 1px rgba(18,26,23,0.04),0 14px 34px -16px rgba(18,26,23,0.24);--ease-out:cubic-bezier(0.23,1,0.32,1);--spring:cubic-bezier(0.34,1.4,0.64,1);--font:'Schibsted Grotesk','Helvetica Neue',Arial,system-ui,sans-serif;--mono:'Red Hat Mono',ui-monospace,Menlo,monospace} .ds-band{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1.5rem;padding:clamp(1.8rem,4.5vw,3rem);background:var(--night);color:#d7dfda;border-radius:24px;font-family:var(--font)} .ds-band h2{color:#fff;margin:0 0 .25em;font-size:1.9rem;letter-spacing:-.03em;font-weight:600} .ds-band p{color:#a6b3ac;margin:0} .ds-num{font-family:var(--mono)} .ds-b{display:inline-flex;align-items:center;min-height:54px;padding:.85rem 1.4rem;border-radius:14px;background:var(--teal);color:var(--teal-ink);font-weight:600;text-decoration:none;transition:background 160ms ease,transform 160ms var(--ease-out)} .ds-b:active{transform:scale(.97)} .ds-b:focus-visible{outline:2px solid #fff;outline-offset:3px} @media (hover:hover) and (pointer:fine){.ds-b:hover{background:var(--teal-hover)}}"
     }
   ],
   "narrative": {
     "northStar": "The Appointment Card",
-    "overview": "The site is the clinic's appointment card, not a brochure. The homepage opens on a working booking slip: treatment and price, practitioner choice, the week's opening hours, and one booking bar. Every page after it keeps that idea. Content sits on white card paper laid over a cool mineral ground. Lists become rows on one slip, split by hairline rules. They are not grids of separate tiles.\n\nThe world is calm and clinical-premium, never spa-pastel and never religious decoration. Colour stays almost silent: green-black ink on bone and white. One plum, taken from a cupping case, appears only where the visitor acts: the booking buttons, the chosen practitioner, focus rings, link hovers. Every figure that answers \"when, how long, how much\" is set in one tabular mono. The visitor reads it like the printed card a front desk hands you.\n\nDensity is moderate. Phones come first, because most visitors arrive from Maps on a phone. On a 390 x 844 screen the whole appointment card, including its plum booking bar, sits in the first viewport.",
+    "overview": "The site is the clinic's appointment card, not a brochure. The homepage opens on a working booking slip: treatment and price, practitioner choice, the week's opening hours, and one booking bar. Every page after it keeps that idea. Content sits on white card paper laid over a cool mineral ground. Lists become rows on one slip, split by hairline rules. They are not grids of separate tiles.\n\nThe world is calm and clinical-premium, never spa-pastel and never religious decoration. Colour stays almost silent: green-black ink on bone and white. One teal, taken from a cupping case, appears only where the visitor acts: the booking buttons, the chosen practitioner, focus rings, link hovers. Every figure that answers \"when, how long, how much\" is set in one tabular mono. The visitor reads it like the printed card a front desk hands you.\n\nDensity is moderate. Phones come first, because most visitors arrive from Maps on a phone. On a 390 x 844 screen the whole appointment card, including its teal booking bar, sits in the first viewport.",
     "keyCharacteristics": [
       "Mineral ground, white paper slips, hairline rows.",
-      "One plum accent, used only for actions and the selected choice.",
+      "One teal accent, used only for actions and the selected choice.",
       "Schibsted Grotesk for words. Red Hat Mono for every time, price, duration and year count.",
       "Soft, low, cool-green shadows that lift slips off the ground. No hard edges, no glows.",
       "Motion after Emil Kowalski: fast custom ease-out, small press scale, hover only on fine pointers, reduced motion honoured."
     ],
     "rules": [
       {
-        "name": "The Plum-Means-Act Rule",
-        "body": "Plum appears only on something you press, on the choice you have made, or on focus. Never use it for headings, decoration, backgrounds, icons or section fills.",
+        "name": "The Teal-Means-Act Rule",
+        "body": "Teal appears only on something you press, on the choice you have made, or on focus. Never use it for headings, decoration, backgrounds, icons or section fills.",
         "section": "colors"
       },
       {
@@ -526,9 +526,9 @@
       }
     ],
     "dos": [
-      "Do keep plum (#6a2245) for actions, the selected choice and focus only.",
+      "Do keep teal (#0e5b57) for actions, the selected choice and focus only.",
       "Do set every time, price, duration, hour, year count and date in Red Hat Mono with tabular numerals.",
-      "Do build lists as one paper slip with 1px hairline rows (#cfd5ce).",
+      "Do build lists as one paper slip with 1px hairline rows (#cbd8d4).",
       "Do gate every hover effect behind `(hover: hover) and (pointer: fine)`, and give pressables a 0.97 press scale.",
       "Do use the ease-out curve `cubic-bezier(0.23, 1, 0.32, 1)` for movement, and honour `prefers-reduced-motion`.",
       "Do keep touch targets at least 44px tall (48–60px for booking actions).",
@@ -537,7 +537,7 @@
     "donts": [
       "Don't put small labels, kickers or eyebrow lines above headings.",
       "Don't number things that are not a sequence. Numerals like 01–04 belong only to ordered steps, such as the four stages of a visit.",
-      "Don't use plum for headings, backgrounds, decoration or section fills.",
+      "Don't use teal for headings, backgrounds, decoration or section fills.",
       "Don't split a list of like items into separately shadowed tiles.",
       "Don't add a second dark content block to a page. One night booking band is the limit.",
       "Don't fade text in from transparent, and don't animate on hover for touch pointers.",
