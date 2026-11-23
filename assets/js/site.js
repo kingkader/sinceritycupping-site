@@ -80,6 +80,50 @@
     } catch (e) { /* leave the guide link as the way to the dates */ }
   }
 
+
+  // Appointment card: the chosen practitioner sets the appointment length.
+  var appt = document.querySelector(".appt");
+  if (appt) {
+    var length = appt.querySelector(".appt-length");
+    var lengths = { women: "45 min", men: "40 min" };
+    var syncLength = function () {
+      var chosen = appt.querySelector('input[name="practitioner"]:checked');
+      if (length && chosen && lengths[chosen.value]) length.textContent = lengths[chosen.value];
+    };
+    appt.addEventListener("change", syncLength);
+    syncLength();
+
+    // On phones, the quick-actions bar waits until the card's own booking bar has scrolled away.
+    var bar = document.querySelector(".mobile-bar");
+    var go = appt.querySelector(".appt-go");
+    if (bar && go && "IntersectionObserver" in window) {
+      new IntersectionObserver(function (entries) {
+        bar.classList.toggle("is-tucked", entries[0].isIntersecting);
+      }, { threshold: 0 }).observe(go);
+    }
+  }
+
+  // Appointment card: mark today and say whether the clinic is open, in London time.
+  var week = document.querySelector(".week");
+  var openStatus = document.querySelector("[data-open-status]");
+  if (week && openStatus && window.Intl) {
+    try {
+      var parts = new Intl.DateTimeFormat("en-GB", { timeZone: "Europe/London", weekday: "short", hour: "2-digit", minute: "2-digit", hourCycle: "h23" }).formatToParts(new Date());
+      var get = function (type) { var p = parts.filter(function (x) { return x.type === type; })[0]; return p ? p.value : ""; };
+      var day = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"].indexOf(get("weekday")) + 1;
+      var now = parseInt(get("hour"), 10) * 60 + parseInt(get("minute"), 10);
+      if (day > 0 && !isNaN(now)) {
+        var todayEl = week.querySelector('[data-day="' + day + '"]');
+        if (todayEl) { todayEl.classList.add("today"); todayEl.setAttribute("aria-current", "date"); }
+        var close = day >= 6 ? 20 * 60 + 30 : 19 * 60;
+        var closeLabel = day >= 6 ? "20:30" : "19:00";
+        if (now < 10 * 60) { openStatus.textContent = "Opens today at 10:00, until " + closeLabel; openStatus.classList.add("is-later"); }
+        else if (now < close) { openStatus.textContent = "Open now, until " + closeLabel + " today"; openStatus.classList.add("is-open"); }
+        else { openStatus.textContent = "Closed for today. Opens tomorrow at 10:00"; openStatus.classList.add("is-later"); }
+      }
+    } catch (e) {}
+  }
+
   var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var revealEls = Array.prototype.slice.call(document.querySelectorAll(".reveal"));
 

@@ -146,9 +146,8 @@ function shell({title, description, canonical, schema, main, areasCurrent = fals
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#0b211c">
 <link rel="icon" type="image/svg+xml" href="/assets/img/favicon.svg">
-<link rel="preload" href="/assets/fonts/outfit-latin-var.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="/assets/fonts/instrument-serif.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/assets/css/style.css?v=4063a5860f7e">
+<link rel="preload" href="/assets/fonts/schibsted-grotesk-latin-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/css/style.css?v=fe90dc23ae64">
 <script>document.documentElement.classList.add("js");</script>
 <script type="application/ld+json">${jsonLd(schema)}</script>
 </head>
@@ -214,7 +213,7 @@ ${main}
       <div>
         <h2>Visit</h2>
         <address><a href="${clinicDirectionsHref}">330 Streatham High Rd<br>London SW16 6HH</a><br><a href="tel:+447552540000">07552 540000</a><br><a href="https://wa.me/447552540000">WhatsApp the clinic</a></address>
-        <p>Mon–Fri 10:00–19:00 · Sat–Sun 10:00–20:30</p>
+        <p class="num">Mon–Fri 10:00–19:00 · Sat–Sun 10:00–20:30</p>
         <p><a href="/#book">Book an appointment</a></p>
       </div>
     </div>
@@ -231,7 +230,7 @@ ${main}
   <a class="btn btn-outline" href="https://wa.me/447552540000"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 0 1-13.5 7.8L3 21l1.2-4.5A9 9 0 1 1 21 12z"/><path d="M9 10a1 1 0 0 0 5 5"/></svg> WhatsApp</a>
 </nav>
 
-<script src="/assets/js/site.js?v=cffc27813cdd" defer></script>
+<script src="/assets/js/site.js?v=a0e8cedb34a8" defer></script>
 </body>
 </html>
 `;
@@ -281,7 +280,6 @@ function renderArea(area) {
     return `<section class="${sectionClass}" data-area-local-copy aria-labelledby="${sectionId}">
     <div class="container">
       <div class="section-head">
-        <p class="eyebrow">${localEyebrows[index]}</p>
         <h2 id="${sectionId}">${escapeHtml(section.heading)}</h2>
       </div>
 ${paragraphs}${directionsAction}
@@ -298,7 +296,6 @@ ${paragraphs}${directionsAction}
   <div class="page-hero">
     <div class="container">
       <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Home</a> › <a href="/areas/">Areas</a> › <span aria-current="page">${escapeHtml(area.name)}</span></nav>
-      <p class="eyebrow">Service area · one Streatham clinic</p>
       <h1>${escapeHtml(area.heading)}</h1>
       <p class="lede">Wet cupping, also known as hijama, in a private same-sex setting at one fixed address in Streatham.</p>
     </div>
@@ -309,7 +306,6 @@ ${paragraphs}${directionsAction}
   <section class="section section-alt" aria-labelledby="clinic-facts-${area.slug}">
     <div class="container">
       <div class="section-head">
-        <p class="eyebrow">Book directly</p>
         <h2 id="clinic-facts-${area.slug}">Book wet cupping at the one Streatham clinic</h2>
         <p>All appointments take place at the one clinic in Streatham: 330 Streatham High Rd, London SW16 6HH. Open daily 10:00–19:00 (20:30 weekends).</p>
       </div>
@@ -328,7 +324,6 @@ ${paragraphs}${directionsAction}
 
   <section class="section" aria-label="Nearby service areas">
     <div class="container">
-      <p class="eyebrow">Other service areas</p>
       <div class="pill-cloud">
         ${nearby}
       </div>
@@ -387,7 +382,6 @@ function renderHub() {
   <div class="page-hero">
     <div class="container">
       <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Home</a> › <span aria-current="page">Areas</span></nav>
-      <p class="eyebrow">South London service areas</p>
       <h1>Wet cupping service areas near Streatham</h1>
       <p class="lede">Wet cupping, also known as hijama, for women and men travelling to one fixed clinic address.</p>
     </div>
@@ -396,7 +390,6 @@ function renderHub() {
   <section class="section" aria-labelledby="one-clinic">
     <div class="container faq-columns">
       <div>
-        <p class="eyebrow">One location</p>
         <h2 id="one-clinic">One clinic for every area listed</h2>
         <p>There is one clinic at 330 Streatham High Rd, London SW16 6HH. The local pages below describe service areas, not branches, mobile treatment locations or separate premises.</p>
         <p>The clinic is open daily: 10:00–19:00 weekdays, 10:00–20:30 weekends. Women and men of every faith and background are welcome for private same-sex appointments.</p>
@@ -412,7 +405,7 @@ function renderHub() {
 
   <section class="section section-alt" aria-labelledby="service-area-list">
     <div class="container">
-      <div class="section-head"><p class="eyebrow">Local pages</p><h2 id="service-area-list">Check route context for your area</h2><p>Every link below returns to the same clinic address in Streatham.</p></div>
+      <div class="section-head"><h2 id="service-area-list">Check route context for your area</h2><p>Every link below returns to the same clinic address in Streatham.</p></div>
       <div class="pill-cloud">
         ${links}
       </div>
@@ -422,7 +415,6 @@ function renderHub() {
   <section class="section" aria-labelledby="hub-care-boundary">
     <div class="container faq-columns">
       <div>
-        <p class="eyebrow">What the clinic offers</p>
         <h2 id="hub-care-boundary">Private wet cupping with clear choices</h2>
         <p>Women’s wet cupping is £45 for 45 minutes. Men’s wet cupping is £45 for 40 minutes. Same-sex practitioners provide private appointments, and new single-use cups and blades are used for each client.</p>
         <p>Hijama is used naturally as a secondary name for wet cupping. It is not a requirement or a different service.</p>
